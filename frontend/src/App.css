@@ -105,6 +105,35 @@
   font-size: 1.8rem;
 }
 
+.map-shell {
+  margin-top: 22px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(55, 76, 60, 0.12);
+  background: #dfe8d8;
+}
+
+.map-canvas {
+  height: 360px;
+  width: 100%;
+}
+
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-tooltip {
+  border-radius: 12px;
+  border: 1px solid rgba(39, 57, 45, 0.12);
+  box-shadow: 0 12px 28px rgba(47, 58, 42, 0.12);
+  color: #172218;
+}
+
+.leaflet-tooltip strong {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
 .region-list {
   display: grid;
   gap: 12px;
@@ -249,6 +278,10 @@
   .content-grid,
   .score-row {
     grid-template-columns: 1fr;
+  }
+
+  .map-canvas {
+    height: 300px;
   }
 
   .score-ring {

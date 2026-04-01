@@ -1,55 +1,13 @@
 import { useState } from 'react'
+import { MapView } from './components/MapView'
+import { regions } from './data/regionRisk'
 import './App.css'
 
-type RegionRisk = {
-  id: string
-  name: string
-  score: number
-  level: 'Nizko' | 'Srednje' | 'Visoko'
-  trend: string
-  summary: string
-  factors: string[]
-  recommendation: string
-}
-
-const regions: RegionRisk[] = [
-  {
-    id: 'gorenjska',
-    name: 'Gorenjska',
-    score: 78,
-    level: 'Visoko',
-    trend: '+12 % glede na prejsnji teden',
-    summary: 'Toplo vreme in vlazna tla povecujejo aktivnost klopov v gozdnih obmocjih.',
-    factors: ['visja vlaga', 'gost gozdni rob', 'blage temperature'],
-    recommendation: 'Za pohod uporabi dolga oblacila, repelent in pregled telesa v eni uri po vrnitvi.',
-  },
-  {
-    id: 'ljubljana',
-    name: 'Osrednjeslovenska',
-    score: 56,
-    level: 'Srednje',
-    trend: '+4 % glede na prejsnji teden',
-    summary: 'Tveganje je zmerno, vendar ostaja povisano ob rekreativnih poteh z visoko travo.',
-    factors: ['mestni gozdovi', 'obcasna vlaga', 'pogosta izpostavljenost ljudi'],
-    recommendation: 'Za krajse izlete zadostuje repelent in pregled nog, pasa ter vratu po aktivnosti.',
-  },
-  {
-    id: 'primorska',
-    name: 'Primorska',
-    score: 34,
-    level: 'Nizko',
-    trend: '-8 % glede na prejsnji teden',
-    summary: 'Bolj suho obdobje zmanjsuje aktivnost klopov, tveganje pa ni nicelno.',
-    factors: ['suho obdobje', 'manj vlage v tleh', 'nizja aktivnost klopov'],
-    recommendation: 'Osnovna zascita je se vedno smiselna, posebej v senčnih in zarascenih delih.',
-  },
-]
-
-const levelClassName: Record<RegionRisk['level'], string> = {
+const levelClassName = {
   Nizko: 'level-low',
   Srednje: 'level-medium',
   Visoko: 'level-high',
-}
+} as const
 
 function App() {
   const [selectedRegionId, setSelectedRegionId] = useState(regions[0].id)
@@ -85,9 +43,20 @@ function App() {
       <section className="content-grid">
         <article className="selection-card">
           <div className="section-header">
-            <span className="section-kicker">Izberi regijo</span>
-            <h2>Demo vhodni podatki</h2>
+            <span className="section-kicker">Zemljevid Slovenije</span>
+            <h2>Demo geografski prikaz</h2>
           </div>
+
+          <MapView
+            regions={regions}
+            selectedRegionId={selectedRegion.id}
+            onSelectRegion={setSelectedRegionId}
+          />
+
+          <p className="card-note">
+            Klik na oznako na zemljevidu ali na regijo spodaj spremeni fokus in
+            podrobnosti napovedi.
+          </p>
 
           <div className="region-list" role="list">
             {regions.map((region) => (
@@ -106,11 +75,6 @@ function App() {
               </button>
             ))}
           </div>
-
-          <p className="card-note">
-            Naslednji korak je, da te mock podatke zamenjate z dejanskim API
-            odgovorom iz modela.
-          </p>
         </article>
 
         <article className="insight-card">
