@@ -17,11 +17,12 @@ function App() {
   return (
     <main className="app-shell">
       <section className="hero-panel">
-        <div className="eyebrow">AI napoved tveganja za klope</div>
+        <div className="eyebrow">AI napoved tveganja za boreliozo in KME</div>
         <h1>Klop pod klopjo</h1>
         <p className="hero-copy">
-          Prototip prikazuje, kako lahko model iz vremenskih in okoljskih
-          podatkov oceni verjetnost povecane aktivnosti klopov po regijah.
+          Prototip prikazuje, kako lahko model iz vremenskih, okoljskih in
+          prostorskih podatkov oceni regionalno tveganje za boreliozo oziroma
+          KME.
         </p>
 
         <div className="hero-metrics">
@@ -30,7 +31,7 @@ function App() {
             <strong>{selectedRegion.name}</strong>
           </article>
           <article className="metric-card">
-            <span className="metric-label">AI ocena tveganja</span>
+            <span className="metric-label">AI ocena zdravstvenega tveganja</span>
             <strong>{selectedRegion.score}/100</strong>
           </article>
           <article className="metric-card">
@@ -80,7 +81,7 @@ function App() {
         <article className="insight-card">
           <div className="section-header">
             <span className="section-kicker">Napoved</span>
-            <h2>Zakaj je tveganje {selectedRegion.level.toLowerCase()}</h2>
+            <h2>Zakaj je tveganje za boreliozo ali KME {selectedRegion.level.toLowerCase()}</h2>
           </div>
 
           <div className="score-row">

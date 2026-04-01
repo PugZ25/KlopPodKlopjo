@@ -67,7 +67,7 @@ export function MapView({
             <Tooltip direction="top" offset={[0, -8]} opacity={1} permanent={false}>
               <strong>{region.name}</strong>
               <br />
-              {region.level} tveganje
+              {region.level} tveganje za boreliozo ali KME
               <br />
               Score: {region.score}/100
             </Tooltip>
