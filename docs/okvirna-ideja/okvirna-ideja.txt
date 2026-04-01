@@ -1,0 +1,102 @@
+HeartHackers
+Matija Berden Strelec, Žan Kešpert, Nino Frank, Jure Špenko, Eva Šubic
+Klop pod klopjo
+Uvod
+V Sloveniji klopi niso le neprijetnost v naravi – predstavljajo resen in pogosto podcenjen
+javnozdravstveni problem. Vsako leto smo izpostavljeni tveganju za lymsko boreliozo in klopni
+meningoencefalitis (KME), ki je v Sloveniji nad evropskim povprečjem. Borelioza in KME sta
+bolezni, ki lahko pustita trajne posledice in se v redkih primerih končata tudi s smrtjo. Tveganje za
+stik s klopi je odvisno od vremenskih razmer (temperature in vlage), vrste in gostote vegetacije,
+populacije gostiteljev (glodalcev in srnjadi), nadmorske višine in izpostavljenosti posameznika v
+naravi.
+Dandanes posameznik, organizator aktivnosti v naravi, občina ali zdravstveni sistem nimajo
+digitalnega orodja, ki bi v Sloveniji pokazalo, kdaj in kje je tveganje za izpostavljenost klopom
+povišano. Razpršeni podatki sicer obstajajo, vendar niso povezani v enoten sistem in integrirani v
+napovedni model. Razvijamo rešitev, ki bo s pomočjo umetne inteligence, odprtih podatkov in
+uporabe superračunalnika napovedovala tveganje v času in prostoru za izpostavljenost klopom ter
+tveganje za lymsko boreliozo in KME v Sloveniji.
+Ustvarili bomo spletno aplikacijo, v kateri bodo uporabniki lahko:
+●
+●
+●
+●
+●
+●
+ugotovili tveganje na svoji lokaciji,
+primerjali tveganje med različnimi gozdovi, regijami in nadmorskimi pasovi,
+izvedeli, kako ravnati ob ugrizu klopa, in se podučili o preventivnem ravnanju,
+prejemali informacije o možnosti cepljenja in poživitvenih odmerkih proti KME,
+spoznali simptome in potek lymske borelioze in KME,
+prispevali svoje podatke za nadaljnje raziskave.
+Rešitev bo združevala okoljske, demografske, meteorološke, geografske in epidemiološke podatke ter
+podatke o populaciji gostitelja v enoten napovedni sistem, ki bo tveganje predstavil na enostaven,
+uporabniku prijazen način. To ni le tehnološki izziv. Gre za priložnost, da podatke pretvorimo v
+zaščito in ljudem omogočimo varnejšo izkušnjo v naravi.
+Metodologija
+Uporabili bomo programska orodja:
+●
+●
+●
+●
+Python kot glavni programski jezik za obdelavo podatkov, strojno učenje in backend logiko,
+PyTorch ali sorodno orodje za razvoj napovednega modela,
+JavaScript/TypeScript za frontend spletne aplikacije,
+SQL ali podobno dostopne formate za shranjevanje vmesnih podatkovnih tabel.
+Infrastruktura:
+●
+●
+●
+superračunalniška infrastruktura Arnes/SLING za zahtevnejšo obdelavo prostorskih
+podatkov, učenje modelov in generiranje rezultatov teh modelov,
+javno dostopni podatkovni viri, ki omogočajo dostop prek API klicev ter prenos
+strukturiranih podatkovnih nizov (npr. CSV),
+GitHub za verzioniranje kode in sodelovanje v ekipi.
+Podatke bomo črpali iz naslednjih virov:
+●
+●
+●
+●
+●
+ARSO: vremenski in agrometeorološki podatki, kot so: temperatura, padavine, vlažnost in
+drugi okoljski dejavniki,
+NIJZ: javno dostopni epidemiološki podatki o lymski boreliozi in KME,
+Copernicus: podatki o vegetaciji, rabi tal, gozdnatosti in nadmorski višini ter podatki o
+temperaturi tal in drugih prostorskih značilnostih,
+SURS oziroma drugi odprti javni viri za dodatne populacijske in prostorske informacije,
+Zavod za gozdove Slovenije: podatki o populaciji gostiteljev po regijah.
+Surove podatke bomo hranili ločeno od obdelanih, medtem ko bodo vmesni in končni podatkovni
+produkti shranjeni v formatih, kot je CSV . Izvorna koda bo urejeno shranjena v repozitoriju Git ter
+javno dostopna. Posebno pozornost bomo namenili dokumentiranju izvora podatkov, postopkov
+obdelave ter predpostavk uporabljenega modela. Kjer bo mogoče, bomo uporabljali odprte podatke in
+odprte formate.
+Predvideni rezultati in težave
+Z našo rešitvijo želimo doseči:
+●
+●
+●
+●
+●
+napovedni model, ki ocenjuje tveganje za KME in boreliozo,
+spletno aplikacijo z uporabniškim vmesnikom za enostaven prikaz tveganja,
+zmanjšanje incidence KME in borelioze,
+večjo informiranost in precepljenost populacije,
+promocijo gibanja v naravi in zdravega življenjskega sloga.
+Morda bomo naleteli na naslednje težave:
+●
+●
+●
+●
+epidemiološki podatki so deloma težje strojno berljivi,
+podatki so heterogeni in različno označeni,
+nekateri dogodki, zlasti KME, so redki,
+prvi prototip bo moral biti metodološko poenostavljen.
+Utemeljitev naslavljanja ciljev trajnostnega razvoja UNESCO
+3. cilj: Zdravje in dobro počutje. Naša rešitev bo omogočala napovedovanje tveganja za lymsko
+boreliozo in KME, spodbujala preventivno vedenje in izboljšala zdravstveno pismenost, kar lahko
+vodi v zmanjšanje incidence bolezni. S tem prispeva k boljšim zdravstvenim izidom in višji kakovosti
+življenja.
+13. cilj: Podnebni ukrepi. Rešitev bo upoštevala podnebne in okoljske dejavnike (temperatura, vlaga,
+vegetacija), ki dokazano vplivajo na aktivnost in razširjenost klopov. S tem bo omogočila
+kvantifikacijo vpliva podnebnih sprememb na epidemiologijo lymske borelioze in KME ter podpirala
+razvoj prilagoditev in ukrepov za zmanjševanje podnebno pogojenih zdravstvenih tveganj.
+Naj vas klop pod klopjo ne najde, vaši HeartHackersi!

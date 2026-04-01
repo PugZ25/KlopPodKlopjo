@@ -1,0 +1,40 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Local environment
+.env
+.env.*
+
+# Large or generated data
+data/raw/**/*
+data/interim/**/*
+data/processed/**/*
+!data/raw/.gitkeep
+!data/raw/README.md
+!data/interim/.gitkeep
+!data/interim/README.md
+!data/processed/.gitkeep
+!data/processed/README.md
+!data/raw/arso/.gitkeep
+!data/raw/copernicus/.gitkeep
+!data/raw/nijz/.gitkeep
+!data/raw/surs/.gitkeep
+!data/raw/zgs/.gitkeep
+!data/interim/cleaned/.gitkeep
+!data/interim/features/.gitkeep
+!data/interim/merged/.gitkeep
+!data/processed/inference/.gitkeep
+!data/processed/risk-maps/.gitkeep
+!data/processed/training/.gitkeep
+!data/processed/validation/.gitkeep
