@@ -4,3 +4,5 @@
 
 - `data/`: pomožna opravila za podatke
 - `dev/`: razvojna opravila
+
+Za Copernicus `.nc` datoteke je na voljo pregledovalnik v [scripts/data/copernicus/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/data/copernicus/README.md).
