@@ -57,6 +57,8 @@ Podatki so ločeni po stopnjah obdelave.
 - `interim/`: očiščeni in povezani podatki
 - `processed/`: končni podatki za model ali aplikacijo
 
+Za vsako novo podmapo v `data/raw/` dodajte tudi `README.md`, kjer ostanejo zapisani izvor, URL, datum prevzema in osnovni opis datotek.
+
 ### `ml/`
 
 Modelni del projekta.

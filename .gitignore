@@ -28,6 +28,8 @@ data/processed/**/*
 !data/processed/README.md
 !data/raw/arso/.gitkeep
 !data/raw/copernicus/.gitkeep
+!data/raw/gurs/
+!data/raw/gurs/README.md
 !data/raw/nijz/.gitkeep
 !data/raw/surs/.gitkeep
 !data/raw/zgs/.gitkeep

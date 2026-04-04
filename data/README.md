@@ -9,6 +9,7 @@
 V `raw/` so viri ločeni po izvoru:
 - `arso/`
 - `copernicus/`
+- `gurs/`
 - `nijz/`
 - `surs/`
 - `zgs/`

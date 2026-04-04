@@ -10,7 +10,7 @@ Ta repozitorij je namenoma urejen preprosto:
 ## Osnovna logika projekta
 
 Projekt teče v štirih korakih:
-1. V `data/` zberemo in hranimo podatke iz virov, kot so ARSO, NIJZ, Copernicus, SURS in ZGS.
+1. V `data/` zberemo in hranimo podatke iz virov, kot so ARSO, Copernicus, GURS, NIJZ, SURS in ZGS.
 2. V `pipelines/` in `scripts/` podatke očistimo, združimo in pripravimo značilke za model.
 3. V `ml/` razvijemo model za oceno tveganja.
 4. V `backend/` in `frontend/` pripravimo spletno aplikacijo za prikaz rezultatov.
@@ -51,6 +51,8 @@ Podrobnejša razlaga je v [docs/struktura-projekta.md](/Users/zankespert/Desktop
 - avtomatiziran korak obdelave spada v `pipelines/`
 - uporabniški vmesnik spada v `frontend/`
 - strežniška logika in API spadata v `backend/`
+
+Pri vsakem novem viru v `data/raw/` dodamo še kratek `README.md` z virom, datumom prevzema in opisom datotek.
 
 ## Trenutna referenčna gradiva
 
