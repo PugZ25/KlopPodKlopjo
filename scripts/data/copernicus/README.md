@@ -52,3 +52,32 @@ Skripta izpiše:
 - spremenljivke in njihove tipe
 - globalne atribute
 - podrobnosti in osnovno statistiko za izbrano spremenljivko
+
+## Obcinski tedenski feature pipeline
+
+Ko imas monthly feature `.nc` datoteke in GURS GeoJSON z obcinami, lahko zgradis
+obcinske dnevne in tedenske znacilke z area-weighted polygon overlay pristopom:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_features.py
+```
+
+Privzeti izhodi:
+- `data/interim/features/copernicus/era5land_slovenia/obcina_grid_overlay.csv`
+- `data/interim/features/copernicus/era5land_slovenia/obcina_daily_weather.csv`
+- `data/processed/training/obcina_weekly_weather_features.csv`
+- `data/processed/training/obcina_weekly_weather_features_manifest.json`
+
+Ta korak:
+- iz ERA5-Land mreze zgradi dejanske poligone grid celic
+- iz GeoJSON prebere poligone obcin
+- za vsako obcino izracuna preseke `obcina x grid-celica`
+- uporabi preseke kot utezi za agregacijo vremenskih spremenljivk
+- pripravi tedenske znacilke in lag/rolling stolpce za model
+
+Uporabni primeri:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_features.py --limit-files 1 --keep-partial-weeks
+./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_features.py --start-date 2019-01-01 --end-date 2019-12-31
+```

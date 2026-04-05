@@ -1,0 +1,74 @@
+{
+  "dataset_path": "../../data/processed/training/obcina_weekly_weather_with_target.csv",
+  "output_dir": "../../data/processed/training/catboost_weekly_v1",
+  "target_column": "target_risk_score",
+  "time_column": "week_start",
+  "problem_type": "regression",
+  "feature_columns": [
+    "obcina_sifra",
+    "obcina_naziv",
+    "overlay_method",
+    "grid_cell_count",
+    "covered_area_pct",
+    "observation_days_count",
+    "air_temperature_c_mean",
+    "air_temperature_c_min",
+    "air_temperature_c_max",
+    "air_temperature_c_std",
+    "relative_humidity_pct_mean",
+    "precipitation_sum_mm",
+    "precipitation_daily_max_mm",
+    "soil_temperature_level_1_c_mean",
+    "soil_temperature_level_2_c_mean",
+    "soil_water_layer_1_m3_m3_mean",
+    "soil_water_layer_2_m3_m3_mean",
+    "humidity_hours_ge_80_sum",
+    "wet_hours_ge_0_1mm_sum",
+    "tick_activity_window_hours_sum",
+    "growing_degree_hours_base_5_c_sum",
+    "rainy_days_ge_1mm_count",
+    "humid_days_ge_16h_count",
+    "tick_favorable_days_ge_6h_count",
+    "air_temperature_c_range",
+    "air_temperature_c_mean_lag_1w",
+    "relative_humidity_pct_mean_lag_1w",
+    "precipitation_sum_mm_lag_1w",
+    "precipitation_sum_mm_rolling_4w_mean",
+    "soil_water_layer_1_m3_m3_mean_lag_1w",
+    "tick_activity_window_hours_sum_lag_1w",
+    "year",
+    "month",
+    "iso_week",
+    "week_of_year_sin",
+    "week_of_year_cos"
+  ],
+  "categorical_columns": [
+    "obcina_sifra",
+    "obcina_naziv",
+    "overlay_method"
+  ],
+  "id_columns": [
+    "obcina_sifra",
+    "obcina_naziv"
+  ],
+  "ignore_columns": [
+    "week_end",
+    "iso_year"
+  ],
+  "split": {
+    "train_ratio": 0.7,
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15
+  },
+  "catboost": {
+    "iterations": 800,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 3.0,
+    "random_seed": 42,
+    "early_stopping_rounds": 50,
+    "verbose": 100,
+    "loss_function": "RMSE",
+    "eval_metric": "RMSE"
+  }
+}

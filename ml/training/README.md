@@ -28,6 +28,8 @@ python3 -m pip install -r ml/training/requirements.txt
 
 1. Pripravite CSV datoteko, na primer v `data/processed/training/`.
 2. Kopirajte ali prilagodite [example_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_config.json).
+   Za tedenski obcinski weather pipeline lahko uporabite tudi
+   [example_weekly_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_weekly_config.json).
 3. Najprej preverite samo shemo in split:
 
 ```bash

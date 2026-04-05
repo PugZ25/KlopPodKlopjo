@@ -51,6 +51,41 @@ kjer sta `T` in `Td` izražena v `degC`.
 4. Ker je `total_precipitation` v ERA5-Land akumulirana spremenljivka, jo deakumuliramo v urne padavine `precipitation_hourly_mm`.
 5. `swvl1` in `swvl2` ohranimo v izvorni enoti volumetričnega deleža `m3/m3`.
 
+## Agregacija po občinah
+
+Ker je občina poligon in ne točka, agregacije na raven občine ne delamo po principu
+`point-in-polygon` nad centrom celice, ampak z natančnejšim `area-weighted polygon overlay`
+postopkom:
+
+1. Iz koordinat ERA5-Land mreže zgradimo poligone grid celic.
+2. GURS GeoJSON občine obravnavamo kot izvorne poligone občin.
+3. Oboje projiciramo v metrični koordinatni sistem `EPSG:3794`.
+4. Za vsak par `občina x grid-celica` izračunamo presečno površino.
+5. Znotraj posamezne občine uteži normiramo tako, da je vsota uteži `1.0`.
+6. Dnevne in tedenske občinske značilke izračunamo kot utežena povprečja oziroma vsote
+   nad presečnimi utežmi.
+
+Ta pristop je primernejši od točkovnega pripisovanja predvsem za:
+- mejne občine
+- ozke ali razpotegnjene občine
+- majhne občine, ki jih center posamezne celice slabo reprezentira
+- pripravo vhodov za model, kjer želimo prostorsko konsistentne značilke
+
+## Dnevne in tedenske značilke za model
+
+Iz hourly ERA5-Land mreže najprej pripravimo občinske dnevne značilke, nato pa iz njih
+tedenske modelne stolpce. Osnovni tedenski izhodi vključujejo:
+
+- povprečno, minimalno, maksimalno in standardni odklon tedenske temperature
+- povprečno in ekstremne vrednosti relativne vlage
+- tedensko vsoto padavin in maksimum dnevnih padavin
+- povprečne temperature in vlažnosti tal
+- vsoto ur z relativno vlago nad pragovi
+- vsoto ur v okvirnem "tick activity window"
+- rainy / humid / favorable day števce
+- lag in rolling stolpce za 1, 2 in 4 tedne
+- sezonske koledarske stolpce (`iso_week`, `sin`, `cos`)
+
 ## Izhodne mape
 
 Surovi prenos:
@@ -64,6 +99,15 @@ Izpeljane značilke:
 
 Manifest izpeljanih značilk:
 - `data/interim/features/copernicus/era5land_slovenia/manifest.json`
+
+Overlay matrika občina x grid-celica:
+- `data/interim/features/copernicus/era5land_slovenia/obcina_grid_overlay.csv`
+
+Občinski dnevni vremenski podatki:
+- `data/interim/features/copernicus/era5land_slovenia/obcina_daily_weather.csv`
+
+Občinski tedenski podatki za model:
+- `data/processed/training/obcina_weekly_weather_features.csv`
 
 ## Reproducibilnost
 
