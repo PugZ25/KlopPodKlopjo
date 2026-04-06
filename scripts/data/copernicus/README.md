@@ -117,3 +117,49 @@ Uporabni primeri:
 ./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_features.py --limit-files 1 --keep-partial-weeks
 ./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_features.py --start-date 2019-01-01 --end-date 2019-12-31
 ```
+
+## Obcinski DEM feature pipeline
+
+Ko imas prenesen Copernicus DEM in GURS GeoJSON z obcinami, lahko zgradis
+obcinske statične visinske značilke:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_dem_features.py
+```
+
+Privzeti izhodi:
+- `data/interim/features/copernicus/copernicus_dem_slovenia/obcina_dem_tile_coverage.csv`
+- `data/processed/training/obcina_dem_features.csv`
+- `data/processed/training/obcina_dem_features_manifest.json`
+
+Ta korak:
+- iz `manifest.json` in DEM GeoTIFF ploščic prebere layout rastra
+- iz GeoJSON prebere poligone občin
+- za vsako občino iz DEM pikslov izračuna pokritost in višinske statistike
+- zapiše občina x DEM-tile coverage CSV za pregled
+- pripravi občinske DEM feature vrstice za nadaljnjo združitev z drugimi značilkami
+
+Uporabni primeri:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_dem_features.py --limit-obcine 5
+./.venv/bin/python scripts/data/copernicus/build_obcina_dem_features.py --obcina-sifre 061,062,064
+```
+
+## Zdruzen tedenski weather + DEM CSV
+
+Ko imas pripravljena oba občinska izhoda, lahko DEM višinske značilke pripneš na
+tedenske vremenske značilke v novo datoteko:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_weekly_weather_dem_features.py
+```
+
+Ta korak v novo CSV doda:
+- `elevation_m_mean`
+- `elevation_m_std`
+- `elevation_m_range`
+
+Privzeti izhodi:
+- `data/processed/training/obcina_weekly_weather_dem_features.csv`
+- `data/processed/training/obcina_weekly_weather_dem_features_manifest.json`
