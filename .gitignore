@@ -30,6 +30,8 @@ data/processed/**/*
 !data/raw/arso/.gitkeep
 !data/raw/copernicus/.gitkeep
 !data/raw/copernicus/README.md
+!data/raw/copernicus/copernicus_dem_slovenia/
+!data/raw/copernicus/copernicus_dem_slovenia/README.md
 !data/raw/copernicus/era5land_slovenia/
 !data/raw/copernicus/era5land_slovenia/README.md
 !data/raw/gurs/

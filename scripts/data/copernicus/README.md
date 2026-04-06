@@ -31,6 +31,42 @@ python3 scripts/data/copernicus/download_era5land_slovenia.py --transform-only
 python3 scripts/data/copernicus/download_era5land_slovenia.py --end-date 2026-03-30
 ```
 
+## Prenos Copernicus DEM za Slovenijo
+
+Glavna skripta:
+
+```bash
+python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py
+```
+
+Ta skripta:
+- uporablja uradni Copernicus Data Space Sentinel Hub Process API
+- privzeto prenese `COPERNICUS_30` za območje Slovenije
+- izvozi višine v `EPSG:3794` pri 30 m ločljivosti
+- zaradi omejitve sinhronega Process API (`2500 x 2500` px) samodejno razreže izvoz na več GeoTIFF ploščic
+- shrani ploščice v `data/raw/copernicus/copernicus_dem_slovenia/tiles/`
+- zapiše `manifest.json` z bbox, CRS, ločljivostjo in seznamom ploščic
+
+Pred zagonom nastavi OAuth odjemalca za Copernicus Data Space:
+
+```bash
+export CDSE_CLIENT_ID='<your client id>'
+export CDSE_CLIENT_SECRET='<your client secret>'
+```
+
+Uporabni primeri:
+
+```bash
+python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py --dry-run
+python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py --dem-instance COPERNICUS_90
+python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py --build-vrt
+python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py --resolution-m 20 --max-tile-size 2000
+```
+
+Opombi:
+- Copernicus DEM je digitalni model površja, ne bare-earth DTM.
+- `--build-vrt` zahteva ukaz `gdalbuildvrt`; brez njega skripta še vedno prenese vse GeoTIFF ploščice.
+
 ## Pregledovanje `.nc` datotek
 
 Za hitro pregledovanje `.nc` datotek uporabi:
