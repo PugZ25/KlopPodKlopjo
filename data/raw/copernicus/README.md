@@ -37,3 +37,20 @@ Prenos se izvede s skripto:
 ```bash
 python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py
 ```
+
+## CLMS land cover za Slovenijo
+
+- vir: CLMS global land cover 100 m yearly v3 prek Copernicus Data Space Sentinel Hub Process API
+- uradna dokumentacija: `https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/clms/land-cover-and-land-use-mapping/global-dynamic-land-cover/lc_global_100m_yearly_v3.html`
+- OAuth avtentikacija: `https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Overview/Authentication.html`
+- kolekcija `BYOC`: `35fecfec-8a73-4723-bb08-b775f283a535`
+- zadnje uradno leto v tem produktu: `2019`
+- območje: Slovenija, bbox `46.9 13.3 45.3 16.6` v vrstnem redu `north west south east`
+- surove ploščice: `data/raw/copernicus/clms_land_cover_slovenia/tiles/*.tif`
+- manifest prenosa: `data/raw/copernicus/clms_land_cover_slovenia/manifest.json`
+
+Prenos se izvede s skripto:
+
+```bash
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py
+```

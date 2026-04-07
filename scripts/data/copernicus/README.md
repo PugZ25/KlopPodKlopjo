@@ -47,7 +47,13 @@ Ta skripta:
 - shrani ploščice v `data/raw/copernicus/copernicus_dem_slovenia/tiles/`
 - zapiše `manifest.json` z bbox, CRS, ločljivostjo in seznamom ploščic
 
-Pred zagonom nastavi OAuth odjemalca za Copernicus Data Space:
+Pred zagonom nastavi bodisi veljaven bearer token bodisi OAuth odjemalca za Copernicus Data Space:
+
+```bash
+export CDSE_ACCESS_TOKEN='<your bearer token>'
+```
+
+ali:
 
 ```bash
 export CDSE_CLIENT_ID='<your client id>'
@@ -66,6 +72,42 @@ python3 scripts/data/copernicus/download_copernicus_dem_slovenia.py --resolution
 Opombi:
 - Copernicus DEM je digitalni model površja, ne bare-earth DTM.
 - `--build-vrt` zahteva ukaz `gdalbuildvrt`; brez njega skripta še vedno prenese vse GeoTIFF ploščice.
+
+## Prenos CLMS land cover za Slovenijo
+
+Glavna skripta:
+
+```bash
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py
+```
+
+Ta skripta:
+- uporablja uradni Copernicus Data Space Sentinel Hub Process API
+- cilja CLMS global land cover `100 m yearly v3`
+- privzeto prenese zadnje uradno leto tega produkta, to je `2019`
+- izvozi rastrske pasove za Slovenijo v `EPSG:3794`
+- shrani GeoTIFF ploščice v `data/raw/copernicus/clms_land_cover_slovenia/tiles/`
+- zapiše `manifest.json` z bbox, CRS, letom, pasovi in seznamom ploščic
+
+Pred zagonom nastavi OAuth odjemalca za Copernicus Data Space:
+
+```bash
+export CDSE_CLIENT_ID='<your client id>'
+export CDSE_CLIENT_SECRET='<your client secret>'
+```
+
+Uporabni primeri:
+
+```bash
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py --dry-run
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py --year 2018
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py --build-vrt
+python3 scripts/data/copernicus/download_clms_land_cover_slovenia.py --force
+```
+
+Opombe:
+- to je surov rastrski prevzem; občinskih agregatov ali modelskih stolpcev ta korak še ne pripravi
+- ta produkt je metodološko dober za poznejše preproste deleže, kot so `tree`, `grass`, `shrub` in `crops`
 
 ## Pregledovanje `.nc` datotek
 
@@ -163,3 +205,30 @@ Ta korak v novo CSV doda:
 Privzeti izhodi:
 - `data/processed/training/obcina_weekly_weather_dem_features.csv`
 - `data/processed/training/obcina_weekly_weather_dem_features_manifest.json`
+
+## Obcinski CLC land-cover feature pipeline
+
+Ko imas v `data/raw/copernicus/clms_land_cover_slovenia/` razpakiran
+CLC 2018 raster `100 m`, lahko pripraviš občinske statične značilke rabe tal:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_clc_features.py
+```
+
+Ta korak:
+- prebere surovi CLC GeoTIFF in njegov raster attribute table `.vat.dbf`
+- poligone občin pretvori v `EPSG:3035`
+- po metodi `pixel_center_mask` občinam pripiše CLC piksle
+- izvozi preproste občinske deleže, npr. `forest_cover_pct`, `grassland_pasture_cover_pct`, `shrub_transitional_cover_pct`
+
+Privzeti izhodi:
+- `data/interim/features/copernicus/clms_land_cover_slovenia/obcina_clc_sampling.csv`
+- `data/processed/training/obcina_clc_features.csv`
+- `data/processed/training/obcina_clc_features_manifest.json`
+
+Uporabni primeri:
+
+```bash
+./.venv/bin/python scripts/data/copernicus/build_obcina_clc_features.py --limit-obcine 5
+./.venv/bin/python scripts/data/copernicus/build_obcina_clc_features.py --obcina-sifre 001,002,003
+```
