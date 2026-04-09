@@ -8,3 +8,5 @@
 Za Copernicus `.nc` datoteke je na voljo pregledovalnik v [scripts/data/copernicus/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/data/copernicus/README.md).
 
 Za SURS občinske podatke o prebivalstvu in gostoti prebivalcev so skripte opisane v [scripts/data/surs/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/data/surs/README.md).
+
+Za zagon CatBoost treninga na ARNES SLING je pripravljena mapa [scripts/hpc/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/hpc/README.md).

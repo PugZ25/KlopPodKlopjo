@@ -25,6 +25,7 @@ class CatBoostConfig:
     learning_rate: float = 0.05
     depth: int = 8
     l2_leaf_reg: float = 3.0
+    thread_count: int | None = None
     random_seed: int = 42
     early_stopping_rounds: int = 50
     verbose: int = 100
@@ -64,6 +65,8 @@ class TrainConfig:
         if not self.time_column:
             raise ValueError("time_column is required.")
         self.split.validate()
+        if self.catboost.thread_count is not None and self.catboost.thread_count < 1:
+            raise ValueError("catboost.thread_count must be at least 1 when provided.")
 
 
 def load_config(path: str | Path) -> TrainConfig:

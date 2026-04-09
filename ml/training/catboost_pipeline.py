@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -51,6 +52,7 @@ def train_catboost_model(
         "learning_rate": config.catboost.learning_rate,
         "depth": config.catboost.depth,
         "l2_leaf_reg": config.catboost.l2_leaf_reg,
+        "thread_count": _resolve_thread_count(config),
         "random_seed": config.catboost.random_seed,
         "verbose": config.catboost.verbose,
         "loss_function": config.catboost.resolved_loss_function(config.problem_type),
@@ -120,6 +122,24 @@ def _build_pool(dataset: PreparedDataset, split: DatasetSplit, Pool: Any) -> Any
         cat_features=dataset.cat_feature_indices,
         feature_names=dataset.feature_columns,
     )
+
+
+def _resolve_thread_count(config: TrainConfig) -> int | None:
+    if config.catboost.thread_count is not None:
+        return config.catboost.thread_count
+
+    for variable_name in ("SLURM_CPUS_PER_TASK", "OMP_NUM_THREADS"):
+        raw_value = os.environ.get(variable_name, "").strip()
+        if not raw_value:
+            continue
+        try:
+            value = int(raw_value)
+        except ValueError:
+            continue
+        if value >= 1:
+            return value
+
+    return None
 
 
 def _compute_split_metrics(
