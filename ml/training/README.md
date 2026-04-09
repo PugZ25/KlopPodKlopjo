@@ -30,6 +30,10 @@ python3 -m pip install -r ml/training/requirements.txt
 2. Kopirajte ali prilagodite [example_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_config.json).
    Za tedenski obcinski weather pipeline lahko uporabite tudi
    [example_weekly_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_weekly_config.json).
+   Za koncni zdruzeni dataset za boreliozo in KME sta pripravljena tudi
+   [example_tick_borne_lyme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_lyme_config.json)
+   in
+   [example_tick_borne_kme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_config.json).
 3. Najprej preverite samo shemo in split:
 
 ```bash
@@ -76,3 +80,5 @@ Privzeti izhodni direktorij iz konfiguracije vsebuje:
 - Trenutni scaffold podpira `regression` in `binary_classification`.
 - Za vas projekt je za prvi produkcijski model se vedno najbolj smiseln `regression`, nato pa pragove pretvorite v `Nizko / Srednje / Visoko`.
 - Ce vhodni podatki se nimajo NIJZ ciljne spremenljivke, lahko isti pipeline najprej uporabljate z internim `risk score` targetom.
+- Za zdruzeni dataset z NIJZ targeti uporabite
+  `data/processed/training/obcina_weekly_tick_borne_catboost_ready.csv`.

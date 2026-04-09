@@ -11,3 +11,4 @@ To je pomembna mapa za žirijo, ker pokaže, da je rešitev raziskovalno utemelj
 
 Trenutno pripravljena metodološka razlaga:
 - [docs/metodologija/era5-land-slovenija.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/era5-land-slovenija.md)
+- [docs/metodologija/tick-borne-catboost-dataset.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/tick-borne-catboost-dataset.md)
