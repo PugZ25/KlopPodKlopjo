@@ -1,0 +1,73 @@
+{
+  "dataset_path": "../../data/processed/training/obcina_weekly_tick_borne_catboost_ready.csv",
+  "output_dir": "../../data/processed/training/catboost_tick_borne_kme_presence_v2",
+  "target_column": "target_kme_presence",
+  "time_column": "week_start",
+  "problem_type": "binary_classification",
+  "feature_columns": [
+    "obcina_sifra",
+    "overlay_method",
+    "dominant_clc_code",
+    "year",
+    "week_of_year_sin",
+    "week_of_year_cos",
+    "air_temperature_c_mean_lag_2w",
+    "air_temperature_c_mean_rolling_4w_mean",
+    "relative_humidity_pct_mean",
+    "relative_humidity_pct_mean_lag_4w",
+    "precipitation_sum_mm",
+    "rainy_days_ge_1mm_count",
+    "soil_temperature_level_1_c_mean",
+    "soil_temperature_level_2_c_mean",
+    "soil_water_layer_1_m3_m3_mean_lag_2w",
+    "humidity_hours_ge_80_sum",
+    "tick_activity_window_hours_sum_lag_4w",
+    "tick_activity_window_hours_sum_rolling_4w_mean",
+    "elevation_m_mean",
+    "coniferous_forest_cover_pct",
+    "broad_leaved_forest_cover_pct",
+    "mixed_forest_cover_pct",
+    "log_population_total",
+    "population_density_per_km2",
+    "lyme_cases_lag_2w",
+    "lyme_cases_prev_4w_sum",
+    "kme_cases_lag_2w",
+    "kme_cases_prev_8w_sum"
+  ],
+  "categorical_columns": [
+    "obcina_sifra",
+    "overlay_method",
+    "dominant_clc_code"
+  ],
+  "id_columns": [
+    "obcina_sifra",
+    "obcina_naziv"
+  ],
+  "ignore_columns": [
+    "week_end",
+    "iso_year",
+    "log_population_total_source_year",
+    "population_density_source_year",
+    "target_lyme_cases",
+    "target_kme_cases",
+    "target_tick_borne_cases_total",
+    "target_lyme_presence"
+  ],
+  "split": {
+    "train_ratio": 0.7,
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15
+  },
+  "catboost": {
+    "iterations": 1500,
+    "learning_rate": 0.03,
+    "depth": 5,
+    "l2_leaf_reg": 10.0,
+    "random_seed": 42,
+    "early_stopping_rounds": 150,
+    "verbose": 100,
+    "loss_function": "Logloss",
+    "eval_metric": "AUC",
+    "auto_class_weights": "Balanced"
+  }
+}

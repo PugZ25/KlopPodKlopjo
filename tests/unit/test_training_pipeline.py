@@ -87,6 +87,41 @@ class TrainingPipelineTests(unittest.TestCase):
             (self.temp_path / "artifacts/run_1").resolve(),
         )
 
+    def test_load_config_supports_binary_classification_weights(self) -> None:
+        self.config_path.write_text(
+            json.dumps(
+                {
+                    "dataset_path": "training.csv",
+                    "output_dir": "artifacts/run_2",
+                    "target_column": "target_kme_presence",
+                    "time_column": "time",
+                    "problem_type": "binary_classification",
+                    "feature_columns": [
+                        "obcina_sifra",
+                        "assignment_method",
+                        "air_temperature_c",
+                    ],
+                    "categorical_columns": [
+                        "obcina_sifra",
+                        "assignment_method",
+                    ],
+                    "id_columns": ["obcina_sifra", "obcina_naziv"],
+                    "ignore_columns": [],
+                    "catboost": {
+                        "iterations": 10,
+                        "auto_class_weights": "Balanced",
+                    },
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+        config = load_config(self.config_path)
+
+        self.assertEqual(config.problem_type, "binary_classification")
+        self.assertEqual(config.catboost.auto_class_weights, "Balanced")
+
     def test_prepare_dataset_infers_features_and_categorical_indices(self) -> None:
         config = load_config(self.config_path)
         dataset = prepare_dataset(config)

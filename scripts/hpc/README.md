@@ -23,6 +23,12 @@ Za KME:
 sbatch --export=ALL,CONFIG_PATH=ml/training/example_tick_borne_kme_config.json scripts/hpc/sling_catboost_train.sbatch
 ```
 
+Za priporoceni `KME v2` pristop z redkim dogodkom:
+
+```bash
+sbatch --export=ALL,CONFIG_PATH=ml/training/example_tick_borne_kme_v2_config.json scripts/hpc/sling_catboost_train.sbatch
+```
+
 ## Opombe
 
 - Privzeto se finalni CatBoost dataset pred vsakim zagonom ponovno zgradi.

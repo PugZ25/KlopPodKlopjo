@@ -42,6 +42,14 @@ Podrobnejša razlaga je v [docs/struktura-projekta.md](/Users/zankespert/Desktop
 - [frontend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/frontend/README.md): prikaz za uporabnika
 - [docs/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/README.md): metodologija, ideja in materiali za žirijo
 
+## Trenutni baseline
+
+Trenutni uradni baseline za boreliozo je `catboost_tick_borne_lyme_v1`.
+
+- konfiguracija: [example_tick_borne_lyme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_lyme_config.json)
+- artifacts: `data/processed/training/catboost_tick_borne_lyme_v1/`
+- metodologija: [borelioza-baseline-v1.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/borelioza-baseline-v1.md)
+
 ## Pravilo za ekipo
 
 Če niste prepričani, kam nekaj spada, uporabite to pravilo:

@@ -34,6 +34,8 @@ python3 -m pip install -r ml/training/requirements.txt
    [example_tick_borne_lyme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_lyme_config.json)
    in
    [example_tick_borne_kme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_config.json).
+   Za redek KME target je priporocena novejsa klasifikacijska konfiguracija
+   [example_tick_borne_kme_v2_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_v2_config.json).
 3. Najprej preverite samo shemo in split:
 
 ```bash
@@ -74,6 +76,32 @@ Privzeti izhodni direktorij iz konfiguracije vsebuje:
 - `model.cbm`: CatBoost model
 - `metadata.json`: metapodatki o konfiguraciji, splitu, metrikah in pomembnosti znacilk
 - `holdout_predictions.csv`: napovedi za `validation` in `test`
+
+## Trenutni uradni baseline
+
+Od `2026-04-10` je uradni baseline za boreliozo:
+
+- `catboost_tick_borne_lyme_v1`
+- konfiguracija: [example_tick_borne_lyme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_lyme_config.json)
+- artifacts: `data/processed/training/catboost_tick_borne_lyme_v1/`
+- metodoloski zapis: [borelioza-baseline-v1.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/borelioza-baseline-v1.md)
+
+To je trenutni `model to beat` za vse naslednje iteracije borelioze.
+
+## KME v2
+
+Za KME je priporocen `v2` pristop:
+
+- target: `target_kme_presence`
+- problem type: `binary_classification`
+- konfiguracija: [example_tick_borne_kme_v2_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_v2_config.json)
+
+Ta konfiguracija je namenoma bolj konzervativna:
+
+- uporablja manj znacilk kot `kme v1`
+- zmanjsa globino dreves
+- poveca regularizacijo
+- vklopi `auto_class_weights=Balanced` zaradi zelo malo pozitivnih primerov
 
 ## Opombe
 

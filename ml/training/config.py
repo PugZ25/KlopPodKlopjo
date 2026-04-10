@@ -31,6 +31,7 @@ class CatBoostConfig:
     verbose: int = 100
     loss_function: str | None = None
     eval_metric: str | None = None
+    auto_class_weights: str | None = None
 
     def resolved_loss_function(self, problem_type: str) -> str:
         if self.loss_function:

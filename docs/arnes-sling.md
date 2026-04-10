@@ -58,6 +58,12 @@ Za KME:
 sbatch --export=ALL,CONFIG_PATH=ml/training/example_tick_borne_kme_config.json scripts/hpc/sling_catboost_train.sbatch
 ```
 
+Za priporoceni `KME v2` klasifikacijski zagon:
+
+```bash
+sbatch --export=ALL,CONFIG_PATH=ml/training/example_tick_borne_kme_v2_config.json scripts/hpc/sling_catboost_train.sbatch
+```
+
 ## Privzeti viri v `sbatch`
 
 Predloga trenutno zahteva:
@@ -75,6 +81,7 @@ Rezultati treninga se zapisujejo v direktorija iz konfiguracij:
 
 - `data/processed/training/catboost_tick_borne_lyme_v1/`
 - `data/processed/training/catboost_tick_borne_kme_v1/`
+- `data/processed/training/catboost_tick_borne_kme_presence_v2/`
 
 V vsakem dobite:
 

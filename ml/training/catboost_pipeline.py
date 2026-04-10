@@ -60,6 +60,8 @@ def train_catboost_model(
     }
     if config.catboost.eval_metric:
         common_params["eval_metric"] = config.catboost.eval_metric
+    if config.catboost.auto_class_weights:
+        common_params["auto_class_weights"] = config.catboost.auto_class_weights
 
     if config.problem_type == "regression":
         model = CatBoostRegressor(**common_params)
