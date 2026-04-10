@@ -1,0 +1,35 @@
+Python: Python 3.9.25
+Config: ml/training/example_tick_borne_lyme_config.json
+Threads: 8
+0:	learn: 1.5112741	test: 1.0290120	best: 1.0290120 (0)	total: 69.6ms	remaining: 1m 9s
+100:	learn: 0.7372307	test: 0.5893853	best: 0.5892672 (67)	total: 1.99s	remaining: 17.7s
+Stopped by overfitting detector  (75 iterations wait)
+
+bestTest = 0.5892671774
+bestIteration = 67
+
+Shrink model to first 68 iterations.
+Training complete.
+Model: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_lyme_v1/model.cbm
+Metadata: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_lyme_v1/metadata.json
+Predictions: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_lyme_v1/holdout_predictions.csv
+{
+  "train": {
+    "rmse": 0.7613522905060863,
+    "mae": 0.41944212373267786,
+    "mean_target": 0.45875631145362744,
+    "r2": 0.7610648750606769
+  },
+  "validation": {
+    "rmse": 0.5892671773619402,
+    "mae": 0.34540997388070194,
+    "mean_target": 0.26197864945382326,
+    "r2": 0.682503627277808
+  },
+  "test": {
+    "rmse": 0.725255820120897,
+    "mae": 0.40199264914218136,
+    "mean_target": 0.39193825042881647,
+    "r2": 0.6630207598344988
+  }
+}

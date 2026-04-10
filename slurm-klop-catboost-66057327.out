@@ -1,0 +1,35 @@
+Python: Python 3.9.25
+Config: ml/training/example_tick_borne_kme_config.json
+Threads: 8
+0:	learn: 0.1120144	test: 0.0905211	best: 0.0905211 (0)	total: 69.3ms	remaining: 1m 9s
+100:	learn: 0.1010309	test: 0.0889323	best: 0.0888963 (85)	total: 2.1s	remaining: 18.7s
+Stopped by overfitting detector  (75 iterations wait)
+
+bestTest = 0.08889628972
+bestIteration = 85
+
+Shrink model to first 86 iterations.
+Training complete.
+Model: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_kme_v1/model.cbm
+Metadata: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_kme_v1/metadata.json
+Predictions: /d/hpc/home/hackathon33/KlopPodKlopjo/data/processed/training/catboost_tick_borne_kme_v1/holdout_predictions.csv
+{
+  "train": {
+    "rmse": 0.10180479070290632,
+    "mae": 0.019041461638839793,
+    "mean_target": 0.010948711134732926,
+    "r2": 0.17978056606541137
+  },
+  "validation": {
+    "rmse": 0.08889628972133978,
+    "mae": 0.01625693673884917,
+    "mean_target": 0.007261668321747765,
+    "r2": 0.03650760425207411
+  },
+  "test": {
+    "rmse": 0.08385785708555957,
+    "mae": 0.01568401998682362,
+    "mean_target": 0.007106101445724087,
+    "r2": 0.03677793354776826
+  }
+}
