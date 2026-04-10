@@ -95,6 +95,7 @@ Za KME je priporocen `v2` pristop:
 - target: `target_kme_presence`
 - problem type: `binary_classification`
 - konfiguracija: [example_tick_borne_kme_v2_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_v2_config.json)
+- analiza: [kme-v2-analiza.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/kme-v2-analiza.md)
 
 Ta konfiguracija je namenoma bolj konzervativna:
 
@@ -102,6 +103,11 @@ Ta konfiguracija je namenoma bolj konzervativna:
 - zmanjsa globino dreves
 - poveca regularizacijo
 - vklopi `auto_class_weights=Balanced` zaradi zelo malo pozitivnih primerov
+
+Trenutna interpretacija `KME v2`:
+
+- uporaben je za `risk ranking` in `Nizko / Srednje / Visoko`
+- ni se dovolj dober kot neposreden probability model
 
 ## Opombe
 
