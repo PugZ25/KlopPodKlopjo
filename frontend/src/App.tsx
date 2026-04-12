@@ -64,36 +64,50 @@ function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   const diseaseObjectLabel = buildDiseaseObjectLabel(diseaseKey)
 
   if (level === 'Visoko') {
-    return `Obcina je v zgornjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel} in ima povisan obcinski risk indeks na 100k prebivalcev za ${timeHorizon}.`
+    return `Občina je v zgornjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} visoko.`
   }
 
   if (level === 'Srednje') {
-    return `Obcina je v srednjem pasu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je obcinski risk indeks na 100k prebivalcev za ${timeHorizon} zmeren.`
+    return `Občina je v srednjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} srednje.`
   }
 
-  return `Obcina je v spodnjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je obcinski risk indeks na 100k prebivalcev za ${timeHorizon} nizek.`
+  return `Občina je v spodnjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} nizko.`
 }
 
 function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   const timeHorizon = buildTimeHorizonLabel(diseaseKey)
 
   if (level === 'Visoko') {
-    return `Za ${timeHorizon} uporabljaj daljsa oblacila, repelent in po obisku narave takoj preveri kozo ter obleko. Rezultat ni diagnoza, je pa signal za vecjo previdnost.`
+    return `Za ${timeHorizon} uporabljaj daljša oblačila, repelent in po obisku narave takoj preveri kožo ter obleko. Rezultat ni diagnoza, je pa opozorilo za večjo previdnost.`
   }
 
   if (level === 'Srednje') {
-    return `Osnovna preventiva ostaja smiselna: repelent, pregled koze po aktivnosti v naravi in hitra odstranitev klopa. Model za ${timeHorizon} ne kaze izrazitega vrha, vseeno pa signal ni nizek.`
+    return `Osnovna preventiva ostaja smiselna: repelent, pregled kože po aktivnosti v naravi in hitra odstranitev klopa. Model za ${timeHorizon} ne kaže izrazitega vrha, vseeno pa tveganje ni nizko.`
   }
 
-  return `Trenutni okoljski signal za ${timeHorizon} je nizek, vendar to ne pomeni nicelnega tveganja. Ob obisku gozda ali visoke trave se se vedno drzi osnovne zascite.`
+  return `Trenutna ocena za ${timeHorizon} je nizka, vendar to ne pomeni ničelnega tveganja. Ob obisku gozda ali visoke trave se še vedno drži osnovne zaščite.`
 }
 
-function buildScoreRingStyle(score: number, level: RiskLevel): CSSProperties {
-  const clampedScore = Math.max(0, Math.min(100, score))
+function buildRiskBadgeStyle(level: RiskLevel): CSSProperties {
   return {
-    '--score-angle': `${Math.max(18, Math.round((clampedScore / 100) * 360))}deg`,
     '--score-accent': levelAccentColor[level],
   } as CSSProperties
+}
+
+function buildMovementLabel(deltaScore: number) {
+  if (deltaScore >= 8) {
+    return 'Tveganje se povečuje.'
+  }
+
+  if (deltaScore <= -8) {
+    return 'Tveganje se zmanjšuje.'
+  }
+
+  return 'Tveganje ostaja podobno.'
+}
+
+function buildMethodologyCopy() {
+  return 'Ocena temelji na vremenskih podatkih Open-Meteo, prostorskih značilkah občine in modelu na 100.000 prebivalcev. Rezultat je informativna občinska ocena tveganja in ni diagnoza.'
 }
 
 function buildLevelCounts(locations: ReadonlyArray<{ level: RiskLevel }>) {
@@ -196,10 +210,7 @@ function App() {
   }))
   const levelCounts = buildLevelCounts(activeModel.locations)
   const locationCount = activeModel.locations.length
-  const scoreRingStyle = buildScoreRingStyle(
-    selectedLocation.score,
-    selectedLocation.level,
-  )
+  const riskBadgeStyle = buildRiskBadgeStyle(selectedLocation.level)
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
 
   function handleSelectLocation(locationId: string) {
@@ -337,11 +348,12 @@ function App() {
           <article className="selection-card">
             <div className="section-header">
               <span className="section-kicker">Interaktivni del</span>
-              <h2>Live demo po občinah</h2>
+              <h2>Interaktivni prikaz po občinah</h2>
               <p>
-                Zemljevid uporablja zadnji zaključeni tedenski snapshot,
-                Open-Meteo weather history in nova per-100k env modela, da za
-                vsako občino izračuna rangirani obcinski risk indeks.
+                Zemljevid uporablja zadnji zaključeni tedenski posnetek,
+                zgodovinske vremenske podatke Open-Meteo in nova modela na
+                100.000 prebivalcev, da za vsako občino oceni stopnjo
+                tveganja.
               </p>
             </div>
 
@@ -379,8 +391,8 @@ function App() {
                   {formatDisplayDate(activeModel.referenceWeekEnd)}
                 </strong>
                 <p>
-                  Posodobitev {formatDisplayDate(activeModel.asOfDate)}. Vreme:{' '}
-                  {activeModel.weatherSource}.
+                  Posodobitev {formatDisplayDate(activeModel.asOfDate)}.
+                  Vremenski vir: Open-Meteo.
                 </p>
               </div>
             </div>
@@ -403,15 +415,14 @@ function App() {
             />
 
             <p className="card-note">
-              Klikni na obcinski poligon na zemljevidu ali uporabi lokacijo za
-              fokus na svoji obcini. Pragovi Nizko / Srednje / Visoko ostanejo
-              vezani na holdout distribucije modela.
+              Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat
+              se prikaže samo kot nizko, srednje ali visoko tveganje.
             </p>
 
             <div className="region-list" role="list">
               <div className="region-list-header">
                 <span className="section-kicker">Hitri skoki</span>
-                <p>Najmocnejsi signali v trenutnem tedenskem snapshotu.</p>
+                <p>Občine z najizrazitejšo trenutno oceno tveganja.</p>
               </div>
               {quickLocations.map((location) => (
                 <button
@@ -426,7 +437,6 @@ function App() {
                 >
                   <span>{location.municipalityName}</span>
                   <span className="region-button-meta">
-                    <span className="region-score">{location.score}/100</span>
                     <span className={`risk-pill ${levelClassName[location.level]}`}>
                       {location.level}
                     </span>
@@ -438,19 +448,18 @@ function App() {
 
           <article className="insight-card">
             <div className="section-header">
-              <span className="section-kicker">Relativni indeks</span>
+              <span className="section-kicker">Ocena tveganja</span>
               <h2>
-                {activeModel.diseaseLabel} v občini {selectedLocation.municipalityName}:{' '}
-                {selectedLocation.level.toLowerCase()}
+                {activeModel.diseaseLabel} v občini {selectedLocation.municipalityName}
               </h2>
             </div>
 
             <div className="score-row">
-              <div className="score-ring" style={scoreRingStyle}>
-                <span>{selectedLocation.score}</span>
+              <div className="score-ring" style={riskBadgeStyle}>
+                <span>{selectedLocation.level}</span>
               </div>
               <div>
-                <span className="metric-label">Obcinski risk indeks na 100k</span>
+                <span className="metric-label">Občinsko tveganje</span>
                 <span
                   className={`risk-pill ${levelClassName[selectedLocation.level]}`}
                 >
@@ -480,9 +489,9 @@ function App() {
 
             <div className="trend-card">
               <span className="metric-label">Tedenski premik</span>
-              <strong>{selectedLocation.trendLabel}</strong>
+              <strong>{buildMovementLabel(selectedLocation.trendDeltaScore)}</strong>
               <p className="trend-copy">
-                {activeModel.methodologyNote} {activeModel.disclaimer}
+                {buildMethodologyCopy()}
               </p>
             </div>
           </article>

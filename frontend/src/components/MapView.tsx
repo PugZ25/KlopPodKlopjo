@@ -25,7 +25,6 @@ type MapViewProps = {
 
 type ChoroplethBoundary = MunicipalityBoundary & {
   locationId: string
-  score: number
   level: MapRiskLocation['level']
 }
 
@@ -103,7 +102,6 @@ export function MapView({
             return {
               ...boundary,
               locationId: location.id,
-              score: location.score,
               level: location.level,
             }
           })
@@ -139,7 +137,7 @@ export function MapView({
       <div className="map-panel">
         <div className="map-panel-primary">
           <span className="map-panel-kicker">
-            {previewingHover ? 'Preview obcine' : 'Izbrana obcina'}
+            {previewingHover ? 'Predogled občine' : 'Izbrana občina'}
           </span>
           <div className="map-panel-headline">
             <strong>{previewLocation.name}</strong>
@@ -152,11 +150,10 @@ export function MapView({
             </span>
           </div>
           <div className="map-panel-row">
-            <span className="map-panel-score">{previewLocation.score}/100</span>
             <span className="map-panel-copy">
               {previewingHover
-                ? 'Klikni poligon za zaklep fokusa.'
-                : `Signal za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
+                ? 'Klikni poligon za izbor občine.'
+                : `Ocena za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
             </span>
           </div>
         </div>
@@ -239,9 +236,7 @@ export function MapView({
               <Tooltip sticky>
                 <strong>{boundary.name}</strong>
                 <br />
-                {boundary.level} obcinski risk za {diseaseLabel.toLowerCase()}
-                <br />
-                Score: {boundary.score}/100
+                {boundary.level} občinsko tveganje za {diseaseLabel.toLowerCase()}
               </Tooltip>
             </Polygon>
           )
@@ -249,9 +244,9 @@ export function MapView({
       </MapContainer>
 
       <div className="map-meta-row">
-        <span>Hover za preview. Klik za fokus.</span>
-        <span>{locationCount} obcin v snapshotu.</span>
-        <span>{highSignalShare}% obcin je v visokem pasu.</span>
+        <span>Premakni kazalec za predogled. Klikni za izbiro.</span>
+        <span>{locationCount} občin v posnetku.</span>
+        <span>{highSignalShare}% občin je trenutno v visokem pasu.</span>
       </div>
     </div>
   )
