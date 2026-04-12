@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
-import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import {
+  CircleMarker,
+  MapContainer,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from 'react-leaflet'
 import type { RegionRisk } from '../data/regionRisk'
 
 type MapViewProps = {
@@ -18,9 +24,13 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
   const map = useMap()
 
   useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     map.flyTo(coordinates, 8, {
-      animate: true,
-      duration: 0.9,
+      animate: !prefersReducedMotion,
+      duration: prefersReducedMotion ? 0 : 0.9,
     })
   }, [coordinates, map])
 
@@ -69,7 +79,7 @@ export function MapView({
               <br />
               {region.level} tveganje za boreliozo ali KME
               <br />
-              Score: {region.score}/100
+              Ocena: {region.score}/100
             </Tooltip>
           </CircleMarker>
         ))}
