@@ -10,8 +10,20 @@ class SplitConfig:
     train_ratio: float = 0.7
     validation_ratio: float = 0.15
     test_ratio: float = 0.15
+    train_end_time: str | None = None
+    validation_end_time: str | None = None
 
     def validate(self) -> None:
+        uses_explicit_boundaries = (
+            self.train_end_time is not None or self.validation_end_time is not None
+        )
+        if uses_explicit_boundaries:
+            if not self.train_end_time or not self.validation_end_time:
+                raise ValueError(
+                    "split.train_end_time and split.validation_end_time must both be set."
+                )
+            return
+
         ratios = [self.train_ratio, self.validation_ratio, self.test_ratio]
         if any(ratio <= 0 for ratio in ratios):
             raise ValueError("All split ratios must be greater than zero.")
@@ -53,6 +65,7 @@ class TrainConfig:
     categorical_columns: tuple[str, ...] = field(default_factory=tuple)
     id_columns: tuple[str, ...] = field(default_factory=tuple)
     ignore_columns: tuple[str, ...] = field(default_factory=tuple)
+    skip_missing_target_rows: bool = False
     split: SplitConfig = field(default_factory=SplitConfig)
     catboost: CatBoostConfig = field(default_factory=CatBoostConfig)
 
@@ -95,6 +108,7 @@ def load_config(path: str | Path) -> TrainConfig:
         categorical_columns=tuple(raw.get("categorical_columns", [])),
         id_columns=tuple(raw.get("id_columns", [])),
         ignore_columns=tuple(raw.get("ignore_columns", [])),
+        skip_missing_target_rows=raw.get("skip_missing_target_rows", False),
         split=split,
         catboost=catboost,
     )

@@ -58,6 +58,8 @@ def binary_classification_metrics(
         "recall": recall,
         "f1": f1,
         "positive_rate": sum(targets) / len(targets),
+        "roc_auc": roc_auc_score(targets, probabilities),
+        "pr_auc": average_precision_score(targets, probabilities),
     }
 
 
@@ -65,3 +67,52 @@ def _safe_divide(numerator: float, denominator: float) -> float:
     if denominator == 0:
         return 0.0
     return numerator / denominator
+
+
+def roc_auc_score(targets: list[int], scores: list[float]) -> float:
+    if len(targets) != len(scores):
+        raise ValueError("targets and scores must have the same length.")
+
+    paired = sorted(zip(scores, targets), key=lambda item: item[0])
+    positive_count = sum(targets)
+    negative_count = len(targets) - positive_count
+    if positive_count == 0 or negative_count == 0:
+        return 0.0
+
+    rank_sum_for_positives = 0.0
+    index = 0
+    while index < len(paired):
+        group_end = index + 1
+        while group_end < len(paired) and paired[group_end][0] == paired[index][0]:
+            group_end += 1
+
+        average_rank = (index + 1 + group_end) / 2.0
+        positive_in_group = sum(target for _, target in paired[index:group_end])
+        rank_sum_for_positives += average_rank * positive_in_group
+        index = group_end
+
+    return _safe_divide(
+        rank_sum_for_positives - (positive_count * (positive_count + 1) / 2.0),
+        positive_count * negative_count,
+    )
+
+
+def average_precision_score(targets: list[int], scores: list[float]) -> float:
+    if len(targets) != len(scores):
+        raise ValueError("targets and scores must have the same length.")
+
+    positive_count = sum(targets)
+    if positive_count == 0:
+        return 0.0
+
+    paired = sorted(zip(scores, targets), key=lambda item: item[0], reverse=True)
+    true_positive = 0
+    precision_sum = 0.0
+
+    for rank, (_, target) in enumerate(paired, start=1):
+        if target != 1:
+            continue
+        true_positive += 1
+        precision_sum += true_positive / rank
+
+    return precision_sum / positive_count

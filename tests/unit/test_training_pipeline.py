@@ -11,6 +11,7 @@ from pathlib import Path
 
 from ml.training.config import load_config
 from ml.training.dataset import prepare_dataset
+from ml.training.metrics import average_precision_score, roc_auc_score
 from ml.training.splits import build_time_splits
 
 
@@ -158,6 +159,85 @@ class TrainingPipelineTests(unittest.TestCase):
         self.assertTrue(train_times.isdisjoint(validation_times))
         self.assertTrue(train_times.isdisjoint(test_times))
         self.assertTrue(validation_times.isdisjoint(test_times))
+
+    def test_build_time_splits_supports_explicit_boundaries(self) -> None:
+        self.config_path.write_text(
+            json.dumps(
+                {
+                    "dataset_path": "training.csv",
+                    "output_dir": "artifacts/run_boundaries",
+                    "target_column": "target_risk_score",
+                    "time_column": "time",
+                    "problem_type": "regression",
+                    "feature_columns": ["air_temperature_c"],
+                    "categorical_columns": [],
+                    "id_columns": ["obcina_sifra", "obcina_naziv"],
+                    "ignore_columns": [],
+                    "split": {
+                        "train_end_time": "2026-04-03 00:00:00",
+                        "validation_end_time": "2026-04-05 00:00:00",
+                    },
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+        config = load_config(self.config_path)
+        dataset = prepare_dataset(config)
+        splits = build_time_splits(dataset.timestamps, config.split)
+
+        self.assertEqual(splits["train"].unique_time_count, 3)
+        self.assertEqual(splits["validation"].unique_time_count, 2)
+        self.assertEqual(splits["test"].unique_time_count, 1)
+        self.assertEqual(splits["train"].start_time, "2026-04-01 00:00:00")
+        self.assertEqual(splits["validation"].start_time, "2026-04-04 00:00:00")
+        self.assertEqual(splits["test"].start_time, "2026-04-06 00:00:00")
+
+    def test_prepare_dataset_can_skip_missing_targets(self) -> None:
+        dataset_path = self.temp_path / "training_missing_target.csv"
+        dataset_path.write_text(
+            textwrap.dedent(
+                """\
+                time,obcina_sifra,obcina_naziv,assignment_method,air_temperature_c,target_risk_score
+                2026-04-01 00:00:00,143,Zavrc,point_in_polygon,10.5,34.0
+                2026-04-02 00:00:00,143,Zavrc,point_in_polygon,11.0,
+                2026-04-03 00:00:00,143,Zavrc,point_in_polygon,9.7,41.0
+                """
+            ),
+            encoding="utf-8",
+        )
+        self.config_path.write_text(
+            json.dumps(
+                {
+                    "dataset_path": "training_missing_target.csv",
+                    "output_dir": "artifacts/run_skip_missing_target",
+                    "target_column": "target_risk_score",
+                    "time_column": "time",
+                    "problem_type": "regression",
+                    "feature_columns": ["air_temperature_c"],
+                    "categorical_columns": [],
+                    "id_columns": ["obcina_sifra", "obcina_naziv"],
+                    "ignore_columns": [],
+                    "skip_missing_target_rows": True,
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+        config = load_config(self.config_path)
+        dataset = prepare_dataset(config)
+
+        self.assertEqual(dataset.row_count, 2)
+        self.assertEqual(dataset.targets, [34.0, 41.0])
+
+    def test_binary_metrics_include_auc_and_pr_auc(self) -> None:
+        targets = [0, 0, 1, 1]
+        probabilities = [0.1, 0.4, 0.35, 0.8]
+
+        self.assertAlmostEqual(roc_auc_score(targets, probabilities), 0.75)
+        self.assertAlmostEqual(average_precision_score(targets, probabilities), 5 / 6)
 
     def test_validate_only_cli_smoke(self) -> None:
         result = subprocess.run(

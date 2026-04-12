@@ -63,9 +63,12 @@ def prepare_dataset(config: TrainConfig, max_rows: int | None = None) -> Prepare
             if max_rows is not None and len(rows) >= max_rows:
                 break
             normalized_row = {key.strip(): value.strip() for key, value in row.items() if key is not None}
+            raw_target = normalized_row.get(config.target_column, "")
+            if config.skip_missing_target_rows and _is_missing_value(raw_target):
+                continue
             timestamp = _parse_timestamp(normalized_row.get(config.time_column, ""), row_number)
             target = _parse_target(
-                normalized_row.get(config.target_column, ""),
+                raw_target,
                 problem_type=config.problem_type,
                 row_number=row_number,
             )
@@ -136,7 +139,7 @@ def _parse_timestamp(value: str, row_number: int) -> datetime:
 
 
 def _parse_target(value: str, problem_type: str, row_number: int) -> float | int:
-    if value == "":
+    if _is_missing_value(value):
         raise DatasetValidationError(f"Missing target value in row {row_number}.")
 
     if problem_type == "regression":
@@ -171,3 +174,7 @@ def _coerce_feature_value(
         raise DatasetValidationError(
             f"Feature '{column}' must be numeric in row {row_number}, got '{value}'."
         ) from exc
+
+
+def _is_missing_value(value: str) -> bool:
+    return value.strip().lower() in {"", "nan", "na", "null", "none"}

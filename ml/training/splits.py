@@ -39,14 +39,22 @@ def build_time_splits(
             "Need at least three unique timestamps for train/validation/test splitting."
         )
 
-    train_count, validation_count, test_count = _allocate_time_buckets(
-        total=len(unique_times),
-        split_config=split_config,
-    )
+    if split_config.train_end_time and split_config.validation_end_time:
+        train_times, validation_times, test_times = _build_boundary_time_buckets(
+            unique_times=unique_times,
+            split_config=split_config,
+        )
+    else:
+        train_count, validation_count, test_count = _allocate_time_buckets(
+            total=len(unique_times),
+            split_config=split_config,
+        )
 
-    train_times = unique_times[:train_count]
-    validation_times = unique_times[train_count : train_count + validation_count]
-    test_times = unique_times[train_count + validation_count : train_count + validation_count + test_count]
+        train_times = unique_times[:train_count]
+        validation_times = unique_times[train_count : train_count + validation_count]
+        test_times = unique_times[
+            train_count + validation_count : train_count + validation_count + test_count
+        ]
 
     time_to_split = {}
     for time_value in train_times:
@@ -83,3 +91,40 @@ def _allocate_time_buckets(total: int, split_config: SplitConfig) -> tuple[int, 
         raise ValueError("Unable to allocate at least one time bucket to each split.")
 
     return train_count, validation_count, test_count
+
+
+def _build_boundary_time_buckets(
+    *,
+    unique_times: list[datetime],
+    split_config: SplitConfig,
+) -> tuple[list[datetime], list[datetime], list[datetime]]:
+    train_end_time = _parse_boundary_time(split_config.train_end_time, "split.train_end_time")
+    validation_end_time = _parse_boundary_time(
+        split_config.validation_end_time,
+        "split.validation_end_time",
+    )
+
+    if train_end_time >= validation_end_time:
+        raise ValueError("split.train_end_time must be earlier than split.validation_end_time.")
+
+    train_times = [time for time in unique_times if time <= train_end_time]
+    validation_times = [
+        time for time in unique_times if train_end_time < time <= validation_end_time
+    ]
+    test_times = [time for time in unique_times if time > validation_end_time]
+
+    if not train_times or not validation_times or not test_times:
+        raise ValueError(
+            "Explicit split boundaries must leave at least one timestamp in train, validation, and test."
+        )
+
+    return train_times, validation_times, test_times
+
+
+def _parse_boundary_time(raw_value: str | None, field_name: str) -> datetime:
+    if raw_value is None:
+        raise ValueError(f"{field_name} is required.")
+    try:
+        return datetime.fromisoformat(raw_value.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"Invalid datetime for {field_name}: {raw_value}") from exc
