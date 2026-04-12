@@ -15,3 +15,4 @@ Trenutno pripravljena metodološka razlaga:
 - [docs/metodologija/analiza-prvih-sling-rezultatov.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/analiza-prvih-sling-rezultatov.md)
 - [docs/metodologija/borelioza-baseline-v1.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/borelioza-baseline-v1.md)
 - [docs/metodologija/kme-v2-analiza.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/kme-v2-analiza.md)
+- [docs/metodologija/environmental-risk-env-v2-pragovi.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/environmental-risk-env-v2-pragovi.md)

@@ -18,7 +18,7 @@ export const regions: RegionRisk[] = [
     level: 'Visoko',
     trend: '+12 % glede na prejšnji teden',
     summary:
-      'Kombinacija vlage, temperature in izpostavljenosti v naravi nakazuje povišano tveganje za boreliozo ali KME.',
+      'Kombinacija vlage, temperature in izpostavljenosti v naravi dviguje relativni okoljski indeks za boreliozo ali KME.',
     factors: ['višja vlaga', 'gost gozdni rob', 'blage temperature'],
     recommendation:
       'Za pohod uporabi dolga oblačila, repelent in po vrnitvi hitro preveri morebiten ugriz ter spremljaj simptome.',
@@ -31,7 +31,7 @@ export const regions: RegionRisk[] = [
     level: 'Srednje',
     trend: '+4 % glede na prejšnji teden',
     summary:
-      'Tveganje je zmerno, vendar ostaja povišano v območjih s pogosto izpostavljenostjo in ugodnimi okoljskimi razmerami.',
+      'Relativni okoljski indeks je zmeren, vendar ostaja povišan v območjih s pogosto izpostavljenostjo in ugodnimi okoljskimi razmerami.',
     factors: ['mestni gozdovi', 'občasna vlaga', 'pogosta izpostavljenost ljudi'],
     recommendation:
       'Za krajše izlete uporabi repelent in po aktivnosti preveri noge, pas ter vrat zaradi zgodnjega odkritja ugriza.',
@@ -44,7 +44,7 @@ export const regions: RegionRisk[] = [
     level: 'Nizko',
     trend: '-8 % glede na prejšnji teden',
     summary:
-      'Bolj suho obdobje trenutno znižuje verjetnost okoljskih pogojev, povezanih z boreliozo ali KME, tveganje pa ni ničelno.',
+      'Bolj suho obdobje trenutno znižuje relativni okoljski indeks pogojev, povezanih z boreliozo ali KME, vendar osnovna izpostavljenost ostaja.',
     factors: ['suho obdobje', 'manj vlage v tleh', 'nižja okoljska ogroženost'],
     recommendation:
       'Osnovna zaščita je še vedno smiselna, posebej v senčnih in zaraščenih delih ter ob daljšem zadrževanju v naravi.',

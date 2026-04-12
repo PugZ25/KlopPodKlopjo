@@ -6,15 +6,23 @@ import {
   Tooltip,
   useMap,
 } from 'react-leaflet'
-import type { RegionRisk } from '../data/regionRisk'
 
-type MapViewProps = {
-  regions: RegionRisk[]
-  selectedRegionId: string
-  onSelectRegion: (regionId: string) => void
+export type MapRiskLocation = {
+  id: string
+  name: string
+  score: number
+  level: 'Nizko' | 'Srednje' | 'Visoko'
+  coordinates: [number, number]
 }
 
-const levelColors: Record<RegionRisk['level'], string> = {
+type MapViewProps = {
+  locations: MapRiskLocation[]
+  selectedLocationId: string
+  onSelectLocation: (locationId: string) => void
+  diseaseLabel: string
+}
+
+const levelColors: Record<MapRiskLocation['level'], string> = {
   Nizko: '#2f8f68',
   Srednje: '#d49845',
   Visoko: '#c24a37',
@@ -38,17 +46,18 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
 }
 
 export function MapView({
-  regions,
-  selectedRegionId,
-  onSelectRegion,
+  locations,
+  selectedLocationId,
+  onSelectLocation,
+  diseaseLabel,
 }: MapViewProps) {
-  const selectedRegion =
-    regions.find((region) => region.id === selectedRegionId) ?? regions[0]
+  const selectedLocation =
+    locations.find((location) => location.id === selectedLocationId) ?? locations[0]
 
   return (
     <div className="map-shell">
       <MapContainer
-        center={selectedRegion.coordinates}
+        center={selectedLocation.coordinates}
         zoom={8}
         scrollWheelZoom={false}
         className="map-canvas"
@@ -57,29 +66,29 @@ export function MapView({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MapFocus coordinates={selectedRegion.coordinates} />
+        <MapFocus coordinates={selectedLocation.coordinates} />
 
-        {regions.map((region) => (
+        {locations.map((location) => (
           <CircleMarker
-            key={region.id}
-            center={region.coordinates}
+            key={location.id}
+            center={location.coordinates}
             pathOptions={{
-              color: levelColors[region.level],
-              fillColor: levelColors[region.level],
-              fillOpacity: region.id === selectedRegionId ? 0.85 : 0.55,
-              weight: region.id === selectedRegionId ? 3 : 2,
+              color: levelColors[location.level],
+              fillColor: levelColors[location.level],
+              fillOpacity: location.id === selectedLocationId ? 0.88 : 0.52,
+              weight: location.id === selectedLocationId ? 2.5 : 1.5,
             }}
-            radius={Math.max(12, Math.round(region.score / 6))}
+            radius={Math.max(6, Math.round(location.score / 10))}
             eventHandlers={{
-              click: () => onSelectRegion(region.id),
+              click: () => onSelectLocation(location.id),
             }}
           >
             <Tooltip direction="top" offset={[0, -8]} opacity={1} permanent={false}>
-              <strong>{region.name}</strong>
+              <strong>{location.name}</strong>
               <br />
-              {region.level} tveganje za boreliozo ali KME
+              {location.level} okoljsko tveganje za {diseaseLabel.toLowerCase()}
               <br />
-              Ocena: {region.score}/100
+              Relativni okoljski indeks: {location.score}/100
             </Tooltip>
           </CircleMarker>
         ))}

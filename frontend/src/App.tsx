@@ -2,7 +2,11 @@ import { useState } from 'react'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
 import { MapView } from './components/MapView'
-import { regions } from './data/regionRisk'
+import {
+  liveMunicipalityRiskModels,
+  type DiseaseModelKey,
+  type RiskLevel,
+} from './data/liveMunicipalityRisk'
 import {
   diseaseSources,
   heroStats,
@@ -17,6 +21,7 @@ import {
   vaccinationHighlights,
   vaccinationSources,
 } from './data/siteContent'
+import { findMunicipalityByCoordinates } from './utils/municipalityLookup'
 import './App.css'
 
 const levelClassName = {
@@ -28,6 +33,69 @@ const levelClassName = {
 type SourceLink = {
   label: string
   href?: string
+}
+
+const diseaseTabs: DiseaseModelKey[] = ['borelioza', 'kme']
+
+function formatDisplayDate(value: string) {
+  return new Intl.DateTimeFormat('sl-SI', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${value}T00:00:00`))
+}
+
+function buildTimeHorizonLabel(diseaseKey: DiseaseModelKey) {
+  return diseaseKey === 'borelioza' ? 'naslednje 4 tedne' : 'naslednjih 8 tednov'
+}
+
+function buildDiseaseObjectLabel(diseaseKey: DiseaseModelKey) {
+  return diseaseKey === 'borelioza' ? 'boreliozo' : 'KME'
+}
+
+function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
+  const timeHorizon = buildTimeHorizonLabel(diseaseKey)
+  const diseaseObjectLabel = buildDiseaseObjectLabel(diseaseKey)
+
+  if (level === 'Visoko') {
+    return `Obcina je v zgornjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel} in ima povisan relativni okoljski indeks za ${timeHorizon}.`
+  }
+
+  if (level === 'Srednje') {
+    return `Obcina je v srednjem pasu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je okoljski signal za ${timeHorizon} zmeren.`
+  }
+
+  return `Obcina je v spodnjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je relativni okoljski indeks za ${timeHorizon} nizek.`
+}
+
+function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
+  const timeHorizon = buildTimeHorizonLabel(diseaseKey)
+
+  if (level === 'Visoko') {
+    return `Za ${timeHorizon} uporabljaj daljsa oblacila, repelent in po obisku narave takoj preveri kozo ter obleko. Rezultat ni diagnoza, je pa signal za vecjo previdnost.`
+  }
+
+  if (level === 'Srednje') {
+    return `Osnovna preventiva ostaja smiselna: repelent, pregled koze po aktivnosti v naravi in hitra odstranitev klopa. Model za ${timeHorizon} ne kaze izrazitega vrha, vseeno pa signal ni nizek.`
+  }
+
+  return `Trenutni okoljski signal za ${timeHorizon} je nizek, vendar to ne pomeni nicelnega tveganja. Ob obisku gozda ali visoke trave se se vedno drzi osnovne zascite.`
+}
+
+function formatGeolocationError(error: GeolocationPositionError) {
+  if (error.code === error.PERMISSION_DENIED) {
+    return 'Dostop do lokacije je bil zavrnjen.'
+  }
+
+  if (error.code === error.POSITION_UNAVAILABLE) {
+    return 'Lokacije trenutno ni mogoce dolociti.'
+  }
+
+  if (error.code === error.TIMEOUT) {
+    return 'Iskanje lokacije je poteklo.'
+  }
+
+  return 'Pri pridobivanju lokacije je prislo do napake.'
 }
 
 function SourceBlock({
@@ -58,9 +126,101 @@ function SourceBlock({
 }
 
 function App() {
-  const [selectedRegionId, setSelectedRegionId] = useState(regions[0].id)
-  const selectedRegion =
-    regions.find((region) => region.id === selectedRegionId) ?? regions[0]
+  const [selectedDiseaseKey, setSelectedDiseaseKey] =
+    useState<DiseaseModelKey>('borelioza')
+  const [selectedMunicipalityCode, setSelectedMunicipalityCode] = useState(
+    liveMunicipalityRiskModels.borelioza.featuredLocations[0]?.municipalityCode ??
+      liveMunicipalityRiskModels.borelioza.locations[0]?.municipalityCode ??
+      '',
+  )
+  const [locationMessage, setLocationMessage] = useState('')
+  const [isLocating, setIsLocating] = useState(false)
+
+  const activeModel = liveMunicipalityRiskModels[selectedDiseaseKey]
+  const selectedLocation =
+    activeModel.locations.find(
+      (location) => location.municipalityCode === selectedMunicipalityCode,
+    ) ?? activeModel.locations[0]
+
+  const quickLocations = [
+    selectedLocation,
+    ...activeModel.featuredLocations
+      .map((featuredLocation) =>
+        activeModel.locations.find(
+          (location) => location.id === featuredLocation.id,
+        ),
+      )
+      .filter((location): location is (typeof activeModel.locations)[number] =>
+        Boolean(location),
+      ),
+  ].filter(
+    (location, index, locations) =>
+      locations.findIndex((candidate) => candidate.id === location.id) === index,
+  )
+
+  const mapLocations = activeModel.locations.map((location) => ({
+    id: location.id,
+    name: location.municipalityName,
+    score: location.score,
+    level: location.level,
+    coordinates: location.coordinates,
+  }))
+
+  function handleSelectLocation(locationId: string) {
+    const nextLocation = activeModel.locations.find(
+      (location) => location.id === locationId,
+    )
+    if (!nextLocation) {
+      return
+    }
+    setSelectedMunicipalityCode(nextLocation.municipalityCode)
+  }
+
+  function handleUseLocation() {
+    if (!navigator.geolocation) {
+      setLocationMessage('Brskalnik ne podpira geolokacije.')
+      return
+    }
+
+    setIsLocating(true)
+    setLocationMessage('Lociram tvojo obcino ...')
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const municipality = await findMunicipalityByCoordinates(
+            position.coords.latitude,
+            position.coords.longitude,
+          )
+
+          if (!municipality) {
+            setLocationMessage(
+              'Lokacija ni bila prepoznana znotraj podprtih obcin Slovenije.',
+            )
+            return
+          }
+
+          setSelectedMunicipalityCode(municipality.code)
+          setLocationMessage(`Lokacija prepoznana: ${municipality.name}.`)
+        } catch (error) {
+          setLocationMessage(
+            error instanceof Error ? error.message : 'Lookup obcine ni uspel.',
+          )
+        } finally {
+          setIsLocating(false)
+        }
+      },
+      (error) => {
+        setIsLocating(false)
+        setLocationMessage(formatGeolocationError(error))
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 300000,
+        timeout: 15000,
+      },
+    )
+  }
 
   return (
     <div className="site-page">
@@ -141,40 +301,91 @@ function App() {
           <article className="selection-card">
             <div className="section-header">
               <span className="section-kicker">Interaktivni del</span>
-              <h2>Demo geografski prikaz tveganja</h2>
+              <h2>Live demo po občinah</h2>
               <p>
-                Obstoječi prototip prikazuje, kako lahko model iz vremenskih,
-                okoljskih in prostorskih podatkov oceni regionalno tveganje za
-                boreliozo oziroma KME.
+                Zemljevid uporablja zadnji zaključeni tedenski snapshot,
+                Open-Meteo weather history in obstojeca env_v2 modela, da za
+                vsako občino izračuna relativni okoljski indeks.
               </p>
             </div>
 
+            <div className="disease-toggle" role="tablist" aria-label="Izbira bolezni">
+              {diseaseTabs.map((diseaseKey) => (
+                <button
+                  key={diseaseKey}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedDiseaseKey === diseaseKey}
+                  className={`disease-tab${
+                    selectedDiseaseKey === diseaseKey ? ' disease-tab-active' : ''
+                  }`}
+                  onClick={() => setSelectedDiseaseKey(diseaseKey)}
+                >
+                  {liveMunicipalityRiskModels[diseaseKey].diseaseLabel}
+                </button>
+              ))}
+            </div>
+
+            <div className="live-toolbar">
+              <button
+                type="button"
+                className="hero-link location-button"
+                onClick={handleUseLocation}
+                disabled={isLocating}
+              >
+                {isLocating ? 'Lociram ...' : 'Uporabi mojo lokacijo'}
+              </button>
+
+              <div className="live-meta">
+                <span className="metric-label">Referencni teden</span>
+                <strong>
+                  {formatDisplayDate(activeModel.referenceWeekStart)} -{' '}
+                  {formatDisplayDate(activeModel.referenceWeekEnd)}
+                </strong>
+                <p>
+                  Posodobitev {formatDisplayDate(activeModel.asOfDate)}. Vreme:{' '}
+                  {activeModel.weatherSource}.
+                </p>
+              </div>
+            </div>
+
+            {locationMessage ? (
+              <p className="live-status" role="status">
+                {locationMessage}
+              </p>
+            ) : null}
+
             <MapView
-              regions={regions}
-              selectedRegionId={selectedRegion.id}
-              onSelectRegion={setSelectedRegionId}
+              locations={mapLocations}
+              selectedLocationId={selectedLocation.id}
+              onSelectLocation={handleSelectLocation}
+              diseaseLabel={activeModel.diseaseLabel}
             />
 
             <p className="card-note">
-              Klik na oznako na zemljevidu ali na regijo spodaj spremeni fokus
-              in podrobnosti napovedi.
+              Klik na oznako na zemljevidu ali uporabi lokacijo za fokus na svoji
+              občini. Pragovi Nizko / Srednje / Visoko ostanejo zamrznjeni iz
+              holdout distribucije modela.
             </p>
 
             <div className="region-list" role="list">
-              {regions.map((region) => (
+              {quickLocations.map((location) => (
                 <button
-                  key={region.id}
+                  key={location.id}
                   type="button"
                   className={`region-button${
-                    region.id === selectedRegion.id
+                    location.id === selectedLocation.id
                       ? ' region-button-active'
                       : ''
                   }`}
-                  onClick={() => setSelectedRegionId(region.id)}
+                  onClick={() => setSelectedMunicipalityCode(location.municipalityCode)}
                 >
-                  <span>{region.name}</span>
-                  <span className={`risk-pill ${levelClassName[region.level]}`}>
-                    {region.level}
+                  <span>{location.municipalityName}</span>
+                  <span className="region-button-meta">
+                    <span className="region-score">{location.score}/100</span>
+                    <span className={`risk-pill ${levelClassName[location.level]}`}>
+                      {location.level}
+                    </span>
                   </span>
                 </button>
               ))}
@@ -183,27 +394,35 @@ function App() {
 
           <article className="insight-card">
             <div className="section-header">
-              <span className="section-kicker">Napoved</span>
+              <span className="section-kicker">Relativni indeks</span>
               <h2>
-                Zakaj je tveganje za boreliozo ali KME{' '}
-                {selectedRegion.level.toLowerCase()}
+                {activeModel.diseaseLabel} v občini {selectedLocation.municipalityName}:{' '}
+                {selectedLocation.level.toLowerCase()}
               </h2>
             </div>
 
             <div className="score-row">
               <div className="score-ring">
-                <span>{selectedRegion.score}</span>
+                <span>{selectedLocation.score}</span>
               </div>
               <div>
-                <span className={`risk-pill ${levelClassName[selectedRegion.level]}`}>
-                  {selectedRegion.level}
+                <span className="metric-label">Relativni okoljski indeks</span>
+                <span
+                  className={`risk-pill ${levelClassName[selectedLocation.level]}`}
+                >
+                  {selectedLocation.level}
                 </span>
-                <p className="summary">{selectedRegion.summary}</p>
+                <p className="summary">
+                  {buildSummary(
+                    selectedLocation.level,
+                    selectedDiseaseKey,
+                  )}
+                </p>
               </div>
             </div>
 
             <div className="factor-grid">
-              {selectedRegion.factors.map((factor) => (
+              {activeModel.topDrivers.map((factor) => (
                 <div key={factor} className="factor-chip">
                   {factor}
                 </div>
@@ -211,13 +430,16 @@ function App() {
             </div>
 
             <div className="recommendation-box">
-              <span className="section-kicker">Priporočilo za uporabnika</span>
-              <p>{selectedRegion.recommendation}</p>
+              <span className="section-kicker">Kako brati rezultat</span>
+              <p>{buildRecommendation(selectedLocation.level, selectedDiseaseKey)}</p>
             </div>
 
             <div className="trend-card">
-              <span className="metric-label">Tedenski trend</span>
-              <strong>{selectedRegion.trend}</strong>
+              <span className="metric-label">Tedenski premik</span>
+              <strong>{selectedLocation.trendLabel}</strong>
+              <p className="trend-copy">
+                {activeModel.methodologyNote} {activeModel.disclaimer}
+              </p>
             </div>
           </article>
         </section>
