@@ -2,19 +2,51 @@ export type MunicipalityBoundary = {
   code: string
   name: string
   bbox: [number, number, number, number]
-  ring: Array<[number, number]>
+  polygons: Array<Array<Array<[number, number]>>>
+}
+
+type RawMunicipalityBoundary = {
+  code: string
+  name: string
+  bbox: [number, number, number, number]
+  polygons?: Array<Array<Array<[number, number]>>>
+  ring?: Array<[number, number]>
 }
 
 let boundaryPromise: Promise<MunicipalityBoundary[]> | null = null
 
-async function loadMunicipalityBoundaries() {
+function normalizeMunicipalityBoundary(boundary: RawMunicipalityBoundary) {
+  if (Array.isArray(boundary.polygons)) {
+    return {
+      code: boundary.code,
+      name: boundary.name,
+      bbox: boundary.bbox,
+      polygons: boundary.polygons,
+    } satisfies MunicipalityBoundary
+  }
+
+  if (Array.isArray(boundary.ring)) {
+    return {
+      code: boundary.code,
+      name: boundary.name,
+      bbox: boundary.bbox,
+      polygons: [[boundary.ring]],
+    } satisfies MunicipalityBoundary
+  }
+
+  throw new Error(`Boundary asset for ${boundary.code} is missing polygons.`)
+}
+
+export async function loadMunicipalityBoundaries() {
   if (!boundaryPromise) {
     boundaryPromise = fetch('/municipality-boundaries.json').then(
       async (response) => {
         if (!response.ok) {
           throw new Error('Boundary asset ni bil nalozen.')
         }
-        return (await response.json()) as MunicipalityBoundary[]
+        return ((await response.json()) as RawMunicipalityBoundary[]).map(
+          normalizeMunicipalityBoundary,
+        )
       },
     )
   }
@@ -38,7 +70,7 @@ function pointInBoundingBox(
 function pointInRing(
   longitude: number,
   latitude: number,
-  ring: MunicipalityBoundary['ring'],
+  ring: Array<[number, number]>,
 ) {
   let isInside = false
 
@@ -65,6 +97,19 @@ function pointInRing(
   return isInside
 }
 
+function pointInPolygon(
+  longitude: number,
+  latitude: number,
+  polygon: MunicipalityBoundary['polygons'][number],
+) {
+  const [outerRing, ...holes] = polygon
+  if (!outerRing || !pointInRing(longitude, latitude, outerRing)) {
+    return false
+  }
+
+  return !holes.some((ring) => pointInRing(longitude, latitude, ring))
+}
+
 export async function findMunicipalityByCoordinates(
   latitude: number,
   longitude: number,
@@ -74,7 +119,9 @@ export async function findMunicipalityByCoordinates(
     boundaries.find(
       (boundary) =>
         pointInBoundingBox(longitude, latitude, boundary.bbox) &&
-        pointInRing(longitude, latitude, boundary.ring),
+        boundary.polygons.some((polygon) =>
+          pointInPolygon(longitude, latitude, polygon),
+        ),
     ) ?? null
   )
 }

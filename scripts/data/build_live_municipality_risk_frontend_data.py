@@ -16,30 +16,51 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+from shapely.geometry import shape
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from catboost import CatBoostClassifier, Pool
+from catboost import CatBoostClassifier, CatBoostRegressor, Pool
 
 from ml.training.config import load_config
 
 
-FRONTEND_ENVIRONMENTAL_RISK_PATH = (
-    REPO_ROOT / "frontend" / "src" / "data" / "environmentalRisk.ts"
-)
 FRONTEND_LIVE_RISK_PATH = (
     REPO_ROOT / "frontend" / "src" / "data" / "liveMunicipalityRisk.ts"
 )
 TRAINING_DATASET_PATH = (
     REPO_ROOT / "data" / "processed" / "training" / "obcina_weekly_tick_borne_catboost_ready.csv"
 )
+GURS_MUNICIPALITY_GEOJSON_PATH = (
+    REPO_ROOT / "data" / "raw" / "gurs" / "obcine-gurs-rpe.geojson"
+)
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_TIMEOUT_SECONDS = 45
 MAX_FETCH_WORKERS = 8
 OPEN_METEO_MAX_ATTEMPTS = 5
 OPEN_METEO_BASE_BACKOFF_SECONDS = 2.0
+
+FEATURE_LABELS = {
+    "week_of_year_cos": "sezonski signal",
+    "week_of_year_sin": "sezonski signal",
+    "urban_cover_pct": "urbaniziranost",
+    "air_temperature_c_mean_rolling_4w_mean": "temperaturni trend",
+    "elevation_m_std": "razgiban relief",
+    "elevation_m_range": "visinska raznolikost",
+    "elevation_m_mean": "nadmorska visina",
+    "forest_cover_pct": "gozdna pokrovnost",
+    "mixed_forest_cover_pct": "mesani gozd",
+    "broad_leaved_forest_cover_pct": "listnati gozd",
+    "coniferous_forest_cover_pct": "iglasti gozd",
+    "dominant_clc_cover_pct": "tip rabe tal",
+    "agricultural_cover_pct": "kmetijska krajina",
+    "shrub_transitional_cover_pct": "grmisca in prehodni habitat",
+    "soil_temperature_level_1_c_mean": "temperatura tal",
+    "soil_temperature_level_2_c_mean": "temperatura globljih tal",
+    "wet_hours_ge_0_1mm_sum": "mokri dnevi",
+}
 
 OPEN_METEO_HOURLY_COLUMNS = {
     "temperature_2m": "air_temperature_c",
@@ -134,43 +155,71 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
 @dataclass(frozen=True)
 class ModelSpec:
     key: str
+    disease_label: str
+    model_id: str
+    legacy_research_model_id: str
     config_path: Path
     model_path: Path
     holdout_predictions_path: Path
+    metadata_path: Path
 
 
 MODEL_SPECS = (
     ModelSpec(
         key="borelioza",
-        config_path=REPO_ROOT / "ml" / "training" / "example_tick_borne_lyme_env_v2_config.json",
+        disease_label="Borelioza",
+        model_id="catboost_tick_borne_lyme_env_per100k_v1",
+        legacy_research_model_id="catboost_tick_borne_lyme_env_v2",
+        config_path=REPO_ROOT
+        / "ml"
+        / "training"
+        / "example_tick_borne_lyme_env_per100k_v1_config.json",
         model_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_lyme_env_v2"
+        / "catboost_tick_borne_lyme_env_per100k_v1"
         / "model.cbm",
         holdout_predictions_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_lyme_env_v2"
+        / "catboost_tick_borne_lyme_env_per100k_v1"
         / "holdout_predictions.csv",
+        metadata_path=REPO_ROOT
+        / "data"
+        / "processed"
+        / "training"
+        / "catboost_tick_borne_lyme_env_per100k_v1"
+        / "metadata.json",
     ),
     ModelSpec(
         key="kme",
-        config_path=REPO_ROOT / "ml" / "training" / "example_tick_borne_kme_env_v2_config.json",
+        disease_label="KME",
+        model_id="catboost_tick_borne_kme_env_per100k_v1",
+        legacy_research_model_id="catboost_tick_borne_kme_env_v2",
+        config_path=REPO_ROOT
+        / "ml"
+        / "training"
+        / "example_tick_borne_kme_env_per100k_v1_config.json",
         model_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_kme_env_v2"
+        / "catboost_tick_borne_kme_env_per100k_v1"
         / "model.cbm",
         holdout_predictions_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_kme_env_v2"
+        / "catboost_tick_borne_kme_env_per100k_v1"
         / "holdout_predictions.csv",
+        metadata_path=REPO_ROOT
+        / "data"
+        / "processed"
+        / "training"
+        / "catboost_tick_borne_kme_env_per100k_v1"
+        / "metadata.json",
     ),
 )
 
@@ -186,7 +235,7 @@ class ReferenceWindow:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Generate live municipality risk frontend data from env_v2 CatBoost models "
+            "Generate live municipality risk frontend data from per-100k CatBoost models "
             "and Open-Meteo weather history for the latest completed hackathon snapshot."
         )
     )
@@ -208,18 +257,24 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def load_existing_environmental_risk_data(path: Path) -> dict[str, Any]:
-    text = path.read_text(encoding="utf-8")
-    marker = "export const environmentalRiskModels"
-    start = text.index("{", text.index(marker))
-    return json.loads(text[start:])
+def build_coordinate_lookup_from_gurs(path: Path) -> dict[str, tuple[float, float]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    features = payload.get("features", [])
+    if not features:
+        raise ValueError(f"No municipality features found in {path}.")
 
-
-def build_coordinate_lookup(existing_data: dict[str, Any]) -> dict[str, tuple[float, float]]:
     lookup: dict[str, tuple[float, float]] = {}
-    for model_payload in existing_data.values():
-        for location in model_payload["locations"]:
-            lookup[str(location["municipalityCode"])] = tuple(location["coordinates"])
+    for feature in features:
+        properties = feature.get("properties", {})
+        municipality_code = str(properties.get("SIFRA", "")).strip()
+        if not municipality_code:
+            raise ValueError("GURS municipality feature is missing SIFRA.")
+
+        representative_point = shape(feature["geometry"]).representative_point()
+        lookup[municipality_code] = (
+            float(representative_point.y),
+            float(representative_point.x),
+        )
     return lookup
 
 
@@ -273,6 +328,10 @@ def build_calendar_features(week_start_value: date) -> dict[str, float]:
     }
 
 
+def format_feature_label(feature_name: str) -> str:
+    return FEATURE_LABELS.get(feature_name, feature_name.replace("_", " "))
+
+
 def load_static_feature_lookup(
     dataset_path: Path,
     *,
@@ -310,16 +369,16 @@ def load_static_feature_lookup(
     return lookup
 
 
-def load_holdout_values(path: Path) -> list[float]:
+def load_holdout_values(path: Path, *, prediction_column: str) -> list[float]:
     with path.open("r", encoding="utf-8", newline="") as handle:
         rows = csv.DictReader(handle)
         values = sorted(
-            float(row["prediction_probability"])
+            float(row[prediction_column])
             for row in rows
             if row["split"] in {"validation", "test"}
         )
     if not values:
-        raise ValueError(f"No holdout prediction probabilities found in {path}.")
+        raise ValueError(f"No holdout prediction values found in {path}.")
     return values
 
 
@@ -659,12 +718,13 @@ def build_feature_vector(
     return values
 
 
-def predict_probability(
+def predict_value(
     *,
-    model: CatBoostClassifier,
+    model: CatBoostClassifier | CatBoostRegressor,
     feature_columns: tuple[str, ...],
     categorical_columns: tuple[str, ...],
     feature_vector: list[object],
+    problem_type: str,
 ) -> float:
     cat_feature_indices = [
         feature_columns.index(column) for column in categorical_columns if column in feature_columns
@@ -674,7 +734,18 @@ def predict_probability(
         cat_features=cat_feature_indices,
         feature_names=list(feature_columns),
     )
-    return float(model.predict_proba(pool)[0][-1])
+    if problem_type == "binary_classification":
+        return float(model.predict_proba(pool)[0][-1])
+
+    prediction = model.predict(pool)
+    if hasattr(prediction, "tolist"):
+        prediction = prediction.tolist()
+    if isinstance(prediction, list):
+        first_value = prediction[0]
+        if isinstance(first_value, list):
+            return float(first_value[0])
+        return float(first_value)
+    return float(prediction)
 
 
 def format_trend_label(delta_score: int) -> str:
@@ -688,7 +759,6 @@ def format_trend_label(delta_score: int) -> str:
 def build_live_model_payload(
     *,
     spec: ModelSpec,
-    existing_model_payload: dict[str, Any],
     coordinate_lookup: dict[str, tuple[float, float]],
     static_feature_lookup: dict[str, dict[str, object]],
     dynamic_feature_lookup: dict[str, dict[str, object]],
@@ -696,9 +766,27 @@ def build_live_model_payload(
     generated_at: str,
 ) -> dict[str, Any]:
     config = load_config(spec.config_path)
-    holdout_values = load_holdout_values(spec.holdout_predictions_path)
-    model = CatBoostClassifier()
+    prediction_column = "prediction_probability"
+    model: CatBoostClassifier | CatBoostRegressor
+    if config.problem_type == "regression":
+        prediction_column = "prediction"
+        model = CatBoostRegressor()
+    else:
+        model = CatBoostClassifier()
+
+    holdout_values = load_holdout_values(
+        spec.holdout_predictions_path,
+        prediction_column=prediction_column,
+    )
     model.load_model(str(spec.model_path))
+    metadata = json.loads(spec.metadata_path.read_text(encoding="utf-8"))
+    low_upper = percentile_threshold(holdout_values, 1 / 3)
+    medium_upper = percentile_threshold(holdout_values, 2 / 3)
+    top_drivers = [
+        format_feature_label(item["feature"])
+        for item in metadata.get("feature_importances", [])[:5]
+        if item.get("feature")
+    ]
 
     locations: list[dict[str, Any]] = []
     for municipality_code, coordinates in coordinate_lookup.items():
@@ -719,21 +807,23 @@ def build_live_model_payload(
             static_feature_values=static_values,
             dynamic_feature_values=dynamic_values["previous"],
         )
-        current_probability = predict_probability(
+        current_prediction = predict_value(
             model=model,
             feature_columns=config.feature_columns,
             categorical_columns=config.categorical_columns,
             feature_vector=current_vector,
+            problem_type=config.problem_type,
         )
-        previous_probability = predict_probability(
+        previous_prediction = predict_value(
             model=model,
             feature_columns=config.feature_columns,
             categorical_columns=config.categorical_columns,
             feature_vector=previous_vector,
+            problem_type=config.problem_type,
         )
 
-        current_score = score_percentile(holdout_values, current_probability)
-        previous_score = score_percentile(holdout_values, previous_probability)
+        current_score = score_percentile(holdout_values, current_prediction)
+        previous_score = score_percentile(holdout_values, previous_prediction)
         delta_score = current_score - previous_score
         municipality_name = str(static_values["obcina_naziv"])
         locations.append(
@@ -743,16 +833,16 @@ def build_live_model_payload(
                 "municipalityName": municipality_name,
                 "score": current_score,
                 "level": classify_level(
-                    current_probability,
-                    existing_model_payload["thresholds"]["lowUpper"],
-                    existing_model_payload["thresholds"]["mediumUpper"],
+                    current_prediction,
+                    low_upper,
+                    medium_upper,
                 ),
                 "trendDeltaScore": delta_score,
                 "trendLabel": format_trend_label(delta_score),
                 "weekStart": dynamic_values["week_start"],
                 "weekEnd": dynamic_values["week_end"],
                 "coordinates": [coordinates[0], coordinates[1]],
-                "_rawPrediction": current_probability,
+                "_rawPrediction": current_prediction,
             }
         )
 
@@ -777,11 +867,13 @@ def build_live_model_payload(
     for location in locations:
         location.pop("_rawPrediction", None)
 
+    disease_object_label = "boreliozo" if spec.key == "borelioza" else "KME"
+
     return {
         "key": spec.key,
-        "diseaseLabel": existing_model_payload["diseaseLabel"],
-        "modelId": existing_model_payload["modelId"],
-        "legacyResearchModelId": existing_model_payload["legacyResearchModelId"],
+        "diseaseLabel": spec.disease_label,
+        "modelId": spec.model_id,
+        "legacyResearchModelId": spec.legacy_research_model_id,
         "asOfDate": reference_window.as_of_date.isoformat(),
         "generatedAt": generated_at,
         "referenceWeekStart": reference_window.reference_week_start.isoformat(),
@@ -790,14 +882,27 @@ def build_live_model_payload(
         "weatherSource": "Open-Meteo best-match hourly weather",
         "methodologyNote": (
             "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, "
-            "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno "
-            "tocko obcine za vreme. Pragovi score/level ostanejo zamrznjeni iz holdout distribucije."
+            "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko "
+            "znotraj GURS poligona posamezne obcine. Score temelji na targetu na 100k "
+            "prebivalcev, zato majhne obcine niso kaznovane zaradi nizkih absolutnih stevil."
         ),
-        "purpose": existing_model_payload["purpose"],
-        "disclaimer": existing_model_payload["disclaimer"],
-        "scoreExplanation": existing_model_payload["scoreExplanation"],
-        "topDrivers": existing_model_payload["topDrivers"],
-        "thresholds": existing_model_payload["thresholds"],
+        "purpose": (
+            "Live hackathon obcinski risk indeks na 100k prebivalcev za "
+            f"{disease_object_label}."
+        ),
+        "disclaimer": (
+            "To ni diagnoza ali individualna verjetnost bolezni. Gre za rangirni obcinski indeks, "
+            "ki temelji na environmental featurejih in targetu normaliziranem na 100k prebivalcev."
+        ),
+        "scoreExplanation": (
+            "Score je relativni obcinski indeks 0-100, izracunan kot empiricni percentil "
+            "surove napovedi modela znotraj holdout distribucije istega per-100k modela."
+        ),
+        "topDrivers": top_drivers,
+        "thresholds": {
+            "lowUpper": low_upper,
+            "mediumUpper": medium_upper,
+        },
         "locations": locations,
         "featuredLocations": featured_locations,
     }
@@ -811,10 +916,9 @@ def build_live_models(
     if max_workers < 1:
         raise ValueError("--max-workers must be at least 1.")
 
-    existing_data = load_existing_environmental_risk_data(FRONTEND_ENVIRONMENTAL_RISK_PATH)
-    coordinate_lookup = build_coordinate_lookup(existing_data)
+    coordinate_lookup = build_coordinate_lookup_from_gurs(GURS_MUNICIPALITY_GEOJSON_PATH)
     if not coordinate_lookup:
-        raise ValueError("Could not load municipality coordinates from environmentalRisk.ts.")
+        raise ValueError("Could not load municipality coordinates from GURS polygons.")
 
     combined_feature_columns = {"obcina_sifra", "obcina_naziv"}
     for spec in MODEL_SPECS:
@@ -837,7 +941,6 @@ def build_live_models(
     return {
         spec.key: build_live_model_payload(
             spec=spec,
-            existing_model_payload=existing_data[spec.key],
             coordinate_lookup=coordinate_lookup,
             static_feature_lookup=static_feature_lookup,
             dynamic_feature_lookup=dynamic_feature_lookup,

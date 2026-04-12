@@ -18,10 +18,10 @@ Frontend za uporabnika:
 
 Build-time generator:
 
-- za vsako obcino vzame reprezentativno tocko obcine
+- za vsako obcino vzame reprezentativno tocko znotraj GURS poligona obcine
 - prenese zadnjih 6 tednov hourly weather iz Open-Meteo
 - izracuna tedenske featureje po istem feature kontraktu kot `env_v2`
-- obstojece `env_v2` CatBoost modele uporabi za score zadnjega referencnega tedna
+- uporabi posebna `per 100k` CatBoost modela za score zadnjega referencnega tedna
 
 ## Zakaj ni runtime backend inference
 
@@ -58,7 +58,7 @@ Razlog:
 Trening weather featureji so bili zgrajeni iz obcinsko agregiranih prostorskih
 vrednosti. Live demo uporablja:
 
-- reprezentativno tocko obcine za vremenski query
+- reprezentativno tocko znotraj GURS poligona obcine za vremenski query
 
 To ni popoln nadomestek za area-weighted obcinski weather pipeline, vendar je za
 hackathon sprejemljiv kompromis, ker:
@@ -71,22 +71,22 @@ Ta omejitev mora biti ob predstavitvi jasno povedana.
 
 ## Pragovi in score
 
-`Nizko / Srednje / Visoko` ostanejo zaklenjeni po pravilih iz:
-
-- `docs/metodologija/environmental-risk-env-v2-pragovi.md`
+`Nizko / Srednje / Visoko` se za live demo dolocijo iz holdout distribucije
+istega `per 100k` modela.
 
 To pomeni:
 
-- live build ne preracunava pragov iz novega batcha
+- live build ne preracunava pragov iz trenutnega batcha obcin
 - score ostane primerljiv z zgodovinsko holdout distribucijo istega modela
 
 ## Interpretacija
 
 Velja ista interpretacija kot pri `environmentalRisk.ts`:
 
-- score je relativni okoljski indeks
+- score je rangirni obcinski indeks
 - score ni individualna verjetnost bolezni
 - rezultat ni diagnoza
+- target modela je normaliziran na `100k prebivalcev`
 
 Za boreliozo pomeni signal za:
 
@@ -98,8 +98,8 @@ Za KME pomeni signal za:
 
 ## Kaj je pomembno povedati ziriji
 
-1. Demo uporablja pravi trenirani model `env_v2`.
+1. Demo uporablja pravi trenirani `per 100k` model, ne rocnega weightanja po napovedi.
 2. Live del je omejen na zadnji zakljuceni tedenski snapshot.
 3. Vreme pride iz Open-Meteo, ne iz ročno vnesenih podatkov.
-4. Obcina iz GPS se doloci z GURS poligoni.
-5. Score je rangirni okoljski indeks, ne medicinska verjetnost.
+4. Obcina iz GPS se doloci z GURS poligoni, zemljevid pa prikazuje dejanske obcinske poligone, ne centroid markerjev.
+5. Score je rangirni obcinski indeks na `100k prebivalcev`, ne medicinska verjetnost.

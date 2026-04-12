@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from shapely.geometry import shape
+from shapely.geometry import MultiPolygon, Polygon, shape
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -68,28 +68,63 @@ def build_boundary_asset(
             simplify_tolerance,
             preserve_topology=True,
         )
-        ring = [
-            [round(float(longitude), round_decimals), round(float(latitude), round_decimals)]
-            for longitude, latitude in geometry.exterior.coords
-        ]
-        longitudes = [point[0] for point in ring]
-        latitudes = [point[1] for point in ring]
+        polygons = build_polygons_payload(
+            geometry=geometry,
+            round_decimals=round_decimals,
+        )
+        min_longitude, min_latitude, max_longitude, max_latitude = geometry.bounds
         boundaries.append(
             {
                 "code": municipality_code,
                 "name": municipality_name,
                 "bbox": [
-                    min(longitudes),
-                    min(latitudes),
-                    max(longitudes),
-                    max(latitudes),
+                    round(float(min_longitude), round_decimals),
+                    round(float(min_latitude), round_decimals),
+                    round(float(max_longitude), round_decimals),
+                    round(float(max_latitude), round_decimals),
                 ],
-                "ring": ring,
+                "polygons": polygons,
             }
         )
 
     boundaries.sort(key=lambda boundary: (int(boundary["code"]), boundary["name"]))
     return boundaries
+
+
+def build_polygons_payload(
+    *,
+    geometry: Polygon | MultiPolygon,
+    round_decimals: int,
+) -> list[list[list[list[float]]]]:
+    if isinstance(geometry, Polygon):
+        polygon_geometries = [geometry]
+    elif isinstance(geometry, MultiPolygon):
+        polygon_geometries = list(geometry.geoms)
+    else:
+        raise ValueError(f"Unsupported municipality geometry type: {geometry.geom_type}")
+
+    return [
+        build_polygon_rings_payload(
+            polygon=polygon,
+            round_decimals=round_decimals,
+        )
+        for polygon in polygon_geometries
+    ]
+
+
+def build_polygon_rings_payload(
+    *,
+    polygon: Polygon,
+    round_decimals: int,
+) -> list[list[list[float]]]:
+    rings = [polygon.exterior, *polygon.interiors]
+    return [
+        [
+            [round(float(longitude), round_decimals), round(float(latitude), round_decimals)]
+            for longitude, latitude in ring.coords
+        ]
+        for ring in rings
+    ]
 
 
 def write_boundary_asset(path: Path, payload: list[dict[str, Any]]) -> None:

@@ -1,14 +1,11 @@
-import { useEffect } from 'react'
-import {
-  CircleMarker,
-  MapContainer,
-  TileLayer,
-  Tooltip,
-  useMap,
-} from 'react-leaflet'
+import { useEffect, useState } from 'react'
+import { MapContainer, Polygon, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import type { MunicipalityBoundary } from '../utils/municipalityLookup'
+import { loadMunicipalityBoundaries } from '../utils/municipalityLookup'
 
 export type MapRiskLocation = {
   id: string
+  municipalityCode: string
   name: string
   score: number
   level: 'Nizko' | 'Srednje' | 'Visoko'
@@ -22,10 +19,26 @@ type MapViewProps = {
   diseaseLabel: string
 }
 
+type ChoroplethBoundary = MunicipalityBoundary & {
+  locationId: string
+  score: number
+  level: MapRiskLocation['level']
+}
+
 const levelColors: Record<MapRiskLocation['level'], string> = {
-  Nizko: '#2f8f68',
-  Srednje: '#d49845',
-  Visoko: '#c24a37',
+  Nizko: '#3b9f76',
+  Srednje: '#d49b42',
+  Visoko: '#c1543f',
+}
+
+function buildPolygonPositions(boundary: MunicipalityBoundary) {
+  const positions = boundary.polygons.map((polygon) =>
+    polygon.map((ring) =>
+      ring.map(([longitude, latitude]) => [latitude, longitude] as [number, number]),
+    ),
+  )
+
+  return positions.length === 1 ? positions[0] : positions
 }
 
 function MapFocus({ coordinates }: { coordinates: [number, number] }) {
@@ -51,6 +64,51 @@ export function MapView({
   onSelectLocation,
   diseaseLabel,
 }: MapViewProps) {
+  const [boundaries, setBoundaries] = useState<ChoroplethBoundary[]>([])
+
+  useEffect(() => {
+    let isActive = true
+
+    loadMunicipalityBoundaries()
+      .then((payload) => {
+        if (!isActive) {
+          return
+        }
+
+        const locationByCode = new Map(
+          locations.map((location) => [location.municipalityCode, location]),
+        )
+        const nextBoundaries = payload
+          .map((boundary) => {
+            const location = locationByCode.get(boundary.code)
+            if (!location) {
+              return null
+            }
+
+            return {
+              ...boundary,
+              locationId: location.id,
+              score: location.score,
+              level: location.level,
+            }
+          })
+          .filter(
+            (boundary): boundary is ChoroplethBoundary => Boolean(boundary),
+          )
+
+        setBoundaries(nextBoundaries)
+      })
+      .catch(() => {
+        if (isActive) {
+          setBoundaries([])
+        }
+      })
+
+    return () => {
+      isActive = false
+    }
+  }, [locations])
+
   const selectedLocation =
     locations.find((location) => location.id === selectedLocationId) ?? locations[0]
 
@@ -68,30 +126,32 @@ export function MapView({
         />
         <MapFocus coordinates={selectedLocation.coordinates} />
 
-        {locations.map((location) => (
-          <CircleMarker
-            key={location.id}
-            center={location.coordinates}
-            pathOptions={{
-              color: levelColors[location.level],
-              fillColor: levelColors[location.level],
-              fillOpacity: location.id === selectedLocationId ? 0.88 : 0.52,
-              weight: location.id === selectedLocationId ? 2.5 : 1.5,
-            }}
-            radius={Math.max(6, Math.round(location.score / 10))}
-            eventHandlers={{
-              click: () => onSelectLocation(location.id),
-            }}
-          >
-            <Tooltip direction="top" offset={[0, -8]} opacity={1} permanent={false}>
-              <strong>{location.name}</strong>
-              <br />
-              {location.level} okoljsko tveganje za {diseaseLabel.toLowerCase()}
-              <br />
-              Relativni okoljski indeks: {location.score}/100
-            </Tooltip>
-          </CircleMarker>
-        ))}
+        {boundaries.map((boundary) => {
+          const isSelected = boundary.locationId === selectedLocationId
+          return (
+            <Polygon
+              key={boundary.code}
+              positions={buildPolygonPositions(boundary)}
+              pathOptions={{
+                color: isSelected ? '#14231a' : levelColors[boundary.level],
+                fillColor: levelColors[boundary.level],
+                fillOpacity: isSelected ? 0.74 : 0.48,
+                weight: isSelected ? 2.8 : 1.1,
+              }}
+              eventHandlers={{
+                click: () => onSelectLocation(boundary.locationId),
+              }}
+            >
+              <Tooltip sticky>
+                <strong>{boundary.name}</strong>
+                <br />
+                {boundary.level} obcinski risk za {diseaseLabel.toLowerCase()}
+                <br />
+                Score: {boundary.score}/100
+              </Tooltip>
+            </Polygon>
+          )
+        })}
       </MapContainer>
     </div>
   )

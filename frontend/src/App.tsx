@@ -58,14 +58,14 @@ function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   const diseaseObjectLabel = buildDiseaseObjectLabel(diseaseKey)
 
   if (level === 'Visoko') {
-    return `Obcina je v zgornjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel} in ima povisan relativni okoljski indeks za ${timeHorizon}.`
+    return `Obcina je v zgornjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel} in ima povisan obcinski risk indeks na 100k prebivalcev za ${timeHorizon}.`
   }
 
   if (level === 'Srednje') {
-    return `Obcina je v srednjem pasu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je okoljski signal za ${timeHorizon} zmeren.`
+    return `Obcina je v srednjem pasu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je obcinski risk indeks na 100k prebivalcev za ${timeHorizon} zmeren.`
   }
 
-  return `Obcina je v spodnjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je relativni okoljski indeks za ${timeHorizon} nizek.`
+  return `Obcina je v spodnjem delu zgodovinske holdout razvrstitve modela za ${diseaseObjectLabel}, zato je obcinski risk indeks na 100k prebivalcev za ${timeHorizon} nizek.`
 }
 
 function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
@@ -160,6 +160,7 @@ function App() {
 
   const mapLocations = activeModel.locations.map((location) => ({
     id: location.id,
+    municipalityCode: location.municipalityCode,
     name: location.municipalityName,
     score: location.score,
     level: location.level,
@@ -304,8 +305,8 @@ function App() {
               <h2>Live demo po občinah</h2>
               <p>
                 Zemljevid uporablja zadnji zaključeni tedenski snapshot,
-                Open-Meteo weather history in obstojeca env_v2 modela, da za
-                vsako občino izračuna relativni okoljski indeks.
+                Open-Meteo weather history in nova per-100k env modela, da za
+                vsako občino izračuna rangirani obcinski risk indeks.
               </p>
             </div>
 
@@ -363,9 +364,9 @@ function App() {
             />
 
             <p className="card-note">
-              Klik na oznako na zemljevidu ali uporabi lokacijo za fokus na svoji
-              občini. Pragovi Nizko / Srednje / Visoko ostanejo zamrznjeni iz
-              holdout distribucije modela.
+              Klikni na obcinski poligon na zemljevidu ali uporabi lokacijo za
+              fokus na svoji obcini. Pragovi Nizko / Srednje / Visoko ostanejo
+              vezani na holdout distribucije modela.
             </p>
 
             <div className="region-list" role="list">
@@ -406,7 +407,7 @@ function App() {
                 <span>{selectedLocation.score}</span>
               </div>
               <div>
-                <span className="metric-label">Relativni okoljski indeks</span>
+                <span className="metric-label">Obcinski risk indeks na 100k</span>
                 <span
                   className={`risk-pill ${levelClassName[selectedLocation.level]}`}
                 >
