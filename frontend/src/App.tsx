@@ -110,20 +110,6 @@ function buildMethodologyCopy() {
   return 'Ocena temelji na vremenskih podatkih Open-Meteo, prostorskih značilkah občine in modelu na 100.000 prebivalcev. Rezultat je informativna občinska ocena tveganja in ni diagnoza.'
 }
 
-function buildLevelCounts(locations: ReadonlyArray<{ level: RiskLevel }>) {
-  return locations.reduce<Record<RiskLevel, number>>(
-    (counts, location) => {
-      counts[location.level] += 1
-      return counts
-    },
-    {
-      Nizko: 0,
-      Srednje: 0,
-      Visoko: 0,
-    },
-  )
-}
-
 function formatGeolocationError(error: GeolocationPositionError) {
   if (error.code === error.PERMISSION_DENIED) {
     return 'Dostop do lokacije je bil zavrnjen.'
@@ -208,8 +194,6 @@ function App() {
     level: location.level,
     coordinates: location.coordinates,
   }))
-  const levelCounts = buildLevelCounts(activeModel.locations)
-  const locationCount = activeModel.locations.length
   const riskBadgeStyle = buildRiskBadgeStyle(selectedLocation.level)
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
 
@@ -403,15 +387,43 @@ function App() {
               </p>
             ) : null}
 
+            <div className="map-summary-bar">
+              <div className="map-summary-card">
+                <span className="section-kicker">Izbrana občina</span>
+                <div className="map-summary-headline">
+                  <strong>{selectedLocation.municipalityName}</strong>
+                  <span className={`risk-pill ${levelClassName[selectedLocation.level]}`}>
+                    {selectedLocation.level}
+                  </span>
+                </div>
+                <p>
+                  Ocena za {activeModel.diseaseLabel.toLowerCase()} za {timeHorizon}.
+                  Premakni kazalec na poligon za podrobnost in klikni za izbiro.
+                </p>
+              </div>
+
+              <div className="map-legend-bar" aria-hidden="true">
+                <span className="map-legend-chip">
+                  <span className="map-legend-dot map-legend-dot-low" />
+                  Nizko
+                </span>
+                <span className="map-legend-chip">
+                  <span className="map-legend-dot map-legend-dot-medium" />
+                  Srednje
+                </span>
+                <span className="map-legend-chip">
+                  <span className="map-legend-dot map-legend-dot-high" />
+                  Visoko
+                </span>
+              </div>
+            </div>
+
             <MapView
               locations={mapLocations}
               selectedLocationId={selectedLocation.id}
               onSelectLocation={handleSelectLocation}
               diseaseLabel={activeModel.diseaseLabel}
               selectedLocation={mapLocations.find((location) => location.id === selectedLocation.id) ?? mapLocations[0]}
-              levelCounts={levelCounts}
-              locationCount={locationCount}
-              timeHorizon={timeHorizon}
             />
 
             <p className="card-note">

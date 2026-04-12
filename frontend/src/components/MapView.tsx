@@ -18,9 +18,6 @@ type MapViewProps = {
   onSelectLocation: (locationId: string) => void
   diseaseLabel: string
   selectedLocation: MapRiskLocation
-  levelCounts: Record<MapRiskLocation['level'], number>
-  locationCount: number
-  timeHorizon: string
 }
 
 type ChoroplethBoundary = MunicipalityBoundary & {
@@ -32,12 +29,6 @@ const levelColors: Record<MapRiskLocation['level'], string> = {
   Nizko: '#3b9f76',
   Srednje: '#d49b42',
   Visoko: '#c1543f',
-}
-
-const levelClassNames: Record<MapRiskLocation['level'], string> = {
-  Nizko: 'level-low',
-  Srednje: 'level-medium',
-  Visoko: 'level-high',
 }
 
 function buildPolygonPositions(boundary: MunicipalityBoundary) {
@@ -58,10 +49,19 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+    map.invalidateSize()
     map.flyTo(coordinates, 8, {
       animate: !prefersReducedMotion,
       duration: prefersReducedMotion ? 0 : 0.9,
     })
+
+    const timeoutId = window.setTimeout(() => {
+      map.invalidateSize()
+    }, 60)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
   }, [coordinates, map])
 
   return null
@@ -73,12 +73,8 @@ export function MapView({
   onSelectLocation,
   diseaseLabel,
   selectedLocation,
-  levelCounts,
-  locationCount,
-  timeHorizon,
 }: MapViewProps) {
   const [boundaries, setBoundaries] = useState<ChoroplethBoundary[]>([])
-  const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(null)
 
   useEffect(() => {
     let isActive = true
@@ -92,24 +88,25 @@ export function MapView({
         const locationByCode = new Map(
           locations.map((location) => [location.municipalityCode, location]),
         )
-        const nextBoundaries = payload
-          .map((boundary) => {
-            const location = locationByCode.get(boundary.code)
-            if (!location) {
-              return null
-            }
 
-            return {
-              ...boundary,
-              locationId: location.id,
-              level: location.level,
-            }
-          })
-          .filter(
-            (boundary): boundary is ChoroplethBoundary => Boolean(boundary),
-          )
+        setBoundaries(
+          payload
+            .map((boundary) => {
+              const location = locationByCode.get(boundary.code)
+              if (!location) {
+                return null
+              }
 
-        setBoundaries(nextBoundaries)
+              return {
+                ...boundary,
+                locationId: location.id,
+                level: location.level,
+              }
+            })
+            .filter(
+              (boundary): boundary is ChoroplethBoundary => Boolean(boundary),
+            ),
+        )
       })
       .catch(() => {
         if (isActive) {
@@ -124,62 +121,9 @@ export function MapView({
 
   const focusedLocation =
     locations.find((location) => location.id === selectedLocationId) ?? selectedLocation
-  const previewLocation =
-    locations.find((location) => location.id === hoveredLocationId) ?? focusedLocation
-  const previewingHover =
-    hoveredLocationId !== null && hoveredLocationId !== focusedLocation.id
-  const highSignalShare = Math.round(
-    (100 * levelCounts.Visoko) / Math.max(1, locationCount),
-  )
 
   return (
     <div className="map-shell">
-      <div className="map-panel">
-        <div className="map-panel-primary">
-          <span className="map-panel-kicker">
-            {previewingHover ? 'Predogled občine' : 'Izbrana občina'}
-          </span>
-          <div className="map-panel-headline">
-            <strong>{previewLocation.name}</strong>
-            <span
-              className={`risk-pill risk-pill-compact ${
-                levelClassNames[previewLocation.level]
-              }`}
-            >
-              {previewLocation.level}
-            </span>
-          </div>
-          <div className="map-panel-row">
-            <span className="map-panel-copy">
-              {previewingHover
-                ? 'Klikni poligon za izbor občine.'
-                : `Ocena za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
-            </span>
-          </div>
-        </div>
-
-        <div className="map-panel-secondary">
-          <span className="map-panel-kicker">Legenda</span>
-          <div className="map-legend-list">
-            <div className="map-legend-item">
-              <span className="map-legend-dot map-legend-dot-low" />
-              <span>Nizko</span>
-              <strong>{levelCounts.Nizko}</strong>
-            </div>
-            <div className="map-legend-item">
-              <span className="map-legend-dot map-legend-dot-medium" />
-              <span>Srednje</span>
-              <strong>{levelCounts.Srednje}</strong>
-            </div>
-            <div className="map-legend-item">
-              <span className="map-legend-dot map-legend-dot-high" />
-              <span>Visoko</span>
-              <strong>{levelCounts.Visoko}</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <MapContainer
         center={focusedLocation.coordinates}
         zoom={8}
@@ -201,35 +145,20 @@ export function MapView({
 
         {boundaries.map((boundary) => {
           const isSelected = boundary.locationId === selectedLocationId
-          const isHovered = boundary.locationId === hoveredLocationId
           return (
             <Polygon
               key={boundary.code}
               positions={buildPolygonPositions(boundary)}
               pathOptions={{
-                color: isSelected
-                  ? '#14231a'
-                  : isHovered
-                    ? '#22352a'
-                    : levelColors[boundary.level],
+                color: isSelected ? '#14231a' : levelColors[boundary.level],
                 fillColor: levelColors[boundary.level],
-                fillOpacity: isSelected ? 0.82 : isHovered ? 0.7 : 0.42,
-                weight: isSelected ? 3.2 : isHovered ? 2.2 : 1.05,
+                fillOpacity: isSelected ? 0.8 : 0.42,
+                weight: isSelected ? 3.1 : 1.05,
               }}
               eventHandlers={{
                 click: (event) => {
-                  setHoveredLocationId(null)
                   event.target.bringToFront()
                   onSelectLocation(boundary.locationId)
-                },
-                mouseover: (event) => {
-                  setHoveredLocationId(boundary.locationId)
-                  event.target.bringToFront()
-                },
-                mouseout: () => {
-                  setHoveredLocationId((current) =>
-                    current === boundary.locationId ? null : current,
-                  )
                 },
               }}
             >
@@ -242,12 +171,6 @@ export function MapView({
           )
         })}
       </MapContainer>
-
-      <div className="map-meta-row">
-        <span>Premakni kazalec za predogled. Klikni za izbiro.</span>
-        <span>{locationCount} občin v posnetku.</span>
-        <span>{highSignalShare}% občin je trenutno v visokem pasu.</span>
-      </div>
     </div>
   )
 }
