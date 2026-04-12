@@ -196,21 +196,9 @@ function App() {
   }))
   const levelCounts = buildLevelCounts(activeModel.locations)
   const locationCount = activeModel.locations.length
-  const selectedLocationRank = Math.max(
-    1,
-    activeModel.locations.findIndex((location) => location.id === selectedLocation.id) +
-      1,
-  )
-  const highlightedMunicipalities = activeModel.featuredLocations
-    .slice(0, 3)
-    .map((location) => location.municipalityName)
-    .join(', ')
   const scoreRingStyle = buildScoreRingStyle(
     selectedLocation.score,
     selectedLocation.level,
-  )
-  const highSignalShare = Math.round(
-    (100 * levelCounts.Visoko) / Math.max(1, locationCount),
   )
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
 
@@ -402,69 +390,6 @@ function App() {
                 {locationMessage}
               </p>
             ) : null}
-
-            <div className="map-overview-grid">
-              <article className="map-focus-card">
-                <div className="map-focus-header">
-                  <span className="section-kicker">Fokus občina</span>
-                  <span className={`risk-pill ${levelClassName[selectedLocation.level]}`}>
-                    {selectedLocation.level}
-                  </span>
-                </div>
-                <h3>{selectedLocation.municipalityName}</h3>
-                <p>
-                  Izbrana obcina trenutno kaze signal za {activeModel.diseaseLabel.toLowerCase()}{' '}
-                  v horizontu {timeHorizon}. Hover na poligonu pokaže preview, klik pa
-                  zaklene fokus.
-                </p>
-
-                <div className="map-focus-metrics">
-                  <div className="map-focus-metric">
-                    <span>Score</span>
-                    <strong>{selectedLocation.score}/100</strong>
-                  </div>
-                  <div className="map-focus-metric">
-                    <span>Uvrstitev</span>
-                    <strong>#{selectedLocationRank}</strong>
-                  </div>
-                  <div className="map-focus-metric">
-                    <span>Premik</span>
-                    <strong>{selectedLocation.trendLabel}</strong>
-                  </div>
-                </div>
-
-                <div className="map-driver-row">
-                  {activeModel.topDrivers.slice(0, 3).map((factor) => (
-                    <span key={factor} className="map-driver-pill">
-                      {factor}
-                    </span>
-                  ))}
-                </div>
-              </article>
-
-              <div className="signal-stat-grid">
-                <article className="signal-stat-card">
-                  <span className="metric-label">Visok pas</span>
-                  <strong>{levelCounts.Visoko} občin</strong>
-                  <p>{highSignalShare}% vseh občin je ta teden v visokem pasu.</p>
-                </article>
-                <article className="signal-stat-card">
-                  <span className="metric-label">Coverage</span>
-                  <strong>{locationCount}</strong>
-                  <p>Snapshot vključuje vse občine v Sloveniji.</p>
-                </article>
-                <article className="signal-stat-card">
-                  <span className="metric-label">Referenca</span>
-                  <strong>{timeHorizon}</strong>
-                  <p>Interpretacija je vezana na isti modelni horizont.</p>
-                </article>
-                <article className="signal-stat-card signal-stat-card-wide">
-                  <span className="metric-label">Izstopajo ta teden</span>
-                  <strong>{highlightedMunicipalities}</strong>
-                  <p>Hitri skoki spodaj vedno sledijo zadnjemu snapshotu.</p>
-                </article>
-              </div>
-            </div>
 
             <MapView
               locations={mapLocations}

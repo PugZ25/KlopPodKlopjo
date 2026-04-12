@@ -136,52 +136,51 @@ export function MapView({
 
   return (
     <div className="map-shell">
-      <div className="map-overlay map-overlay-focus" aria-hidden="true">
-        <span className="map-overlay-kicker">
-          {previewingHover ? 'Preview obcine' : 'Izbrana obcina'}
-        </span>
-        <strong>{previewLocation.name}</strong>
-        <div className="map-overlay-row">
-          <span
-            className={`risk-pill risk-pill-compact ${
-              levelClassNames[previewLocation.level]
-            }`}
-          >
-            {previewLocation.level}
+      <div className="map-panel">
+        <div className="map-panel-primary">
+          <span className="map-panel-kicker">
+            {previewingHover ? 'Preview obcine' : 'Izbrana obcina'}
           </span>
-          <span className="map-overlay-score">{previewLocation.score}/100</span>
-        </div>
-        <p>
-          {previewingHover
-            ? 'Klikni poligon, ce zelis zakleniti fokus na tej obcini.'
-            : `Signal za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
-        </p>
-      </div>
-
-      <div className="map-overlay map-overlay-legend" aria-hidden="true">
-        <span className="map-overlay-kicker">Porazdelitev</span>
-        <div className="map-legend-list">
-          <div className="map-legend-item">
-            <span className="map-legend-dot map-legend-dot-low" />
-            <span>Nizko</span>
-            <strong>{levelCounts.Nizko}</strong>
+          <div className="map-panel-headline">
+            <strong>{previewLocation.name}</strong>
+            <span
+              className={`risk-pill risk-pill-compact ${
+                levelClassNames[previewLocation.level]
+              }`}
+            >
+              {previewLocation.level}
+            </span>
           </div>
-          <div className="map-legend-item">
-            <span className="map-legend-dot map-legend-dot-medium" />
-            <span>Srednje</span>
-            <strong>{levelCounts.Srednje}</strong>
-          </div>
-          <div className="map-legend-item">
-            <span className="map-legend-dot map-legend-dot-high" />
-            <span>Visoko</span>
-            <strong>{levelCounts.Visoko}</strong>
+          <div className="map-panel-row">
+            <span className="map-panel-score">{previewLocation.score}/100</span>
+            <span className="map-panel-copy">
+              {previewingHover
+                ? 'Klikni poligon za zaklep fokusa.'
+                : `Signal za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
+            </span>
           </div>
         </div>
-        <p>{highSignalShare}% vseh obcin je trenutno v visokem pasu.</p>
-      </div>
 
-      <div className="map-overlay map-overlay-hint" aria-hidden="true">
-        Hover za preview. Klik za fokus.
+        <div className="map-panel-secondary">
+          <span className="map-panel-kicker">Legenda</span>
+          <div className="map-legend-list">
+            <div className="map-legend-item">
+              <span className="map-legend-dot map-legend-dot-low" />
+              <span>Nizko</span>
+              <strong>{levelCounts.Nizko}</strong>
+            </div>
+            <div className="map-legend-item">
+              <span className="map-legend-dot map-legend-dot-medium" />
+              <span>Srednje</span>
+              <strong>{levelCounts.Srednje}</strong>
+            </div>
+            <div className="map-legend-item">
+              <span className="map-legend-dot map-legend-dot-high" />
+              <span>Visoko</span>
+              <strong>{levelCounts.Visoko}</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
       <MapContainer
@@ -248,6 +247,12 @@ export function MapView({
           )
         })}
       </MapContainer>
+
+      <div className="map-meta-row">
+        <span>Hover za preview. Klik za fokus.</span>
+        <span>{locationCount} obcin v snapshotu.</span>
+        <span>{highSignalShare}% obcin je v visokem pasu.</span>
+      </div>
     </div>
   )
 }
