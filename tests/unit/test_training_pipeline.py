@@ -123,6 +123,34 @@ class TrainingPipelineTests(unittest.TestCase):
         self.assertEqual(config.problem_type, "binary_classification")
         self.assertEqual(config.catboost.auto_class_weights, "Balanced")
 
+    def test_load_config_supports_sample_weight_config(self) -> None:
+        self.config_path.write_text(
+            json.dumps(
+                {
+                    "dataset_path": "training.csv",
+                    "output_dir": "artifacts/run_weighted",
+                    "target_column": "target_risk_score",
+                    "time_column": "time",
+                    "problem_type": "regression",
+                    "feature_columns": ["air_temperature_c"],
+                    "sample_weight": {
+                        "column": "grid_cell_count",
+                        "transform": "identity",
+                        "normalize": "mean",
+                    },
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+        config = load_config(self.config_path)
+
+        self.assertIsNotNone(config.sample_weight)
+        self.assertEqual(config.sample_weight.column, "grid_cell_count")
+        self.assertEqual(config.sample_weight.transform, "identity")
+        self.assertEqual(config.sample_weight.normalize, "mean")
+
     def test_prepare_dataset_infers_features_and_categorical_indices(self) -> None:
         config = load_config(self.config_path)
         dataset = prepare_dataset(config)
@@ -231,6 +259,55 @@ class TrainingPipelineTests(unittest.TestCase):
 
         self.assertEqual(dataset.row_count, 2)
         self.assertEqual(dataset.targets, [34.0, 41.0])
+
+    def test_prepare_dataset_computes_normalized_sample_weights(self) -> None:
+        weighted_dataset_path = self.temp_path / "training_weighted.csv"
+        weighted_dataset_path.write_text(
+            textwrap.dedent(
+                """\
+                time,obcina_sifra,obcina_naziv,air_temperature_c,log_population_total,target_kme_presence
+                2026-04-01 00:00:00,143,Zavrc,10.5,6.9087547793,0
+                2026-04-01 00:00:00,1,Ajdovscina,14.1,9.21044036698,1
+                2026-04-08 00:00:00,143,Zavrc,11.0,6.9087547793,0
+                2026-04-08 00:00:00,1,Ajdovscina,15.2,9.21044036698,1
+                """
+            ),
+            encoding="utf-8",
+        )
+        self.config_path.write_text(
+            json.dumps(
+                {
+                    "dataset_path": "training_weighted.csv",
+                    "output_dir": "artifacts/run_weighted_dataset",
+                    "target_column": "target_kme_presence",
+                    "time_column": "time",
+                    "problem_type": "binary_classification",
+                    "feature_columns": ["air_temperature_c"],
+                    "sample_weight": {
+                        "column": "log_population_total",
+                        "transform": "expm1",
+                        "normalize": "mean",
+                    },
+                    "split": {
+                        "train_ratio": 0.5,
+                        "validation_ratio": 0.25,
+                        "test_ratio": 0.25,
+                    },
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+        config = load_config(self.config_path)
+        dataset = prepare_dataset(config)
+
+        self.assertIsNotNone(dataset.sample_weights)
+        self.assertAlmostEqual(sum(dataset.sample_weights) / len(dataset.sample_weights), 1.0)
+        self.assertLess(dataset.sample_weights[0], 1.0)
+        self.assertGreater(dataset.sample_weights[1], 1.0)
+        self.assertAlmostEqual(dataset.sample_weights[0], dataset.sample_weights[2])
+        self.assertAlmostEqual(dataset.sample_weights[1], dataset.sample_weights[3])
 
     def test_binary_metrics_include_auc_and_pr_auc(self) -> None:
         targets = [0, 0, 1, 1]

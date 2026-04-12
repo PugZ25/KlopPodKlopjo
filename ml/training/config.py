@@ -54,6 +54,23 @@ class CatBoostConfig:
 
 
 @dataclass(frozen=True)
+class SampleWeightConfig:
+    column: str
+    transform: str = "identity"
+    normalize: str = "mean"
+
+    def validate(self) -> None:
+        if not self.column:
+            raise ValueError("sample_weight.column is required.")
+        if self.transform not in {"identity", "log1p", "expm1"}:
+            raise ValueError(
+                "sample_weight.transform must be one of: identity, log1p, expm1."
+            )
+        if self.normalize not in {"none", "mean"}:
+            raise ValueError("sample_weight.normalize must be 'none' or 'mean'.")
+
+
+@dataclass(frozen=True)
 class TrainConfig:
     config_path: Path
     dataset_path: Path
@@ -66,6 +83,7 @@ class TrainConfig:
     id_columns: tuple[str, ...] = field(default_factory=tuple)
     ignore_columns: tuple[str, ...] = field(default_factory=tuple)
     skip_missing_target_rows: bool = False
+    sample_weight: SampleWeightConfig | None = None
     split: SplitConfig = field(default_factory=SplitConfig)
     catboost: CatBoostConfig = field(default_factory=CatBoostConfig)
 
@@ -79,6 +97,8 @@ class TrainConfig:
         if not self.time_column:
             raise ValueError("time_column is required.")
         self.split.validate()
+        if self.sample_weight is not None:
+            self.sample_weight.validate()
         if self.catboost.thread_count is not None and self.catboost.thread_count < 1:
             raise ValueError("catboost.thread_count must be at least 1 when provided.")
 
@@ -90,6 +110,10 @@ def load_config(path: str | Path) -> TrainConfig:
 
     split = SplitConfig(**raw.get("split", {}))
     catboost = CatBoostConfig(**raw.get("catboost", {}))
+    raw_sample_weight = raw.get("sample_weight")
+    sample_weight = (
+        SampleWeightConfig(**raw_sample_weight) if raw_sample_weight is not None else None
+    )
 
     config = TrainConfig(
         config_path=config_path,
@@ -109,6 +133,7 @@ def load_config(path: str | Path) -> TrainConfig:
         id_columns=tuple(raw.get("id_columns", [])),
         ignore_columns=tuple(raw.get("ignore_columns", [])),
         skip_missing_target_rows=raw.get("skip_missing_target_rows", False),
+        sample_weight=sample_weight,
         split=split,
         catboost=catboost,
     )

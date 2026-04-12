@@ -118,9 +118,15 @@ def train_catboost_model(
 def _build_pool(dataset: PreparedDataset, split: DatasetSplit, Pool: Any) -> Any:
     rows = [dataset.features[index] for index in split.row_indices]
     targets = [dataset.targets[index] for index in split.row_indices]
+    weights = (
+        [dataset.sample_weights[index] for index in split.row_indices]
+        if dataset.sample_weights is not None
+        else None
+    )
     return Pool(
         data=rows,
         label=targets,
+        weight=weights,
         cat_features=dataset.cat_feature_indices,
         feature_names=dataset.feature_columns,
     )
@@ -265,6 +271,16 @@ def _write_metadata(
         "dataset_path": str(config.dataset_path),
         "output_dir": str(config.output_dir),
         "problem_type": config.problem_type,
+        "sample_weight": asdict(config.sample_weight) if config.sample_weight else None,
+        "sample_weight_summary": (
+            {
+                "min": min(dataset.sample_weights),
+                "mean": sum(dataset.sample_weights) / len(dataset.sample_weights),
+                "max": max(dataset.sample_weights),
+            }
+            if dataset.sample_weights
+            else None
+        ),
         "feature_columns": dataset.feature_columns,
         "categorical_columns": dataset.categorical_columns,
         "cat_feature_indices": dataset.cat_feature_indices,

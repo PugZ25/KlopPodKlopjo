@@ -168,57 +168,57 @@ MODEL_SPECS = (
     ModelSpec(
         key="borelioza",
         disease_label="Borelioza",
-        model_id="catboost_tick_borne_lyme_env_per100k_v1",
-        legacy_research_model_id="catboost_tick_borne_lyme_env_v2",
+        model_id="catboost_tick_borne_lyme_env_v2",
+        legacy_research_model_id="catboost_tick_borne_lyme_env_per100k_v1",
         config_path=REPO_ROOT
         / "ml"
         / "training"
-        / "example_tick_borne_lyme_env_per100k_v1_config.json",
+        / "example_tick_borne_lyme_env_v2_config.json",
         model_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_lyme_env_per100k_v1"
+        / "catboost_tick_borne_lyme_env_v2"
         / "model.cbm",
         holdout_predictions_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_lyme_env_per100k_v1"
+        / "catboost_tick_borne_lyme_env_v2"
         / "holdout_predictions.csv",
         metadata_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_lyme_env_per100k_v1"
+        / "catboost_tick_borne_lyme_env_v2"
         / "metadata.json",
     ),
     ModelSpec(
         key="kme",
         disease_label="KME",
-        model_id="catboost_tick_borne_kme_env_per100k_v1",
-        legacy_research_model_id="catboost_tick_borne_kme_env_v2",
+        model_id="catboost_tick_borne_kme_env_v2",
+        legacy_research_model_id="catboost_tick_borne_kme_env_per100k_v1",
         config_path=REPO_ROOT
         / "ml"
         / "training"
-        / "example_tick_borne_kme_env_per100k_v1_config.json",
+        / "example_tick_borne_kme_env_v2_config.json",
         model_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_kme_env_per100k_v1"
+        / "catboost_tick_borne_kme_env_v2"
         / "model.cbm",
         holdout_predictions_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_kme_env_per100k_v1"
+        / "catboost_tick_borne_kme_env_v2"
         / "holdout_predictions.csv",
         metadata_path=REPO_ROOT
         / "data"
         / "processed"
         / "training"
-        / "catboost_tick_borne_kme_env_per100k_v1"
+        / "catboost_tick_borne_kme_env_v2"
         / "metadata.json",
     ),
 )
@@ -235,7 +235,7 @@ class ReferenceWindow:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Generate live municipality risk frontend data from per-100k CatBoost models "
+            "Generate live municipality risk frontend data from env_v2 CatBoost models "
             "and Open-Meteo weather history for the latest completed hackathon snapshot."
         )
     )
@@ -246,7 +246,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--max-workers",
         type=int,
-        default=1,
+        default=MAX_FETCH_WORKERS,
         help="Maximum concurrent Open-Meteo requests.",
     )
     parser.add_argument(
@@ -868,6 +868,17 @@ def build_live_model_payload(
         location.pop("_rawPrediction", None)
 
     disease_object_label = "boreliozo" if spec.key == "borelioza" else "KME"
+    methodology_note = (
+        "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, "
+        "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko "
+        "znotraj GURS poligona posamezne obcine. Score temelji na surovi napovedi env_v2 "
+        "klasifikacijskega modela in je namenjen primerjavi obcin znotraj iste bolezni."
+    )
+    if spec.key == "kme":
+        methodology_note += (
+            " KME model je pri ucenju dodatno utezen po velikosti populacije obcine, "
+            "da zemljevid ni sistematicno pristranski do zelo majhnih obcin."
+        )
 
     return {
         "key": spec.key,
@@ -880,23 +891,18 @@ def build_live_model_payload(
         "referenceWeekEnd": reference_window.reference_week_end.isoformat(),
         "snapshotLabel": "zadnji zakljuceni tedenski hackathon snapshot",
         "weatherSource": "Open-Meteo best-match hourly weather",
-        "methodologyNote": (
-            "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, "
-            "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko "
-            "znotraj GURS poligona posamezne obcine. Score temelji na targetu na 100k "
-            "prebivalcev, zato majhne obcine niso kaznovane zaradi nizkih absolutnih stevil."
-        ),
+        "methodologyNote": methodology_note,
         "purpose": (
-            "Live hackathon obcinski risk indeks na 100k prebivalcev za "
+            "Live hackathon relativni obcinski okoljski indeks za "
             f"{disease_object_label}."
         ),
         "disclaimer": (
-            "To ni diagnoza ali individualna verjetnost bolezni. Gre za rangirni obcinski indeks, "
-            "ki temelji na environmental featurejih in targetu normaliziranem na 100k prebivalcev."
+            "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni obcinski "
+            "risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni."
         ),
         "scoreExplanation": (
             "Score je relativni obcinski indeks 0-100, izracunan kot empiricni percentil "
-            "surove napovedi modela znotraj holdout distribucije istega per-100k modela."
+            "surove napovedi modela znotraj holdout distribucije istega env_v2 modela."
         ),
         "topDrivers": top_drivers,
         "thresholds": {

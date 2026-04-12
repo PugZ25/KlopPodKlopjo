@@ -15,6 +15,7 @@ Scaffold je namenjen tabularnim podatkom po nacelu:
 - podpora za numericne in kategoricne znacilke
 - casovno urejen split `train / validation / test`
 - izvoz modela, metapodatkov in holdout napovedi
+- opcijska podpora za `sample_weight` iz dodatnega numericnega stolpca
 
 ## Namestitev
 
@@ -103,6 +104,7 @@ Ta konfiguracija je namenoma bolj konzervativna:
 - zmanjsa globino dreves
 - poveca regularizacijo
 - vklopi `auto_class_weights=Balanced` zaradi zelo malo pozitivnih primerov
+- dodatno utezi vrstice po oceni velikosti populacije obcine prek `sample_weight`
 
 Trenutna interpretacija `KME v2`:
 
@@ -112,6 +114,8 @@ Trenutna interpretacija `KME v2`:
 ## Opombe
 
 - Trenutni scaffold podpira `regression` in `binary_classification`.
+- `sample_weight` lahko uporabite za utezevanje vrstic brez tega, da bi isti signal
+  dodajali med featureje ali target.
 - Za vas projekt je za prvi produkcijski model se vedno najbolj smiseln `regression`, nato pa pragove pretvorite v `Nizko / Srednje / Visoko`.
 - Ce vhodni podatki se nimajo NIJZ ciljne spremenljivke, lahko isti pipeline najprej uporabljate z internim `risk score` targetom.
 - Za zdruzeni dataset z NIJZ targeti uporabite

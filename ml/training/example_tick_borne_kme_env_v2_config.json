@@ -5,6 +5,11 @@
   "time_column": "week_start",
   "problem_type": "binary_classification",
   "skip_missing_target_rows": true,
+  "sample_weight": {
+    "column": "log_population_total",
+    "transform": "expm1",
+    "normalize": "mean"
+  },
   "feature_columns": [
     "dominant_clc_code",
     "air_temperature_c_mean",

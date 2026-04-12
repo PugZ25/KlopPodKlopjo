@@ -62,6 +62,16 @@ def build_validation_summary(
     dataset: PreparedDataset,
     splits,
 ) -> dict[str, object]:
+    sample_weight_summary = None
+    if dataset.sample_weights:
+        sample_weight_summary = {
+            "column": config.sample_weight.column if config.sample_weight else None,
+            "transform": config.sample_weight.transform if config.sample_weight else None,
+            "normalize": config.sample_weight.normalize if config.sample_weight else None,
+            "min": min(dataset.sample_weights),
+            "mean": sum(dataset.sample_weights) / len(dataset.sample_weights),
+            "max": max(dataset.sample_weights),
+        }
     return {
         "config_path": str(config.config_path),
         "dataset_path": str(config.dataset_path),
@@ -70,6 +80,7 @@ def build_validation_summary(
         "feature_count": len(dataset.feature_columns),
         "feature_columns": dataset.feature_columns,
         "categorical_columns": dataset.categorical_columns,
+        "sample_weight": sample_weight_summary,
         "split_summary": {
             split_name: {
                 "row_count": split.row_count,

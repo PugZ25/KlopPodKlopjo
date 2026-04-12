@@ -106,10 +106,6 @@ function buildMovementLabel(deltaScore: number) {
   return 'Tveganje ostaja podobno.'
 }
 
-function buildMethodologyCopy() {
-  return 'Ocena temelji na vremenskih podatkih Open-Meteo, prostorskih značilkah občine in modelu na 100.000 prebivalcev. Rezultat je informativna občinska ocena tveganja in ni diagnoza.'
-}
-
 function formatGeolocationError(error: GeolocationPositionError) {
   if (error.code === error.PERMISSION_DENIED) {
     return 'Dostop do lokacije je bil zavrnjen.'
@@ -333,12 +329,7 @@ function App() {
             <div className="section-header">
               <span className="section-kicker">Interaktivni del</span>
               <h2>Interaktivni prikaz po občinah</h2>
-              <p>
-                Zemljevid uporablja zadnji zaključeni tedenski posnetek,
-                zgodovinske vremenske podatke Open-Meteo in nova modela na
-                100.000 prebivalcev, da za vsako občino oceni stopnjo
-                tveganja.
-              </p>
+              <p>{activeModel.methodologyNote}</p>
             </div>
 
             <div className="disease-toggle" role="tablist" aria-label="Izbira bolezni">
@@ -502,9 +493,7 @@ function App() {
             <div className="trend-card">
               <span className="metric-label">Tedenski premik</span>
               <strong>{buildMovementLabel(selectedLocation.trendDeltaScore)}</strong>
-              <p className="trend-copy">
-                {buildMethodologyCopy()}
-              </p>
+              <p className="trend-copy">{activeModel.scoreExplanation}</p>
             </div>
           </article>
         </section>
