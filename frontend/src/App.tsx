@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
 import { MapView } from './components/MapView'
@@ -28,6 +28,12 @@ const levelClassName = {
   Nizko: 'level-low',
   Srednje: 'level-medium',
   Visoko: 'level-high',
+} as const
+
+const levelAccentColor = {
+  Nizko: '#3b9f76',
+  Srednje: '#d49b42',
+  Visoko: '#c1543f',
 } as const
 
 type SourceLink = {
@@ -80,6 +86,28 @@ function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   }
 
   return `Trenutni okoljski signal za ${timeHorizon} je nizek, vendar to ne pomeni nicelnega tveganja. Ob obisku gozda ali visoke trave se se vedno drzi osnovne zascite.`
+}
+
+function buildScoreRingStyle(score: number, level: RiskLevel): CSSProperties {
+  const clampedScore = Math.max(0, Math.min(100, score))
+  return {
+    '--score-angle': `${Math.max(18, Math.round((clampedScore / 100) * 360))}deg`,
+    '--score-accent': levelAccentColor[level],
+  } as CSSProperties
+}
+
+function buildLevelCounts(locations: ReadonlyArray<{ level: RiskLevel }>) {
+  return locations.reduce<Record<RiskLevel, number>>(
+    (counts, location) => {
+      counts[location.level] += 1
+      return counts
+    },
+    {
+      Nizko: 0,
+      Srednje: 0,
+      Visoko: 0,
+    },
+  )
 }
 
 function formatGeolocationError(error: GeolocationPositionError) {
@@ -166,6 +194,25 @@ function App() {
     level: location.level,
     coordinates: location.coordinates,
   }))
+  const levelCounts = buildLevelCounts(activeModel.locations)
+  const locationCount = activeModel.locations.length
+  const selectedLocationRank = Math.max(
+    1,
+    activeModel.locations.findIndex((location) => location.id === selectedLocation.id) +
+      1,
+  )
+  const highlightedMunicipalities = activeModel.featuredLocations
+    .slice(0, 3)
+    .map((location) => location.municipalityName)
+    .join(', ')
+  const scoreRingStyle = buildScoreRingStyle(
+    selectedLocation.score,
+    selectedLocation.level,
+  )
+  const highSignalShare = Math.round(
+    (100 * levelCounts.Visoko) / Math.max(1, locationCount),
+  )
+  const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
 
   function handleSelectLocation(locationId: string) {
     const nextLocation = activeModel.locations.find(
@@ -356,11 +403,78 @@ function App() {
               </p>
             ) : null}
 
+            <div className="map-overview-grid">
+              <article className="map-focus-card">
+                <div className="map-focus-header">
+                  <span className="section-kicker">Fokus občina</span>
+                  <span className={`risk-pill ${levelClassName[selectedLocation.level]}`}>
+                    {selectedLocation.level}
+                  </span>
+                </div>
+                <h3>{selectedLocation.municipalityName}</h3>
+                <p>
+                  Izbrana obcina trenutno kaze signal za {activeModel.diseaseLabel.toLowerCase()}{' '}
+                  v horizontu {timeHorizon}. Hover na poligonu pokaže preview, klik pa
+                  zaklene fokus.
+                </p>
+
+                <div className="map-focus-metrics">
+                  <div className="map-focus-metric">
+                    <span>Score</span>
+                    <strong>{selectedLocation.score}/100</strong>
+                  </div>
+                  <div className="map-focus-metric">
+                    <span>Uvrstitev</span>
+                    <strong>#{selectedLocationRank}</strong>
+                  </div>
+                  <div className="map-focus-metric">
+                    <span>Premik</span>
+                    <strong>{selectedLocation.trendLabel}</strong>
+                  </div>
+                </div>
+
+                <div className="map-driver-row">
+                  {activeModel.topDrivers.slice(0, 3).map((factor) => (
+                    <span key={factor} className="map-driver-pill">
+                      {factor}
+                    </span>
+                  ))}
+                </div>
+              </article>
+
+              <div className="signal-stat-grid">
+                <article className="signal-stat-card">
+                  <span className="metric-label">Visok pas</span>
+                  <strong>{levelCounts.Visoko} občin</strong>
+                  <p>{highSignalShare}% vseh občin je ta teden v visokem pasu.</p>
+                </article>
+                <article className="signal-stat-card">
+                  <span className="metric-label">Coverage</span>
+                  <strong>{locationCount}</strong>
+                  <p>Snapshot vključuje vse občine v Sloveniji.</p>
+                </article>
+                <article className="signal-stat-card">
+                  <span className="metric-label">Referenca</span>
+                  <strong>{timeHorizon}</strong>
+                  <p>Interpretacija je vezana na isti modelni horizont.</p>
+                </article>
+                <article className="signal-stat-card signal-stat-card-wide">
+                  <span className="metric-label">Izstopajo ta teden</span>
+                  <strong>{highlightedMunicipalities}</strong>
+                  <p>Hitri skoki spodaj vedno sledijo zadnjemu snapshotu.</p>
+                </article>
+              </div>
+            </div>
+
             <MapView
               locations={mapLocations}
               selectedLocationId={selectedLocation.id}
               onSelectLocation={handleSelectLocation}
               diseaseLabel={activeModel.diseaseLabel}
+              selectedLocation={mapLocations.find((location) => location.id === selectedLocation.id) ?? mapLocations[0]}
+              levelCounts={levelCounts}
+              locationCount={locationCount}
+              timeHorizon={timeHorizon}
             />
 
             <p className="card-note">
@@ -370,6 +484,10 @@ function App() {
             </p>
 
             <div className="region-list" role="list">
+              <div className="region-list-header">
+                <span className="section-kicker">Hitri skoki</span>
+                <p>Najmocnejsi signali v trenutnem tedenskem snapshotu.</p>
+              </div>
               {quickLocations.map((location) => (
                 <button
                   key={location.id}
@@ -403,7 +521,7 @@ function App() {
             </div>
 
             <div className="score-row">
-              <div className="score-ring">
+              <div className="score-ring" style={scoreRingStyle}>
                 <span>{selectedLocation.score}</span>
               </div>
               <div>

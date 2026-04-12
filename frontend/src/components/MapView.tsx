@@ -17,6 +17,10 @@ type MapViewProps = {
   selectedLocationId: string
   onSelectLocation: (locationId: string) => void
   diseaseLabel: string
+  selectedLocation: MapRiskLocation
+  levelCounts: Record<MapRiskLocation['level'], number>
+  locationCount: number
+  timeHorizon: string
 }
 
 type ChoroplethBoundary = MunicipalityBoundary & {
@@ -29,6 +33,12 @@ const levelColors: Record<MapRiskLocation['level'], string> = {
   Nizko: '#3b9f76',
   Srednje: '#d49b42',
   Visoko: '#c1543f',
+}
+
+const levelClassNames: Record<MapRiskLocation['level'], string> = {
+  Nizko: 'level-low',
+  Srednje: 'level-medium',
+  Visoko: 'level-high',
 }
 
 function buildPolygonPositions(boundary: MunicipalityBoundary) {
@@ -63,8 +73,13 @@ export function MapView({
   selectedLocationId,
   onSelectLocation,
   diseaseLabel,
+  selectedLocation,
+  levelCounts,
+  locationCount,
+  timeHorizon,
 }: MapViewProps) {
   const [boundaries, setBoundaries] = useState<ChoroplethBoundary[]>([])
+  const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(null)
 
   useEffect(() => {
     let isActive = true
@@ -109,37 +124,117 @@ export function MapView({
     }
   }, [locations])
 
-  const selectedLocation =
-    locations.find((location) => location.id === selectedLocationId) ?? locations[0]
+  const focusedLocation =
+    locations.find((location) => location.id === selectedLocationId) ?? selectedLocation
+  const previewLocation =
+    locations.find((location) => location.id === hoveredLocationId) ?? focusedLocation
+  const previewingHover =
+    hoveredLocationId !== null && hoveredLocationId !== focusedLocation.id
+  const highSignalShare = Math.round(
+    (100 * levelCounts.Visoko) / Math.max(1, locationCount),
+  )
 
   return (
     <div className="map-shell">
+      <div className="map-overlay map-overlay-focus" aria-hidden="true">
+        <span className="map-overlay-kicker">
+          {previewingHover ? 'Preview obcine' : 'Izbrana obcina'}
+        </span>
+        <strong>{previewLocation.name}</strong>
+        <div className="map-overlay-row">
+          <span
+            className={`risk-pill risk-pill-compact ${
+              levelClassNames[previewLocation.level]
+            }`}
+          >
+            {previewLocation.level}
+          </span>
+          <span className="map-overlay-score">{previewLocation.score}/100</span>
+        </div>
+        <p>
+          {previewingHover
+            ? 'Klikni poligon, ce zelis zakleniti fokus na tej obcini.'
+            : `Signal za ${diseaseLabel.toLowerCase()} za ${timeHorizon}.`}
+        </p>
+      </div>
+
+      <div className="map-overlay map-overlay-legend" aria-hidden="true">
+        <span className="map-overlay-kicker">Porazdelitev</span>
+        <div className="map-legend-list">
+          <div className="map-legend-item">
+            <span className="map-legend-dot map-legend-dot-low" />
+            <span>Nizko</span>
+            <strong>{levelCounts.Nizko}</strong>
+          </div>
+          <div className="map-legend-item">
+            <span className="map-legend-dot map-legend-dot-medium" />
+            <span>Srednje</span>
+            <strong>{levelCounts.Srednje}</strong>
+          </div>
+          <div className="map-legend-item">
+            <span className="map-legend-dot map-legend-dot-high" />
+            <span>Visoko</span>
+            <strong>{levelCounts.Visoko}</strong>
+          </div>
+        </div>
+        <p>{highSignalShare}% vseh obcin je trenutno v visokem pasu.</p>
+      </div>
+
+      <div className="map-overlay map-overlay-hint" aria-hidden="true">
+        Hover za preview. Klik za fokus.
+      </div>
+
       <MapContainer
-        center={selectedLocation.coordinates}
+        center={focusedLocation.coordinates}
         zoom={8}
+        minZoom={7}
+        maxZoom={10}
+        maxBounds={[
+          [45.2, 13.2],
+          [47.1, 16.8],
+        ]}
+        maxBoundsViscosity={1}
         scrollWheelZoom={false}
         className="map-canvas"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        <MapFocus coordinates={selectedLocation.coordinates} />
+        <MapFocus coordinates={focusedLocation.coordinates} />
 
         {boundaries.map((boundary) => {
           const isSelected = boundary.locationId === selectedLocationId
+          const isHovered = boundary.locationId === hoveredLocationId
           return (
             <Polygon
               key={boundary.code}
               positions={buildPolygonPositions(boundary)}
               pathOptions={{
-                color: isSelected ? '#14231a' : levelColors[boundary.level],
+                color: isSelected
+                  ? '#14231a'
+                  : isHovered
+                    ? '#22352a'
+                    : levelColors[boundary.level],
                 fillColor: levelColors[boundary.level],
-                fillOpacity: isSelected ? 0.74 : 0.48,
-                weight: isSelected ? 2.8 : 1.1,
+                fillOpacity: isSelected ? 0.82 : isHovered ? 0.7 : 0.42,
+                weight: isSelected ? 3.2 : isHovered ? 2.2 : 1.05,
               }}
               eventHandlers={{
-                click: () => onSelectLocation(boundary.locationId),
+                click: (event) => {
+                  setHoveredLocationId(null)
+                  event.target.bringToFront()
+                  onSelectLocation(boundary.locationId)
+                },
+                mouseover: (event) => {
+                  setHoveredLocationId(boundary.locationId)
+                  event.target.bringToFront()
+                },
+                mouseout: () => {
+                  setHoveredLocationId((current) =>
+                    current === boundary.locationId ? null : current,
+                  )
+                },
               }}
             >
               <Tooltip sticky>
