@@ -345,52 +345,13 @@ function App() {
         <section className="hero-panel">
           <div className="hero-layout">
             <div className="hero-copy-block">
-              <span className="eyebrow">Lokalni pregled tveganja</span>
               <h1>Preveri tveganje za bolezni, ki jih prenašajo klopi.</h1>
-              <p className="hero-copy">
-                Stran združuje interaktivni pregled občinskega tveganja za
-                lymsko boreliozo in KME, hitre skoke do ključnih vsebin ter
-                kratka, uporabna navodila za zaščito.
-              </p>
-
               <div className="hero-actions">
                 <a className="hero-link" href="#preverjanje-tveganja">
-                  Odpri preverjanje tveganja
-                </a>
-                <a className="hero-link hero-link-secondary" href="#zascita">
-                  Poglej zaščito in ukrepanje
+                  Preveri tveganje
                 </a>
               </div>
             </div>
-
-            <aside className="hero-spotlight">
-              <span className="section-kicker">Trenutni fokus</span>
-              <div className="hero-spotlight-headline">
-                <strong>{selectedLocation.municipalityName}</strong>
-                <span className={`risk-pill ${levelClassName[selectedLocation.level]}`}>
-                  {selectedLocation.level}
-                </span>
-              </div>
-              <p>
-                Za {activeModel.diseaseLabel.toLowerCase()} v obdobju {timeHorizon}.
-                Izberi občino ali uporabi lokacijo za hiter, občinski pregled.
-              </p>
-
-              <div className="hero-spotlight-meta">
-                <div className="hero-meta-card">
-                  <span className="metric-label">Model</span>
-                  <strong>{activeModel.diseaseLabel}</strong>
-                </div>
-                <div className="hero-meta-card">
-                  <span className="metric-label">Posodobitev</span>
-                  <strong>{formatDisplayDate(activeModel.asOfDate)}</strong>
-                </div>
-              </div>
-
-              <a className="hero-link hero-link-ghost" href="#preverjanje-tveganja">
-                Nadaljuj na zemljevid
-              </a>
-            </aside>
           </div>
 
           <div className="hero-metrics">

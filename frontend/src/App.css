@@ -150,7 +150,7 @@
 
 .hero-panel {
   overflow: hidden;
-  padding: 36px;
+  padding: 32px 36px;
   background:
     radial-gradient(circle at top left, rgba(44, 91, 65, 0.22), transparent 36%),
     radial-gradient(circle at top right, rgba(214, 152, 69, 0.18), transparent 24%),
@@ -160,7 +160,7 @@
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.88fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: stretch;
   min-width: 0;
@@ -168,7 +168,9 @@
 
 .hero-copy-block {
   display: grid;
+  gap: 16px;
   align-content: start;
+  max-width: 760px;
   min-width: 0;
 }
 
@@ -188,9 +190,9 @@
 }
 
 .hero-panel h1 {
-  max-width: 11ch;
-  margin: 12px 0 18px;
-  font-size: clamp(3rem, 8vw, 5.4rem);
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2.9rem, 7.2vw, 5rem);
   line-height: 0.92;
   color: #102419;
   overflow-wrap: anywhere;
@@ -206,7 +208,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 26px;
+  margin-top: 0;
 }
 
 .hero-link {
@@ -303,7 +305,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
-  margin-top: 28px;
+  margin-top: 22px;
   min-width: 0;
 }
 
@@ -1197,7 +1199,6 @@
 
   .hero-panel h1 {
     max-width: 10ch;
-    margin: 10px 0 14px;
     font-size: clamp(2.5rem, 11vw, 3.6rem);
   }
 
