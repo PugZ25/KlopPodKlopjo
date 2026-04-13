@@ -1,7 +1,7 @@
 export const primaryNavItems = [
   { label: 'Preverjanje tveganja', href: '#preverjanje-tveganja' },
   { label: 'Zaščita', href: '#zascita' },
-  { label: 'Znanje', href: '#znanje' },
+  { label: 'Informacije', href: '#znanje' },
 ] as const
 
 export const topicNavItems = [

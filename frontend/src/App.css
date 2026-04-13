@@ -199,19 +199,6 @@
   overflow-wrap: anywhere;
 }
 
-.hero-copy {
-  max-width: 58ch;
-  font-size: 1.08rem;
-  color: #31443a;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 0;
-}
-
 .hero-link {
   display: inline-flex;
   align-items: center;
@@ -302,15 +289,6 @@
   color: #f8fdf9;
 }
 
-.hero-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 22px;
-  min-width: 0;
-}
-
-.metric-card,
 .risk-meta-card,
 .map-summary-card,
 .map-legend-bar,
@@ -326,15 +304,10 @@
   box-shadow: 0 12px 28px rgba(22, 42, 32, 0.06);
 }
 
-.metric-card {
-  padding: 18px 20px;
-}
-
 .metric-label {
   color: #617468;
 }
 
-.metric-card strong,
 .risk-meta-card strong,
 .highlight-card strong,
 .trend-card strong {
@@ -344,7 +317,6 @@
   color: #12251a;
 }
 
-.metric-card p,
 .highlight-card p,
 .risk-meta-card p {
   margin-top: 10px;
@@ -619,6 +591,7 @@
   border: 1px solid rgba(39, 57, 45, 0.12);
   box-shadow: 0 12px 28px rgba(47, 58, 42, 0.12);
   color: #172218;
+  pointer-events: none;
 }
 
 .leaflet-tooltip strong {
@@ -642,10 +615,16 @@
 .leaflet-control-zoom {
   border: 0 !important;
   box-shadow: 0 16px 28px rgba(47, 58, 42, 0.18) !important;
+  overflow: hidden;
+  border-radius: 18px !important;
 }
 
 .leaflet-control-zoom a {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
   color: #1a2a22 !important;
+  background: rgba(255, 253, 249, 0.94) !important;
   border-bottom: 1px solid rgba(39, 57, 45, 0.08) !important;
 }
 
@@ -1139,7 +1118,6 @@
     grid-template-columns: 1fr;
   }
 
-  .hero-metrics,
   .risk-meta-grid,
   .region-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1204,18 +1182,8 @@
     font-size: clamp(2.5rem, 11vw, 3.6rem);
   }
 
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-actions .hero-link,
   .live-toolbar .location-button {
     width: 100%;
-  }
-
-  .hero-copy {
-    font-size: 1rem;
   }
 
   .notice-bar {
@@ -1248,7 +1216,7 @@
   }
 
   .map-canvas {
-    height: 340px;
+    height: 380px;
   }
 
   .disease-toggle {
@@ -1264,7 +1232,19 @@
   }
 
   .leaflet-control-zoom {
-    display: none !important;
+    margin: 0 12px 12px 0 !important;
+    box-shadow: 0 14px 28px rgba(17, 37, 28, 0.22) !important;
+  }
+
+  .leaflet-touch .leaflet-control-zoom a {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+  }
+
+  .leaflet-touch .leaflet-control-zoom-in,
+  .leaflet-touch .leaflet-control-zoom-out {
+    font-size: 24px;
   }
 }
 
@@ -1274,7 +1254,6 @@
     grid-template-columns: 1fr;
   }
 
-  .hero-metrics,
   .region-list {
     grid-template-columns: 1fr;
   }
@@ -1284,7 +1263,7 @@
   }
 
   .map-canvas {
-    height: 300px;
+    height: 360px;
   }
 }
 
@@ -1324,13 +1303,12 @@
     font-size: clamp(2.15rem, 11vw, 2.7rem);
   }
 
-  .hero-actions .hero-link,
   .action-link {
     width: 100%;
   }
 
   .map-canvas {
-    height: 260px;
+    height: 320px;
   }
 }
 

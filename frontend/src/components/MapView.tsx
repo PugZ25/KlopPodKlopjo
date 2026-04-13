@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MapContainer, Polygon, Tooltip, useMap } from 'react-leaflet'
+import { MapContainer, Polygon, Tooltip, useMap, ZoomControl } from 'react-leaflet'
 import type { MunicipalityBoundary } from '../utils/municipalityLookup'
 import { loadMunicipalityBoundaries } from '../utils/municipalityLookup'
 
@@ -29,6 +29,10 @@ const levelColors: Record<MapRiskLocation['level'], string> = {
   Nizko: '#3b9f76',
   Srednje: '#d49b42',
   Visoko: '#c1543f',
+}
+
+function buildDiseaseObjectLabel(diseaseLabel: string) {
+  return diseaseLabel === 'Borelioza' ? 'boreliozo' : diseaseLabel.toLowerCase()
 }
 
 function buildPolygonPositions(boundary: MunicipalityBoundary) {
@@ -67,6 +71,17 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
   return null
 }
 
+function detectTouchMap() {
+  if (typeof window === 'undefined') {
+    return false
+  }
+
+  return (
+    window.innerWidth <= 760 ||
+    window.matchMedia('(hover: none), (pointer: coarse)').matches
+  )
+}
+
 export function MapView({
   locations,
   selectedLocationId,
@@ -75,6 +90,24 @@ export function MapView({
   selectedLocation,
 }: MapViewProps) {
   const [boundaries, setBoundaries] = useState<ChoroplethBoundary[]>([])
+  const [isTouchMap, setIsTouchMap] = useState(detectTouchMap)
+
+  useEffect(() => {
+    const updateTouchMode = () => {
+      setIsTouchMap(detectTouchMap())
+    }
+
+    updateTouchMode()
+
+    const coarsePointerQuery = window.matchMedia('(hover: none), (pointer: coarse)')
+    coarsePointerQuery.addEventListener?.('change', updateTouchMode)
+    window.addEventListener('resize', updateTouchMode)
+
+    return () => {
+      coarsePointerQuery.removeEventListener?.('change', updateTouchMode)
+      window.removeEventListener('resize', updateTouchMode)
+    }
+  }, [])
 
   useEffect(() => {
     let isActive = true
@@ -129,20 +162,24 @@ export function MapView({
         zoom={8}
         minZoom={7}
         maxZoom={11}
+        preferCanvas
         maxBounds={[
           [45.2, 13.2],
           [47.1, 16.8],
         ]}
-        maxBoundsViscosity={1}
-        scrollWheelZoom
+        maxBoundsViscosity={isTouchMap ? 0.85 : 1}
+        scrollWheelZoom={!isTouchMap}
         dragging
-        touchZoom
-        doubleClickZoom
-        zoomControl
+        touchZoom={isTouchMap ? 'center' : true}
+        doubleClickZoom={!isTouchMap}
+        zoomSnap={0.5}
+        zoomDelta={0.5}
+        zoomControl={false}
         attributionControl={false}
         className="map-canvas"
       >
         <MapFocus coordinates={focusedLocation.coordinates} />
+        <ZoomControl position={isTouchMap ? 'bottomright' : 'topright'} />
 
         {boundaries.map((boundary) => {
           const isSelected = boundary.locationId === selectedLocationId
@@ -164,11 +201,14 @@ export function MapView({
                 },
               }}
             >
-              <Tooltip sticky>
-                <strong>{boundary.name}</strong>
-                <br />
-                {boundary.level} občinsko tveganje za {diseaseLabel.toLowerCase()}
-              </Tooltip>
+              {!isTouchMap ? (
+                <Tooltip sticky>
+                  <strong>{boundary.name}</strong>
+                  <br />
+                  {boundary.level} občinsko tveganje za{' '}
+                  {buildDiseaseObjectLabel(diseaseLabel)}
+                </Tooltip>
+              ) : null}
             </Polygon>
           )
         })}

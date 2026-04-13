@@ -10,7 +10,6 @@ import {
 } from './data/liveMunicipalityRisk'
 import {
   diseaseSources,
-  heroStats,
   ixodesSections,
   noticeText,
   preventionGroups,
@@ -350,23 +349,8 @@ function App() {
         <section className="hero-panel">
           <div className="hero-layout">
             <div className="hero-copy-block">
-              <h1>Preveri tveganje za bolezni, ki jih prenašajo klopi.</h1>
-              <div className="hero-actions">
-                <a className="hero-link" href="#preverjanje-tveganja">
-                  Preveri tveganje
-                </a>
-              </div>
+              <h1>Klop pod klopjo</h1>
             </div>
-          </div>
-
-          <div className="hero-metrics">
-            {heroStats.map((stat) => (
-              <article key={stat.label} className="metric-card">
-                <span className="metric-label">{stat.label}</span>
-                <strong>{stat.value}</strong>
-                <p>{stat.description}</p>
-              </article>
-            ))}
           </div>
         </section>
 
@@ -463,8 +447,9 @@ function App() {
                     </span>
                   </div>
                   <p>
-                    Ocena za {activeModel.diseaseLabel.toLowerCase()} za {timeHorizon}.
-                    Premakni kazalec na poligon za podrobnost in klikni za izbiro.
+                    Ocena za {buildDiseaseObjectLabel(selectedDiseaseKey)} za{' '}
+                    {timeHorizon}.
+                    Izberi občino na zemljevidu ali uporabi svojo lokacijo.
                   </p>
                 </div>
 
@@ -755,7 +740,7 @@ function App() {
 
         <section id="znanje" className="content-section knowledge-section">
           <div className="section-header">
-            <span className="section-kicker">Znanje</span>
+            <span className="section-kicker">Informacije</span>
             <h2>Kar je dobro razumeti, ne pa vedno gledati na prvi pogled</h2>
             <p>
               Dodatne vsebine ostajajo dostopne, a so zdaj zložene bolj namensko,
