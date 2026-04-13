@@ -21,7 +21,7 @@ Build-time generator:
 - za vsako obcino vzame reprezentativno tocko znotraj GURS poligona obcine
 - prenese zadnjih 6 tednov hourly weather iz Open-Meteo
 - izracuna tedenske featureje po istem feature kontraktu kot `env_v2`
-- uporabi posebna `per 100k` CatBoost modela za score zadnjega referencnega tedna
+- uporabi trenirana `env_v2` CatBoost modela za score zadnjega referencnega tedna
 
 ## Zakaj ni runtime backend inference
 
@@ -72,7 +72,7 @@ Ta omejitev mora biti ob predstavitvi jasno povedana.
 ## Pragovi in score
 
 `Nizko / Srednje / Visoko` se za live demo dolocijo iz holdout distribucije
-istega `per 100k` modela.
+istega `env_v2` modela.
 
 To pomeni:
 
@@ -86,7 +86,7 @@ Velja ista interpretacija kot pri `environmentalRisk.ts`:
 - score je rangirni obcinski indeks
 - score ni individualna verjetnost bolezni
 - rezultat ni diagnoza
-- target modela je normaliziran na `100k prebivalcev`
+- score temelji na surovi napovedi `env_v2` klasifikacijskega modela
 
 Za boreliozo pomeni signal za:
 
@@ -98,8 +98,8 @@ Za KME pomeni signal za:
 
 ## Kaj je pomembno povedati ziriji
 
-1. Demo uporablja pravi trenirani `per 100k` model, ne rocnega weightanja po napovedi.
+1. Demo uporablja pravi trenirani `env_v2` model, ne rocnega weightanja po napovedi.
 2. Live del je omejen na zadnji zakljuceni tedenski snapshot.
 3. Vreme pride iz Open-Meteo, ne iz ročno vnesenih podatkov.
 4. Obcina iz GPS se doloci z GURS poligoni, zemljevid pa prikazuje dejanske obcinske poligone, ne centroid markerjev.
-5. Score je rangirni obcinski indeks na `100k prebivalcev`, ne medicinska verjetnost.
+5. Score je rangirni obcinski indeks modela `env_v2`, ne medicinska verjetnost.

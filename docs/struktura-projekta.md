@@ -22,7 +22,7 @@ S tem žiriji pokažete, da projekt ni samo ideja, ampak ima urejen tehnični in
 4. V `data/interim/` nastanejo očiščene in povezane tabele.
 5. V `ml/` nastanejo značilke, model in napovedi.
 6. V `data/processed/` se shranijo rezultati, pripravljeni za uporabo.
-7. V `backend/` se pripravi API.
+7. V `backend/` ostaja prostor za morebitni prihodnji API.
 8. V `frontend/` se prikaže zemljevid, tveganje in razlage za uporabnika.
 
 ## Pomen posameznih map
@@ -33,12 +33,15 @@ GitHub tehnične datoteke, predvsem workflowi za avtomatske preglede in morebitn
 
 ### `backend/`
 
-Strežniški del aplikacije.
+Prostor za prihodnji strezniški del aplikacije.
 
-- `app/`: zagon aplikacije
+- `app/`: zagon backend aplikacije
 - `api/`: API poti
 - `services/`: poslovna logika
 - `models/`: podatkovni modeli in sheme
+
+Trenutni live deployment tega dela se ne uporablja; produkcija je staticni
+frontend build.
 
 ### `frontend/`
 
@@ -46,8 +49,10 @@ Uporabniški del spletne aplikacije.
 
 - `public/`: statične datoteke
 - `src/components/`: manjši gradniki
-- `src/pages/`: posamezni zasloni
-- `src/styles/`: slogovne datoteke
+- `src/data/`: build-time snapshoti in statična vsebina
+- `src/utils/`: pomožne funkcije za frontend
+
+Trenutni live deployment uporablja staticni Vercel build brez runtime API-ja.
 
 ### `data/`
 
@@ -107,8 +112,11 @@ Eksperimentalna analiza in hitri prototipi, ki še niso del glavne kode.
 
 Tehnična infrastruktura.
 
-- `docker/`: kontejnerji
-- `deploy/`: nastavitve za objavo
+- `docker/`: prostor za prihodnje kontejnerske nastavitve
+- `deploy/`: prostor za dodatne deployment zapiske
+
+Aktualni live deployment je opisan v `docs/live-deployment.md` in je
+konfiguriran prek `vercel.json` v korenu repozitorija.
 
 ## Pravila poimenovanja
 

@@ -2,6 +2,7 @@
 
 Mapa `docs/` vsebuje vse razlage, gradiva in oddajne dokumente.
 
+- `live-deployment.md`: trenutni produkcijski deploy in osvežitev live snapshota
 - `okvirna-ideja/`: osnovna ideja projekta
 - `metodologija/`: metodološke odločitve in razlage
 - `oddaja/`: gradiva za žirijo, predstavitev in finalne tekste

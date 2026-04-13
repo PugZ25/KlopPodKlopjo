@@ -13,14 +13,14 @@ Projekt teče v štirih korakih:
 1. V `data/` zberemo in hranimo podatke iz virov, kot so ARSO, Copernicus, GURS, NIJZ, SURS in ZGS.
 2. V `pipelines/` in `scripts/` podatke očistimo, združimo in pripravimo značilke za model.
 3. V `ml/` razvijemo model za oceno tveganja.
-4. V `backend/` in `frontend/` pripravimo spletno aplikacijo za prikaz rezultatov.
+4. V `frontend/` pripravimo spletno aplikacijo za prikaz rezultatov, `backend/` pa ostaja prostor za prihodnji API in strežniško logiko.
 
 ## Struktura repozitorija
 
 ```text
 KlopPodKlopjo/
 ├── .github/                # GitHub workflowi in nastavitve za sodelovanje
-├── backend/                # Strežniški del aplikacije
+├── backend/                # Prostor za prihodnji API in strežniško logiko
 ├── data/                   # Surovi, vmesni in končni podatki
 ├── docs/                   # Ideja, metodologija in gradiva za oddajo
 ├── frontend/               # Uporabniški vmesnik spletne aplikacije
@@ -38,9 +38,22 @@ Podrobnejša razlaga je v [docs/struktura-projekta.md](/Users/zankespert/Desktop
 
 - [data/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/data/README.md): kako hranimo surove, očiščene in končne podatke
 - [ml/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/ml/README.md): kam sodijo modeli, značilke in napovedi
-- [backend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/backend/README.md): strežniški del aplikacije
+- [backend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/backend/README.md): prihodnji backend in API
 - [frontend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/frontend/README.md): prikaz za uporabnika
 - [docs/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/README.md): metodologija, ideja in materiali za žirijo
+
+## Live deployment
+
+Trenutni live deployment je statični Vite build na Vercelu.
+
+- konfiguracija builda: `vercel.json`
+- produkcijski artefakt: `frontend/dist`
+- live snapshot podatkov: `frontend/src/data/liveMunicipalityRisk.ts`
+- geolokacijski boundary asset: `frontend/public/municipality-boundaries.json`
+- runtime backend trenutno ni del produkcijskega deploya
+
+Celoten postopek osvežitve snapshota in objave je opisan v
+[docs/live-deployment.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/live-deployment.md).
 
 ## Trenutni baseline
 
