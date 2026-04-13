@@ -118,15 +118,16 @@
 }
 
 .notice-track {
-  display: flex;
-  width: max-content;
-  min-width: 100%;
-  animation: marquee 24s linear infinite;
+  display: block;
+  width: 100%;
+  padding: 0.86rem 1.5rem;
 }
 
 .notice-track span {
-  padding: 0.86rem 1.5rem;
-  white-space: nowrap;
+  display: block;
+  white-space: normal;
+  text-wrap: balance;
+  text-align: center;
   font-size: 0.95rem;
   font-weight: 700;
   color: #694513;
@@ -656,8 +657,8 @@
 .region-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 24px;
+  gap: 10px;
+  margin-top: 18px;
   min-width: 0;
 }
 
@@ -676,9 +677,9 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border: 1px solid rgba(55, 76, 60, 0.12);
   border-radius: 18px;
   background: #fffdf9;
@@ -694,7 +695,7 @@
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .region-button:hover {
@@ -721,8 +722,8 @@
 }
 
 .level-low {
-  color: #16573f;
-  background: rgba(76, 163, 120, 0.18);
+  color: #0f2f22;
+  background: rgba(177, 231, 202, 0.88);
 }
 
 .level-medium {
@@ -782,8 +783,17 @@
   background:
     radial-gradient(circle at center, #fff 0 56%, transparent 57%),
     conic-gradient(
+      from -90deg,
       var(--score-accent) 0deg var(--score-angle),
       rgba(214, 229, 216, 0.9) var(--score-angle) 360deg
+    ),
+    conic-gradient(
+      from -90deg,
+      transparent 0deg 118.5deg,
+      rgba(255, 255, 255, 0.7) 118.5deg 121.5deg,
+      transparent 121.5deg 238.5deg,
+      rgba(255, 255, 255, 0.7) 238.5deg 241.5deg,
+      transparent 241.5deg 360deg
     ),
     radial-gradient(circle at top, rgba(255, 255, 255, 0.72), transparent 62%);
   border: 1px solid rgba(36, 46, 41, 0.08);
@@ -805,22 +815,6 @@
 .summary {
   margin-top: 14px;
   font-size: 1.02rem;
-}
-
-.factor-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.factor-chip {
-  padding: 0.76rem 0.98rem;
-  border-radius: 999px;
-  background: rgba(244, 251, 245, 0.1);
-  border: 1px solid rgba(212, 231, 219, 0.12);
-  color: #f1f8f2;
-  font-weight: 600;
 }
 
 .recommendation-box {
@@ -1120,16 +1114,6 @@
   color: #24583f;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -1238,16 +1222,12 @@
     border-radius: 22px;
   }
 
-  .notice-track {
-    width: 100%;
-    min-width: 0;
-    animation: none;
+  .notice-track span {
+    font-size: 0.9rem;
   }
 
-  .notice-track span {
-    min-width: 100%;
-    white-space: normal;
-    text-wrap: balance;
+  .notice-track {
+    padding: 0.8rem 1.1rem;
   }
 
   .risk-meta-grid,
@@ -1269,11 +1249,6 @@
 
   .map-canvas {
     height: 340px;
-  }
-
-  .notice-track span {
-    padding: 0.8rem 1.1rem;
-    font-size: 0.9rem;
   }
 
   .disease-toggle {
@@ -1340,7 +1315,7 @@
     grid-template-columns: 1fr;
   }
 
-  .notice-track span {
+  .notice-track {
     padding-inline: 0.95rem;
   }
 
@@ -1362,10 +1337,6 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .notice-track {
-    animation: none;
   }
 
   .hero-panel,

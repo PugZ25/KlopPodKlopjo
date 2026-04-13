@@ -99,9 +99,12 @@ function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   return `Trenutna ocena za ${timeHorizon} je nizka, vendar to ne pomeni ničelnega tveganja. Ob obisku gozda ali visoke trave se še vedno drži osnovne zaščite.`
 }
 
-function buildRiskBadgeStyle(level: RiskLevel): CSSProperties {
+function buildRiskBadgeStyle(level: RiskLevel, score: number): CSSProperties {
+  const normalizedScore = Math.max(0, Math.min(score, 100))
+
   return {
     '--score-accent': levelAccentColor[level],
+    '--score-angle': `${(normalizedScore / 100) * 360}deg`,
   } as CSSProperties
 }
 
@@ -222,7 +225,7 @@ function App() {
   ].filter(
     (location, index, locations) =>
       locations.findIndex((candidate) => candidate.id === location.id) === index,
-  )
+  ).slice(0, 2)
 
   const mapLocations = activeModel.locations.map((location) => ({
     id: location.id,
@@ -240,7 +243,10 @@ function App() {
     return null
   }
 
-  const riskBadgeStyle = buildRiskBadgeStyle(selectedLocation.level)
+  const riskBadgeStyle = buildRiskBadgeStyle(
+    selectedLocation.level,
+    selectedLocation.score,
+  )
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
   const referenceRangeLabel = `${formatDisplayDate(
     activeModel.referenceWeekStart,
@@ -337,7 +343,6 @@ function App() {
       <div className="notice-bar" role="status" aria-live="polite">
         <div className="notice-track">
           <span>{noticeText}</span>
-          <span aria-hidden="true">{noticeText}</span>
         </div>
       </div>
 
@@ -495,7 +500,7 @@ function App() {
               <div className="region-list" role="list">
                 <div className="region-list-header">
                   <span className="section-kicker">Hitri skoki</span>
-                  <p>Predlagane občine za takojšen pregled.</p>
+                  <p>Dva hitra predloga za pregled.</p>
                 </div>
 
                 {quickLocations.map((location) => (
@@ -543,14 +548,6 @@ function App() {
                     {buildSummary(selectedLocation.level, selectedDiseaseKey)}
                   </p>
                 </div>
-              </div>
-
-              <div className="factor-grid">
-                {activeModel.topDrivers.map((factor) => (
-                  <div key={factor} className="factor-chip">
-                    {factor}
-                  </div>
-                ))}
               </div>
 
               <div className="recommendation-box">
