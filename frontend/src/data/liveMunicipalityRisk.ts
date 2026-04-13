@@ -55,12 +55,12 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
     "generatedAt": "2026-04-12T18:50:53",
     "referenceWeekStart": "2026-04-06",
     "referenceWeekEnd": "2026-04-12",
-    "snapshotLabel": "zadnji zakljuceni tedenski hackathon snapshot",
+    "snapshotLabel": "zadnji zaključeni tedenski hackathon snapshot",
     "weatherSource": "Open-Meteo best-match hourly weather",
-    "methodologyNote": "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko znotraj GURS poligona posamezne obcine. Score temelji na surovi napovedi env_v2 klasifikacijskega modela in je namenjen primerjavi obcin znotraj iste bolezni.",
-    "purpose": "Live hackathon relativni obcinski okoljski indeks za boreliozo.",
-    "disclaimer": "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni obcinski risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni.",
-    "scoreExplanation": "Score je relativni obcinski indeks 0-100, izracunan kot empiricni percentil surove napovedi modela znotraj holdout distribucije istega env_v2 modela.",
+    "methodologyNote": "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno točko znotraj GURS poligona posamezne občine. Score temelji na surovi napovedi env_v2 klasifikacijskega modela in je namenjen primerjavi občin znotraj iste bolezni.",
+    "purpose": "Live hackathon relativni občinski okoljski indeks za boreliozo.",
+    "disclaimer": "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni občinski risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni.",
+    "scoreExplanation": "Score je relativni občinski indeks 0-100, izračunan kot empirični percentil surove napovedi modela znotraj holdout distribucije istega env_v2 modela.",
     "topDrivers": [
       "sezonski signal",
       "urbaniziranost",
@@ -80,7 +80,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 99,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -95,7 +95,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 99,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -110,7 +110,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 99,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -125,7 +125,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 99,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -140,7 +140,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 99,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -155,7 +155,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 97,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -170,7 +170,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 96,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -185,7 +185,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -200,7 +200,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -215,7 +215,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -230,7 +230,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -245,7 +245,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 94,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -260,7 +260,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 94,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -275,7 +275,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 94,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -290,7 +290,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 93,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -305,7 +305,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -320,7 +320,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -335,7 +335,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -350,7 +350,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -365,7 +365,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -380,7 +380,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -395,7 +395,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -410,7 +410,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -425,7 +425,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -440,7 +440,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -455,7 +455,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 89,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -470,7 +470,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 89,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -485,7 +485,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 88,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -500,7 +500,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -515,7 +515,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -530,7 +530,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -545,7 +545,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -560,7 +560,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -575,7 +575,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -590,7 +590,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -605,7 +605,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -620,7 +620,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -635,7 +635,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -650,7 +650,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -665,7 +665,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -680,7 +680,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -695,7 +695,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -710,7 +710,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -725,7 +725,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -740,7 +740,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -755,7 +755,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -770,7 +770,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -785,7 +785,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -800,7 +800,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -815,7 +815,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -830,7 +830,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -845,7 +845,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -860,7 +860,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -875,7 +875,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -890,7 +890,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -905,7 +905,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -920,7 +920,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -935,7 +935,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -950,7 +950,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -965,7 +965,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -980,7 +980,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -995,7 +995,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1010,7 +1010,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1025,7 +1025,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1040,7 +1040,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1055,7 +1055,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1070,7 +1070,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1085,7 +1085,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1100,7 +1100,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1115,7 +1115,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1130,7 +1130,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1145,7 +1145,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1160,7 +1160,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1175,7 +1175,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1190,7 +1190,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1205,7 +1205,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1220,7 +1220,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1235,7 +1235,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1250,7 +1250,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 71,
         "level": "Visoko",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1265,7 +1265,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 70,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1280,7 +1280,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 69,
         "level": "Visoko",
         "trendDeltaScore": 16,
-        "trendLabel": "+16 tock glede na prejsnji teden",
+        "trendLabel": "+16 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1295,7 +1295,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 69,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1310,7 +1310,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 69,
         "level": "Visoko",
         "trendDeltaScore": 17,
-        "trendLabel": "+17 tock glede na prejsnji teden",
+        "trendLabel": "+17 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1325,7 +1325,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1340,7 +1340,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1355,7 +1355,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 67,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1370,7 +1370,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 67,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1385,7 +1385,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 17,
-        "trendLabel": "+17 tock glede na prejsnji teden",
+        "trendLabel": "+17 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1400,7 +1400,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1415,7 +1415,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1430,7 +1430,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1445,7 +1445,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": 14,
-        "trendLabel": "+14 tock glede na prejsnji teden",
+        "trendLabel": "+14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1460,7 +1460,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1475,7 +1475,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 63,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1490,7 +1490,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 63,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1505,7 +1505,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 63,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1520,7 +1520,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1535,7 +1535,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1550,7 +1550,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1565,7 +1565,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1580,7 +1580,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1595,7 +1595,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1610,7 +1610,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1625,7 +1625,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1640,7 +1640,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1655,7 +1655,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1670,7 +1670,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1685,7 +1685,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1700,7 +1700,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1715,7 +1715,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 59,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1730,7 +1730,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 58,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1745,7 +1745,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 58,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1760,7 +1760,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 57,
         "level": "Srednje",
         "trendDeltaScore": 14,
-        "trendLabel": "+14 tock glede na prejsnji teden",
+        "trendLabel": "+14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1775,7 +1775,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 57,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1790,7 +1790,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 57,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1805,7 +1805,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 57,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1820,7 +1820,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 56,
         "level": "Srednje",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1835,7 +1835,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 55,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1850,7 +1850,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 54,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1865,7 +1865,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 54,
         "level": "Srednje",
         "trendDeltaScore": 14,
-        "trendLabel": "+14 tock glede na prejsnji teden",
+        "trendLabel": "+14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1880,7 +1880,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1895,7 +1895,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1910,7 +1910,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1925,7 +1925,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1940,7 +1940,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 52,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1955,7 +1955,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 52,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1970,7 +1970,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -1985,7 +1985,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2000,7 +2000,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2015,7 +2015,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2030,7 +2030,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2045,7 +2045,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2060,7 +2060,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2075,7 +2075,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2090,7 +2090,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2105,7 +2105,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2120,7 +2120,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2135,7 +2135,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2150,7 +2150,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 46,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2165,7 +2165,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 46,
         "level": "Srednje",
         "trendDeltaScore": 16,
-        "trendLabel": "+16 tock glede na prejsnji teden",
+        "trendLabel": "+16 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2180,7 +2180,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 45,
         "level": "Srednje",
         "trendDeltaScore": 16,
-        "trendLabel": "+16 tock glede na prejsnji teden",
+        "trendLabel": "+16 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2195,7 +2195,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 44,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2210,7 +2210,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 44,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2225,7 +2225,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 43,
         "level": "Srednje",
         "trendDeltaScore": 14,
-        "trendLabel": "+14 tock glede na prejsnji teden",
+        "trendLabel": "+14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2240,7 +2240,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 43,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2255,7 +2255,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 43,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2270,7 +2270,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 43,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2285,7 +2285,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 42,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2300,7 +2300,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 42,
         "level": "Srednje",
         "trendDeltaScore": 15,
-        "trendLabel": "+15 tock glede na prejsnji teden",
+        "trendLabel": "+15 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2315,7 +2315,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 41,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2330,7 +2330,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 41,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2345,7 +2345,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 41,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2360,7 +2360,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2375,7 +2375,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2390,7 +2390,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2405,7 +2405,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2420,7 +2420,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 14,
-        "trendLabel": "+14 tock glede na prejsnji teden",
+        "trendLabel": "+14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2435,7 +2435,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 39,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2450,7 +2450,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 39,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2465,7 +2465,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2480,7 +2480,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2495,7 +2495,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2510,7 +2510,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2525,7 +2525,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2540,7 +2540,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2555,7 +2555,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2570,7 +2570,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2585,7 +2585,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 36,
         "level": "Srednje",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2600,7 +2600,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 36,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2615,7 +2615,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 35,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2630,7 +2630,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 35,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2645,7 +2645,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 35,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2660,7 +2660,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 35,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2675,7 +2675,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 34,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2690,7 +2690,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 34,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2705,7 +2705,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 34,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2720,7 +2720,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 34,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2735,7 +2735,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 33,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2750,7 +2750,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 32,
         "level": "Nizko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2765,7 +2765,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2780,7 +2780,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2795,7 +2795,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2810,7 +2810,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2825,7 +2825,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2840,7 +2840,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2855,7 +2855,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2870,7 +2870,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2885,7 +2885,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2900,7 +2900,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2915,7 +2915,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2930,7 +2930,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 25,
         "level": "Nizko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2945,7 +2945,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 24,
         "level": "Nizko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2960,7 +2960,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 23,
         "level": "Nizko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2975,7 +2975,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 23,
         "level": "Nizko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -2990,7 +2990,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 22,
         "level": "Nizko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3005,7 +3005,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 22,
         "level": "Nizko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3020,7 +3020,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 21,
         "level": "Nizko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3035,7 +3035,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 21,
         "level": "Nizko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3050,7 +3050,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 20,
         "level": "Nizko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3065,7 +3065,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 19,
         "level": "Nizko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3080,7 +3080,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 19,
         "level": "Nizko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3095,7 +3095,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 17,
         "level": "Nizko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3110,7 +3110,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 16,
         "level": "Nizko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3125,7 +3125,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 14,
         "level": "Nizko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3140,7 +3140,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 12,
         "level": "Nizko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3155,7 +3155,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 8,
         "level": "Nizko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3170,7 +3170,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 7,
         "level": "Nizko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3185,7 +3185,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 6,
         "level": "Nizko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3200,7 +3200,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 6,
         "level": "Nizko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3215,7 +3215,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 5,
         "level": "Nizko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3230,7 +3230,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 3,
         "level": "Nizko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3245,7 +3245,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 1,
         "level": "Nizko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3322,15 +3322,15 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
     "generatedAt": "2026-04-12T18:50:53",
     "referenceWeekStart": "2026-04-06",
     "referenceWeekEnd": "2026-04-12",
-    "snapshotLabel": "zadnji zakljuceni tedenski hackathon snapshot",
+    "snapshotLabel": "zadnji zaključeni tedenski hackathon snapshot",
     "weatherSource": "Open-Meteo best-match hourly weather",
-    "methodologyNote": "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko znotraj GURS poligona posamezne obcine. Score temelji na surovi napovedi env_v2 klasifikacijskega modela in je namenjen primerjavi obcin znotraj iste bolezni. KME model je pri ucenju dodatno utezen po velikosti populacije obcine, da zemljevid ni sistematicno pristranski do zelo majhnih obcin.",
-    "purpose": "Live hackathon relativni obcinski okoljski indeks za KME.",
-    "disclaimer": "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni obcinski risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni.",
-    "scoreExplanation": "Score je relativni obcinski indeks 0-100, izracunan kot empiricni percentil surove napovedi modela znotraj holdout distribucije istega env_v2 modela.",
+    "methodologyNote": "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno točko znotraj GURS poligona posamezne občine. Score temelji na surovi napovedi env_v2 klasifikacijskega modela in je namenjen primerjavi občin znotraj iste bolezni. KME model je pri učenju dodatno utežen po velikosti populacije občine, da zemljevid ni sistematično pristranski do zelo majhnih občin.",
+    "purpose": "Live hackathon relativni občinski okoljski indeks za KME.",
+    "disclaimer": "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni občinski risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni.",
+    "scoreExplanation": "Score je relativni občinski indeks 0-100, izračunan kot empirični percentil surove napovedi modela znotraj holdout distribucije istega env_v2 modela.",
     "topDrivers": [
       "sezonski signal",
-      "mesani gozd",
+      "mešani gozd",
       "urbaniziranost",
       "sezonski signal",
       "kmetijska krajina"
@@ -3347,7 +3347,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 100,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3362,7 +3362,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 100,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3377,7 +3377,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 98,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3392,7 +3392,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 97,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3407,7 +3407,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 96,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3422,7 +3422,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3437,7 +3437,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3452,7 +3452,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3467,7 +3467,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3482,7 +3482,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3497,7 +3497,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3512,7 +3512,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 95,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3527,7 +3527,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 94,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3542,7 +3542,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 93,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3557,7 +3557,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 93,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3572,7 +3572,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 93,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3587,7 +3587,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 93,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3602,7 +3602,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3617,7 +3617,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3632,7 +3632,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3647,7 +3647,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3662,7 +3662,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 92,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3677,7 +3677,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3692,7 +3692,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3707,7 +3707,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3722,7 +3722,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3737,7 +3737,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3752,7 +3752,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3767,7 +3767,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 91,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3782,7 +3782,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3797,7 +3797,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3812,7 +3812,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 90,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3827,7 +3827,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 89,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3842,7 +3842,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 89,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3857,7 +3857,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 88,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3872,7 +3872,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3887,7 +3887,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3902,7 +3902,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3917,7 +3917,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3932,7 +3932,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3947,7 +3947,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3962,7 +3962,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 87,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3977,7 +3977,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -3992,7 +3992,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4007,7 +4007,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4022,7 +4022,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 86,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4037,7 +4037,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4052,7 +4052,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4067,7 +4067,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4082,7 +4082,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4097,7 +4097,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4112,7 +4112,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4127,7 +4127,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 85,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4142,7 +4142,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4157,7 +4157,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4172,7 +4172,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4187,7 +4187,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 84,
         "level": "Visoko",
         "trendDeltaScore": -5,
-        "trendLabel": "-5 tock glede na prejsnji teden",
+        "trendLabel": "-5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4202,7 +4202,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4217,7 +4217,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": -5,
-        "trendLabel": "-5 tock glede na prejsnji teden",
+        "trendLabel": "-5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4232,7 +4232,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 83,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4247,7 +4247,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4262,7 +4262,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4277,7 +4277,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4292,7 +4292,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4307,7 +4307,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4322,7 +4322,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4337,7 +4337,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4352,7 +4352,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 82,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4367,7 +4367,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4382,7 +4382,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4397,7 +4397,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4412,7 +4412,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4427,7 +4427,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 81,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4442,7 +4442,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4457,7 +4457,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4472,7 +4472,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4487,7 +4487,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 80,
         "level": "Visoko",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4502,7 +4502,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4517,7 +4517,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4532,7 +4532,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": -4,
-        "trendLabel": "-4 tock glede na prejsnji teden",
+        "trendLabel": "-4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4547,7 +4547,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4562,7 +4562,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 79,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4577,7 +4577,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4592,7 +4592,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4607,7 +4607,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4622,7 +4622,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4637,7 +4637,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4652,7 +4652,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4667,7 +4667,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4682,7 +4682,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4697,7 +4697,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 78,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4712,7 +4712,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4727,7 +4727,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4742,7 +4742,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": -5,
-        "trendLabel": "-5 tock glede na prejsnji teden",
+        "trendLabel": "-5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4757,7 +4757,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4772,7 +4772,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4787,7 +4787,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 77,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4802,7 +4802,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4817,7 +4817,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 21,
-        "trendLabel": "+21 tock glede na prejsnji teden",
+        "trendLabel": "+21 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4832,7 +4832,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4847,7 +4847,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 76,
         "level": "Visoko",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4862,7 +4862,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4877,7 +4877,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4892,7 +4892,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4907,7 +4907,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 75,
         "level": "Visoko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4922,7 +4922,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4937,7 +4937,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4952,7 +4952,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4967,7 +4967,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4982,7 +4982,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -4997,7 +4997,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 13,
-        "trendLabel": "+13 tock glede na prejsnji teden",
+        "trendLabel": "+13 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5012,7 +5012,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5027,7 +5027,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 74,
         "level": "Visoko",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5042,7 +5042,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5057,7 +5057,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5072,7 +5072,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5087,7 +5087,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5102,7 +5102,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 73,
         "level": "Visoko",
         "trendDeltaScore": 11,
-        "trendLabel": "+11 tock glede na prejsnji teden",
+        "trendLabel": "+11 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5117,7 +5117,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5132,7 +5132,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5147,7 +5147,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": -4,
-        "trendLabel": "-4 tock glede na prejsnji teden",
+        "trendLabel": "-4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5162,7 +5162,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 72,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5177,7 +5177,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 71,
         "level": "Visoko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5192,7 +5192,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 71,
         "level": "Visoko",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5207,7 +5207,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 70,
         "level": "Visoko",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5222,7 +5222,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 70,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5237,7 +5237,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 69,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5252,7 +5252,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 69,
         "level": "Visoko",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5267,7 +5267,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5282,7 +5282,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5297,7 +5297,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5312,7 +5312,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5327,7 +5327,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 68,
         "level": "Visoko",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5342,7 +5342,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 67,
         "level": "Visoko",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5357,7 +5357,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 67,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5372,7 +5372,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 67,
         "level": "Visoko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5387,7 +5387,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5402,7 +5402,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5417,7 +5417,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 9,
-        "trendLabel": "+9 tock glede na prejsnji teden",
+        "trendLabel": "+9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5432,7 +5432,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5447,7 +5447,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 66,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5462,7 +5462,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5477,7 +5477,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5492,7 +5492,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 65,
         "level": "Srednje",
         "trendDeltaScore": -12,
-        "trendLabel": "-12 tock glede na prejsnji teden",
+        "trendLabel": "-12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5507,7 +5507,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5522,7 +5522,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5537,7 +5537,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5552,7 +5552,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5567,7 +5567,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5582,7 +5582,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 64,
         "level": "Srednje",
         "trendDeltaScore": 10,
-        "trendLabel": "+10 tock glede na prejsnji teden",
+        "trendLabel": "+10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5597,7 +5597,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 63,
         "level": "Srednje",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5612,7 +5612,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5627,7 +5627,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5642,7 +5642,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5657,7 +5657,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5672,7 +5672,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": -7,
-        "trendLabel": "-7 tock glede na prejsnji teden",
+        "trendLabel": "-7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5687,7 +5687,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 62,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5702,7 +5702,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5717,7 +5717,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 61,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5732,7 +5732,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5747,7 +5747,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": 12,
-        "trendLabel": "+12 tock glede na prejsnji teden",
+        "trendLabel": "+12 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5762,7 +5762,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 60,
         "level": "Srednje",
         "trendDeltaScore": -10,
-        "trendLabel": "-10 tock glede na prejsnji teden",
+        "trendLabel": "-10 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5777,7 +5777,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 59,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5792,7 +5792,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 58,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5807,7 +5807,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 58,
         "level": "Srednje",
         "trendDeltaScore": 6,
-        "trendLabel": "+6 tock glede na prejsnji teden",
+        "trendLabel": "+6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5822,7 +5822,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 58,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5837,7 +5837,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 56,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5852,7 +5852,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 55,
         "level": "Srednje",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5867,7 +5867,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 55,
         "level": "Srednje",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5882,7 +5882,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 55,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5897,7 +5897,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 55,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5912,7 +5912,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 54,
         "level": "Srednje",
         "trendDeltaScore": -5,
-        "trendLabel": "-5 tock glede na prejsnji teden",
+        "trendLabel": "-5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5927,7 +5927,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 54,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5942,7 +5942,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 54,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5957,7 +5957,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5972,7 +5972,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -5987,7 +5987,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6002,7 +6002,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 53,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6017,7 +6017,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 52,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6032,7 +6032,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 52,
         "level": "Srednje",
         "trendDeltaScore": 7,
-        "trendLabel": "+7 tock glede na prejsnji teden",
+        "trendLabel": "+7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6047,7 +6047,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 51,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6062,7 +6062,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 4,
-        "trendLabel": "+4 tock glede na prejsnji teden",
+        "trendLabel": "+4 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6077,7 +6077,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": -9,
-        "trendLabel": "-9 tock glede na prejsnji teden",
+        "trendLabel": "-9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6092,7 +6092,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6107,7 +6107,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 50,
         "level": "Srednje",
         "trendDeltaScore": -5,
-        "trendLabel": "-5 tock glede na prejsnji teden",
+        "trendLabel": "-5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6122,7 +6122,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 49,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6137,7 +6137,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 49,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6152,7 +6152,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 49,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6167,7 +6167,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6182,7 +6182,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": -3,
-        "trendLabel": "-3 tock glede na prejsnji teden",
+        "trendLabel": "-3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6197,7 +6197,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6212,7 +6212,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 48,
         "level": "Srednje",
         "trendDeltaScore": -1,
-        "trendLabel": "-1 tock glede na prejsnji teden",
+        "trendLabel": "-1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6227,7 +6227,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 47,
         "level": "Srednje",
         "trendDeltaScore": -8,
-        "trendLabel": "-8 tock glede na prejsnji teden",
+        "trendLabel": "-8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6242,7 +6242,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 44,
         "level": "Srednje",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6257,7 +6257,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 43,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6272,7 +6272,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 1,
-        "trendLabel": "+1 tock glede na prejsnji teden",
+        "trendLabel": "+1 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6287,7 +6287,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": -8,
-        "trendLabel": "-8 tock glede na prejsnji teden",
+        "trendLabel": "-8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6302,7 +6302,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 40,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6317,7 +6317,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 39,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6332,7 +6332,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6347,7 +6347,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": 0,
-        "trendLabel": "brez spremembe glede na prejsnji teden",
+        "trendLabel": "brez spremembe glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6362,7 +6362,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 38,
         "level": "Srednje",
         "trendDeltaScore": -9,
-        "trendLabel": "-9 tock glede na prejsnji teden",
+        "trendLabel": "-9 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6377,7 +6377,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 8,
-        "trendLabel": "+8 tock glede na prejsnji teden",
+        "trendLabel": "+8 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6392,7 +6392,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6407,7 +6407,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 37,
         "level": "Srednje",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6422,7 +6422,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 36,
         "level": "Srednje",
         "trendDeltaScore": -7,
-        "trendLabel": "-7 tock glede na prejsnji teden",
+        "trendLabel": "-7 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6437,7 +6437,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 35,
         "level": "Srednje",
         "trendDeltaScore": 2,
-        "trendLabel": "+2 tock glede na prejsnji teden",
+        "trendLabel": "+2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6452,7 +6452,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 33,
         "level": "Nizko",
         "trendDeltaScore": 3,
-        "trendLabel": "+3 tock glede na prejsnji teden",
+        "trendLabel": "+3 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6467,7 +6467,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 31,
         "level": "Nizko",
         "trendDeltaScore": -6,
-        "trendLabel": "-6 tock glede na prejsnji teden",
+        "trendLabel": "-6 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6482,7 +6482,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 30,
         "level": "Nizko",
         "trendDeltaScore": -2,
-        "trendLabel": "-2 tock glede na prejsnji teden",
+        "trendLabel": "-2 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6497,7 +6497,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 29,
         "level": "Nizko",
         "trendDeltaScore": 5,
-        "trendLabel": "+5 tock glede na prejsnji teden",
+        "trendLabel": "+5 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [
@@ -6512,7 +6512,7 @@ export const liveMunicipalityRiskModels: Record<DiseaseModelKey, LiveMunicipalit
         "score": 23,
         "level": "Nizko",
         "trendDeltaScore": -14,
-        "trendLabel": "-14 tock glede na prejsnji teden",
+        "trendLabel": "-14 točk glede na prejšnji teden",
         "weekStart": "2026-04-06",
         "weekEnd": "2026-04-12",
         "coordinates": [

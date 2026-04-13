@@ -42,7 +42,7 @@ export async function loadMunicipalityBoundaries() {
     boundaryPromise = fetch('/municipality-boundaries.json').then(
       async (response) => {
         if (!response.ok) {
-          throw new Error('Boundary asset ni bil nalozen.')
+          throw new Error('Boundary asset ni bil naložen.')
         }
         return ((await response.json()) as RawMunicipalityBoundary[]).map(
           normalizeMunicipalityBoundary,

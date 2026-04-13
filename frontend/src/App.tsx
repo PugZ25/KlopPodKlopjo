@@ -112,14 +112,14 @@ function formatGeolocationError(error: GeolocationPositionError) {
   }
 
   if (error.code === error.POSITION_UNAVAILABLE) {
-    return 'Lokacije trenutno ni mogoce dolociti.'
+    return 'Lokacije trenutno ni mogoče določiti.'
   }
 
   if (error.code === error.TIMEOUT) {
     return 'Iskanje lokacije je poteklo.'
   }
 
-  return 'Pri pridobivanju lokacije je prislo do napake.'
+  return 'Pri pridobivanju lokacije je prišlo do napake.'
 }
 
 function SourceBlock({
@@ -210,7 +210,7 @@ function App() {
     }
 
     setIsLocating(true)
-    setLocationMessage('Lociram tvojo obcino ...')
+    setLocationMessage('Lociram tvojo občino ...')
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -222,7 +222,7 @@ function App() {
 
           if (!municipality) {
             setLocationMessage(
-              'Lokacija ni bila prepoznana znotraj podprtih obcin Slovenije.',
+              'Lokacija ni bila prepoznana znotraj podprtih občin Slovenije.',
             )
             return
           }
@@ -231,7 +231,7 @@ function App() {
           setLocationMessage(`Lokacija prepoznana: ${municipality.name}.`)
         } catch (error) {
           setLocationMessage(
-            error instanceof Error ? error.message : 'Lookup obcine ni uspel.',
+            error instanceof Error ? error.message : 'Iskanje občine ni uspelo.',
           )
         } finally {
           setIsLocating(false)
@@ -360,7 +360,7 @@ function App() {
               </button>
 
               <div className="live-meta">
-                <span className="metric-label">Referencni teden</span>
+                <span className="metric-label">Referenčni teden</span>
                 <strong>
                   {formatDisplayDate(activeModel.referenceWeekStart)} -{' '}
                   {formatDisplayDate(activeModel.referenceWeekEnd)}
