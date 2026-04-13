@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MapContainer, Polygon, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import { MapContainer, Polygon, Tooltip, useMap } from 'react-leaflet'
 import type { MunicipalityBoundary } from '../utils/municipalityLookup'
 import { loadMunicipalityBoundaries } from '../utils/municipalityLookup'
 
@@ -50,7 +50,7 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     map.invalidateSize()
-    map.flyTo(coordinates, 8, {
+    map.flyTo(coordinates, map.getZoom(), {
       animate: !prefersReducedMotion,
       duration: prefersReducedMotion ? 0 : 0.9,
     })
@@ -128,23 +128,25 @@ export function MapView({
         center={focusedLocation.coordinates}
         zoom={8}
         minZoom={7}
-        maxZoom={10}
+        maxZoom={11}
         maxBounds={[
           [45.2, 13.2],
           [47.1, 16.8],
         ]}
         maxBoundsViscosity={1}
-        scrollWheelZoom={false}
+        scrollWheelZoom
+        dragging
+        touchZoom
+        doubleClickZoom
+        zoomControl
+        attributionControl={false}
         className="map-canvas"
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        />
         <MapFocus coordinates={focusedLocation.coordinates} />
 
         {boundaries.map((boundary) => {
           const isSelected = boundary.locationId === selectedLocationId
+
           return (
             <Polygon
               key={boundary.code}
@@ -152,7 +154,7 @@ export function MapView({
               pathOptions={{
                 color: isSelected ? '#14231a' : levelColors[boundary.level],
                 fillColor: levelColors[boundary.level],
-                fillOpacity: isSelected ? 0.8 : 0.42,
+                fillOpacity: isSelected ? 0.82 : 0.42,
                 weight: isSelected ? 3.1 : 1.05,
               }}
               eventHandlers={{
