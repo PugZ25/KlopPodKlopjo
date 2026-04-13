@@ -56,18 +56,6 @@ COLORS = {
 
 PLOT_DPI = 180
 SEED = 42
-WEATHER_FEATURE_TOKENS = (
-    "air_temperature",
-    "relative_humidity",
-    "precipitation",
-    "soil_temperature",
-    "humidity_hours",
-    "rainy_days",
-    "dew",
-    "vapour",
-    "wind",
-    "snow",
-)
 
 
 @dataclass(frozen=True)
@@ -172,22 +160,6 @@ def main() -> int:
         lyme_env_v2,
         lyme_env_shap,
         args.assets_dir / "lyme-env-v2-effects.svg",
-    )
-    figure_map["lyme_weather_effects"] = plot_weather_effects_grid(
-        lyme_env_v2,
-        lyme_env_shap,
-        args.assets_dir / "lyme-env-v2-weather-effects.svg",
-    )
-
-    kme_shap = compute_shap_payload(
-        kme_v2,
-        DATASET_PATH,
-        sample_size=args.sample_size,
-    )
-    figure_map["kme_weather_effects"] = plot_weather_effects_grid(
-        kme_v2,
-        kme_shap,
-        args.assets_dir / "kme-v2-weather-effects.svg",
     )
 
     figure_map["kme_pr_calibration"] = plot_kme_pr_and_calibration(
@@ -612,8 +584,11 @@ def plot_shap_dependence_grid(
 ) -> str:
     feature_columns = payload["feature_columns"]
     categorical_columns = set(payload["categorical_columns"])
+    sample_features = payload["sample_features"]
+    shap_values = payload["shap_values"]
+
     ranked = (
-        pd.Series(np.abs(payload["shap_values"]).mean(axis=0), index=feature_columns)
+        pd.Series(np.abs(shap_values).mean(axis=0), index=feature_columns)
         .sort_values(ascending=False)
         .index.tolist()
     )
@@ -634,53 +609,11 @@ def plot_shap_dependence_grid(
         if len(selected) == 3:
             break
 
-    return plot_feature_effect_grid(
-        bundle,
-        payload,
-        output_path,
-        selected_features=selected,
-        title=f"{bundle.label}: directional feature effects on model score",
-        subtitle="The black line is the median SHAP contribution inside quantile bins.",
-    )
-
-
-def plot_weather_effects_grid(
-    bundle: ModelBundle,
-    payload: dict[str, object],
-    output_path: Path,
-) -> str:
-    selected = select_weather_effect_features(payload, limit=3)
-    return plot_feature_effect_grid(
-        bundle,
-        payload,
-        output_path,
-        selected_features=selected,
-        title=f"{bundle.label}: weather effects on model score",
-        subtitle="Only weather-derived features are shown; the black line is the median SHAP contribution inside quantile bins.",
-    )
-
-
-def plot_feature_effect_grid(
-    bundle: ModelBundle,
-    payload: dict[str, object],
-    output_path: Path,
-    *,
-    selected_features: list[str],
-    title: str,
-    subtitle: str,
-) -> str:
-    feature_columns = payload["feature_columns"]
-    sample_features = payload["sample_features"]
-    shap_values = payload["shap_values"]
-
-    if not selected_features:
-        raise ValueError(f"No features selected for {bundle.label} effect grid.")
-
-    fig, axes = plt.subplots(1, len(selected_features), figsize=(15.2, 4.9))
-    if len(selected_features) == 1:
+    fig, axes = plt.subplots(1, len(selected), figsize=(15.2, 4.9))
+    if len(selected) == 1:
         axes = [axes]
 
-    for index, (ax, feature_name) in enumerate(zip(axes, selected_features, strict=True)):
+    for index, (ax, feature_name) in enumerate(zip(axes, selected, strict=True)):
         feature_values = pd.to_numeric(sample_features[feature_name], errors="coerce")
         shap_series = pd.Series(shap_values[:, feature_columns.index(feature_name)])
         plot_df = pd.DataFrame({"feature": feature_values, "shap": shap_series}).dropna()
@@ -723,7 +656,7 @@ def plot_feature_effect_grid(
         ax.spines[["top", "right"]].set_visible(False)
 
     fig.suptitle(
-        title,
+        f"{bundle.label}: directional feature effects on model score",
         x=0.05,
         y=0.995,
         ha="left",
@@ -733,63 +666,12 @@ def plot_feature_effect_grid(
     fig.text(
         0.05,
         0.92,
-        subtitle,
+        "The black line is the median SHAP contribution inside quantile bins.",
         fontsize=10,
         color=COLORS["muted"],
     )
     save_figure(fig, output_path)
     return output_path.name
-
-
-def select_weather_effect_features(payload: dict[str, object], limit: int = 3) -> list[str]:
-    feature_columns = payload["feature_columns"]
-    categorical_columns = set(payload["categorical_columns"])
-    ranked = (
-        pd.Series(np.abs(payload["shap_values"]).mean(axis=0), index=feature_columns)
-        .sort_values(ascending=False)
-        .index.tolist()
-    )
-
-    selected: list[str] = []
-    seen_families: set[str] = set()
-    fallback: list[str] = []
-    for feature_name in ranked:
-        if feature_name in categorical_columns or not is_weather_feature(feature_name):
-            continue
-
-        family = weather_feature_family(feature_name)
-        if family not in seen_families:
-            selected.append(feature_name)
-            seen_families.add(family)
-        else:
-            fallback.append(feature_name)
-
-        if len(selected) == limit:
-            return selected
-
-    for feature_name in fallback:
-        if feature_name not in selected:
-            selected.append(feature_name)
-        if len(selected) == limit:
-            break
-
-    return selected
-
-
-def is_weather_feature(feature_name: str) -> bool:
-    return any(token in feature_name for token in WEATHER_FEATURE_TOKENS)
-
-
-def weather_feature_family(feature_name: str) -> str:
-    if "soil_temperature" in feature_name:
-        return "soil_temperature"
-    if "air_temperature" in feature_name:
-        return "air_temperature"
-    if "relative_humidity" in feature_name or "humidity_hours" in feature_name:
-        return "humidity"
-    if "precipitation" in feature_name or "rainy_days" in feature_name:
-        return "precipitation"
-    return feature_name
 
 
 def plot_kme_pr_and_calibration(bundle: ModelBundle, output_path: Path) -> str:
@@ -1095,7 +977,7 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
       color: var(--muted);
       margin: 18px 0 0;
     }}
-    .hero-grid, .metric-grid, .two-up, .three-up, .comparison-grid {{
+    .hero-grid, .metric-grid, .two-up, .three-up {{
       display: grid;
       gap: 16px;
     }}
@@ -1114,10 +996,6 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
     }}
     .three-up {{
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 18px;
-    }}
-    .comparison-grid {{
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       margin-top: 18px;
     }}
     .card {{
@@ -1176,7 +1054,7 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
       margin-top: 18px;
     }}
     @media (max-width: 960px) {{
-      .hero-grid, .metric-grid, .two-up, .three-up, .comparison-grid, .truth-grid {{
+      .hero-grid, .metric-grid, .two-up, .three-up, .truth-grid {{
         grid-template-columns: 1fr;
       }}
       .slide {{
@@ -1354,38 +1232,7 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
 
     <section class="slide">
       <div>
-        <span class="kicker">6. Weather impact</span>
-        <h2>Weather impact on KME and borelioza is visible in the model score</h2>
-        <div class="comparison-grid">
-          <figure class="figure">
-            <img src="hackathon-research-report-assets/{figure_map["lyme_weather_effects"]}" alt="Borelioza weather feature effects" />
-            <figcaption class="caption">
-              Borelioza: warmer recent weeks and moist conditions generally push the environmental score upward,
-              although the response remains nonlinear.
-            </figcaption>
-          </figure>
-          <figure class="figure">
-            <img src="hackathon-research-report-assets/{figure_map["kme_weather_effects"]}" alt="KME weather feature effects" />
-            <figcaption class="caption">
-              KME: soil temperature and short-term moisture conditions move the hotspot-ranking score,
-              but the output should still be framed as ranking rather than calibrated probability.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="card" style="margin-top:16px;">
-          <h3>How to frame it</h3>
-          <ul>
-            <li>Both disease scores react to temperature and moisture proxies.</li>
-            <li>Borelioza gives the clearer environmental explanation slide.</li>
-            <li>KME weather effects support a hotspot-ranking story, not a personal probability claim.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div>
-        <span class="kicker">7. KME v2</span>
+        <span class="kicker">6. KME v2</span>
         <h2>Ranking works, raw probability does not</h2>
         <div class="metric-grid">
           <div class="card">
@@ -1417,7 +1264,7 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
 
     <section class="slide">
       <div>
-        <span class="kicker">8. KME v2</span>
+        <span class="kicker">7. KME v2</span>
         <h2>High-score rows are enriched with real positives</h2>
         <div class="two-up">
           <figure class="figure">
@@ -1441,7 +1288,7 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
 
     <section class="slide">
       <div>
-        <span class="kicker">9. Claims</span>
+        <span class="kicker">8. Claims</span>
         <h2>What you can say clearly, honestly and confidently</h2>
         <div class="truth-grid">
           <div class="card truth-card good">

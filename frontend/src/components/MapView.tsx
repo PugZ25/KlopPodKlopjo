@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MapContainer, Polygon, Tooltip, useMap } from 'react-leaflet'
+import { MapContainer, Polygon, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import type { MunicipalityBoundary } from '../utils/municipalityLookup'
 import { loadMunicipalityBoundaries } from '../utils/municipalityLookup'
 
@@ -129,7 +129,6 @@ export function MapView({
         zoom={8}
         minZoom={7}
         maxZoom={10}
-        attributionControl={false}
         maxBounds={[
           [45.2, 13.2],
           [47.1, 16.8],
@@ -138,6 +137,10 @@ export function MapView({
         scrollWheelZoom={false}
         className="map-canvas"
       >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        />
         <MapFocus coordinates={focusedLocation.coordinates} />
 
         {boundaries.map((boundary) => {
