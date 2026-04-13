@@ -1,10 +1,16 @@
-export const navItems = [
-  { label: 'IXODES RICINUS', href: '#ixodes-ricinus' },
-  { label: 'KLOPNE BOLEZNI', href: '#klopne-bolezni' },
-  { label: 'CEPLJENJE', href: '#cepljenje' },
-  { label: 'PREVENTIVA', href: '#preventiva' },
-  { label: 'ODSTRANITEV KLOPA', href: '#odstranitev-klopa' },
-  { label: 'POSEBNOSTI SLOVENIJE', href: '#posebnosti-slovenije' },
+export const primaryNavItems = [
+  { label: 'Preverjanje tveganja', href: '#preverjanje-tveganja' },
+  { label: 'Zaščita', href: '#zascita' },
+  { label: 'Znanje', href: '#znanje' },
+] as const
+
+export const topicNavItems = [
+  { label: 'Interaktivni pregled', href: '#preverjanje-tveganja' },
+  { label: 'Cepljenje', href: '#cepljenje' },
+  { label: 'Preventiva', href: '#preventiva' },
+  { label: 'Odstranitev klopa', href: '#odstranitev-klopa' },
+  { label: 'Klopne bolezni', href: '#klopne-bolezni' },
+  { label: 'Posebnosti Slovenije', href: '#posebnosti-slovenije' },
 ] as const
 
 export const noticeText =
