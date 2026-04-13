@@ -31,6 +31,13 @@ const levelColors: Record<MapRiskLocation['level'], string> = {
   Visoko: '#c1543f',
 }
 
+const SLOVENIA_BOUNDS: [[number, number], [number, number]] = [
+  [45.2, 13.2],
+  [47.1, 16.8],
+]
+
+const SLOVENIA_CENTER: [number, number] = [46.15, 14.95]
+
 function buildDiseaseObjectLabel(diseaseLabel: string) {
   return diseaseLabel === 'Borelioza' ? 'boreliozo' : diseaseLabel.toLowerCase()
 }
@@ -45,7 +52,13 @@ function buildPolygonPositions(boundary: MunicipalityBoundary) {
   return positions.length === 1 ? positions[0] : positions
 }
 
-function MapFocus({ coordinates }: { coordinates: [number, number] }) {
+function MapFocus({
+  coordinates,
+  isTouchMap,
+}: {
+  coordinates: [number, number]
+  isTouchMap: boolean
+}) {
   const map = useMap()
 
   useEffect(() => {
@@ -54,10 +67,20 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     map.invalidateSize()
-    map.flyTo(coordinates, map.getZoom(), {
-      animate: !prefersReducedMotion,
-      duration: prefersReducedMotion ? 0 : 0.9,
-    })
+
+    if (isTouchMap) {
+      map.fitBounds(SLOVENIA_BOUNDS, {
+        animate: !prefersReducedMotion,
+        duration: prefersReducedMotion ? 0 : 0.9,
+        padding: [18, 18],
+        maxZoom: 7,
+      })
+    } else {
+      map.flyTo(coordinates, map.getZoom(), {
+        animate: !prefersReducedMotion,
+        duration: prefersReducedMotion ? 0 : 0.9,
+      })
+    }
 
     const timeoutId = window.setTimeout(() => {
       map.invalidateSize()
@@ -66,7 +89,7 @@ function MapFocus({ coordinates }: { coordinates: [number, number] }) {
     return () => {
       window.clearTimeout(timeoutId)
     }
-  }, [coordinates, map])
+  }, [coordinates, isTouchMap, map])
 
   return null
 }
@@ -154,19 +177,17 @@ export function MapView({
 
   const focusedLocation =
     locations.find((location) => location.id === selectedLocationId) ?? selectedLocation
+  const mapCenter = isTouchMap ? SLOVENIA_CENTER : focusedLocation.coordinates
+  const mapZoom = isTouchMap ? 7 : 8
 
   return (
     <div className="map-shell">
       <MapContainer
-        center={focusedLocation.coordinates}
-        zoom={8}
+        center={mapCenter}
+        zoom={mapZoom}
         minZoom={7}
         maxZoom={11}
-        preferCanvas
-        maxBounds={[
-          [45.2, 13.2],
-          [47.1, 16.8],
-        ]}
+        maxBounds={SLOVENIA_BOUNDS}
         maxBoundsViscosity={isTouchMap ? 0.85 : 1}
         scrollWheelZoom={!isTouchMap}
         dragging
@@ -178,7 +199,7 @@ export function MapView({
         attributionControl={false}
         className="map-canvas"
       >
-        <MapFocus coordinates={focusedLocation.coordinates} />
+        <MapFocus coordinates={focusedLocation.coordinates} isTouchMap={isTouchMap} />
         <ZoomControl position={isTouchMap ? 'bottomright' : 'topright'} />
 
         {boundaries.map((boundary) => {
@@ -191,8 +212,8 @@ export function MapView({
               pathOptions={{
                 color: isSelected ? '#14231a' : levelColors[boundary.level],
                 fillColor: levelColors[boundary.level],
-                fillOpacity: isSelected ? 0.82 : 0.42,
-                weight: isSelected ? 3.1 : 1.05,
+                fillOpacity: isSelected ? 0.86 : isTouchMap ? 0.54 : 0.42,
+                weight: isSelected ? (isTouchMap ? 3.5 : 3.1) : isTouchMap ? 1.4 : 1.05,
               }}
               eventHandlers={{
                 click: (event) => {
