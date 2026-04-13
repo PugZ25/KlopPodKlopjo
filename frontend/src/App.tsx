@@ -1,4 +1,5 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
+import brandLogo from '../logo.png'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
 import { MapView } from './components/MapView'
@@ -317,8 +318,11 @@ function App() {
     <div className="site-page">
       <header className="site-header">
         <div className="brand-lockup">
-          <span className="eyebrow">Klop pod klopjo</span>
-          <strong>Preverjanje tveganja in zaščita pred klopi v Sloveniji</strong>
+          <img className="brand-logo" src={brandLogo} alt="Logotip Klop pod klopjo" />
+          <div className="brand-copy">
+            <span className="eyebrow">Klop pod klopjo</span>
+            <strong>Preverjanje tveganja in zaščita pred klopi v Sloveniji</strong>
+          </div>
         </div>
 
         <nav className="site-nav" aria-label="Glavna navigacija">
