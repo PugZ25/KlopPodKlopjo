@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KlopPodKlopjo: Hackathon research report</title>
+  <style>
+    :root {
+      --paper: #f6f2ea;
+      --panel: #fffdf8;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --grid: #e7dfd1;
+      --train: #1f6f8b;
+      --validation: #d97706;
+      --test: #c2410c;
+      --accent: #8b2c2a;
+      --success: #2f7f63;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #efe6da 0%, #f6f2ea 14%, #f9f6ef 100%);
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    a { color: inherit; }
+    .deck {
+      width: min(1200px, 94vw);
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+    .slide {
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid rgba(231, 223, 209, 0.95);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(66, 37, 18, 0.08);
+      padding: 34px 38px 36px;
+      margin-bottom: 26px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .kicker {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31, 111, 139, 0.08);
+      color: var(--train);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.08;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      max-width: 900px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      margin-top: 14px;
+    }
+    p.lead {
+      font-size: 1.1rem;
+      max-width: 900px;
+      color: var(--muted);
+      margin: 18px 0 0;
+    }
+    .hero-grid, .metric-grid, .two-up, .three-up {
+      display: grid;
+      gap: 16px;
+    }
+    .hero-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 28px;
+    }
+    .metric-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+    .two-up {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+      margin-top: 18px;
+    }
+    .three-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--grid);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+    }
+    .metric {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-top: 6px;
+    }
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .figure {
+      background: white;
+      border: 1px solid var(--grid);
+      border-radius: 22px;
+      padding: 14px;
+    }
+    .figure img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+    .caption {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li + li {
+      margin-top: 8px;
+    }
+    .truth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .truth-card.good {
+      border-left: 6px solid var(--success);
+    }
+    .truth-card.bad {
+      border-left: 6px solid var(--accent);
+    }
+    .footer {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+    @media (max-width: 960px) {
+      .hero-grid, .metric-grid, .two-up, .three-up, .truth-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide {
+        min-height: auto;
+        padding: 24px 22px;
+      }
+    }
+    @media print {
+      body { background: white; }
+      .deck { width: auto; padding: 0; }
+      .slide {
+        break-after: page;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        min-height: 100vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide">
+      <div>
+        <span class="kicker">Hackathon research deck</span>
+        <h1>KlopPodKlopjo: data-driven tick risk modeling for Slovenia</h1>
+        <p class="lead">
+          Presentation-ready research report generated from local model artifacts, holdout
+          predictions and CatBoost SHAP analysis. This file is meant to be opened directly in
+          a browser and reused as source material for slides.
+        </p>
+        <div class="hero-grid">
+          <div class="card">
+            <div class="metric-label">Borelioza baseline</div>
+            <div class="metric">0.663</div>
+            <div class="metric-label">Test R² on municipality-week rows</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Borelioza baseline</div>
+            <div class="metric">0.854</div>
+            <div class="metric-label">Weekly national R² on future holdout</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Borelioza env v2</div>
+            <div class="metric">0.812</div>
+            <div class="metric-label">Test ROC AUC for 4-week presence signal</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">KME ranking v2</div>
+            <div class="metric">15.8x</div>
+            <div class="metric-label">Lift in the highest-scoring 1% of rows</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        Generated on 2026-04-13 11:50 CEST. HTML file and chart assets were produced locally from
+        data in <code>data/processed/training/</code>.
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">1. Methodology</span>
+        <h2>Evaluation is time-ordered, not random</h2>
+        <div class="two-up">
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/split-timeline.svg" alt="Split timeline" />
+            <figcaption class="caption">
+              All headline results come from future holdout weeks. This is the first visual you should
+              show if the jury asks about leakage or overfitting.
+            </figcaption>
+          </figure>
+          <div class="card">
+            <h3>Talking points</h3>
+            <ul>
+              <li>Training ends on 2023-01-16 for the main benchmark models.</li>
+              <li>Validation and test windows contain only future weeks.</li>
+              <li>Random split is intentionally excluded from the main story.</li>
+              <li>The same temporal evaluation protocol is reused across disease targets.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">2. Borelioza baseline</span>
+        <h2>The baseline tracks weekly national dynamics on unseen future data</h2>
+        <div class="metric-grid">
+          <div class="card">
+            <div class="metric-label">Test RMSE</div>
+            <div class="metric">0.725</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Test MAE</div>
+            <div class="metric">0.402</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Weekly test R²</div>
+            <div class="metric">0.854</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Weekly test correlation</div>
+            <div class="metric">0.931</div>
+          </div>
+        </div>
+        <figure class="figure" style="margin-top:18px;">
+          <img src="hackathon-research-report-assets/lyme-weekly-traces.svg" alt="Lyme weekly traces" />
+          <figcaption class="caption">
+            Use this figure as the central proof slide. It shows that the model follows real epidemic
+            timing, not only isolated municipality rows.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">3. Borelioza baseline</span>
+        <h2>Signal persists at municipality-week resolution</h2>
+        <div class="two-up">
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/lyme-row-scatter.svg" alt="Lyme row scatter" />
+            <figcaption class="caption">
+              Hexbins prevent the plot from collapsing into overdraw. The diagonal shows ideal fit.
+            </figcaption>
+          </figure>
+          <div class="card">
+            <h3>How to narrate it</h3>
+            <ul>
+              <li>The model is not perfect, but the structure is clearly non-random.</li>
+              <li>Holdout error rises from validation to test, which is expected and believable.</li>
+              <li>This baseline is strong for prediction, but it is not the cleanest causal explanation model.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">4. Model comparison</span>
+        <h2>Predictive baseline and environmental model do not tell the same story</h2>
+        <figure class="figure">
+          <img src="hackathon-research-report-assets/feature-importance-comparison.svg" alt="Feature importance comparison" />
+          <figcaption class="caption">
+            The left panel is excellent for prediction, but heavily supported by epidemiological lag features.
+            The right panel is more interpretable for an environmental risk narrative.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">5. Feature effects</span>
+        <h2>SHAP shows which environmental signals move the borelioza env v2 score</h2>
+        <div class="two-up">
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/lyme-env-v2-beeswarm.svg" alt="Lyme env beeswarm" />
+            <figcaption class="caption">
+              Beeswarm summary over a test sample. Horizontal position is contribution to the model score.
+            </figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/lyme-env-v2-effects.svg" alt="Lyme env feature effects" />
+            <figcaption class="caption">
+              Directional SHAP plots provide the “research slide” that makes feature effects concrete.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">6. KME v2</span>
+        <h2>Ranking works, raw probability does not</h2>
+        <div class="metric-grid">
+          <div class="card">
+            <div class="metric-label">Test ROC AUC</div>
+            <div class="metric">0.879</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Test PR-AUC</div>
+            <div class="metric">0.067</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Observed prevalence</div>
+            <div class="metric">0.70%</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">Mean predicted probability</div>
+            <div class="metric">30.2%</div>
+          </div>
+        </div>
+        <figure class="figure" style="margin-top:18px;">
+          <img src="hackathon-research-report-assets/kme-pr-calibration.svg" alt="KME PR and calibration" />
+          <figcaption class="caption">
+            This is the slide that makes the story scientifically honest: useful ranking signal, poor
+            calibration, therefore not a literal personal probability.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">7. KME v2</span>
+        <h2>High-score rows are enriched with real positives</h2>
+        <div class="two-up">
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/kme-lift-importance.svg" alt="KME lift and importance" />
+            <figcaption class="caption">
+              The first 1% of test rows is enriched by 15.8x versus the base rate.
+              This supports a hotspot-ranking use case.
+            </figcaption>
+          </figure>
+          <div class="card">
+            <h3>How to phrase it</h3>
+            <ul>
+              <li>The model is valid for ranking municipality-week hotspots.</li>
+              <li>The model is not valid as a literal “30% probability of KME”.</li>
+              <li>Rare-event accuracy is not the main metric and should stay out of the headline.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">8. Claims</span>
+        <h2>What you can say clearly, honestly and confidently</h2>
+        <div class="truth-grid">
+          <div class="card truth-card good">
+            <h3>Valid claims</h3>
+            <ul>
+              <li>We evaluate on future weeks, not on random rows.</li>
+              <li>For borelioza, the baseline captures weekly epidemic dynamics on holdout data.</li>
+              <li>For environmental models, seasonality, land cover and relief materially influence model output.</li>
+              <li>For KME, the prototype is useful for hotspot ranking and triage.</li>
+              <li>The municipal score is a relative risk index, not a diagnosis.</li>
+            </ul>
+          </div>
+          <div class="card truth-card bad">
+            <h3>Claims to avoid</h3>
+            <ul>
+              <li>Do not claim calibrated personal disease probabilities.</li>
+              <li>Do not present KME accuracy as the main success metric.</li>
+              <li>Do not equate feature importance with biological causality.</li>
+              <li>Do not say the predictive baseline is a purely environmental model.</li>
+              <li>Do not imply the system replaces medical advice or surveillance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        Reusable asset folder: <code>docs/presentation/hackathon-research-report-assets/</code>.
+        Main HTML deck: <code>docs/presentation/hackathon-research-report.html</code>.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
