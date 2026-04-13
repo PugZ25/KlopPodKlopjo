@@ -72,7 +72,7 @@
       color: var(--muted);
       margin: 18px 0 0;
     }
-    .hero-grid, .metric-grid, .two-up, .three-up {
+    .hero-grid, .metric-grid, .two-up, .three-up, .comparison-grid {
       display: grid;
       gap: 16px;
     }
@@ -91,6 +91,10 @@
     }
     .three-up {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+    .comparison-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       margin-top: 18px;
     }
     .card {
@@ -149,7 +153,7 @@
       margin-top: 18px;
     }
     @media (max-width: 960px) {
-      .hero-grid, .metric-grid, .two-up, .three-up, .truth-grid {
+      .hero-grid, .metric-grid, .two-up, .three-up, .comparison-grid, .truth-grid {
         grid-template-columns: 1fr;
       }
       .slide {
@@ -205,7 +209,7 @@
         </div>
       </div>
       <div class="footer">
-        Generated on 2026-04-13 11:50 CEST. HTML file and chart assets were produced locally from
+        Generated on 2026-04-13 17:44 CEST. HTML file and chart assets were produced locally from
         data in <code>data/processed/training/</code>.
       </div>
     </section>
@@ -327,7 +331,38 @@
 
     <section class="slide">
       <div>
-        <span class="kicker">6. KME v2</span>
+        <span class="kicker">6. Weather impact</span>
+        <h2>Weather impact on KME and borelioza is visible in the model score</h2>
+        <div class="comparison-grid">
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/lyme-env-v2-weather-effects.svg" alt="Borelioza weather feature effects" />
+            <figcaption class="caption">
+              Borelioza: warmer recent weeks and moist conditions generally push the environmental score upward,
+              although the response remains nonlinear.
+            </figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="hackathon-research-report-assets/kme-v2-weather-effects.svg" alt="KME weather feature effects" />
+            <figcaption class="caption">
+              KME: soil temperature and short-term moisture conditions move the hotspot-ranking score,
+              but the output should still be framed as ranking rather than calibrated probability.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <h3>How to frame it</h3>
+          <ul>
+            <li>Both disease scores react to temperature and moisture proxies.</li>
+            <li>Borelioza gives the clearer environmental explanation slide.</li>
+            <li>KME weather effects support a hotspot-ranking story, not a personal probability claim.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <span class="kicker">7. KME v2</span>
         <h2>Ranking works, raw probability does not</h2>
         <div class="metric-grid">
           <div class="card">
@@ -359,7 +394,7 @@
 
     <section class="slide">
       <div>
-        <span class="kicker">7. KME v2</span>
+        <span class="kicker">8. KME v2</span>
         <h2>High-score rows are enriched with real positives</h2>
         <div class="two-up">
           <figure class="figure">
@@ -383,7 +418,7 @@
 
     <section class="slide">
       <div>
-        <span class="kicker">8. Claims</span>
+        <span class="kicker">9. Claims</span>
         <h2>What you can say clearly, honestly and confidently</h2>
         <div class="truth-grid">
           <div class="card truth-card good">
