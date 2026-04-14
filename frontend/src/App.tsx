@@ -564,10 +564,6 @@ function App() {
           <div className="section-header">
             <span className="section-kicker">Zaščita</span>
             <h2>Ukrepi, ki jih rabiš najhitreje</h2>
-            <p>
-              Vsebine spodaj so namenoma zložene v pregledne sklope, da je na
-              telefonu pot do ključnih informacij krajša in manj utrujajoča.
-            </p>
           </div>
 
           <nav className="subtopic-rail" aria-label="Skoki po zaščitnih vsebinah">
@@ -742,10 +738,6 @@ function App() {
           <div className="section-header">
             <span className="section-kicker">Informacije</span>
             <h2>Kar je dobro razumeti, ne pa vedno gledati na prvi pogled</h2>
-            <p>
-              Dodatne vsebine ostajajo dostopne, a so zdaj zložene bolj namensko,
-              da se stran na mobilnih napravah ne raztegne po nepotrebnem.
-            </p>
           </div>
 
           <nav className="subtopic-rail" aria-label="Skoki po informacijskih vsebinah">
