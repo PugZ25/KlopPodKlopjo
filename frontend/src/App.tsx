@@ -1,4 +1,4 @@
-import { useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import brandLogo from '../logo.png'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
@@ -41,6 +41,12 @@ type SourceLink = {
   href?: string
 }
 
+type LightboxImage = {
+  src: string
+  alt: string
+  caption: string
+}
+
 type SectionAccordionProps = {
   id: string
   kicker: string
@@ -48,6 +54,10 @@ type SectionAccordionProps = {
   description: string
   defaultOpen?: boolean
   children: ReactNode
+}
+
+type InteractiveImageProps = LightboxImage & {
+  onOpen: (image: LightboxImage) => void
 }
 
 const diseaseTabs: DiseaseModelKey[] = ['borelioza', 'kme']
@@ -69,18 +79,21 @@ function buildDiseaseObjectLabel(diseaseKey: DiseaseModelKey) {
 }
 
 function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
-  const timeHorizon = buildTimeHorizonLabel(diseaseKey)
   const diseaseObjectLabel = buildDiseaseObjectLabel(diseaseKey)
 
   if (level === 'Visoko') {
-    return `Občina je v zgornjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} visoko.`
+    if (diseaseKey === 'kme') {
+      return 'Ocena tveganja za KME je visoka. Tveganje je lahko povečano, zato so zaščitni ukrepi, pregled telesa po obisku narave in cepljenje proti KME posebej pomembni.'
+    }
+
+    return 'Ocena tveganja za boreliozo je visoka. Tveganje je lahko povečano, zato so zaščitni ukrepi in pregled telesa po obisku narave posebej pomembni.'
   }
 
   if (level === 'Srednje') {
-    return `Občina je v srednjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} srednje.`
+    return `Ocena tveganja za ${diseaseObjectLabel} je srednja. Tveganje je lahko zmerno, zato so priporočeni zaščitni ukrepi.`
   }
 
-  return `Občina je v spodnjem delu zgodovinske primerjalne razvrstitve modela za ${diseaseObjectLabel}, zato je pričakovano občinsko tveganje za ${timeHorizon} nizko.`
+  return `Ocena tveganja za ${diseaseObjectLabel} je nizka. Tveganje je lahko majhno, vendar še vedno upoštevaj zaščitne ukrepe.`
 }
 
 function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
@@ -187,6 +200,25 @@ function SectionAccordion({
   )
 }
 
+function InteractiveImage({ src, alt, caption, onOpen }: InteractiveImageProps) {
+  return (
+    <figure className="image-card">
+      <button
+        type="button"
+        className="image-card-button"
+        onClick={() => onOpen({ src, alt, caption })}
+        aria-label="Povečaj sliko"
+      >
+        <img src={src} alt={alt} />
+        <span className="image-card-hint" aria-hidden="true">
+          Povečaj
+        </span>
+      </button>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  )
+}
+
 function App() {
   const [selectedDiseaseKey, setSelectedDiseaseKey] =
     useState<DiseaseModelKey>('borelioza')
@@ -195,8 +227,31 @@ function App() {
       liveMunicipalityRiskModels.borelioza.locations[0]?.municipalityCode ??
       '',
   )
+  const [expandedImage, setExpandedImage] = useState<LightboxImage | null>(null)
   const [locationMessage, setLocationMessage] = useState('')
   const [isLocating, setIsLocating] = useState(false)
+
+  useEffect(() => {
+    if (!expandedImage) {
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setExpandedImage(null)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [expandedImage])
 
   const activeModel = liveMunicipalityRiskModels[selectedDiseaseKey]
   const fallbackLocation = activeModel.locations[0]
@@ -519,7 +574,6 @@ function App() {
               <div className="trend-card">
                 <span className="metric-label">Tedenski premik</span>
                 <strong>{buildMovementLabel(selectedLocation.trendDeltaScore)}</strong>
-                <p className="trend-copy">{activeModel.scoreExplanation}</p>
               </div>
 
               <div className="action-links-panel">
@@ -612,16 +666,12 @@ function App() {
                   </a>
                 </div>
 
-                <figure className="image-card">
-                  <img
-                    src={vaccinationScheduleImage}
-                    alt="Shema cepljenja FSME-IMMUN za osnovno serijo in poživitvene odmerke."
-                  />
-                  <figcaption>
-                    Osnovna serija vsebuje tri odmerke, po njej pa sledijo
-                    revakcinacije glede na starost.
-                  </figcaption>
-                </figure>
+                <InteractiveImage
+                  src={vaccinationScheduleImage}
+                  alt="Shema cepljenja FSME-IMMUN za osnovno serijo in poživitvene odmerke."
+                  caption="Osnovna serija vsebuje tri odmerke, po njej pa sledijo revakcinacije glede na starost."
+                  onOpen={setExpandedImage}
+                />
               </div>
 
               <SourceBlock sources={vaccinationSources} />
@@ -849,16 +899,12 @@ function App() {
                   </div>
                 </article>
 
-                <figure className="image-card">
-                  <img
-                    src={tbeMapImage}
-                    alt="Zemljevid razširjenosti klopnega meningoencefalitisa v Evropi in Aziji."
-                  />
-                  <figcaption>
-                    Razširjenost virusa klopnega meningoencefalitisa poudarja, da
-                    je Slovenija del širšega endemičnega prostora.
-                  </figcaption>
-                </figure>
+                <InteractiveImage
+                  src={tbeMapImage}
+                  alt="Zemljevid razširjenosti klopnega meningoencefalitisa v Evropi in Aziji."
+                  caption="Razširjenost virusa klopnega meningoencefalitisa poudarja, da je Slovenija del širšega endemičnega prostora."
+                  onOpen={setExpandedImage}
+                />
               </div>
 
               <SourceBlock sources={diseaseSources} />
@@ -889,6 +935,35 @@ function App() {
           </div>
         </section>
       </main>
+
+      {expandedImage ? (
+        <div className="image-lightbox" onClick={() => setExpandedImage(null)}>
+          <div
+            className="image-lightbox-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Povečana slika"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="image-lightbox-close"
+              onClick={() => setExpandedImage(null)}
+              aria-label="Zapri povečano sliko"
+              autoFocus
+            >
+              Zapri
+            </button>
+
+            <img
+              className="image-lightbox-image"
+              src={expandedImage.src}
+              alt={expandedImage.alt}
+            />
+            <p className="image-lightbox-caption">{expandedImage.caption}</p>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }

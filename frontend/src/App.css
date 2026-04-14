@@ -441,8 +441,7 @@
 }
 
 .live-meta p,
-.live-status,
-.trend-copy {
+.live-status {
   color: #516055;
 }
 
@@ -695,7 +694,6 @@
 
 .insight-card .section-header h2,
 .insight-card .summary,
-.insight-card .trend-copy,
 .insight-card .recommendation-box p {
   color: #edf6ee;
 }
@@ -778,10 +776,6 @@
 
 .trend-card strong {
   color: #f6fbf7;
-}
-
-.trend-copy {
-  margin-top: 10px;
 }
 
 .action-links-panel {
@@ -960,15 +954,123 @@
   min-width: 0;
 }
 
+.image-card-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: none;
+  cursor: zoom-in;
+  overflow: hidden;
+  text-align: left;
+}
+
+.image-card-button:focus-visible {
+  outline: 3px solid rgba(41, 92, 67, 0.48);
+  outline-offset: 4px;
+}
+
 .image-card img {
+  display: block;
   width: 100%;
   border-radius: 18px;
   background: #f2f0e9;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.image-card-button:hover img,
+.image-card-button:focus-visible img {
+  transform: scale(1.018);
+  filter: saturate(1.04);
+}
+
+.image-card-hint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 0.42rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(13, 34, 25, 0.76);
+  color: #f5fbf6;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+}
+
+.image-card-button:hover .image-card-hint,
+.image-card-button:focus-visible .image-card-hint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .image-card figcaption {
   color: #4f5e53;
   font-size: 0.95rem;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 4vw, 36px);
+  background: rgba(10, 21, 16, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.image-lightbox-dialog {
+  width: min(1040px, 100%);
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 2.5vw, 22px);
+  border-radius: 28px;
+  border: 1px solid rgba(228, 239, 231, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(119, 165, 135, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(247, 244, 234, 0.98), rgba(232, 241, 233, 0.96));
+  box-shadow: 0 32px 64px rgba(8, 19, 14, 0.34);
+}
+
+.image-lightbox-close {
+  justify-self: end;
+  min-height: 42px;
+  padding: 0.64rem 0.94rem;
+  border: 1px solid rgba(34, 74, 54, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #183426;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.image-lightbox-close:focus-visible {
+  outline: 3px solid rgba(41, 92, 67, 0.42);
+  outline-offset: 4px;
+}
+
+.image-lightbox-image {
+  width: 100%;
+  max-height: min(76vh, 920px);
+  object-fit: contain;
+  border-radius: 22px;
+  background: #f2f0e9;
+}
+
+.image-lightbox-caption {
+  margin: 0;
+  color: #405046;
+  font-size: 0.98rem;
 }
 
 .vaccination-grid {
