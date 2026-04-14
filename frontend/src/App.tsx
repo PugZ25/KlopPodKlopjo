@@ -36,6 +36,12 @@ const levelAccentColor = {
   Visoko: '#c1543f',
 } as const
 
+const summaryPanelClassName = {
+  Nizko: 'summary-panel-low',
+  Srednje: 'summary-panel-medium',
+  Visoko: 'summary-panel-high',
+} as const
+
 type SourceLink = {
   label: string
   href?: string
@@ -94,20 +100,6 @@ function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
   }
 
   return `Ocena tveganja za ${diseaseObjectLabel} je nizka. Tveganje je lahko majhno, vendar še vedno upoštevaj zaščitne ukrepe.`
-}
-
-function buildRecommendation(level: RiskLevel, diseaseKey: DiseaseModelKey) {
-  const timeHorizon = buildTimeHorizonLabel(diseaseKey)
-
-  if (level === 'Visoko') {
-    return `Za ${timeHorizon} uporabljaj daljša oblačila, repelent in po obisku narave takoj preveri kožo ter obleko. Rezultat ni diagnoza, je pa opozorilo za večjo previdnost.`
-  }
-
-  if (level === 'Srednje') {
-    return `Osnovna preventiva ostaja smiselna: repelent, pregled kože po aktivnosti v naravi in hitra odstranitev klopa. Model za ${timeHorizon} ne kaže izrazitega vrha, vseeno pa tveganje ni nizko.`
-  }
-
-  return `Trenutna ocena za ${timeHorizon} je nizka, vendar to ne pomeni ničelnega tveganja. Ob obisku gozda ali visoke trave se še vedno drži osnovne zaščite.`
 }
 
 function buildRiskBadgeStyle(level: RiskLevel, score: number): CSSProperties {
@@ -452,6 +444,19 @@ function App() {
                 </p>
               ) : null}
 
+              <MapView
+                locations={mapLocations}
+                selectedLocationId={selectedLocation.id}
+                onSelectLocation={handleSelectLocation}
+                diseaseLabel={activeModel.diseaseLabel}
+                selectedLocation={selectedMapLocation}
+              />
+
+              <p className="card-note">
+                Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat
+                se prikaže samo kot nizko, srednje ali visoko tveganje.
+              </p>
+
               <div className="map-summary-bar">
                 <div className="map-summary-card">
                   <span className="section-kicker">Izbrana občina</span>
@@ -483,19 +488,6 @@ function App() {
                   </span>
                 </div>
               </div>
-
-              <MapView
-                locations={mapLocations}
-                selectedLocationId={selectedLocation.id}
-                onSelectLocation={handleSelectLocation}
-                diseaseLabel={activeModel.diseaseLabel}
-                selectedLocation={selectedMapLocation}
-              />
-
-              <p className="card-note">
-                Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat
-                se prikaže samo kot nizko, srednje ali visoko tveganje.
-              </p>
             </article>
 
             <article className="insight-card">
@@ -517,15 +509,15 @@ function App() {
                   >
                     {selectedLocation.level}
                   </span>
-                  <p className="summary">
-                    {buildSummary(selectedLocation.level, selectedDiseaseKey)}
-                  </p>
+                  <div
+                    className={`summary-panel ${summaryPanelClassName[selectedLocation.level]}`}
+                  >
+                    <span className="summary-kicker">Pomembno</span>
+                    <p className="summary">
+                      {buildSummary(selectedLocation.level, selectedDiseaseKey)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="recommendation-box">
-                <span className="section-kicker">Kako brati rezultat</span>
-                <p>{buildRecommendation(selectedLocation.level, selectedDiseaseKey)}</p>
               </div>
 
               <div className="trend-card">
@@ -550,7 +542,7 @@ function App() {
         <section id="zascita" className="content-section knowledge-section">
           <div className="section-header">
             <span className="section-kicker">Preventiva</span>
-            <h2>Ukrepi, ki jih rabiš najhitreje</h2>
+            <h2>Kako ukrepati?</h2>
           </div>
 
           <nav className="subtopic-rail" aria-label="Skoki po preventivnih vsebinah">
@@ -720,7 +712,7 @@ function App() {
         <section id="znanje" className="content-section knowledge-section">
           <div className="section-header">
             <span className="section-kicker">Informacije</span>
-            <h2>Kar je dobro razumeti, ne pa vedno gledati na prvi pogled</h2>
+            <h2>Kaj je dobro vedeti</h2>
           </div>
 
           <nav className="subtopic-rail" aria-label="Skoki po informacijskih vsebinah">

@@ -638,8 +638,7 @@
 }
 
 .insight-card .section-header h2,
-.insight-card .summary,
-.insight-card .recommendation-box p {
+.insight-card .summary {
   color: #edf6ee;
 }
 
@@ -696,20 +695,76 @@
 }
 
 .summary {
-  margin-top: 14px;
-  font-size: 1.02rem;
+  margin: 0;
+  font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+  font-weight: 600;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
 }
 
-.recommendation-box {
-  margin-top: 24px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(212, 231, 219, 0.12);
+.summary-panel {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(226, 237, 229, 0.16);
+  box-shadow:
+    0 18px 30px rgba(7, 19, 13, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.recommendation-box p {
-  margin-top: 10px;
+.summary-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.34rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.summary-panel .summary {
+  margin-top: 12px;
+}
+
+.summary-panel-low {
+  background:
+    radial-gradient(circle at top right, rgba(112, 190, 145, 0.16), transparent 40%),
+    linear-gradient(135deg, rgba(35, 83, 58, 0.8), rgba(22, 52, 38, 0.9));
+  border-color: rgba(121, 194, 153, 0.32);
+}
+
+.summary-panel-low .summary-kicker {
+  background: rgba(177, 231, 202, 0.9);
+  color: #123325;
+}
+
+.summary-panel-medium {
+  background:
+    radial-gradient(circle at top right, rgba(226, 176, 54, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(72, 56, 18, 0.84), rgba(38, 31, 12, 0.92));
+  border-color: rgba(226, 176, 54, 0.34);
+}
+
+.summary-panel-medium .summary-kicker {
+  background: rgba(248, 214, 126, 0.92);
+  color: #5a3900;
+}
+
+.summary-panel-high {
+  background:
+    radial-gradient(circle at top right, rgba(214, 96, 79, 0.22), transparent 42%),
+    linear-gradient(135deg, rgba(106, 32, 25, 0.9), rgba(54, 17, 14, 0.94));
+  border-color: rgba(229, 116, 97, 0.42);
+  box-shadow:
+    0 20px 34px rgba(58, 14, 10, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.summary-panel-high .summary-kicker {
+  background: rgba(255, 219, 210, 0.94);
+  color: #8f271b;
 }
 
 .trend-card {
