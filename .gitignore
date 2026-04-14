@@ -16,6 +16,12 @@ build/
 .env
 .env.*
 
+# Local-only artifacts
+slurm-*.out
+jgp_strings.txt
+frontend/navodila/Neimenovanidokument.html
+frontend/osnutekspletne.pdf
+
 # Large or generated data
 data/raw/**/*
 data/interim/**/*

@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 import os
+import re
 import tempfile
 import textwrap
 from dataclasses import dataclass
@@ -25,6 +26,7 @@ import numpy as np
 import pandas as pd
 import shap
 from catboost import CatBoostClassifier, Pool
+from matplotlib.patches import Patch
 from sklearn.calibration import calibration_curve
 from sklearn.metrics import (
     average_precision_score,
@@ -52,6 +54,26 @@ COLORS = {
     "panel": "#fffdf8",
     "grid": "#e7dfd1",
     "success": "#2f7f63",
+}
+
+FEATURE_FAMILY_COLORS = {
+    "history": COLORS["accent"],
+    "seasonality": COLORS["validation"],
+    "climate": COLORS["train"],
+    "land_cover": COLORS["success"],
+    "terrain": "#4f86c6",
+    "demography": "#7c6f64",
+    "other": COLORS["muted"],
+}
+
+FEATURE_FAMILY_LABELS = {
+    "history": "Case history",
+    "seasonality": "Seasonality",
+    "climate": "Weather",
+    "land_cover": "Land cover",
+    "terrain": "Relief",
+    "demography": "Demography / geography",
+    "other": "Other",
 }
 
 PLOT_DPI = 180
@@ -441,56 +463,119 @@ def plot_feature_importance_comparison(
     lyme_env_v2: ModelBundle,
     output_path: Path,
 ) -> str:
-    fig, axes = plt.subplots(1, 2, figsize=(15.2, 8.8))
-    fig.subplots_adjust(left=0.13, right=0.98, top=0.76, bottom=0.12, wspace=0.30)
+    fig, axes = plt.subplots(1, 2, figsize=(16.0, 9.3))
+    fig.subplots_adjust(left=0.19, right=0.98, top=0.73, bottom=0.18, wspace=0.28)
 
     panel_notes: list[tuple[plt.Axes, str]] = []
-    for ax, bundle, color, subtitle in [
+    top_frames = [feature_importance_frame(bundle.metadata).head(12) for bundle in [lyme_v1, lyme_env_v2]]
+
+    for ax, bundle, top_df, subtitle in [
         (
             axes[0],
             lyme_v1,
-            COLORS["accent"],
-            "Predictive baseline: epidemiological lag features dominate.",
+            top_frames[0],
+            "Baseline v1 keeps lagged case-count features, so the model mostly reads recent epidemiological history.",
         ),
         (
             axes[1],
             lyme_env_v2,
-            COLORS["train"],
-            "Environmental model: seasonality, land cover and relief dominate.",
+            top_frames[1],
+            "Env v2 removes lagged case-count features, so importance redistributes toward seasonality, land cover and relief.",
         ),
     ]:
-        df = feature_importance_frame(bundle.metadata).head(12).iloc[::-1]
-        ax.barh(df["feature_label"], df["importance"], color=color, alpha=0.92)
+        df = top_df.iloc[::-1].copy()
+        df["family"] = df["feature"].map(classify_feature_family)
+        bar_colors = df["family"].map(FEATURE_FAMILY_COLORS)
+        panel_x_limit = int(math.ceil((df["importance"].max() + 4) / 5.0) * 5)
+
+        bars = ax.barh(
+            df["feature_label"],
+            df["importance"],
+            color=bar_colors,
+            alpha=0.94,
+            height=0.82,
+        )
+        ax.bar_label(
+            bars,
+            labels=[f"{value:.1f}%" for value in df["importance"]],
+            padding=4,
+            fontsize=8.8,
+            color=COLORS["ink"],
+        )
         ax.set_title(
             bundle.label,
             loc="left",
-            fontsize=14,
+            fontsize=14.5,
             weight="bold",
-            pad=2,
+            pad=4,
         )
-        ax.set_xlabel("CatBoost feature importance")
-        panel_notes.append((ax, subtitle))
+        ax.set_xlabel("Share of total model importance (%)")
+        ax.set_xlim(0, panel_x_limit)
+        tick_step = 10 if panel_x_limit > 30 else 5
+        ax.set_xticks(np.arange(0, panel_x_limit + 0.1, tick_step))
+        ax.grid(axis="y", visible=False)
+        ax.set_axisbelow(True)
         ax.spines[["top", "right"]].set_visible(False)
+        ax.text(
+            0.98,
+            0.06,
+            feature_story_note(bundle.slug, top_df),
+            transform=ax.transAxes,
+            ha="right",
+            va="bottom",
+            fontsize=9.4,
+            color=COLORS["ink"],
+            bbox={
+                "boxstyle": "round,pad=0.35",
+                "facecolor": COLORS["paper"],
+                "edgecolor": COLORS["grid"],
+                "alpha": 0.98,
+            },
+        )
+        panel_notes.append((ax, f"{subtitle} Independent x-axis: 0-{panel_x_limit}%."))
 
     for ax, subtitle in panel_notes:
         bbox = ax.get_position()
         fig.text(
             bbox.x0,
-            bbox.y1 + 0.065,
-            wrap_text(subtitle, width=42),
+            bbox.y1 + 0.04,
+            wrap_text(subtitle, width=54),
             color=COLORS["muted"],
             fontsize=9.5,
             ha="left",
             va="bottom",
         )
 
+    legend_handles = [
+        Patch(facecolor=FEATURE_FAMILY_COLORS[key], label=FEATURE_FAMILY_LABELS[key])
+        for key in ["history", "seasonality", "climate", "land_cover", "terrain", "demography"]
+    ]
+    fig.legend(
+        handles=legend_handles,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.09),
+        ncol=3,
+        columnspacing=1.3,
+        handlelength=1.2,
+        fontsize=9.2,
+    )
+
     fig.suptitle(
-        "Feature story changes once epidemiological lags are removed",
+        "Removing lagged case features shifts the model from case memory to environmental structure",
         x=0.05,
         y=0.975,
         ha="left",
         fontsize=18,
         weight="bold",
+    )
+    add_figure_note(
+        fig,
+        "Top 12 features per model. Bar length shows CatBoost importance as a percentage of total model importance. "
+        "Panels intentionally use different x-axis ranges to improve readability, so compare rank and composition, not raw bar length across panels.",
+        x=0.05,
+        y=0.90,
+        width=122,
+        fontsize=9.5,
     )
     save_figure(fig, output_path)
     return output_path.name
@@ -500,6 +585,40 @@ def feature_importance_frame(metadata: dict) -> pd.DataFrame:
     df = pd.DataFrame(metadata["feature_importances"])
     df["feature_label"] = df["feature"].map(format_feature_label)
     return df.sort_values("importance", ascending=False)
+
+
+def classify_feature_family(feature_name: str) -> str:
+    if feature_name.startswith(("lyme_cases_", "kme_cases_")):
+        return "history"
+    if feature_name.startswith(("week_of_year", "iso_week", "month")):
+        return "seasonality"
+    if any(token in feature_name for token in ["temperature", "precip", "soil_moisture", "humidity", "radiation", "wind"]):
+        return "climate"
+    if any(token in feature_name for token in ["elevation", "slope", "aspect", "relief"]):
+        return "terrain"
+    if "cover_pct" in feature_name or "clc" in feature_name:
+        return "land_cover"
+    if any(token in feature_name for token in ["population", "obcina", "municipality"]):
+        return "demography"
+    return "other"
+
+
+def feature_story_note(bundle_slug: str, top_df: pd.DataFrame) -> str:
+    top_feature = format_feature_label(top_df.iloc[0]["feature"], width=32).replace("\n", " ")
+    top_value = top_df.iloc[0]["importance"]
+    top_three = top_df.head(3)["importance"].sum()
+
+    if bundle_slug == "lyme_v1":
+        return (
+            f"Top driver: {top_feature} ({top_value:.1f}%).\n"
+            "One case-history feature alone carries more than half\n"
+            "of total model importance."
+        )
+
+    return (
+        f"Top driver: {top_feature} ({top_value:.1f}%).\n"
+        f"No single feature dominates; the top 3 together\ncarry {top_three:.1f}% of total importance."
+    )
 
 
 def compute_shap_payload(
@@ -1201,12 +1320,12 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
     <section class="slide">
       <div>
         <span class="kicker">4. Model comparison</span>
-        <h2>Predictive baseline and environmental model do not tell the same story</h2>
+        <h2>Removing lagged case counts reveals a different environmental signal</h2>
         <figure class="figure">
-          <img src="hackathon-research-report-assets/{figure_map["feature_importance_comparison"]}" alt="Feature importance comparison" />
+          <img src="hackathon-research-report-assets/{figure_map["feature_importance_comparison"]}" alt="Comparison of top 12 CatBoost feature importance shares for Borelioza baseline v1 and Borelioza env v2" />
           <figcaption class="caption">
-            The left panel is excellent for prediction, but heavily supported by epidemiological lag features.
-            The right panel is more interpretable for an environmental risk narrative.
+            Each panel now uses its own x-axis range for readability.
+            That makes the environmental model easier to read, but bar lengths should only be compared within panel, not directly across both panels.
           </figcaption>
         </figure>
       </div>
@@ -1350,9 +1469,18 @@ def wrap_text(text: str, *, width: int) -> str:
 
 
 def format_feature_label(feature_name: str, width: int = 23) -> str:
+    special_labels = {
+        "obcina_sifra": "municipality code",
+        "dominant_clc_code": "dominant CLC class",
+    }
+    if feature_name in special_labels:
+        return wrap_text(special_labels[feature_name], width=width)
+
     label = feature_name.replace("_pct", " %").replace("_m3_m3", " m3/m3")
-    label = label.replace("_c", " °C").replace("_mm", " mm")
+    label = re.sub(r"_c(?=_|$)", " °C", label)
+    label = label.replace("_mm", " mm")
     label = label.replace("_", " ")
+    label = re.sub(r"\bclc\b", "CLC", label, flags=re.IGNORECASE)
     label = label.replace(" ge ", " ≥ ")
     label = label.replace("  ", " ")
     return wrap_text(label, width=width)

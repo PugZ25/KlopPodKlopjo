@@ -1,20 +1,20 @@
 # Skripti
 
-`scripts/` vsebuje manjše pomožne skripte, ki ne sodijo v glavni aplikacijski ali modelni tok.
+`scripts/` vsebuje operativne skripte, ki podpirajo pripravo podatkov, generiranje
+frontend artefaktov in občasne raziskovalne ali infrastrukturne naloge.
 
-- `data/`: pomožna opravila za podatke
-- `dev/`: razvojna opravila
+## Najpomembnejši skripti za demo
 
-Za live deployment sta trenutno pomembni skripti:
+- `scripts/data/build_municipality_boundary_asset.py`
+  izdela `frontend/public/municipality-boundaries.json` za geolokacijski lookup občine
+- `scripts/data/build_live_municipality_risk_frontend_data.py`
+  izdela `frontend/src/data/liveMunicipalityRisk.ts` za build-time live snapshot
 
-- `scripts/data/build_municipality_boundary_asset.py`: izdela `frontend/public/municipality-boundaries.json` za browser-side lookup občine
-- `scripts/data/build_live_municipality_risk_frontend_data.py`: izdela `frontend/src/data/liveMunicipalityRisk.ts` za build-time live snapshot
+Celoten postopek objave live dema je opisan v
+[../docs/live-deployment.md](../docs/live-deployment.md).
 
-Celoten deploy workflow je opisan v
-[docs/live-deployment.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/live-deployment.md).
+## Dodatni sklopi
 
-Za Copernicus `.nc` datoteke je na voljo pregledovalnik v [scripts/data/copernicus/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/data/copernicus/README.md).
-
-Za SURS občinske podatke o prebivalstvu in gostoti prebivalcev so skripte opisane v [scripts/data/surs/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/data/surs/README.md).
-
-Za zagon CatBoost treninga na ARNES SLING je pripravljena mapa [scripts/hpc/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/scripts/hpc/README.md).
+- [data/copernicus/README.md](data/copernicus/README.md): Copernicus prenos in pregled `.nc` datotek
+- [data/surs/README.md](data/surs/README.md): SURS občinski podatki o prebivalstvu in gostoti
+- [hpc/README.md](hpc/README.md): zagon treninga na ARNES SLING

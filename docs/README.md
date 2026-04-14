@@ -1,23 +1,23 @@
 # Dokumentacija
 
-Mapa `docs/` vsebuje vse razlage, gradiva in oddajne dokumente.
+Mapa `docs/` je glavni javni vhod v projekt. Združuje gradiva, ki jih potrebuje
+žirija za hitro razumevanje problema, metodologije in trenutnega stanja rešitve.
 
-- `live-deployment.md`: trenutni produkcijski deploy in osvežitev live snapshota
-- `okvirna-ideja/`: osnovna ideja projekta
-- `metodologija/`: metodološke odločitve in razlage
-- `oddaja/`: gradiva za žirijo, predstavitev in finalne tekste
-- `struktura-projekta.md`: razlaga, kako je repozitorij organiziran
+## Priporočen vrstni red branja
 
-Zunanji oziroma ločeno uvoženi workspacei niso del `docs/`, ampak živijo v `contrib/`.
-Kuriran primer je:
+- [presentation/hackathon-research-report.html](presentation/hackathon-research-report.html): celovit raziskovalni povzetek z vizualizacijami
+- [predstavitev/metodologija-zirija.html](predstavitev/metodologija-zirija.html): krajša razlaga metodologije za predstavitev
+- [metodologija/borelioza-baseline-v1.md](metodologija/borelioza-baseline-v1.md): trenutno uradni baseline za boreliozo
+- [live-deployment.md](live-deployment.md): kako se osveži live demo
+- [struktura-projekta.md](struktura-projekta.md): kako je repozitorij namensko organiziran
 
-- [contrib/jure/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/contrib/jure/README.md)
+## Glavni sklopi
 
-Za vremenske in talne značilke iz ERA5-Land glej:
-- [docs/metodologija/era5-land-slovenija.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/era5-land-slovenija.md)
+- `metodologija/`: utemeljitve virov, značilk, ciljnih spremenljivk in modelnih odločitev
+- `predstavitev/`: gradiva za nastop, govor in spremljevalne vizualizacije
+- `presentation/`: raziskovalni report in artefakti za bolj tehnični pregled
+- `okvirna-ideja/`: začetna prijava in izhodišče projekta
 
-Za trenutno analizo `KME v2` glej:
-- [docs/metodologija/kme-v2-analiza.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/kme-v2-analiza.md)
-
-Za formalno umestitev Juretovega zunanjega prispevka glej:
-- [docs/metodologija/juretov-zunanji-prispevek.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/juretov-zunanji-prispevek.md)
+Ločeni zunanji workspacei ne sodijo v `docs/`, ampak v
+[../contrib/](../contrib). Kuriran primer je
+[../contrib/jure/README.md](../contrib/jure/README.md).

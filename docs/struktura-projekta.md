@@ -1,151 +1,44 @@
 # Struktura projekta
 
-Ta struktura je pripravljena tako, da je:
-- metodološko čista
-- tehnično pravilna
-- razumljiva tudi članom ekipe, ki niso programerji
+Repo je organiziran tako, da je tok projekta berljiv tudi brez razlage ekipe.
+Vsaka večja mapa ima eno jasno vlogo, brez mešanja podatkov, modela,
+aplikacije in zunanjih eksperimentov.
 
-## Zakaj je taka struktura dobra
+## Zakaj je ta delitev pomembna
 
-Loči tri različne stvari, ki se pri podatkovnih projektih pogosto pomešajo:
-- `data/` hrani podatke
-- `ml/` hrani modelno logiko
-- `backend/` in `frontend/` hranita aplikacijo
-- `contrib/` hrani zunanje ali ločene eksperimentalne workspacee, ki še niso del glavnega toka
+Takšna struktura pokaže tri stvari:
 
-S tem žiriji pokažete, da projekt ni samo ideja, ampak ima urejen tehnični in raziskovalni tok.
+- da je raziskovalni tok ločen od produkcijskega prikaza
+- da so podatki, modeli in aplikacija reproducibilni deli istega sistema
+- da zunanji ali zgodovinski importi ne zameglijo uradnega jedra projekta
 
-## Priporočen potek dela
+## Glavne mape
 
-1. V `docs/okvirna-ideja/` je osnovna projektna ideja.
-2. V `data/raw/` se odlagajo originalni podatki iz virov.
-3. V `pipelines/` se definirajo koraki čiščenja in združevanja.
-4. V `data/interim/` nastanejo očiščene in povezane tabele.
-5. V `ml/` nastanejo značilke, model in napovedi.
-6. V `data/processed/` se shranijo rezultati, pripravljeni za uporabo.
-7. V `backend/` ostaja prostor za morebitni prihodnji API.
-8. V `frontend/` se prikaže zemljevid, tveganje in razlage za uporabnika.
+- `docs/`: metodologija, predstavitvena gradiva in raziskovalni povzetki
+- `data/`: pravila za surove, vmesne in končne podatke
+- `pipelines/`: ponovljivi koraki priprave podatkov in značilk
+- `ml/`: trening modelov, konfiguracije in referenčni baseline
+- `frontend/`: live demo in uporabniška razlaga rezultatov
+- `backend/`: rezerviran prostor za morebitni prihodnji API
+- `scripts/`: operativni skripti za generiranje podatkovnih in frontend artefaktov
+- `tests/`: enotski testi za ključne komponente
+- `contrib/`: ločeni zunanji workspacei in reference, ki še niso del glavnega toka
 
-## Pomen posameznih map
+## Praktično pravilo
 
-### `.github/`
+Če nova datoteka:
 
-GitHub tehnične datoteke, predvsem workflowi za avtomatske preglede in morebitni CI.
+- pojasnjuje odločitev, sodi v `docs/`
+- predstavlja vir ali podatkovni artefakt, sodi v `data/`
+- gradi značilke ali model, sodi v `pipelines/` ali `ml/`
+- vpliva na prikaz za uporabnika, sodi v `frontend/`
+- predstavlja zunanji import ali zgodovinski eksperiment, sodi v `contrib/`
 
-### `backend/`
+## Kaj namenoma ni v Git
 
-Prostor za prihodnji strezniški del aplikacije.
+Repo ni arhiv vseh lokalnih delovnih datotek. V Git ne sodijo:
 
-- `app/`: zagon backend aplikacije
-- `api/`: API poti
-- `services/`: poslovna logika
-- `models/`: podatkovni modeli in sheme
-
-Trenutni live deployment tega dela se ne uporablja; produkcija je staticni
-frontend build.
-
-### `frontend/`
-
-Uporabniški del spletne aplikacije.
-
-- `public/`: statične datoteke
-- `src/components/`: manjši gradniki
-- `src/data/`: build-time snapshoti in statična vsebina
-- `src/utils/`: pomožne funkcije za frontend
-
-Trenutni live deployment uporablja staticni Vercel build brez runtime API-ja.
-
-### `data/`
-
-Podatki so ločeni po stopnjah obdelave.
-
-- `raw/`: originalni podatki po virih
-- `interim/`: očiščeni in povezani podatki
-- `processed/`: končni podatki za model ali aplikacijo
-
-Za vsako novo podmapo v `data/raw/` dodajte tudi `README.md`, kjer ostanejo zapisani izvor, URL, datum prevzema in osnovni opis datotek.
-
-### `contrib/`
-
-Kurirani zunanji prispevki ali importi, ki jih želimo ohraniti, vendar jih ne želimo mešati z glavno kodo.
-
-- `contrib/jure/`: Juretov zunanji raziskovalni in napovedni workspace
-
-V `contrib/` sodijo:
-
-- zunaj repozitorija pripravljeni snapshoti
-- ločeni eksperimentalni branch-i
-- referenčni workspacei, ki še niso refaktorirani v glavno strukturo
-
-Tja ne sodijo:
-
-- uradni baseline modeli
-- produkcijski podatki
-- frontend ali backend artefakti trenutnega deploya
-
-### `ml/`
-
-Modelni del projekta.
-
-- `features/`: priprava značilk
-- `training/`: učenje modela
-- `inference/`: generiranje napovedi
-
-### `pipelines/`
-
-Jasno ločeni koraki podatkovnega procesa.
-
-- `ingest/`: prevzem podatkov
-- `clean/`: čiščenje
-- `features/`: priprava značilk
-- `train/`: učenje
-- `inference/`: napovedovanje
-
-### `docs/`
-
-Gradiva za ekipo in žirijo.
-
-- `okvirna-ideja/`: začetna prijava in osnovna ideja
-- `metodologija/`: metodološki zapisi
-- `oddaja/`: dokumenti za finalno oddajo
-
-### `tests/`
-
-Testi, s katerimi pokažete tehnično zrelost.
-
-- `unit/`: testi posameznih funkcij
-- `integration/`: testi povezovanja komponent
-
-### `scripts/`
-
-Manjši pomožni skripti.
-
-- `data/`: pomožna opravila za podatke
-- `dev/`: razvojna opravila
-
-### `notebooks/`
-
-Eksperimentalna analiza in hitri prototipi, ki še niso del glavne kode.
-
-### `infra/`
-
-Tehnična infrastruktura.
-
-- `docker/`: prostor za prihodnje kontejnerske nastavitve
-- `deploy/`: prostor za dodatne deployment zapiske
-
-Aktualni live deployment je opisan v `docs/live-deployment.md` in je
-konfiguriran prek `vercel.json` v korenu repozitorija.
-
-## Pravila poimenovanja
-
-Za tehnične poti uporabljamo:
-- male črke
-- vezaje namesto presledkov
-- angleška ali tehnično nevtralna imena map
-
-To zmanjša napake in deluje bolj profesionalno pri predstavitvi.
-
-## Opomba za ekipo
-
-Datoteka `.gitkeep` obstaja samo zato, da Git shrani tudi prazne mape. Ne gre za vsebino projekta, ampak za tehnični označevalec.
+- veliki surovi prenosi in začasni izhodi, če niso namensko kurirani
+- lokalni osnutki, izvozi in predstavitveni odpad
+- SLURM logi, `.DS_Store` in podobni sistemski artefakti
+- prazne mape, ki ne nosijo nobene vsebinske vrednosti

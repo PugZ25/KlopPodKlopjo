@@ -1,83 +1,54 @@
 # KlopPodKlopjo
 
-Projekt `KlopPodKlopjo` razvija podatkovno podprto spletno rešitev za ocenjevanje tveganja za stik s klopi ter za boreliozo in KME v Sloveniji.
+`KlopPodKlopjo` je podatkovno podprta spletna rešitev za ocenjevanje občinskega
+tveganja za stik s klopi, lymsko boreliozo in KME v Sloveniji. Repozitorij je
+pripravljen za javni pregled: v Git sodijo koda, dokumentacija, konfiguracije in
+ključni reproducibilni artefakti, medtem ko surovi prenosi, osnutki, lokalni
+logi in sistemska navlaka ostanejo lokalni.
 
-Ta repozitorij je namenoma urejen preprosto:
-- da ekipa hitro razume, kaj sodi kam
-- da je metodološki tok projekta jasen tudi žiriji
-- da se podatki, model, aplikacija in dokumentacija ne mešajo med seboj
+## Za hiter pregled
 
-## Osnovna logika projekta
+Če repozitorij odpirate prvič, začnite tukaj:
 
-Projekt teče v štirih korakih:
-1. V `data/` zberemo in hranimo podatke iz virov, kot so ARSO, Copernicus, GURS, NIJZ, SURS in ZGS.
-2. V `pipelines/` in `scripts/` podatke očistimo, združimo in pripravimo značilke za model.
-3. V `ml/` razvijemo model za oceno tveganja.
-4. V `frontend/` pripravimo spletno aplikacijo za prikaz rezultatov, `backend/` pa ostaja prostor za prihodnji API in strežniško logiko.
+- [docs/README.md](docs/README.md): kuriran pregled gradiv za žirijo
+- [docs/presentation/hackathon-research-report.html](docs/presentation/hackathon-research-report.html): raziskovalni povzetek z grafi
+- [frontend/README.md](frontend/README.md): live demo in struktura aplikacije
+- [ml/training/README.md](ml/training/README.md): reproducibilen trening modelov
+- [docs/live-deployment.md](docs/live-deployment.md): kako se osveži live snapshot in objavi demo
 
-## Struktura repozitorija
+## Jedro projekta
 
-```text
-KlopPodKlopjo/
-├── .github/                # GitHub workflowi in nastavitve za sodelovanje
-├── contrib/                # Zunanji prispevki in uvozeni eksperimentalni workspacei
-├── backend/                # Prostor za prihodnji API in strežniško logiko
-├── data/                   # Surovi, vmesni in končni podatki
-├── docs/                   # Ideja, metodologija in gradiva za oddajo
-├── frontend/               # Uporabniški vmesnik spletne aplikacije
-├── infra/                  # Docker, deployment in tehnična infrastruktura
-├── ml/                     # Učenje modelov in napovedovanje
-├── notebooks/              # Raziskovalne analize in prototipi
-├── pipelines/              # Koraki podatkovnega procesa
-├── scripts/                # Manjši pomožni skripti
-└── tests/                  # Testi
-```
+Repo je zavestno razdeljen na nekaj jasnih delov:
 
-Podrobnejša razlaga je v [docs/struktura-projekta.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/struktura-projekta.md).
+- [frontend/](frontend): uporabniška spletna aplikacija za prikaz tveganja in preventivnih vsebin
+- [docs/](docs): metodologija, predstavitvena gradiva in raziskovalni povzetki
+- [data/](data): pravila za surove, vmesne in končne podatke
+- [pipelines/](pipelines): ponovljivi koraki za pripravo značilk in podatkovnih naborov
+- [ml/](ml): trening modelov, konfiguracije in referenčni baseline
+- [scripts/](scripts): operativni skripti za generiranje frontend artefaktov in podatkovnih izhodov
+- [tests/](tests): enotski testi za ključne podatkovne in modelne korake
+- [contrib/](contrib): ločeni zunanji importi, ki niso del uradnega glavnega toka
 
-## Najpomembnejše mape
+Podrobnejša razlaga organizacije je v
+[docs/struktura-projekta.md](docs/struktura-projekta.md).
 
-- [data/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/data/README.md): kako hranimo surove, očiščene in končne podatke
-- [ml/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/ml/README.md): kam sodijo modeli, značilke in napovedi
-- [backend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/backend/README.md): prihodnji backend in API
-- [frontend/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/frontend/README.md): prikaz za uporabnika
-- [docs/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/README.md): metodologija, ideja in materiali za žirijo
+## Trenutni status
 
-## Live deployment
+- live demo je statični Vite build na Vercelu
+- produkcija ne vključuje runtime backenda
+- frontend uporablja build-time snapshot tveganja v `frontend/src/data/liveMunicipalityRisk.ts`
+- geolokacijski lookup občine uporablja `frontend/public/municipality-boundaries.json`
+- uradni baseline za boreliozo je `catboost_tick_borne_lyme_v1`
 
-Trenutni live deployment je statični Vite build na Vercelu.
+Za metodološko potrditev baseline modela glej
+[docs/metodologija/borelioza-baseline-v1.md](docs/metodologija/borelioza-baseline-v1.md).
 
-- konfiguracija builda: `vercel.json`
-- produkcijski artefakt: `frontend/dist`
-- live snapshot podatkov: `frontend/src/data/liveMunicipalityRisk.ts`
-- geolokacijski boundary asset: `frontend/public/municipality-boundaries.json`
-- runtime backend trenutno ni del produkcijskega deploya
+## Pravilo repozitorija
 
-Celoten postopek osvežitve snapshota in objave je opisan v
-[docs/live-deployment.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/live-deployment.md).
+Če nekaj ne prispeva k razumevanju projekta, reproducibilnosti ali javni
+predstavitvi, ne sodi v Git. To pomeni:
 
-## Trenutni baseline
-
-Trenutni uradni baseline za boreliozo je `catboost_tick_borne_lyme_v1`.
-
-- konfiguracija: [example_tick_borne_lyme_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_lyme_config.json)
-- artifacts: `data/processed/training/catboost_tick_borne_lyme_v1/`
-- metodologija: [borelioza-baseline-v1.md](/Users/zankespert/Desktop/KlopPodKlopjo/docs/metodologija/borelioza-baseline-v1.md)
-
-## Pravilo za ekipo
-
-Če niste prepričani, kam nekaj spada, uporabite to pravilo:
-- dokument spada v `docs/`
-- podatkovna datoteka spada v `data/`
-- model ali feature engineering spada v `ml/`
-- avtomatiziran korak obdelave spada v `pipelines/`
-- uporabniški vmesnik spada v `frontend/`
-- strežniška logika in API spadata v `backend/`
-- zunanji snapshoti in ločeni eksperimentalni workspacei spadajo v `contrib/`
-
-Pri vsakem novem viru v `data/raw/` dodamo še kratek `README.md` z virom, datumom prevzema in opisom datotek.
-
-## Trenutna referenčna gradiva
-
-- [docs/okvirna-ideja/okvirna-ideja.txt](/Users/zankespert/Desktop/KlopPodKlopjo/docs/okvirna-ideja/okvirna-ideja.txt)
-- [docs/okvirna-ideja/heart-hackers-klop-pod-klopjo.pdf](/Users/zankespert/Desktop/KlopPodKlopjo/docs/okvirna-ideja/heart-hackers-klop-pod-klopjo.pdf)
+- surovi prenosi ostanejo v `data/raw/` lokalno, v Git pa sodijo predvsem `README` opisi, manifesti in nujni lahki artefakti
+- vmesni in končni veliki izhodi ostanejo lokalni, razen če so namensko kurirani kot referenčni rezultat
+- osnutki, delovni PDF-ji, SLURM logi, `.DS_Store` in podobni lokalni artefakti se ne verzionirajo
+- zunanji eksperimentalni workspacei živijo v `contrib/`, dokler niso namensko refaktorirani v glavno strukturo

@@ -205,7 +205,7 @@
         </div>
       </div>
       <div class="footer">
-        Generated on 2026-04-14 16:19 CEST. HTML file and chart assets were produced locally from
+        Generated on 2026-04-14 22:46 CEST. HTML file and chart assets were produced locally from
         data in <code>data/processed/training/</code>.
       </div>
     </section>
@@ -293,12 +293,12 @@
     <section class="slide">
       <div>
         <span class="kicker">4. Model comparison</span>
-        <h2>Predictive baseline and environmental model do not tell the same story</h2>
+        <h2>Removing lagged case counts reveals a different environmental signal</h2>
         <figure class="figure">
-          <img src="hackathon-research-report-assets/feature-importance-comparison.svg" alt="Feature importance comparison" />
+          <img src="hackathon-research-report-assets/feature-importance-comparison.svg" alt="Comparison of top 12 CatBoost feature importance shares for Borelioza baseline v1 and Borelioza env v2" />
           <figcaption class="caption">
-            The left panel is excellent for prediction, but heavily supported by epidemiological lag features.
-            The right panel is more interpretable for an environmental risk narrative.
+            Each panel now uses its own x-axis range for readability.
+            That makes the environmental model easier to read, but bar lengths should only be compared within panel, not directly across both panels.
           </figcaption>
         </figure>
       </div>

@@ -13,4 +13,4 @@ Pravilo:
 
 Trenutno:
 
-- [contrib/jure/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/contrib/jure/README.md): kuriran uvoz Juretovega zunanjega workspacea
+- [jure/README.md](jure/README.md): kuriran uvoz Juretovega zunanjega workspacea

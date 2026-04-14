@@ -1,11 +1,21 @@
 # ML
 
-`ml/` vsebuje modelni del projekta.
+`ml/` vsebuje modelni del projekta: konfiguracije, trening pipeline in referenčne
+baseline modele za napovedovanje tveganja.
 
-- `features/`: priprava značilk
-- `training/`: učenje modela
-- `inference/`: izračun napovedi tveganja
+## Jedro mape
 
-Za prvi reproducibilni training scaffold glej:
-- [ml/training/README.md](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/README.md)
-- [ml/training/example_config.json](/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_config.json)
+- `training/`: reproducibilen trening s CatBoost
+- `features/`: rezerviran prostor za namensko modelno feature logiko
+- `inference/`: rezerviran prostor za prihodnje produkcijske izračune napovedi
+
+## Trenutni referenčni modeli
+
+- borelioza: `catboost_tick_borne_lyme_v1`
+- KME: priporočena eksperimentalna smer je `kme v2` z bolj konzervativno klasifikacijsko formulacijo
+
+Za trening pipeline in konfiguracije glej:
+
+- [training/README.md](training/README.md)
+- [training/example_tick_borne_lyme_config.json](training/example_tick_borne_lyme_config.json)
+- [training/example_tick_borne_kme_v2_config.json](training/example_tick_borne_kme_v2_config.json)

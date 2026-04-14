@@ -1,12 +1,28 @@
 # Podatki
 
-`data/` je razdeljen po stopnjah obdelave.
+Mapa `data/` je razdeljena po stopnjah obdelave. Namen te delitve je, da so
+jasno ločeni originalni prenosi, delovni vmesni artefakti in končni izhodi za
+model ali aplikacijo.
 
-- `raw/`: originalni preneseni podatki
+## Stopnje obdelave
+
+- `raw/`: originalni preneseni podatki iz virov
 - `interim/`: očiščeni ali združeni vmesni podatki
-- `processed/`: končni podatki za model ali aplikacijo
+- `processed/`: končni podatki za model, validacijo ali frontend
 
-V `raw/` so viri ločeni po izvoru:
+## Politika verzioniranja
+
+Repo namenoma ne hrani vsega, kar nastane med delom s podatki.
+
+- v Git sodijo predvsem `README` opisi, manifesti in izbrani lahki referenčni artefakti
+- veliki surovi prenosi, začasni izhodi in večina generiranih tabel ostanejo lokalni
+- v `raw/` se ničesar ne popravlja ročno
+- vsaka nova podmapa vira mora imeti kratek opis izvora, datuma prevzema in vsebine
+
+## Glavni viri
+
+Trenutno uporabljeni javni viri vključujejo:
+
 - `arso/`
 - `copernicus/`
 - `gurs/`

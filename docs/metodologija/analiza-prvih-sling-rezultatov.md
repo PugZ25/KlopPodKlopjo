@@ -1,4 +1,4 @@
-# Analiza Prvih SLING Rezultatov
+# Analiza prvih SLING rezultatov
 
 Ta dokument povzema prva trening zagona na ARNES SLING za:
 
@@ -7,8 +7,7 @@ Ta dokument povzema prva trening zagona na ARNES SLING za:
 
 Analiza temelji na:
 
-- `slurm-klop-catboost-66057321.out`
-- `slurm-klop-catboost-66057327.out`
+- lokalnih SLURM izpisih prvih treningov
 - `data/processed/training/catboost_tick_borne_lyme_v1/metadata.json`
 - `data/processed/training/catboost_tick_borne_kme_v1/metadata.json`
 - `data/processed/training/catboost_tick_borne_lyme_v1/holdout_predictions.csv`

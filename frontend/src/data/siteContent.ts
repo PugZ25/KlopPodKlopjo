@@ -14,7 +14,7 @@ export const topicNavItems = [
 ] as const
 
 export const noticeText =
-  'Cepljenje proti KME je mogoče pri osebnem zdravniku, na območnih enotah NIJZ ali v ambulanti za cepljenje. V letu 2026 je za določene starostne skupine brezplačno.'
+  'Cepljenje proti KME je mogoče pri osebnem zdravniku, na območnih enotah NIJZ ali v ambulanti za cepljenje. V letu 2026 je cepljenje za določene starostne skupine brezplačno.'
 
 export const heroStats = [
   {
@@ -72,7 +72,7 @@ export const ixodesSections = [
 export const vaccinationHighlights = [
   {
     title: 'Kje se lahko naročim?',
-    text: 'Pri osebnem zdravniku, preko telefona ali eNaročanja, na območnih enotah NIJZ ali v ambulanti za cepljenje.',
+    text: 'Pri osebnem zdravniku, po telefonu ali prek eNaročanja, na območnih enotah NIJZ ali v ambulanti za cepljenje.',
   },
   {
     title: 'Sestava cepiva',
