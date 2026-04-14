@@ -171,7 +171,7 @@
 }
 
 .hero-panel h1 {
-  max-width: 10ch;
+  max-width: none;
   margin: 0;
   font-size: clamp(3.4rem, 9vw, 7rem);
   line-height: 0.88;
@@ -1229,9 +1229,10 @@
   }
 
   .hero-panel h1 {
-    max-width: 6.4ch;
-    font-size: clamp(2.2rem, 9vw, 3.1rem);
-    line-height: 0.9;
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    line-height: 1;
+    white-space: nowrap;
+    overflow-wrap: normal;
   }
 
   .live-toolbar .location-button {
@@ -1311,8 +1312,7 @@
   }
 
   .hero-panel h1 {
-    max-width: 5.8ch;
-    font-size: clamp(1.95rem, 9vw, 2.5rem);
+    font-size: clamp(1.55rem, 5.8vw, 1.95rem);
   }
 
   .map-canvas {
@@ -1345,8 +1345,7 @@
   }
 
   .hero-panel h1 {
-    max-width: 5.2ch;
-    font-size: clamp(1.72rem, 10vw, 2.15rem);
+    font-size: clamp(1.4rem, 7vw, 1.65rem);
   }
 
   .action-link {
