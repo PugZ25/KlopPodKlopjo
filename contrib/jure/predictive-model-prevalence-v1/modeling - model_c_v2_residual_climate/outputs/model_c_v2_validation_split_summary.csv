@@ -1,0 +1,4 @@
+﻿model_name,training_years,final_validation_years,training_row_count,final_validation_row_count
+lyme_prevalence,"2019, 2020, 2021, 2022, 2023","2024, 2025",5,2
+kme_prevalence,"2019, 2020, 2021, 2022, 2023","2024, 2025",5,2
+combined_prevalence,"2019, 2020, 2021, 2022, 2023","2024, 2025",5,2

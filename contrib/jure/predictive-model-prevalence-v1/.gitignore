@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+interim/matplotlib_config/
+data processing - copernicus_forecast_data/reports/_tmp_probe_*/

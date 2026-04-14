@@ -224,7 +224,8 @@ def load_bundle(
 
 
 def plot_split_timeline(models: list[ModelBundle], output_path: Path) -> str:
-    fig, ax = plt.subplots(figsize=(12.5, 4.6))
+    fig, ax = plt.subplots(figsize=(13.0, 5.1))
+    fig.subplots_adjust(left=0.18, right=0.98, top=0.84, bottom=0.22)
     row_height = 8
     row_gap = 4
     split_order = ["train", "validation", "test"]
@@ -275,23 +276,20 @@ def plot_split_timeline(models: list[ModelBundle], output_path: Path) -> str:
     ax.set_ylabel("")
     ax.invert_yaxis()
     ax.spines[["top", "right"]].set_visible(False)
-    ax.text(
-        0,
-        -0.22,
-        (
-            "Random split is intentionally excluded. The presentation only reports "
-            "future holdout performance."
-        ),
-        transform=ax.transAxes,
-        color=COLORS["muted"],
-        fontsize=10,
+    add_figure_note(
+        fig,
+        "Random split is intentionally excluded. The presentation only reports future holdout performance.",
+        x=0.18,
+        y=0.06,
+        width=84,
     )
     save_figure(fig, output_path)
     return output_path.name
 
 
 def plot_lyme_weekly_traces(bundle: ModelBundle, output_path: Path) -> str:
-    fig, axes = plt.subplots(2, 1, figsize=(12.5, 7.6), sharey=True)
+    fig, axes = plt.subplots(2, 1, figsize=(13.6, 8.4), sharey=True)
+    fig.subplots_adjust(left=0.09, right=0.80, top=0.87, bottom=0.12, hspace=0.34)
 
     for ax, split_name in zip(axes, ["validation", "test"], strict=True):
         grouped = (
@@ -332,13 +330,14 @@ def plot_lyme_weekly_traces(bundle: ModelBundle, output_path: Path) -> str:
         )
         ax.set_ylabel("Cases per week")
         ax.text(
-            0.995,
+            1.02,
             0.95,
             f"Weekly R² {r2:.3f}\nCorrelation {corr:.3f}",
             transform=ax.transAxes,
-            ha="right",
+            ha="left",
             va="top",
             fontsize=10,
+            clip_on=False,
             bbox={
                 "boxstyle": "round,pad=0.35",
                 "facecolor": COLORS["paper"],
@@ -354,7 +353,7 @@ def plot_lyme_weekly_traces(bundle: ModelBundle, output_path: Path) -> str:
     fig.suptitle(
         "Borelioza baseline follows weekly national dynamics on future weeks",
         x=0.05,
-        y=0.99,
+        y=0.97,
         ha="left",
         fontsize=18,
         weight="bold",
@@ -364,7 +363,8 @@ def plot_lyme_weekly_traces(bundle: ModelBundle, output_path: Path) -> str:
 
 
 def plot_lyme_row_scatter(bundle: ModelBundle, output_path: Path) -> str:
-    fig, axes = plt.subplots(1, 2, figsize=(12.8, 5.6), sharex=True, sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(13.8, 6.2), sharex=True, sharey=True)
+    fig.subplots_adjust(left=0.08, right=0.92, top=0.84, bottom=0.12, wspace=0.22)
     series_max = max(
         np.percentile(bundle.predictions[bundle.target_column], 99.7),
         np.percentile(bundle.predictions[bundle.prediction_column], 99.7),
@@ -405,16 +405,17 @@ def plot_lyme_row_scatter(bundle: ModelBundle, output_path: Path) -> str:
             weight="bold",
         )
         ax.text(
-            0.98,
-            0.95,
+            0.03,
+            0.97,
             f"RMSE {rmse:.3f}\nMAE {mae:.3f}\nR² {r2:.3f}",
             transform=ax.transAxes,
-            ha="right",
+            ha="left",
             va="top",
             fontsize=10,
             bbox={
                 "boxstyle": "round,pad=0.35",
-                "facecolor": COLORS["paper"],
+                "facecolor": COLORS["panel"],
+                "alpha": 0.96,
                 "edgecolor": COLORS["grid"],
             },
         )
@@ -425,12 +426,12 @@ def plot_lyme_row_scatter(bundle: ModelBundle, output_path: Path) -> str:
     fig.suptitle(
         "Row-level holdout fit remains structured beyond a single aggregate trace",
         x=0.05,
-        y=0.995,
+        y=0.97,
         ha="left",
         fontsize=18,
         weight="bold",
     )
-    fig.colorbar(colorbar_handle, ax=axes.ravel().tolist(), label="Rows")
+    fig.colorbar(colorbar_handle, ax=axes.ravel().tolist(), label="Rows", fraction=0.045, pad=0.02)
     save_figure(fig, output_path)
     return output_path.name
 
@@ -440,8 +441,10 @@ def plot_feature_importance_comparison(
     lyme_env_v2: ModelBundle,
     output_path: Path,
 ) -> str:
-    fig, axes = plt.subplots(1, 2, figsize=(13.8, 8.2))
+    fig, axes = plt.subplots(1, 2, figsize=(15.2, 8.8))
+    fig.subplots_adjust(left=0.13, right=0.98, top=0.76, bottom=0.12, wspace=0.30)
 
+    panel_notes: list[tuple[plt.Axes, str]] = []
     for ax, bundle, color, subtitle in [
         (
             axes[0],
@@ -463,22 +466,28 @@ def plot_feature_importance_comparison(
             loc="left",
             fontsize=14,
             weight="bold",
+            pad=2,
         )
         ax.set_xlabel("CatBoost feature importance")
-        ax.text(
-            0.0,
-            -0.12,
-            subtitle,
-            transform=ax.transAxes,
-            color=COLORS["muted"],
-            fontsize=10,
-        )
+        panel_notes.append((ax, subtitle))
         ax.spines[["top", "right"]].set_visible(False)
+
+    for ax, subtitle in panel_notes:
+        bbox = ax.get_position()
+        fig.text(
+            bbox.x0,
+            bbox.y1 + 0.065,
+            wrap_text(subtitle, width=42),
+            color=COLORS["muted"],
+            fontsize=9.5,
+            ha="left",
+            va="bottom",
+        )
 
     fig.suptitle(
         "Feature story changes once epidemiological lags are removed",
         x=0.05,
-        y=0.99,
+        y=0.975,
         ha="left",
         fontsize=18,
         weight="bold",
@@ -545,10 +554,11 @@ def plot_shap_beeswarm(
     payload: dict[str, object],
     output_path: Path,
 ) -> str:
-    sample_display = payload["sample_display"]
+    sample_display = payload["sample_display"].copy()
+    sample_display.columns = [format_feature_label(column, width=18) for column in sample_display.columns]
     shap_values = payload["shap_values"]
 
-    plt.figure(figsize=(11.5, 7.4))
+    plt.figure(figsize=(12.8, 8.9))
     shap.summary_plot(
         shap_values,
         sample_display,
@@ -557,20 +567,22 @@ def plot_shap_beeswarm(
         show=False,
     )
     fig = plt.gcf()
+    fig.subplots_adjust(left=0.26, right=0.97, top=0.74, bottom=0.09)
     fig.suptitle(
         f"{bundle.label}: top SHAP contributions on the test holdout sample",
         x=0.05,
-        y=0.98,
+        y=0.97,
         ha="left",
         fontsize=18,
         weight="bold",
     )
-    fig.text(
-        0.05,
-        0.92,
+    add_figure_note(
+        fig,
         "Each point is one municipality-week. Horizontal position shows contribution to the model score.",
-        fontsize=10,
-        color=COLORS["muted"],
+        x=0.05,
+        y=0.855,
+        width=68,
+        fontsize=9.2,
     )
     save_figure(fig, output_path)
     plt.close(fig)
@@ -609,9 +621,10 @@ def plot_shap_dependence_grid(
         if len(selected) == 3:
             break
 
-    fig, axes = plt.subplots(1, len(selected), figsize=(15.2, 4.9))
+    fig, axes = plt.subplots(1, len(selected), figsize=(16.0, 5.5))
     if len(selected) == 1:
         axes = [axes]
+    fig.subplots_adjust(left=0.07, right=0.98, top=0.80, bottom=0.16, wspace=0.28)
 
     for index, (ax, feature_name) in enumerate(zip(axes, selected, strict=True)):
         feature_values = pd.to_numeric(sample_features[feature_name], errors="coerce")
@@ -658,24 +671,25 @@ def plot_shap_dependence_grid(
     fig.suptitle(
         f"{bundle.label}: directional feature effects on model score",
         x=0.05,
-        y=0.995,
+        y=0.95,
         ha="left",
         fontsize=18,
         weight="bold",
     )
-    fig.text(
-        0.05,
-        0.92,
+    add_figure_note(
+        fig,
         "The black line is the median SHAP contribution inside quantile bins.",
-        fontsize=10,
-        color=COLORS["muted"],
+        x=0.05,
+        y=0.88,
+        width=84,
     )
     save_figure(fig, output_path)
     return output_path.name
 
 
 def plot_kme_pr_and_calibration(bundle: ModelBundle, output_path: Path) -> str:
-    fig, axes = plt.subplots(1, 2, figsize=(13.0, 5.5))
+    fig, axes = plt.subplots(1, 2, figsize=(13.8, 6.4))
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.84, bottom=0.23, wspace=0.26)
 
     ax_pr, ax_cal = axes
     calibration_summary: list[str] = []
@@ -729,20 +743,6 @@ def plot_kme_pr_and_calibration(bundle: ModelBundle, output_path: Path) -> str:
     ax_cal.set_xlim(0, 1)
     ax_cal.set_ylim(0, 0.16)
     ax_cal.legend(loc="upper left")
-    ax_cal.text(
-        0.98,
-        0.05,
-        "\n".join(calibration_summary),
-        transform=ax_cal.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=9.5,
-        bbox={
-            "boxstyle": "round,pad=0.35",
-            "facecolor": COLORS["paper"],
-            "edgecolor": COLORS["grid"],
-        },
-    )
 
     for ax in axes:
         ax.spines[["top", "right"]].set_visible(False)
@@ -750,17 +750,26 @@ def plot_kme_pr_and_calibration(bundle: ModelBundle, output_path: Path) -> str:
     fig.suptitle(
         "KME v2 has ranking signal, but raw probabilities are not calibrated",
         x=0.05,
-        y=0.995,
+        y=0.96,
         ha="left",
         fontsize=18,
         weight="bold",
+    )
+    add_figure_note(
+        fig,
+        " | ".join(calibration_summary),
+        x=0.08,
+        y=0.07,
+        width=132,
+        fontsize=9.4,
     )
     save_figure(fig, output_path)
     return output_path.name
 
 
 def plot_kme_lift_and_importance(bundle: ModelBundle, output_path: Path) -> str:
-    fig, axes = plt.subplots(1, 2, figsize=(13.8, 6.2))
+    fig, axes = plt.subplots(1, 2, figsize=(14.6, 6.8))
+    fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
     ax_lift, ax_imp = axes
 
     kme_stats = []
@@ -797,20 +806,6 @@ def plot_kme_lift_and_importance(bundle: ModelBundle, output_path: Path) -> str:
     ax_lift.set_xlim(0, 0.20)
     ax_lift.set_ylim(0, 28)
     ax_lift.legend(loc="upper right")
-    ax_lift.text(
-        0.98,
-        0.95,
-        "\n".join(kme_stats),
-        transform=ax_lift.transAxes,
-        ha="right",
-        va="top",
-        fontsize=9.5,
-        bbox={
-            "boxstyle": "round,pad=0.35",
-            "facecolor": COLORS["paper"],
-            "edgecolor": COLORS["grid"],
-        },
-    )
 
     importance_df = feature_importance_frame(bundle.metadata).head(12).iloc[::-1]
     ax_imp.barh(importance_df["feature_label"], importance_df["importance"], color=COLORS["train"], alpha=0.92)
@@ -823,10 +818,18 @@ def plot_kme_lift_and_importance(bundle: ModelBundle, output_path: Path) -> str:
     fig.suptitle(
         "KME v2 is useful for hotspot prioritization, not for direct probability claims",
         x=0.05,
-        y=0.995,
+        y=0.96,
         ha="left",
         fontsize=18,
         weight="bold",
+    )
+    add_figure_note(
+        fig,
+        " | ".join(kme_stats),
+        x=0.10,
+        y=0.08,
+        width=126,
+        fontsize=9.4,
     )
     save_figure(fig, output_path)
     return output_path.name
@@ -834,7 +837,7 @@ def plot_kme_lift_and_importance(bundle: ModelBundle, output_path: Path) -> str:
 
 def save_figure(fig: plt.Figure, output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output_path, dpi=PLOT_DPI)
+    fig.savefig(output_path, dpi=PLOT_DPI, pad_inches=0.22)
     plt.close(fig)
 
 
@@ -1324,13 +1327,35 @@ def build_html(summary: dict[str, object], figure_map: dict[str, str]) -> str:
 """
 
 
-def format_feature_label(feature_name: str) -> str:
+def add_figure_note(
+    fig: plt.Figure,
+    text: str,
+    *,
+    x: float,
+    y: float,
+    width: int,
+    fontsize: float = 10,
+) -> None:
+    fig.text(
+        x,
+        y,
+        wrap_text(text, width=width),
+        fontsize=fontsize,
+        color=COLORS["muted"],
+    )
+
+
+def wrap_text(text: str, *, width: int) -> str:
+    return "\n".join(textwrap.wrap(text, width=width, break_long_words=False))
+
+
+def format_feature_label(feature_name: str, width: int = 23) -> str:
     label = feature_name.replace("_pct", " %").replace("_m3_m3", " m3/m3")
     label = label.replace("_c", " °C").replace("_mm", " mm")
     label = label.replace("_", " ")
     label = label.replace(" ge ", " ≥ ")
     label = label.replace("  ", " ")
-    return "\n".join(textwrap.wrap(label, width=23))
+    return wrap_text(label, width=width)
 
 
 if __name__ == "__main__":

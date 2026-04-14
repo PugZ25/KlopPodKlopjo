@@ -1,0 +1,13 @@
+﻿model_name,target_label,metric_name,metric_value
+lyme_prevalence,Lyme prevalence per 100k,rmse,290.3737157590514
+lyme_prevalence,Lyme prevalence per 100k,mae,228.9770814072224
+lyme_prevalence,Lyme prevalence per 100k,bias,-107.0731314088675
+lyme_prevalence,Lyme prevalence per 100k,mape_pct,51.43159936251382
+kme_prevalence,KME prevalence per 100k,rmse,12.613567695331264
+kme_prevalence,KME prevalence per 100k,mae,9.933090479176093
+kme_prevalence,KME prevalence per 100k,bias,8.630055242119006
+kme_prevalence,KME prevalence per 100k,mape_pct,166.170776868162
+combined_prevalence,Combined tick-borne prevalence per 100k,rmse,290.8938304598409
+combined_prevalence,Combined tick-borne prevalence per 100k,mae,227.78673419436478
+combined_prevalence,Combined tick-borne prevalence per 100k,bias,-104.11716358106206
+combined_prevalence,Combined tick-borne prevalence per 100k,mape_pct,51.466609901586594

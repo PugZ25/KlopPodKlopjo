@@ -1,0 +1,34 @@
+﻿model_name,target_label,alpha,feature_name,coefficient,coefficient_abs
+lyme_prevalence,Lyme prevalence per 100k,100.0,target_month_of_year_cos,-190.75732079269713,190.75732079269713
+lyme_prevalence,Lyme prevalence per 100k,100.0,issue_month,50.304016189878524,50.304016189878524
+lyme_prevalence,Lyme prevalence per 100k,100.0,target_month_of_year_sin,-18.623380505972076,18.623380505972076
+lyme_prevalence,Lyme prevalence per 100k,100.0,lead_month,-13.290188626030123,13.290188626030123
+lyme_prevalence,Lyme prevalence per 100k,100.0,air_temperature_c_mean,13.03998177605743,13.03998177605743
+lyme_prevalence,Lyme prevalence per 100k,100.0,soil_temperature_level_1_c_mean,12.896186626458842,12.896186626458842
+lyme_prevalence,Lyme prevalence per 100k,100.0,relative_humidity_pct_mean,-2.8098104686919525,2.8098104686919525
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_anchor_q4_mean,0.4604361451795414,0.4604361451795414
+lyme_prevalence,Lyme prevalence per 100k,100.0,precipitation_sum_mm,0.35922005537538104,0.35922005537538104
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_anchor_prev,0.29837160443085126,0.29837160443085126
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_same_month_last_year,0.0750523196028726,0.0750523196028726
+kme_prevalence,KME prevalence per 100k,1.0,target_month_of_year_cos,-35.880000784695284,35.880000784695284
+kme_prevalence,KME prevalence per 100k,1.0,issue_month,-12.272452568323207,12.272452568323207
+kme_prevalence,KME prevalence per 100k,1.0,lead_month,5.126081220102037,5.126081220102037
+kme_prevalence,KME prevalence per 100k,1.0,target_month_of_year_sin,-3.165483981916672,3.165483981916672
+kme_prevalence,KME prevalence per 100k,1.0,kme_cases_per_100k_anchor_prev,-2.366613667797813,2.366613667797813
+kme_prevalence,KME prevalence per 100k,1.0,kme_cases_per_100k_anchor_q4_mean,1.816269741027639,1.816269741027639
+kme_prevalence,KME prevalence per 100k,1.0,relative_humidity_pct_mean,0.8137036736894541,0.8137036736894541
+kme_prevalence,KME prevalence per 100k,1.0,air_temperature_c_mean,0.6262069893426446,0.6262069893426446
+kme_prevalence,KME prevalence per 100k,1.0,soil_temperature_level_1_c_mean,0.5349435169814285,0.5349435169814285
+kme_prevalence,KME prevalence per 100k,1.0,kme_cases_per_100k_same_month_last_year,-0.051822142939245024,0.051822142939245024
+kme_prevalence,KME prevalence per 100k,1.0,precipitation_sum_mm,-0.008441910314227433,0.008441910314227433
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,target_month_of_year_cos,-195.77986513955983,195.77986513955983
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,issue_month,51.59818436483503,51.59818436483503
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,target_month_of_year_sin,-19.93386488856207,19.93386488856207
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,air_temperature_c_mean,13.44261199553076,13.44261199553076
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,lead_month,-13.349057055278568,13.349057055278568
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,soil_temperature_level_1_c_mean,13.296593071312902,13.296593071312902
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,relative_humidity_pct_mean,-2.978018049859708,2.978018049859708
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_anchor_q4_mean,0.47985944920150775,0.47985944920150775
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,precipitation_sum_mm,0.36913245848713205,0.36913245848713205
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_anchor_prev,0.275518792040574,0.275518792040574
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_same_month_last_year,0.07491169695923605,0.07491169695923605

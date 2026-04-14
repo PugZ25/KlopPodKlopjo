@@ -1,0 +1,22 @@
+﻿model_name,target_label,alpha,feature_name,coefficient,coefficient_abs
+lyme_prevalence,Lyme prevalence per 100k,100.0,near_surface_specific_humidity_g_kg_climate,1230.0598963181953,1230.0598963181953
+lyme_prevalence,Lyme prevalence per 100k,100.0,soil_moisture_upper_portion_kg_m2_climate,-341.7914946274972,341.7914946274972
+lyme_prevalence,Lyme prevalence per 100k,100.0,air_temperature_c_mean_climate,191.2955862130247,191.2955862130247
+lyme_prevalence,Lyme prevalence per 100k,100.0,scenario_is_high_emissions,-4.937854763998552,4.937854763998552
+lyme_prevalence,Lyme prevalence per 100k,100.0,precipitation_sum_mm_proxy_climate,1.0993640716615574,1.0993640716615574
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_lag_1y,-0.012876608105158683,0.012876608105158683
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_rolling_3y_mean,-0.0019369130876641183,0.0019369130876641183
+kme_prevalence,KME prevalence per 100k,100.0,near_surface_specific_humidity_g_kg_climate,36.007601506699444,36.007601506699444
+kme_prevalence,KME prevalence per 100k,100.0,soil_moisture_upper_portion_kg_m2_climate,-9.325593385794402,9.325593385794402
+kme_prevalence,KME prevalence per 100k,100.0,air_temperature_c_mean_climate,4.744274458726892,4.744274458726892
+kme_prevalence,KME prevalence per 100k,100.0,scenario_is_high_emissions,-0.1234913192558685,0.1234913192558685
+kme_prevalence,KME prevalence per 100k,100.0,kme_cases_per_100k_rolling_3y_mean,-0.08181209323258071,0.08181209323258071
+kme_prevalence,KME prevalence per 100k,100.0,precipitation_sum_mm_proxy_climate,0.034286392317551616,0.034286392317551616
+kme_prevalence,KME prevalence per 100k,100.0,kme_cases_per_100k_lag_1y,-0.025986956430701653,0.025986956430701653
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,near_surface_specific_humidity_g_kg_climate,1266.3219081052875,1266.3219081052875
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,soil_moisture_upper_portion_kg_m2_climate,-351.31005974870845,351.31005974870845
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,air_temperature_c_mean_climate,196.0945906118115,196.0945906118115
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,scenario_is_high_emissions,-5.06288213370221,5.06288213370221
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,precipitation_sum_mm_proxy_climate,1.133747485105676,1.133747485105676
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_lag_1y,-0.013097623412331073,0.013097623412331073
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_rolling_3y_mean,-0.003520203880838032,0.003520203880838032

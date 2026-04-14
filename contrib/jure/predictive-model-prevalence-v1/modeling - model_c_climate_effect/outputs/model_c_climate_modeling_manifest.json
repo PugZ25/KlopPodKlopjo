@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-04-14T07:15:34.896962+00:00",
+  "workspace_dir": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_climate_effect",
+  "copied_inputs": {
+    "model_c_observed_reference_yearly.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_climate_effect\\inputs\\model_c_observed_reference_yearly.csv",
+    "model_c_scenario_calibration_table.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_climate_effect\\inputs\\model_c_scenario_calibration_table.csv",
+    "model_c_scenario_projection_table.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_climate_effect\\inputs\\model_c_scenario_projection_table.csv"
+  },
+  "final_validation_years": [
+    2024,
+    2025
+  ],
+  "inner_validation_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "graph_end_year": 2035,
+  "long_horizon_end_year": 2100,
+  "models": {
+    "lyme_prevalence": {
+      "selected_alpha": 100.0,
+      "training_years": "2019, 2020, 2021, 2022, 2023",
+      "final_validation_years": "2024, 2025"
+    },
+    "kme_prevalence": {
+      "selected_alpha": 100.0,
+      "training_years": "2019, 2020, 2021, 2022, 2023",
+      "final_validation_years": "2024, 2025"
+    },
+    "combined_prevalence": {
+      "selected_alpha": 100.0,
+      "training_years": "2019, 2020, 2021, 2022, 2023",
+      "final_validation_years": "2024, 2025"
+    }
+  }
+}

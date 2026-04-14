@@ -1,0 +1,13 @@
+﻿scenario_family,year,target_column,target_label,predicted_prevalence_per_100k,lag_1_used,rolling_3_used,table_role,observed_prevalence_per_100k,sample_weight,residual,model_name
+high_emissions,2024,lyme_cases_per_100k,Lyme prevalence per 100k,6809.528674117777,4058.111824801481,5121.0985374877555,final_validation_recursive,5082.948490830592,0.5,1726.5801832871848,lyme_prevalence
+high_emissions,2025,lyme_cases_per_100k,Lyme prevalence per 100k,6970.125562624029,6809.528674117777,5804.6159645619455,final_validation_recursive,7939.903481400254,0.5,-969.7779187762253,lyme_prevalence
+medium_emissions,2024,lyme_cases_per_100k,Lyme prevalence per 100k,6462.792617280485,4058.111824801481,5121.0985374877555,final_validation_recursive,5082.948490830592,0.5,1379.8441264498924,lyme_prevalence
+medium_emissions,2025,lyme_cases_per_100k,Lyme prevalence per 100k,6878.2377865969365,6462.792617280485,5689.037278949515,final_validation_recursive,7939.903481400254,0.5,-1061.6656948033178,lyme_prevalence
+high_emissions,2024,kme_cases_per_100k,KME prevalence per 100k,185.61051694323177,101.69492639717312,136.02925290368955,final_validation_recursive,146.00641182625756,0.5,39.60410511697421,kme_prevalence
+high_emissions,2025,kme_cases_per_100k,KME prevalence per 100k,186.52495159477158,185.61051694323177,164.36646279515404,final_validation_recursive,127.0130530917857,0.5,59.511898502985886,kme_prevalence
+medium_emissions,2024,kme_cases_per_100k,KME prevalence per 100k,176.35056885136288,101.69492639717312,136.02925290368955,final_validation_recursive,146.00641182625756,0.5,30.344157025105318,kme_prevalence
+medium_emissions,2025,kme_cases_per_100k,KME prevalence per 100k,184.8925746808215,176.35056885136288,161.2798134311977,final_validation_recursive,127.0130530917857,0.5,57.879521589035804,kme_prevalence
+high_emissions,2024,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,6994.933418988037,4159.806751198653,5257.127790391444,final_validation_recursive,5228.95490265685,0.5,1765.9785163311872,combined_prevalence
+high_emissions,2025,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,7158.142220969914,6994.933418988037,5968.913836666109,final_validation_recursive,8066.91653449204,0.5,-908.7743135221262,combined_prevalence
+medium_emissions,2024,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,6638.839305744151,4159.806751198653,5257.127790391444,final_validation_recursive,5228.95490265685,0.5,1409.8844030873006,combined_prevalence
+medium_emissions,2025,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,7064.460085939972,6638.839305744151,5850.215798918147,final_validation_recursive,8066.91653449204,0.5,-1002.4564485520687,combined_prevalence

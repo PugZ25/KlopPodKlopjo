@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-04-14T08:21:10.761040+00:00",
+  "workspace_dir": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_operational_forecast",
+  "copied_inputs": {
+    "slovenia_monthly_predictive_panel.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_operational_forecast\\inputs\\slovenia_monthly_predictive_panel.csv",
+    "model_a_future_operational_numeric.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_operational_forecast\\inputs\\model_a_future_operational_numeric.csv"
+  },
+  "final_validation_year": 2025,
+  "inner_validation_years": [
+    2023,
+    2024
+  ]
+}

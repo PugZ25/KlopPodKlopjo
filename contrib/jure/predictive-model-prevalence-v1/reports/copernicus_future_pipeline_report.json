@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-04-13T17:28:40.660420+00:00",
+  "mode": "live",
+  "raw_state": {
+    "era5land_hourly_nc_count": 119,
+    "copernicus_dem_tile_count": 12,
+    "clms_land_cover_tif_count": 6,
+    "gurs_geojson_exists": true,
+    "forecast_family_dirs": {
+      "copernicus_temperature": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_temperature",
+      "copernicus_humidity": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_humidity",
+      "copernicus_precipitation": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_precipitation",
+      "copernicus_soil": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_soil"
+    }
+  },
+  "environment": {
+    "generated_at_utc": "2026-04-13T17:28:40.155858+00:00",
+    "python_executable": "C:\\Users\\George\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "cdsapi_installed": true,
+    "cdsapirc_present": false,
+    "cdsapi_url_present": false,
+    "cdsapi_key_present": false,
+    "cds_credentials_present": false,
+    "cdse_client_id_present": false,
+    "cdse_client_secret_present": false,
+    "cdse_access_token_present": false
+  },
+  "results": [
+    {
+      "dataset_kind": "monthly_stats",
+      "dataset_name": "seasonal-monthly-single-levels",
+      "variable_family": "copernicus_temperature",
+      "source_url": "https://cds.climate.copernicus.eu/datasets/seasonal-monthly-single-levels",
+      "output_dir": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_temperature\\seasonal-monthly-single-levels",
+      "command": [
+        "C:\\Users\\George\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\scripts\\download_copernicus_seasonal_forecasts.py",
+        "--dataset-kind",
+        "monthly_stats",
+        "--variable-family",
+        "copernicus_temperature",
+        "--originating-centre",
+        "ecmwf",
+        "--system",
+        "51",
+        "--output-dir",
+        "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\raw\\copernicus\\forecast\\copernicus_temperature\\seasonal-monthly-single-levels",
+        "--years",
+        "2026",
+        "--months",
+        "01",
+        "--leadtime-months",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "exit_code": 1,
+      "stdout": "Planned 1 CDS requests for seasonal-monthly-single-levels -> copernicus_temperature.\n",
+      "stderr": "Unable to initialize the CDS API client. Add valid CDS credentials via ~/.cdsapirc or the CDSAPI_URL and CDSAPI_KEY environment variables, then rerun the acquisition.\nMissing/incomplete configuration file: C:\\Users\\George/.cdsapirc\n"
+    }
+  ]
+}

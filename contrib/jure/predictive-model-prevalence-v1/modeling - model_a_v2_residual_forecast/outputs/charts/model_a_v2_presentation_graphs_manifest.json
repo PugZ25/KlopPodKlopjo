@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-04-14T12:43:29.049446+00:00",
+  "source_graph_csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\model_a_v2_graph_prevalence.csv",
+  "source_metrics_csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\model_a_v2_validation_metrics.csv",
+  "saved_paths": [
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\model_a_v2_operational_dashboard.png",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\model_a_v2_operational_dashboard.svg",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\lyme_prevalence_v2_operational_presentation.png",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\lyme_prevalence_v2_operational_presentation.svg",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\kme_prevalence_v2_operational_presentation.png",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\kme_prevalence_v2_operational_presentation.svg",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\combined_prevalence_v2_operational_presentation.png",
+    "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_a_v2_residual_forecast\\outputs\\charts\\combined_prevalence_v2_operational_presentation.svg"
+  ]
+}

@@ -1,0 +1,13 @@
+﻿model_name,target_label,alpha,feature_name,coefficient,coefficient_abs
+lyme_prevalence,Lyme prevalence per 100k,10.0,recent_momentum,-999.2975427792416,999.2975427792416
+lyme_prevalence,Lyme prevalence per 100k,10.0,baseline_prevalence_per_100k,-977.3317574953676,977.3317574953676
+lyme_prevalence,Lyme prevalence per 100k,10.0,thermal_humidity_index,888.7441545593298,888.7441545593298
+lyme_prevalence,Lyme prevalence per 100k,10.0,wetness_index,-99.93416395568181,99.93416395568181
+kme_prevalence,KME prevalence per 100k,10.0,thermal_humidity_index,19.82773814593052,19.82773814593052
+kme_prevalence,KME prevalence per 100k,10.0,baseline_prevalence_per_100k,-15.575658296013447,15.575658296013447
+kme_prevalence,KME prevalence per 100k,10.0,wetness_index,-11.032755061370914,11.032755061370914
+kme_prevalence,KME prevalence per 100k,10.0,recent_momentum,-10.593298181859353,10.593298181859353
+combined_prevalence,Combined tick-borne prevalence per 100k,10.0,recent_momentum,-1019.1017129781266,1019.1017129781266
+combined_prevalence,Combined tick-borne prevalence per 100k,10.0,baseline_prevalence_per_100k,-1000.7914329379253,1000.7914329379253
+combined_prevalence,Combined tick-borne prevalence per 100k,10.0,thermal_humidity_index,913.2801784951862,913.2801784951862
+combined_prevalence,Combined tick-borne prevalence per 100k,10.0,wetness_index,-107.3400379849219,107.3400379849219

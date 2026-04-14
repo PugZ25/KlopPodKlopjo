@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KlopPodKlopjo - Metodologija projekta</title>
+  <style>
+    :root {
+      --paper: #f4f1ea;
+      --panel: #fffdf8;
+      --panel-strong: #f8f3e8;
+      --ink: #24313a;
+      --muted: #64727b;
+      --line: #ddd4c3;
+      --accent: #93653b;
+      --accent-soft: #ead7bf;
+      --success: #2f6f5d;
+      --warning: #a3682a;
+      --danger: #9d4e3f;
+      --shadow: 0 22px 60px rgba(48, 32, 15, 0.08);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(234, 215, 191, 0.55), transparent 30%),
+        linear-gradient(180deg, #ede7dc 0%, #f4f1ea 18%, #f8f5ef 100%);
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero,
+    .section,
+    .footer-card {
+      background: rgba(255, 253, 248, 0.94);
+      border: 1px solid rgba(221, 212, 195, 0.95);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 34px 36px 30px;
+      margin-bottom: 22px;
+    }
+
+    .section {
+      padding: 28px 30px;
+      margin-bottom: 18px;
+    }
+
+    .footer-card {
+      padding: 22px 26px;
+      margin-top: 8px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(147, 101, 59, 0.1);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.08;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-weight: 700;
+      color: #31414c;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 4.9vw, 4.45rem);
+      max-width: 900px;
+      margin-top: 14px;
+    }
+
+    h2 {
+      font-size: clamp(1.55rem, 2.8vw, 2.25rem);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 10px;
+    }
+
+    .lead {
+      margin-top: 16px;
+      max-width: 900px;
+      font-size: 1.07rem;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .metric-card,
+    .card,
+    .status-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .metric-value {
+      display: block;
+      margin-top: 8px;
+      font-size: 1.95rem;
+      font-weight: 800;
+      color: #243744;
+    }
+
+    .metric-label,
+    .small-label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .split-grid,
+    .two-col,
+    .three-col,
+    .status-grid,
+    .website-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .two-col {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+    }
+
+    .three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .status-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .split-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      margin-top: 14px;
+    }
+
+    .website-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card-list,
+    .plain-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .card-list li + li,
+    .plain-list li + li {
+      margin-top: 8px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 840px;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #f8f2e8;
+      color: #455560;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code {
+      font-family: "SFMono-Regular", "Menlo", monospace;
+      font-size: 0.92em;
+      background: rgba(36, 49, 58, 0.06);
+      padding: 0.16rem 0.36rem;
+      border-radius: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .badge-accepted {
+      background: rgba(47, 111, 93, 0.12);
+      color: var(--success);
+    }
+
+    .badge-evaluated {
+      background: rgba(163, 104, 42, 0.13);
+      color: var(--warning);
+    }
+
+    .badge-adopted {
+      background: rgba(147, 101, 59, 0.13);
+      color: var(--accent);
+    }
+
+    .badge-note {
+      background: rgba(157, 78, 63, 0.12);
+      color: var(--danger);
+    }
+
+    .source-note,
+    .section-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .status-card strong {
+      display: block;
+      margin: 8px 0 6px;
+      font-size: 1.04rem;
+      color: #2e404b;
+    }
+
+    .callout {
+      background: linear-gradient(180deg, rgba(248, 243, 232, 0.96), rgba(255, 253, 248, 0.96));
+      border: 1px solid rgba(221, 212, 195, 0.95);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #31414c;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: white;
+      padding: 14px 18px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #31414c;
+    }
+
+    summary + div {
+      margin-top: 14px;
+    }
+
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sources-grid ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-meta,
+      .two-col,
+      .three-col,
+      .status-grid,
+      .split-grid,
+      .website-grid,
+      .sources-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        width: min(100vw - 24px, 1180px);
+        padding: 14px 0 30px;
+      }
+
+      .hero,
+      .section,
+      .footer-card {
+        padding: 22px 20px;
+        border-radius: 22px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      main {
+        width: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      .hero,
+      .section,
+      .footer-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="kicker">Repo-preverjena metodologija</span>
+      <h1>KlopPodKlopjo: metodologija projekta za predstavitev žiriji</h1>
+      <p class="lead">
+        Ta stran povzema izključno informacije, ki jih je mogoče potrditi iz
+        repozitorija: iz kode, metodološke dokumentacije, konfiguracij, manifestov,
+        modelskih artefaktov, rezultatov evalvacije in trenutne spletne aplikacije.
+      </p>
+
+      <div class="hero-meta">
+        <article class="metric-card">
+          <span class="metric-label">Končni učni dataset</span>
+          <span class="metric-value">107.696</span>
+          <span class="small-label">vrstic občina-teden v <code>obcina_weekly_tick_borne_catboost_ready.csv</code></span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Prostorski obseg</span>
+          <span class="metric-value">212</span>
+          <span class="small-label">občin v podatkovnih manifestih, modelih in zemljevidu</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Časovni obseg</span>
+          <span class="metric-value">508</span>
+          <span class="small-label">tednov, od 2016-04-04 do 2025-12-22</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Modelski artefakti</span>
+          <span class="metric-value">9</span>
+          <span class="small-label">CatBoost artefaktov v <code>data/processed/training/</code></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Problem</h2>
+      <div class="two-col">
+        <div class="card">
+          <p>
+            Repozitorij dosledno opiše projekt kot podatkovno podprto spletno rešitev
+            za ocenjevanje tveganja za stik s klopi ter za boreliozo in KME v Sloveniji.
+            Operativna enota v reproducibilnem pipeline-u je <strong>občina-teden</strong>,
+            v spletni aplikaciji pa je rezultat preveden v <strong>občinsko oceno
+            tveganja</strong>.
+          </p>
+          <p>
+            Trenutna implementacija povezuje prostorske, vremenske, reliefne,
+            demografske in epidemiološke vire v enoten modelni tok, rezultat pa
+            prikaže v statičnem React + Vite frontend-u brez produkcijskega
+            runtime backenda.
+          </p>
+        </div>
+        <aside class="callout">
+          <strong>Ključni potrjeni namen</strong>
+          <p>
+            Projekt želi uporabniku ponuditi lokalno, razumljivo in ponovljivo
+            oceno tveganja po občinah ter jo povezati s preventivnimi ukrepi,
+            informacijami o cepljenju in osnovnim znanjem o klopnih boleznih.
+          </p>
+        </aside>
+      </div>
+      <p class="source-note">
+        Glavni viri: <code>README.md</code>, <code>docs/okvirna-ideja/okvirna-ideja.txt</code>,
+        <code>frontend/src/App.tsx</code>, <code>docs/live-deployment.md</code>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Podatki</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Vir</th>
+              <th>Kaj prispeva</th>
+              <th>Potrjen obseg v repozitoriju</th>
+              <th>Vloga v toku</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Copernicus ERA5-Land</strong></td>
+              <td>Hourly meteorološke in talne spremenljivke za Slovenijo</td>
+              <td>118 mesečnih feature datotek; 755.568 dnevnih in 107.696 tedenskih občinskih vrstic</td>
+              <td>Glavni dinamični vhod za vremenske in sezonske značilke</td>
+            </tr>
+            <tr>
+              <td><strong>Copernicus DEM</strong></td>
+              <td>Relief in nadmorska višina</td>
+              <td>12 ploščic, 30 m, 212 občin</td>
+              <td>Statične topografske značilke</td>
+            </tr>
+            <tr>
+              <td><strong>Copernicus / CLMS CLC raster</strong></td>
+              <td>Raba tal in pokrovnost</td>
+              <td>100 m raster <code>U2018_CLC2018_V2020_20u1.tif</code>, 212 občin</td>
+              <td>Statične land-cover značilke</td>
+            </tr>
+            <tr>
+              <td><strong>GURS</strong></td>
+              <td>Občinski poligoni</td>
+              <td>212 občin; surovi GeoJSON in poenostavljen browser asset</td>
+              <td>Prostorski join, overlay in geolokacijski lookup v frontend-u</td>
+            </tr>
+            <tr>
+              <td><strong>NIJZ</strong></td>
+              <td>Tedenski primeri borelioze in KME po občinah</td>
+              <td>121.688 vrstic, 574 tednov, skupaj 49.142 primerov borelioze in 1.120 primerov KME</td>
+              <td>Ciljne spremenljivke in epidemiološki lagi</td>
+            </tr>
+            <tr>
+              <td><strong>SURS</strong></td>
+              <td>Populacija in gostota prebivalstva</td>
+              <td>3.816 vrstic na feature datoteko; leta 2008-2025; 212 občin</td>
+              <td>Demografske značilke in uteževanje</td>
+            </tr>
+            <tr>
+              <td><strong>Open-Meteo</strong></td>
+              <td>Hourly vreme za live snapshot</td>
+              <td>Uporabljeno samo v generatorju <code>liveMunicipalityRisk.ts</code></td>
+              <td>Build-time live občinski prikaz za spletno aplikacijo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-note">
+        V korenskem <code>data/raw/</code> obstajata tudi mapi <code>arso/</code> in
+        <code>zgs/</code>, vendar ju trenutni reproducibilni build do končnega
+        CatBoost dataseta ne uporablja.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Priprava podatkov</h2>
+      <div class="three-col">
+        <article class="card">
+          <h3>Vremenski tok</h3>
+          <ul class="card-list">
+            <li>ERA5-Land temperature se pretvorijo iz Kelvina v °C, padavine iz metrov v milimetre.</li>
+            <li>Relativna vlaga se izračuna iz temperature in rosišča po Magnusovi aproksimaciji.</li>
+            <li>Akumulirane padavine se deakumulirajo v urne padavine.</li>
+            <li>Grid ni pripisan po centroidu, ampak z area-weighted polygon overlay nad občinskimi poligoni v <code>EPSG:3794</code>.</li>
+            <li>Najprej nastanejo dnevne, nato samo polne tedenske občinske vrstice.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Statični prostorski tok</h3>
+          <ul class="card-list">
+            <li>DEM značilke se računajo s pristopom <code>pixel_center_mask</code> in vključujejo povprečje, standardni odklon, minimum, maksimum in razpon višine.</li>
+            <li>Land-cover tok za vsako občino določi dominantno CLC kodo in skupinske deleže pokrovnosti.</li>
+            <li>SURS datoteke normalizirajo občinske šifre, izračunajo <code>log(1 + population_total)</code> in gostoto prebivalstva.</li>
+            <li>Letne SURS vrednosti se na tedenske vrstice pripnejo z zadnjim razpoložljivim letom, ki ni v prihodnosti.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Epidemiološki tok</h3>
+          <ul class="card-list">
+            <li>NIJZ Excel datoteki se pretvorita v tedenski občinski CSV z normalizacijo imen občin in dvema eksplicitnima aliasoma.</li>
+            <li>Manifest beleži neskladja med vrstičnimi vsotami občin in poljem <code>SKUPAJ</code>.</li>
+            <li>Lagi uporabljajo izključno pretekle tedne; delna okna niso dovoljena.</li>
+            <li>Končni join poteka statično po <code>obcina_sifra</code> in časovno po <code>week_start</code>.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="source-note">
+        Glavne implementacije: <code>pipelines/features/copernicus_obcina_weekly.py</code>,
+        <code>pipelines/features/copernicus_dem_obcina.py</code>,
+        <code>pipelines/features/copernicus_clc_obcina.py</code>,
+        <code>pipelines/features/surs_obcina_population.py</code>,
+        <code>pipelines/features/nijz_obcina_weekly.py</code>,
+        <code>pipelines/features/obcina_weekly_tick_borne_catboost.py</code>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Feature engineering</h2>
+      <div class="split-grid">
+        <article class="card">
+          <h3>Skupine značilk</h3>
+          <ul class="card-list">
+            <li>Vreme: povprečja, min/max, standardni odklon temperature, vsote padavin, vlažnost zraka in vlažnost tal.</li>
+            <li>Aktivnost klopov: <code>humidity_hours_ge_80_sum</code>, <code>humidity_hours_ge_90_sum</code>, <code>wet_hours_ge_0_1mm_sum</code>, <code>tick_activity_window_hours_sum</code>, <code>growing_degree_hours_base_5_c_sum</code>.</li>
+            <li>Tedenski števci: deževni dnevi, vlažni dnevi in klopom ugodni dnevi.</li>
+            <li>Lagi in rolling povprečja za 1, 2 in 4 tedne ter sezonski koledarski stolpci <code>iso_week</code>, <code>sin</code> in <code>cos</code>.</li>
+            <li>Relief: <code>elevation_m_mean</code>, <code>elevation_m_std</code>, <code>elevation_m_range</code>.</li>
+            <li>Raba tal: dominantna CLC koda in deleži urbanih, kmetijskih, travniških, gozdnih, grmiščnih, mokriščnih, vodnih in odprtih površin.</li>
+            <li>Demografija: <code>log_population_total</code> in <code>population_density_per_km2</code>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Posebna metodološka pravila</h3>
+          <ul class="card-list">
+            <li>V končnem izvozu ni trenutnih <code>lyme_cases</code> ali <code>kme_cases</code> kot featurejev.</li>
+            <li>Za epidemiološko podprte modele so dovoljeni samo pretekli Lyme in KME lagi.</li>
+            <li>Za okoljske modele so v dataseta dodani tudi forward-looking targeti: naslednji 4 tedni za boreliozo in naslednjih 8 tednov za KME.</li>
+            <li>Okoljski <code>env_v2</code> modeli uporabljajo samo okoljske, prostorske in sezonske značilke; trenutni spletni score se zanaša prav na to družino modelov.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Uporabljeni modeli do zdaj</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Tip problema</th>
+              <th>Repo-preverjena vloga</th>
+              <th>Test / holdout signal</th>
+              <th>Status v projektu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>catboost_tick_borne_lyme_v1</code></td>
+              <td>Regresija</td>
+              <td>Napoved trenutnih tedenskih primerov borelioze; vključuje epidemiološke lage</td>
+              <td>RMSE 0,725; MAE 0,402; R² 0,663</td>
+              <td><span class="badge badge-accepted">accepted 2026-04-10</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_kme_v1</code></td>
+              <td>Regresija</td>
+              <td>Prva KME formulacija na trenutnih tedenskih primerih</td>
+              <td>RMSE 0,0839; MAE 0,0157; R² 0,0368</td>
+              <td><span class="badge badge-note">šibek baseline</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_kme_presence_v2</code></td>
+              <td>Binarna klasifikacija</td>
+              <td>Napoved redkega dogodka <code>target_kme_presence</code> z epidemiološkimi lagi</td>
+              <td>Precision 0,0262; recall 0,763; F1 0,0507; v dodatni analizi ROC AUC 0,879 in lift 15,8x v top 1 %</td>
+              <td><span class="badge badge-evaluated">demo ranking</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_lyme_env_v1</code></td>
+              <td>Regresija</td>
+              <td>Zgodnji okoljski raziskovalni artefakt za forward-looking signal borelioze</td>
+              <td>RMSE 29,419; MAE 20,287; R² 0,124</td>
+              <td><span class="badge badge-note">raziskovalni artefakt</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_lyme_env_per100k_v1</code></td>
+              <td>Regresija</td>
+              <td>Okoljski raziskovalni artefakt z normalizacijo na 100.000 prebivalcev</td>
+              <td>RMSE 29,180; MAE 20,031; R² 0,111</td>
+              <td><span class="badge badge-note">legacy research</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_lyme_env_v2</code></td>
+              <td>Binarna klasifikacija</td>
+              <td>Glavni okoljski model za spletni prikaz borelioze v naslednjih 4 tednih</td>
+              <td>Precision 0,733; recall 0,697; F1 0,714; ROC AUC 0,812; PR-AUC 0,805</td>
+              <td><span class="badge badge-adopted">web risk model</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_kme_env_v1</code></td>
+              <td>Binarna klasifikacija</td>
+              <td>Zgodnji okoljski raziskovalni artefakt za forward-looking KME prisotnost</td>
+              <td>Precision 0,167; recall 0,801; F1 0,276</td>
+              <td><span class="badge badge-note">raziskovalni artefakt</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_kme_env_per100k_v1</code></td>
+              <td>Regresija</td>
+              <td>Okoljski raziskovalni artefakt z normalizacijo KME na 100.000 prebivalcev</td>
+              <td>RMSE 3,315; MAE 1,532; R² -0,005</td>
+              <td><span class="badge badge-note">legacy research</span></td>
+            </tr>
+            <tr>
+              <td><code>catboost_tick_borne_kme_env_v2</code></td>
+              <td>Binarna klasifikacija</td>
+              <td>Glavni okoljski model za spletni prikaz KME v naslednjih 8 tednih; uporablja uteži po populaciji</td>
+              <td>Precision 0,265; recall 0,477; F1 0,341; ROC AUC 0,858; PR-AUC 0,304</td>
+              <td><span class="badge badge-adopted">web risk model</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-note">
+        Repo vsebuje tudi popoln training scaffold za CatBoost v <code>ml/training/</code>.
+        Primeri konfiguracij so verzionirani za baseline v1, <code>KME v2</code>,
+        <code>env_per100k_v1</code> in <code>env_v2</code>; artefakti <code>*_env_v1</code>
+        so sicer prisotni v <code>data/processed/training/</code>, vendar pripadajoča
+        <code>example_*_env_v1_config.json</code> datoteka ni del trenutne mape
+        <code>ml/training/</code>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Evalvacija modelov</h2>
+      <div class="status-grid">
+        <article class="status-card">
+          <span class="small-label">Referenčni Lyme baseline</span>
+          <strong>Močan napovedni signal</strong>
+          <p>
+            Uradni baseline za boreliozo na holdout testu doseže <strong>R² 0,663</strong>.
+            Dokumentacija dodatno poroča <strong>R² 0,854</strong> in korelacijo
+            <strong>0,931</strong> na ravni tedenskih agregatov po Sloveniji.
+          </p>
+        </article>
+        <article class="status-card">
+          <span class="small-label">Prva KME regresija</span>
+          <strong>Signal je prešibek</strong>
+          <p>
+            <code>KME v1</code> ostaja skoraj na ničelnem pojasnjenem deležu variance,
+            zato dokumentacija izrecno predlaga preoblikovanje problema iz regresije
+            v napoved redkega dogodka.
+          </p>
+        </article>
+        <article class="status-card">
+          <span class="small-label">KME presence v2</span>
+          <strong>Primeren za rangiranje, ne za verjetnost</strong>
+          <p>
+            Pipeline pri pragu 0,5 favorizira recall, dodatna analiza pa pokaže
+            uporaben ranking signal in hkrati zelo slabo kalibracijo izhodnih
+            verjetnosti.
+          </p>
+        </article>
+        <article class="status-card">
+          <span class="small-label">Okoljska web-risk družina</span>
+          <strong>Najbolj uporabna za frontend</strong>
+          <p>
+            <code>env_v2</code> modela merita forward-looking prisotnost dogodka
+            in že v samem training pipeline-u poročata tudi <code>ROC AUC</code> in
+            <code>PR-AUC</code>, zato sta primerna za stabilne risk bande v UI-ju.
+          </p>
+        </article>
+      </div>
+
+      <div class="two-col" style="margin-top: 18px;">
+        <article class="card">
+          <h3>Evalvacijski protokol</h3>
+          <ul class="card-list">
+            <li>Training scaffold uporablja časovno urejene <code>train / validation / test</code> splite po unikatnih časih, ne naključnega mešanja vrstic.</li>
+            <li>Glavni referenčni split za baseline in novejše modele je: train 2016-04-04 do 2023-01-16, validation 2023-01-23 do 2024-07-01, test 2024-07-08 do 2025-12-22.</li>
+            <li>Okoljski forward modeli imajo krajši testni rep, ker forward targeti na koncu časovne vrste manjkajo: za boreliozo do 2025-11-24, za KME do 2025-10-27.</li>
+            <li>Regresija poroča <code>RMSE</code>, <code>MAE</code> in <code>R²</code>; klasifikacija poroča <code>accuracy</code>, <code>precision</code>, <code>recall</code>, <code>F1</code>, <code>ROC AUC</code> in <code>PR-AUC</code>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Metodološki sklep iz rezultatov</h3>
+          <ul class="card-list">
+            <li>Borelioza je trenutno najbolj stabilen napovedni del projekta.</li>
+            <li>KME kot redek dogodek zahteva klasifikacijski ali ranking pristop, ne navadne regresije.</li>
+            <li>Pri redkih targetih accuracy sama po sebi ni dovolj informativna in je lahko zavajajoča.</li>
+            <li>Za frontend je bistven prehod iz surove napovedi v relativni rang in stabilne percentilne razrede.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Baseline / raziskovalni modeli / web risk modeli</h2>
+      <div class="three-col">
+        <article class="card">
+          <h3>1. Baseline modeli</h3>
+          <p>
+            Sem sodita predvsem <code>catboost_tick_borne_lyme_v1</code> in
+            zgodnji KME modeli na trenutnih tedenskih primerih. Namen baseline-a je
+            referenčna primerjava naslednjih iteracij na istem časovnem splitu.
+          </p>
+          <p>
+            Ti modeli uporabljajo tudi epidemiološke lage, zato so dobri napovedni
+            referenčni modeli, niso pa čisti okoljski modeli.
+          </p>
+        </article>
+        <article class="card">
+          <h3>2. Raziskovalni modeli</h3>
+          <p>
+            Sem sodijo artefakti <code>env_v1</code>, <code>env_per100k_v1</code> in
+            <code>KME presence v2</code>. Njihova vloga je metodološka: preveriti,
+            koliko signala prinesejo okoljske značilke, druga formulacija cilja ali
+            drugačna normalizacija.
+          </p>
+          <p>
+            V repozitoriju so jasno ločeni od uradnega Lyme baseline-a in niso
+            vsi sprejeti kot produkcijski modeli.
+          </p>
+        </article>
+        <article class="card">
+          <h3>3. Web risk modeli</h3>
+          <p>
+            To nista nova, ločeno trenirana modela, ampak produktizirana raba
+            <code>catboost_tick_borne_lyme_env_v2</code> in
+            <code>catboost_tick_borne_kme_env_v2</code>.
+          </p>
+          <p>
+            Surova modelna napoved se v skriptah za frontend pretvori v
+            <strong>score 0-100</strong> in v razrede <strong>Nizko / Srednje / Visoko</strong>
+            na osnovi holdout distribucije istega modela. To je bistvena razlika:
+            spletni prikaz ni neposreden izpis modelne verjetnosti.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Metodologija spletne strani</h2>
+      <div class="website-grid">
+        <article class="card">
+          <h3>Arhitektura prikaza</h3>
+          <ul class="card-list">
+            <li>Produkcija je statični <strong>React + TypeScript + Vite</strong> build na Vercelu.</li>
+            <li>Produkcijski deploy ne uporablja runtime backenda; backend mapa je rezervirana za prihodnji API.</li>
+            <li>Interaktivni del v <code>App.tsx</code> uvozi <code>liveMunicipalityRisk.ts</code>, ne kliče zunanjega inference API-ja in riše občinske poligone prek <code>MapView.tsx</code>.</li>
+            <li>Besedilni del o cepljenju, preventivi, odstranitvi klopa in boleznih je statično definiran v <code>frontend/src/data/siteContent.ts</code>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Geolokacija in zemljevid</h3>
+          <ul class="card-list">
+            <li>V brskalniku se najprej pridobi GPS koordinata uporabnika.</li>
+            <li><code>municipalityLookup.ts</code> naloži poenostavljen GURS asset <code>frontend/public/municipality-boundaries.json</code>.</li>
+            <li>Lookup občine poteka z omejitvenim pravokotnikom in algoritmom point-in-polygon nad občinskimi poligoni.</li>
+            <li>Zemljevid uporablja dejanske občinske poligone in jih obarva kot občinski choropleth.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Live snapshot za aplikacijo</h3>
+          <ul class="card-list">
+            <li><code>build_live_municipality_risk_frontend_data.py</code> za vsako občino vzame reprezentativno točko znotraj GURS poligona.</li>
+            <li>Za zadnjih šest tednov prenese hourly vreme iz <code>Open-Meteo best-match</code>.</li>
+            <li>Iz enakih dinamičnih stolpcev ponovno zgradi tedenske featureje, kot jih pričakuje družina <code>env_v2</code>.</li>
+            <li>Dinamične featureje združi s statičnimi stolpci iz učnega dataseta in uporabi trenirani CatBoost model.</li>
+            <li>Trenutni checked-in live snapshot je bil generiran 2026-04-12 in uporablja referenčni teden 2026-04-06 do 2026-04-12.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Pretvorba v uporabniški rezultat</h3>
+          <ul class="card-list">
+            <li>Razredi <code>Nizko / Srednje / Visoko</code> nastanejo iz 33,33. in 66,67. percentila holdout distribucije posameznega <code>env_v2</code> modela.</li>
+            <li><code>score</code> na lestvici 0-100 je empirični percentil surove modelne napovedi znotraj holdout porazdelitve istega modela.</li>
+            <li>UI namenoma kaže samo relativni rang, občino, časovni horizont in povezane ukrepe.</li>
+            <li>Spletna stran sama v besedilu poudari, da rezultat ni diagnoza in ni individualna verjetnost bolezni.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Omejitve</h2>
+      <div class="two-col">
+        <article class="card">
+          <ul class="card-list">
+            <li>Glavni Lyme baseline je močno podprt z epidemiološkimi lagi in sezonskostjo; zato je odličen napovedni baseline, ne pa še čist razlagalni okoljski model.</li>
+            <li><code>KME presence v2</code> je po dokumentaciji uporaben za ranking in risk bande, ni pa sprejet kot kalibriran probability model.</li>
+            <li>Frontend prikazuje build-time snapshot zadnjega zaključenega tedna; rezultat ni real-time izračun za točno sekundo uporabnikovega obiska.</li>
+            <li>Live demo uporablja reprezentativno točko občine za vremenski query; trening vremenski tok pa uporablja area-weighted agregacijo po celotnem občinskem poligonu.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <ul class="card-list">
+            <li>Okoljski score 0-100 je relativni indeks, ne epidemiološko kalibrirana verjetnost.</li>
+            <li>Forward-looking targeti proti koncu časovne vrste manjkajo, zato imajo okoljski modeli krajše holdout obdobje kot glavni current-week baseline modeli.</li>
+            <li>Repojev reproducibilni končni build trenutno ne vključuje ARSO ali ZGS podatkov, čeprav ju začetna ideja omenja kot potencialna vira.</li>
+            <li>Produkcijski deploy trenutno nima API poti za live inference; osvežitev snapshota in boundary asseta je treba narediti pred objavo.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Praktična vrednost rešitve</h2>
+      <div class="three-col">
+        <article class="card">
+          <h3>Lokalna orientacija</h3>
+          <p>
+            Rešitev uporabniku vrne občinsko oceno tveganja za boreliozo ali KME,
+            izbrano občino je mogoče klikniti na zemljevidu ali določiti z lokacijo
+            uporabnika.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Prevod modela v razumljiv rezultat</h3>
+          <p>
+            Modelni izhod ni prikazan kot abstraktna decimalna napoved, ampak kot
+            stabilen razred tveganja in relativni score, kar je bistveno bolj primerno
+            za predstavitev in osnovno orientacijo uporabnika.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Reproducibilen tok do produkcije</h3>
+          <p>
+            Repo že vsebuje skripte za gradnjo dataseta, učenje modela, generiranje
+            frontend snapshota, poenostavljen boundary asset, manifestne metapodatke in
+            enotne teste za ključne gradnike.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="footer-card">
+      <details>
+        <summary>Dokazna sled v repozitoriju</summary>
+        <div class="sources-grid">
+          <div>
+            <h3>Ključni dokumenti</h3>
+            <ul class="plain-list">
+              <li><code>README.md</code></li>
+              <li><code>docs/metodologija/borelioza-baseline-v1.md</code></li>
+              <li><code>docs/metodologija/kme-v2-analiza.md</code></li>
+              <li><code>docs/metodologija/environmental-risk-env-v2-pragovi.md</code></li>
+              <li><code>docs/metodologija/live-hackathon-obcina-open-meteo.md</code></li>
+              <li><code>docs/live-deployment.md</code></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ključna koda in artefakti</h3>
+            <ul class="plain-list">
+              <li><code>pipelines/features/*.py</code></li>
+              <li><code>scripts/data/build_live_municipality_risk_frontend_data.py</code></li>
+              <li><code>scripts/data/build_environmental_risk_frontend_data.py</code></li>
+              <li><code>ml/training/*.py</code></li>
+              <li><code>data/processed/training/*/metadata.json</code></li>
+              <li><code>frontend/src/App.tsx</code>, <code>MapView.tsx</code>, <code>liveMunicipalityRisk.ts</code></li>
+              <li><code>tests/unit/test_obcina_weekly_tick_borne_catboost.py</code></li>
+              <li><code>tests/unit/test_environmental_risk_frontend_data.py</code></li>
+              <li><code>tests/unit/test_training_pipeline.py</code></li>
+            </ul>
+          </div>
+        </div>
+      </details>
+      <p class="footer-copy" style="margin-top: 16px;">
+        Datoteka je namenjena neposrednemu odpiranju v brskalniku kot samostojna,
+        pregledna metodološka priloga za žirijo.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

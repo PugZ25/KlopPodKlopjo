@@ -11,6 +11,7 @@ Loči tri različne stvari, ki se pri podatkovnih projektih pogosto pomešajo:
 - `data/` hrani podatke
 - `ml/` hrani modelno logiko
 - `backend/` in `frontend/` hranita aplikacijo
+- `contrib/` hrani zunanje ali ločene eksperimentalne workspacee, ki še niso del glavnega toka
 
 S tem žiriji pokažete, da projekt ni samo ideja, ampak ima urejen tehnični in raziskovalni tok.
 
@@ -63,6 +64,24 @@ Podatki so ločeni po stopnjah obdelave.
 - `processed/`: končni podatki za model ali aplikacijo
 
 Za vsako novo podmapo v `data/raw/` dodajte tudi `README.md`, kjer ostanejo zapisani izvor, URL, datum prevzema in osnovni opis datotek.
+
+### `contrib/`
+
+Kurirani zunanji prispevki ali importi, ki jih želimo ohraniti, vendar jih ne želimo mešati z glavno kodo.
+
+- `contrib/jure/`: Juretov zunanji raziskovalni in napovedni workspace
+
+V `contrib/` sodijo:
+
+- zunaj repozitorija pripravljeni snapshoti
+- ločeni eksperimentalni branch-i
+- referenčni workspacei, ki še niso refaktorirani v glavno strukturo
+
+Tja ne sodijo:
+
+- uradni baseline modeli
+- produkcijski podatki
+- frontend ali backend artefakti trenutnega deploya
 
 ### `ml/`
 

@@ -1,0 +1,128 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1480" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5EEE2"/>
+      <stop offset="1" stop-color="#FBF8F2"/>
+    </linearGradient>
+    <radialGradient id="warmGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(250 170) rotate(25) scale(360 240)">
+      <stop stop-color="#E2BF8B" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#E2BF8B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coolGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1330 180) rotate(18) scale(340 230)">
+      <stop stop-color="#8DB0A8" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#8DB0A8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shell" x1="30" y1="24" x2="1570" y2="876" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#FFFDF9" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="modelCard" x1="560" y1="286" x2="1010" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F6E67"/>
+      <stop offset="1" stop-color="#295C56"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#3E2A17" flood-opacity="0.12"/>
+    </filter>
+    <filter id="softShadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#4E341C" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowHead" markerWidth="18" markerHeight="18" refX="13" refY="9" orient="auto">
+      <path d="M2 2L14 9L2 16" stroke="#A2673C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .kicker { font: 700 22px "Avenir Next", "Segoe UI", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+      .title { font: 700 66px "Avenir Next", "Segoe UI", sans-serif; fill: #2D4149; }
+      .subtitle { font: 600 24px "Avenir Next", "Segoe UI", sans-serif; fill: #6C7B83; }
+      .section { font: 700 24px "Avenir Next", "Segoe UI", sans-serif; letter-spacing: 0.1em; text-transform: uppercase; fill: #74828A; }
+      .rowText { font: 700 30px "Avenir Next", "Segoe UI", sans-serif; fill: #31464F; }
+      .pill { font: 700 18px "Avenir Next", "Segoe UI", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+      .flowLabel { font: 700 20px "Avenir Next", "Segoe UI", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; fill: #A2673C; }
+      .modelSmall { font: 700 22px "Avenir Next", "Segoe UI", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; fill: #E9DDC9; }
+      .modelMain { font: 700 78px "Avenir Next", "Segoe UI", sans-serif; fill: #FFFFFF; }
+      .modelSub { font: 600 28px "Avenir Next", "Segoe UI", sans-serif; fill: #D9E8E4; }
+      .outputText { font: 700 42px "Avenir Next", "Segoe UI", sans-serif; fill: #31464F; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" rx="42" fill="url(#bg)"/>
+  <rect width="1600" height="900" rx="42" fill="url(#warmGlow)"/>
+  <rect width="1600" height="900" rx="42" fill="url(#coolGlow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="20" y="18" width="1560" height="864" rx="34" fill="url(#shell)" stroke="#DDCFB9"/>
+  </g>
+
+  <rect x="58" y="50" width="312" height="44" rx="22" fill="#F0E3D1"/>
+  <text x="84" y="80" class="kicker" fill="#A2673C">CatBoost shema</text>
+
+  <text x="58" y="160" class="title">Od podatkov do modela</text>
+  <text x="58" y="200" class="subtitle">poenostavljen prikaz toka podatkov</text>
+
+  <text x="88" y="262" class="section">Vhodni viri</text>
+  <text x="706" y="262" class="section">Model</text>
+  <text x="1252" y="262" class="section">Izhodi</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="72" y="286" width="398" height="546" rx="34" fill="#FFFDFA" stroke="#E2D8C8"/>
+    <rect x="548" y="286" width="470" height="470" rx="40" fill="url(#modelCard)"/>
+    <rect x="1096" y="286" width="432" height="546" rx="34" fill="#FFFDFA" stroke="#D8E3DF"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="98" y="320" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="390" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="460" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="530" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="600" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="670" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+    <rect x="98" y="740" width="346" height="54" rx="20" fill="#FFFFFF" stroke="#E8DDCE"/>
+  </g>
+
+  <circle cx="130" cy="347" r="8" fill="#D1B083"/>
+  <circle cx="130" cy="417" r="8" fill="#D1B083"/>
+  <circle cx="130" cy="487" r="8" fill="#D1B083"/>
+  <circle cx="130" cy="557" r="8" fill="#D1B083"/>
+  <circle cx="130" cy="627" r="8" fill="#6E9D95"/>
+  <circle cx="130" cy="697" r="8" fill="#6E9D95"/>
+  <circle cx="130" cy="767" r="8" fill="#6E9D95"/>
+
+  <text x="156" y="357" class="rowText">Copernicus</text>
+  <text x="156" y="427" class="rowText">ARSO</text>
+  <text x="156" y="497" class="rowText">GURS</text>
+  <text x="156" y="567" class="rowText">SURS</text>
+  <text x="156" y="637" class="rowText">NIJZ</text>
+  <text x="156" y="707" class="rowText">GOZDIS</text>
+  <text x="156" y="777" class="rowText">ZGS</text>
+
+  <path d="M486 520C520 520 532 520 548 520" stroke="#A2673C" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+  <path d="M1018 520C1044 520 1060 520 1094 520" stroke="#A2673C" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+
+  <rect x="472" y="468" width="92" height="104" rx="26" fill="#FFF8EE" stroke="#E2D0BC"/>
+  <text x="518" y="509" text-anchor="middle" class="flowLabel">Skupna</text>
+  <text x="518" y="541" text-anchor="middle" class="flowLabel">tabela</text>
+
+  <rect x="1000" y="468" width="104" height="104" rx="26" fill="#FFF8EE" stroke="#E2D0BC"/>
+  <text x="1052" y="509" text-anchor="middle" class="flowLabel">Rezultat</text>
+  <text x="1052" y="541" text-anchor="middle" class="flowLabel">modela</text>
+
+  <rect x="626" y="334" width="314" height="42" rx="21" fill="#FFFFFF" fill-opacity="0.12" stroke="#7FAAA2" stroke-opacity="0.25"/>
+  <text x="783" y="363" text-anchor="middle" class="modelSmall">Občina × teden</text>
+
+  <text x="783" y="538" text-anchor="middle" class="modelMain">CatBoost</text>
+  <text x="783" y="590" text-anchor="middle" class="modelSub">učenje modela</text>
+  <text x="783" y="632" text-anchor="middle" class="modelSub">borelioza / KME</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="1130" y="332" width="364" height="122" rx="30" fill="#FFFFFF" stroke="#D8E3DF"/>
+    <rect x="1130" y="498" width="364" height="122" rx="30" fill="#FFFFFF" stroke="#D8E3DF"/>
+    <rect x="1130" y="664" width="364" height="122" rx="30" fill="#FFFFFF" stroke="#D8E3DF"/>
+  </g>
+
+  <circle cx="1164" cy="393" r="8" fill="#6E9D95"/>
+  <circle cx="1164" cy="559" r="8" fill="#6E9D95"/>
+  <circle cx="1164" cy="725" r="8" fill="#6E9D95"/>
+
+  <text x="1190" y="408" class="outputText">Model</text>
+  <text x="1190" y="574" class="outputText">Napovedi</text>
+  <text x="1190" y="740" class="outputText">Zemljevid</text>
+</svg>

@@ -1,0 +1,352 @@
+﻿model_name,target_column,target_label,date,prevalence_per_100k,series_role
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-01-01,117.4124614196086,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-02-01,87.64592190477825,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-03-01,210.01947324352523,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-04-01,481.225722156424,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-05-01,826.8483198563985,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-06-01,1830.642180162066,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-07-01,1382.4903907998985,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-08-01,916.1479384008896,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-09-01,425.0000364061889,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-10-01,568.8716440612021,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-11-01,608.5603634143093,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2017-12-01,216.6342598023764,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-01-01,207.86614192429084,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-02-01,161.67366594111513,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-03-01,176.52124750713588,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-04-01,442.1279844103964,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-05-01,1971.428885710536,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-06-01,2835.888079109968,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-07-01,2603.275967908976,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-08-01,2002.7737801276912,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-09-01,856.2105369738648,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-10-01,666.4914391858215,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-11-01,551.0102492278821,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2018-12-01,222.7137234903116,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-01-01,207.86614192429084,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-02-01,138.22197117022893,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-03-01,170.7447879161651,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-04-01,370.76011090367285,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-05-01,845.5932353943416,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-06-01,1226.1101913217954,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-07-01,1174.0736845282977,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-08-01,944.787826469447,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-09-01,422.7966176971708,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-10-01,491.0945328636369,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-11-01,367.5078292290792,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2019-12-01,195.1369004756173,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-01-01,203.2676046621013,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-02-01,159.52444015830972,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-03-01,162.74715612110384,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-04-01,813.7357806055193,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-05-01,1571.074031862141,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-06-01,2802.1515296495004,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-07-01,3048.689300803252,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-08-01,1670.9782267087592,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-09-01,828.2380024380928,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-10-01,552.6957876191942,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-11-01,354.4987559073549,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2020-12-01,215.92196950720705,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-01-01,146.03064280960402,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-02-01,100.59888726883833,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-03-01,160.6337070905644,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-04-01,361.831481628241,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-05-01,600.3481982172609,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-06-01,897.2771719301223,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-07-01,981.6504322201158,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-08-01,486.7688093653467,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-09-01,402.3955490753533,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-10-01,254.7423435678648,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-11-01,219.045964214406,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2021-12-01,248.25209277632683,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-01-01,106.16354307879932,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-02-01,93.09726085371632,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-03-01,153.52881614472517,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-04-01,254.7925033891184,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-05-01,826.4423507364994,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-06-01,1770.4812414987457,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-07-01,1358.8933514086314,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-08-01,757.8443690548136,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-09-01,489.9855834406122,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-10-01,385.4553256399483,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-11-01,351.1563347991054,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2022-12-01,204.16065976692173,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-01-01,129.1364144726008,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-02-01,88.78128494991306,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-03-01,164.648928452566,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-04-01,271.1864703924617,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-05-01,464.8910921013629,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-06-01,915.254337574558,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-07-01,721.549715865657,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-08-01,579.4996599457961,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-09-01,293.78534292516684,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-10-01,237.288161593404,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-11-01,206.61826315616128,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2023-12-01,87.16707976900554,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-01-01,96.2679638414885,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-02-01,109.10369235368697,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-03-01,163.65553853053044,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-04-01,407.5343802623013,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-05-01,847.1580818050987,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-06-01,1030.067213103927,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-07-01,959.4707062868354,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-08-01,616.1149685855263,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-09-01,264.73690056409333,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-10-01,328.91554312508566,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-11-01,256.7145702439694,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2024-12-01,149.21534395430717,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-01-01,178.09573310675373,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-02-01,99.92764291821658,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-03-01,136.4091633486766,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-04-01,302.9552348790376,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-05-01,864.4534188956832,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-06-01,1241.9578476978347,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-07-01,1746.3545214754993,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-08-01,1132.5132864064549,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-09-01,840.6611229627744,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-10-01,750.2503984177213,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-11-01,493.2936023423072,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2025-12-01,274.40447975954714,observed_history
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-02-01,137.61511046530893,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-03-01,256.19669803317953,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-04-01,428.30191375853155,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-05-01,852.631815860478,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-06-01,1096.304417911655,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-07-01,1423.0355240966055,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-08-01,1061.109327908366,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-09-01,890.5747381334554,predicted_future
+combined_prevalence,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,2026-10-01,802.5034694731339,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-03-01,1.653696639712797,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-04-01,11.57587647798958,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-05-01,24.80544959569196,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-06-01,23.15175295597916,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-07-01,39.688719353107125,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-08-01,29.76653951483035,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-09-01,9.92217983827678,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-10-01,11.57587647798958,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-11-01,13.229573117702376,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2017-12-01,3.307393279425594,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-03-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-04-01,3.2994625702268388,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-05-01,31.34489441715497,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-06-01,67.6389826896502,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-07-01,72.58817654499046,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-08-01,32.994625702268394,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-09-01,6.5989251404536775,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-10-01,19.79677542136104,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-11-01,13.197850280907357,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2018-12-01,4.949193855340259,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-02-01,1.6261408372968107,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-03-01,1.6261408372968107,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-04-01,8.130704186484053,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-05-01,14.635267535671298,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-06-01,35.77509842052984,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-07-01,52.03650679349794,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-08-01,16.261408372968106,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-09-01,9.756845023780864,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-10-01,27.64439423404578,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-11-01,11.382985861077676,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2019-12-01,1.6261408372968107,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-01-01,1.6261408372968107,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-03-01,1.6113579813970678,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-04-01,4.834073944191204,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-05-01,27.393085683750154,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-06-01,77.34518310705926,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-07-01,107.96098475360353,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-08-01,46.729381460514965,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-09-01,24.17036972095601,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-10-01,9.668147888382409,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-11-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2020-12-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-02-01,3.2451253957689783,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-03-01,4.867688093653467,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-04-01,8.112813489422445,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-05-01,8.112813489422445,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-06-01,12.980501583075911,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-07-01,24.338440468267336,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-08-01,8.112813489422445,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-09-01,3.2451253957689783,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-10-01,16.22562697884489,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-11-01,9.735376187306937,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2021-12-01,1.6225626978844891,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-03-01,1.6332852781353742,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-04-01,3.2665705562707483,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-05-01,14.699567503218368,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-06-01,48.998558344061216,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-07-01,62.064840569144216,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-08-01,37.565561397113605,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-09-01,16.33285278135374,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-10-01,4.899855834406122,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-11-01,11.432996946947618,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2022-12-01,4.899855834406122,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-01-01,1.61420518090751,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-03-01,1.61420518090751,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-04-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-05-01,3.22841036181502,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-06-01,19.37046217089012,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-07-01,35.51251397996522,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-08-01,19.37046217089012,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-09-01,8.07102590453755,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-10-01,3.22841036181502,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-11-01,4.84261554272253,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2023-12-01,4.84261554272253,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-01-01,1.6044660640248083,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-02-01,1.6044660640248083,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-03-01,9.626796384148848,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-04-01,11.231262448173656,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-05-01,28.88038915244655,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-06-01,24.066990960372124,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-07-01,32.08932128049617,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-08-01,11.231262448173656,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-09-01,6.417864256099234,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-10-01,12.835728512198468,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-11-01,6.417864256099234,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2024-12-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-01-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-02-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-03-01,1.5861530621939135,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-04-01,6.344612248775655,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-05-01,25.37844899510262,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-06-01,30.13690818168437,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-07-01,31.72306124387828,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-08-01,11.103071435357398,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-09-01,6.344612248775655,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-10-01,11.103071435357398,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-11-01,3.1723061243878274,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2025-12-01,0.0,observed_history
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-02-01,2.059754969749579,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-03-01,5.363421930807064,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-04-01,10.687802874250298,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-05-01,24.3669455885443,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-06-01,28.424342130433594,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-07-01,28.920003293992924,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-08-01,15.827286460165034,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-09-01,10.832235664059068,predicted_future
+kme_prevalence,kme_cases_per_100k,KME prevalence per 100k,2026-10-01,12.101973632474083,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-01-01,117.4124614196086,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-02-01,87.64592190477825,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-03-01,208.36577660381244,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-04-01,469.6498456784344,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-05-01,802.0428702607065,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-06-01,1807.4904272060876,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-07-01,1342.801671446791,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-08-01,886.3813988860592,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-09-01,415.0778565679121,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-10-01,557.2957675832126,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-11-01,595.330790296607,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2017-12-01,213.3268665229508,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-01-01,207.86614192429084,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-02-01,161.67366594111513,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-03-01,176.52124750713588,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-04-01,438.8285218401696,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-05-01,1940.0839912933816,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-06-01,2768.249096420318,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-07-01,2530.687791363985,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-08-01,1969.7791544254228,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-09-01,849.6116118334112,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-10-01,646.6946637644605,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-11-01,537.8123989469748,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2018-12-01,217.76452963497132,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-01-01,207.86614192429084,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-02-01,136.5958303329321,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-03-01,169.11864707886832,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-04-01,362.6294067171888,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-05-01,830.9579678586704,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-06-01,1190.3350929012654,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-07-01,1122.0371777347996,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-08-01,928.526418096479,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-09-01,413.03977267339,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-10-01,463.45013862959104,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-11-01,356.1248433680016,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2019-12-01,193.51075963832048,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-01-01,201.64146382480453,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-02-01,159.52444015830972,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-03-01,161.13579813970676,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-04-01,808.9017066613279,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-05-01,1543.680946178391,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-06-01,2724.8063465424416,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-07-01,2940.7283160496486,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-08-01,1624.2488452482444,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-09-01,804.0676327171368,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-10-01,543.0276397308119,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-11-01,354.4987559073549,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2020-12-01,215.92196950720705,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-01-01,146.03064280960402,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-02-01,97.35376187306936,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-03-01,155.76601899691096,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-04-01,353.7186681388186,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-05-01,592.2353847278384,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-06-01,884.2966703470465,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-07-01,957.3119917518484,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-08-01,478.65599587592425,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-09-01,399.1504236795843,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-10-01,238.5167165890199,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-11-01,209.31058802709907,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2021-12-01,246.62953007844231,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-01-01,106.16354307879932,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-02-01,93.09726085371632,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-03-01,151.8955308665898,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-04-01,251.5259328328476,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-05-01,811.7427832332809,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-06-01,1721.4826831546843,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-07-01,1296.828510839487,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-08-01,720.2788076577,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-09-01,473.65273065925845,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-10-01,380.55546980554215,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-11-01,339.72333785215784,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2022-12-01,199.26080393251564,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-01-01,127.5222092916933,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-02-01,88.78128494991306,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-03-01,163.0347232716585,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-04-01,271.1864703924617,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-05-01,461.6626817395479,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-06-01,895.8838754036681,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-07-01,686.0372018856917,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-08-01,560.1291977749061,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-09-01,285.71431702062927,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-10-01,234.05975123158896,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-11-01,201.77564761343876,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2023-12-01,82.324464226283,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-01-01,94.66349777746368,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-02-01,107.49922628966216,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-03-01,154.02874214638155,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-04-01,396.3031178141276,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-05-01,818.2776926526523,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-06-01,1006.0002221435548,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-07-01,927.3813850063392,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-08-01,604.8837061373528,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-09-01,258.31903630799417,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-10-01,316.0798146128872,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-11-01,250.2967059878701,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2024-12-01,149.21534395430717,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-01-01,178.09573310675373,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-02-01,99.92764291821658,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-03-01,134.82301028648268,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-04-01,296.6106226302619,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-05-01,839.0749699005804,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-06-01,1211.8209395161502,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-07-01,1714.631460231621,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-08-01,1121.410214971097,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-09-01,834.3165107139987,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-10-01,739.1473269823639,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-11-01,490.12129621791945,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2025-12-01,274.40447975954714,observed_history
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-02-01,135.5873871716454,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-03-01,251.02660837868666,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-04-01,417.85915283807157,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-05-01,828.1661498353253,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-06-01,1067.752163219507,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-07-01,1393.8867196902252,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-08-01,1045.4623032556897,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-09-01,879.8823435382741,predicted_future
+lyme_prevalence,lyme_cases_per_100k,Lyme prevalence per 100k,2026-10-01,790.3286971121138,predicted_future

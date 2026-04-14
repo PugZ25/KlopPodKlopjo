@@ -20,6 +20,7 @@ Projekt teče v štirih korakih:
 ```text
 KlopPodKlopjo/
 ├── .github/                # GitHub workflowi in nastavitve za sodelovanje
+├── contrib/                # Zunanji prispevki in uvozeni eksperimentalni workspacei
 ├── backend/                # Prostor za prihodnji API in strežniško logiko
 ├── data/                   # Surovi, vmesni in končni podatki
 ├── docs/                   # Ideja, metodologija in gradiva za oddajo
@@ -72,6 +73,7 @@ Trenutni uradni baseline za boreliozo je `catboost_tick_borne_lyme_v1`.
 - avtomatiziran korak obdelave spada v `pipelines/`
 - uporabniški vmesnik spada v `frontend/`
 - strežniška logika in API spadata v `backend/`
+- zunanji snapshoti in ločeni eksperimentalni workspacei spadajo v `contrib/`
 
 Pri vsakem novem viru v `data/raw/` dodamo še kratek `README.md` z virom, datumom prevzema in opisom datotek.
 

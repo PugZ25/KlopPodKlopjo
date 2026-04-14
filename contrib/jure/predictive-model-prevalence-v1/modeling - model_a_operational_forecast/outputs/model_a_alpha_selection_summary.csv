@@ -1,0 +1,4 @@
+﻿model_name,selected_alpha,selected_alpha_mean_fold_rmse
+lyme_prevalence,100.0,473.0033360819216
+kme_prevalence,1.0,8.638739290742205
+combined_prevalence,100.0,477.1894387211954

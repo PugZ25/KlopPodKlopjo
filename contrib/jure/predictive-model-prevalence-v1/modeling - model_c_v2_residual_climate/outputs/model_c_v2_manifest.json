@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-04-14T12:43:25.302127+00:00",
+  "workspace_dir": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_v2_residual_climate",
+  "copied_inputs": {
+    "model_c_observed_reference_yearly.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_v2_residual_climate\\inputs\\model_c_observed_reference_yearly.csv",
+    "model_c_scenario_calibration_table.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_v2_residual_climate\\inputs\\model_c_scenario_calibration_table.csv",
+    "model_c_scenario_projection_table.csv": "C:\\Users\\George\\RavenNode-MAIN-laptop_J\\Libary MAIN JS\\Python-combined model v1\\Predikcijski model prevalence V1\\modeling - model_c_v2_residual_climate\\inputs\\model_c_scenario_projection_table.csv"
+  },
+  "final_validation_years": [
+    2024,
+    2025
+  ],
+  "inner_validation_years": [
+    2022,
+    2023
+  ],
+  "graph_end_year": 2035,
+  "long_end_year": 2100,
+  "feature_columns": [
+    "baseline_prevalence_per_100k",
+    "recent_momentum",
+    "thermal_humidity_index",
+    "wetness_index"
+  ],
+  "compact_index_feature_stats": {
+    "air_temperature_c_mean_climate_anomaly_vs_2016_2025": {
+      "mean": -3.552713678800501e-16,
+      "std": 0.14269223112979396
+    },
+    "near_surface_specific_humidity_g_kg_climate_anomaly_vs_2016_2025": {
+      "mean": 5.412337245047638e-17,
+      "std": 0.04631386669964483
+    },
+    "precipitation_sum_mm_proxy_climate_anomaly_vs_2016_2025": {
+      "mean": 9.094947017729283e-14,
+      "std": 36.007417864179054
+    },
+    "soil_moisture_upper_portion_kg_m2_climate_anomaly_vs_2016_2025": {
+      "mean": 1.4266365866433261e-15,
+      "std": 0.1962146072071128
+    }
+  }
+}

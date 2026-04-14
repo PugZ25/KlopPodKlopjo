@@ -1,0 +1,61 @@
+﻿scenario_family,year,target_column,target_label,baseline_prevalence_per_100k,recent_momentum,predicted_residual,predicted_prevalence_per_100k,table_role,model_name
+high_emissions,2026,lyme_cases_per_100k,Lyme prevalence per 100k,7939.903481400254,2246.2488823894782,-2103.25641862679,5836.647062773464,scenario_projection_recursive,lyme_prevalence
+high_emissions,2027,lyme_cases_per_100k,Lyme prevalence per 100k,5836.647062773464,-449.85261556130627,-209.9092914176672,5626.737771355797,scenario_projection_recursive,lyme_prevalence
+high_emissions,2028,lyme_cases_per_100k,Lyme prevalence per 100k,5626.737771355797,-841.0250004873751,-86.02459919696321,5540.713172158834,scenario_projection_recursive,lyme_prevalence
+high_emissions,2029,lyme_cases_per_100k,Lyme prevalence per 100k,5540.713172158834,-127.31949660386454,1879.3313480192166,7420.04452017805,scenario_projection_recursive,lyme_prevalence
+high_emissions,2030,lyme_cases_per_100k,Lyme prevalence per 100k,7420.04452017805,1224.2126989471562,-1993.4006477058465,5426.643872472204,scenario_projection_recursive,lyme_prevalence
+high_emissions,2031,lyme_cases_per_100k,Lyme prevalence per 100k,5426.643872472204,-702.489982464158,-350.1295447680577,5076.514327704146,scenario_projection_recursive,lyme_prevalence
+high_emissions,2032,lyme_cases_per_100k,Lyme prevalence per 100k,5076.514327704146,-897.8865790806531,4943.806202371816,10020.320530075962,scenario_projection_recursive,lyme_prevalence
+high_emissions,2033,lyme_cases_per_100k,Lyme prevalence per 100k,10020.320530075962,3179.1609533251913,-91.46718754423023,9928.853342531731,scenario_projection_recursive,lyme_prevalence
+high_emissions,2034,lyme_cases_per_100k,Lyme prevalence per 100k,9928.853342531731,1586.9572757611168,4319.397878805754,14248.251221337485,scenario_projection_recursive,lyme_prevalence
+high_emissions,2035,lyme_cases_per_100k,Lyme prevalence per 100k,14248.251221337485,2849.1095233557608,-946.1979222864716,13302.053299051013,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2026,lyme_cases_per_100k,Lyme prevalence per 100k,7939.903481400254,2246.2488823894782,1366.7370461485446,9306.6405275488,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2027,lyme_cases_per_100k,Lyme prevalence per 100k,9306.6405275488,1863.476360955584,-1183.2725138286628,8123.368013720137,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2028,lyme_cases_per_100k,Lyme prevalence per 100k,8123.368013720137,-333.26932716959345,123.81212641293541,8247.180140133072,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2029,lyme_cases_per_100k,Lyme prevalence per 100k,8247.180140133072,-311.8827536675981,-1840.4743592359207,6406.705780897151,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2030,lyme_cases_per_100k,Lyme prevalence per 100k,6406.705780897151,-1185.7121973529693,953.2599640372121,7359.965744934363,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2031,lyme_cases_per_100k,Lyme prevalence per 100k,7359.965744934363,22.015189612834547,3805.661321256438,11165.627066190802,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2032,lyme_cases_per_100k,Lyme prevalence per 100k,11165.627066190802,2854.86086885003,-771.7133754373431,10393.91369075346,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2033,lyme_cases_per_100k,Lyme prevalence per 100k,10393.91369075346,754.0781901272512,-1253.8073789104958,9140.106311842963,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2034,lyme_cases_per_100k,Lyme prevalence per 100k,9140.106311842963,-1093.1093777527785,4153.031197949894,13293.137509792858,scenario_projection_recursive,lyme_prevalence
+medium_emissions,2035,lyme_cases_per_100k,Lyme prevalence per 100k,13293.137509792858,2350.751672329763,-2286.7405953609577,11006.3969144319,scenario_projection_recursive,lyme_prevalence
+high_emissions,2026,kme_cases_per_100k,KME prevalence per 100k,124.90479710507212,2.108255986713573,43.91274234547322,168.81753945054533,scenario_projection_recursive,kme_prevalence
+high_emissions,2027,kme_cases_per_100k,KME prevalence per 100k,147.2790014561962,21.538537994349127,-8.783292352606562,138.49570910358963,scenario_projection_recursive,kme_prevalence
+high_emissions,2028,kme_cases_per_100k,KME prevalence per 100k,144.77543388197356,-6.2797247783839225,53.12971083623735,197.90514471821092,scenario_projection_recursive,kme_prevalence
+high_emissions,2029,kme_cases_per_100k,KME prevalence per 100k,168.40613109078194,29.49901362742898,19.13559758728535,187.5417286780673,scenario_projection_recursive,kme_prevalence
+high_emissions,2030,kme_cases_per_100k,KME prevalence per 100k,174.64752749995594,12.89420117811136,-38.84284371771092,135.80468378224504,scenario_projection_recursive,kme_prevalence
+high_emissions,2031,kme_cases_per_100k,KME prevalence per 100k,173.75051905950772,-37.94583527726269,24.092355382570663,197.8428744420784,scenario_projection_recursive,kme_prevalence
+high_emissions,2032,kme_cases_per_100k,KME prevalence per 100k,173.72976230079692,24.113112141281476,119.22757517427227,292.9573374750692,scenario_projection_recursive,kme_prevalence
+high_emissions,2033,kme_cases_per_100k,KME prevalence per 100k,208.86829856646423,84.08903890860498,49.838993690545564,258.7072922570098,scenario_projection_recursive,kme_prevalence
+high_emissions,2034,kme_cases_per_100k,KME prevalence per 100k,249.83583472471912,8.871457532290663,159.28743993384967,409.1232746585688,scenario_projection_recursive,kme_prevalence
+high_emissions,2035,kme_cases_per_100k,KME prevalence per 100k,320.2626347968826,88.8606398616862,-12.042622329260748,308.22001246762187,scenario_projection_recursive,kme_prevalence
+medium_emissions,2026,kme_cases_per_100k,KME prevalence per 100k,124.90479710507212,2.108255986713573,201.77266172679143,326.67745883186353,scenario_projection_recursive,kme_prevalence
+medium_emissions,2027,kme_cases_per_100k,KME prevalence per 100k,199.89897458330225,126.77848424856128,32.368935716591395,232.26791029989363,scenario_projection_recursive,kme_prevalence
+medium_emissions,2028,kme_cases_per_100k,KME prevalence per 100k,228.6528074078476,3.615102892046025,22.896172075176022,251.54897948302363,scenario_projection_recursive,kme_prevalence
+medium_emissions,2029,kme_cases_per_100k,KME prevalence per 100k,270.1647828715936,-18.615803388569987,-97.84808275342155,172.31670011817207,scenario_projection_recursive,kme_prevalence
+medium_emissions,2030,kme_cases_per_100k,KME prevalence per 100k,218.71119663369643,-46.39449651552437,24.155414288661913,242.86661092235835,scenario_projection_recursive,kme_prevalence
+medium_emissions,2031,kme_cases_per_100k,KME prevalence per 100k,222.24409684118464,20.622514081173705,127.32910342373025,349.5732002649149,scenario_projection_recursive,kme_prevalence
+medium_emissions,2032,kme_cases_per_100k,KME prevalence per 100k,254.91883710181511,94.65436316309976,8.967198450191095,263.8860355520062,scenario_projection_recursive,kme_prevalence
+medium_emissions,2033,kme_cases_per_100k,KME prevalence per 100k,285.4419489130932,-21.555913361086994,-11.653672504928313,273.7882764081649,scenario_projection_recursive,kme_prevalence
+medium_emissions,2034,kme_cases_per_100k,KME prevalence per 100k,295.7491707416953,-21.960894333530405,79.64022147834879,375.3893922200441,scenario_projection_recursive,kme_prevalence
+medium_emissions,2035,kme_cases_per_100k,KME prevalence per 100k,304.3545680600717,71.0348241599724,-4.484624308136507,299.8699437519352,scenario_projection_recursive,kme_prevalence
+high_emissions,2026,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,8066.91653449204,2248.357138376193,-2094.5294571236286,5972.387077368412,scenario_projection_recursive,combined_prevalence
+high_emissions,2027,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,5972.387077368412,-450.3657608040221,-215.1462296756397,5757.240847692772,scenario_projection_recursive,combined_prevalence
+high_emissions,2028,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,5757.240847692772,-841.607305491636,-62.007917378702814,5695.23293031407,scenario_projection_recursive,combined_prevalence
+high_emissions,2029,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,5695.23293031407,-113.05402147768291,1920.6591414159254,7615.892071729995,scenario_projection_recursive,combined_prevalence
+high_emissions,2030,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,7615.892071729995,1259.7701218177162,-2048.7301783639873,5567.161893366008,scenario_projection_recursive,combined_prevalence
+high_emissions,2031,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,5567.161893366008,-725.6004051040163,-330.9955253872024,5236.166367978806,scenario_projection_recursive,combined_prevalence
+high_emissions,2032,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,5236.166367978806,-903.5737430461304,5087.642161893131,10323.808529871938,scenario_projection_recursive,combined_prevalence
+high_emissions,2033,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,10323.808529871938,3281.4295994663526,-86.8194822982548,10236.989047573683,scenario_projection_recursive,combined_prevalence
+high_emissions,2034,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,10236.989047573683,1638.0010657655403,4468.637887231534,14705.626934805216,scenario_projection_recursive,combined_prevalence
+high_emissions,2035,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,14705.626934805216,2950.1520973882707,-977.3136788785034,13728.313255926712,scenario_projection_recursive,combined_prevalence
+medium_emissions,2026,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,8066.91653449204,2248.357138376193,1513.7261466304092,9580.64268112245,scenario_projection_recursive,combined_prevalence
+medium_emissions,2027,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,9580.64268112245,1955.137975032003,-1202.6055735405503,8378.0371075819,scenario_projection_recursive,combined_prevalence
+medium_emissions,2028,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,8378.0371075819,-297.1616668168972,128.9465839752936,8506.983691557194,scenario_projection_recursive,combined_prevalence
+medium_emissions,2029,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,8506.983691557194,-314.90413519665344,-1901.2198058597887,6605.763885697405,scenario_projection_recursive,combined_prevalence
+medium_emissions,2030,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,6605.763885697405,-1224.4976759147612,998.5369131341974,7604.300798831603,scenario_projection_recursive,combined_prevalence
+medium_emissions,2031,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,7604.300798831603,31.951340136201907,3936.5850619514613,11540.885860783064,scenario_projection_recursive,combined_prevalence
+medium_emissions,2032,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,11540.885860783064,2957.235679012374,-800.3494403527736,10740.536420430291,scenario_projection_recursive,combined_prevalence
+medium_emissions,2033,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,10740.536420430291,778.6287270819721,-1277.0760054078671,9463.460415022424,scenario_projection_recursive,combined_prevalence
+medium_emissions,2034,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,9463.460415022424,-1118.1671503895013,4277.733543009968,13741.193958032392,scenario_projection_recursive,combined_prevalence
+medium_emissions,2035,tick_borne_cases_total_per_100k,Combined tick-borne prevalence per 100k,13741.193958032392,2426.1303602040243,-2336.779687900619,11404.414270131772,scenario_projection_recursive,combined_prevalence

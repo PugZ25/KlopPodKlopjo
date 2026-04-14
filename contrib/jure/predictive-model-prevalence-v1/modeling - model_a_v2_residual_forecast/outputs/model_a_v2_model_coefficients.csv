@@ -1,0 +1,34 @@
+﻿model_name,target_label,alpha,feature_name,coefficient,coefficient_abs
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_baseline_gap_q4_mean,-91.14143233733762,91.14143233733762
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_baseline_same_month_last_year,-90.36396629228139,90.36396629228139
+lyme_prevalence,Lyme prevalence per 100k,100.0,lyme_cases_per_100k_baseline_gap_prev_dec,-90.10985019873695,90.10985019873695
+lyme_prevalence,Lyme prevalence per 100k,100.0,target_month_of_year_cos,-59.48750387140627,59.48750387140627
+lyme_prevalence,Lyme prevalence per 100k,100.0,issue_month,36.517477705559635,36.517477705559635
+lyme_prevalence,Lyme prevalence per 100k,100.0,target_month_of_year_sin,-16.890894698064685,16.890894698064685
+lyme_prevalence,Lyme prevalence per 100k,100.0,soil_temperature_level_1_c_mean_anomaly,12.905383564675079,12.905383564675079
+lyme_prevalence,Lyme prevalence per 100k,100.0,precipitation_sum_mm_anomaly,9.711270818289472,9.711270818289472
+lyme_prevalence,Lyme prevalence per 100k,100.0,air_temperature_c_mean_anomaly,8.808935522762722,8.808935522762722
+lyme_prevalence,Lyme prevalence per 100k,100.0,lead_month,-6.309239461865468,6.309239461865468
+lyme_prevalence,Lyme prevalence per 100k,100.0,relative_humidity_pct_mean_anomaly,-1.263126746138675,1.263126746138675
+kme_prevalence,KME prevalence per 100k,100.0,kme_cases_per_100k_baseline_gap_q4_mean,-3.46192564983416,3.46192564983416
+kme_prevalence,KME prevalence per 100k,100.0,kme_cases_per_100k_baseline_same_month_last_year,-2.944367416749487,2.944367416749487
+kme_prevalence,KME prevalence per 100k,100.0,kme_cases_per_100k_baseline_gap_prev_dec,-2.8730070487224686,2.8730070487224686
+kme_prevalence,KME prevalence per 100k,100.0,target_month_of_year_cos,-1.7430607533990508,1.7430607533990508
+kme_prevalence,KME prevalence per 100k,100.0,issue_month,1.0877506581858862,1.0877506581858862
+kme_prevalence,KME prevalence per 100k,100.0,target_month_of_year_sin,-0.7580986757986963,0.7580986757986963
+kme_prevalence,KME prevalence per 100k,100.0,precipitation_sum_mm_anomaly,0.29600686736507137,0.29600686736507137
+kme_prevalence,KME prevalence per 100k,100.0,air_temperature_c_mean_anomaly,-0.15841259999836665,0.15841259999836665
+kme_prevalence,KME prevalence per 100k,100.0,relative_humidity_pct_mean_anomaly,-0.1321090967990113,0.1321090967990113
+kme_prevalence,KME prevalence per 100k,100.0,soil_temperature_level_1_c_mean_anomaly,-0.0975008014386646,0.0975008014386646
+kme_prevalence,KME prevalence per 100k,100.0,lead_month,0.04478128140708379,0.04478128140708379
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_baseline_gap_q4_mean,-94.11378975724617,94.11378975724617
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_baseline_same_month_last_year,-92.83302863567475,92.83302863567475
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,tick_borne_cases_total_per_100k_baseline_gap_prev_dec,-92.47619881849991,92.47619881849991
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,target_month_of_year_cos,-61.113280821609635,61.113280821609635
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,issue_month,37.53757696328245,37.53757696328245
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,target_month_of_year_sin,-17.591143937910253,17.591143937910253
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,soil_temperature_level_1_c_mean_anomaly,12.819459208159643,12.819459208159643
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,precipitation_sum_mm_anomaly,10.006841467865959,10.006841467865959
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,air_temperature_c_mean_anomaly,8.65316087356883,8.65316087356883
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,lead_month,-6.270479648632063,6.270479648632063
+combined_prevalence,Combined tick-borne prevalence per 100k,100.0,relative_humidity_pct_mean_anomaly,-1.4151046841534622,1.4151046841534622
