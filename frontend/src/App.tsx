@@ -356,8 +356,8 @@ function App() {
             <span className="section-kicker">Osrednje orodje</span>
             <h2>Preverjanje tveganja po občinah</h2>
             <p>
-              {activeModel.methodologyNote} Rezultat je namenjen hitri
-              orientaciji in presoji previdnosti, ne medicinski diagnozi.
+              {activeModel.methodologyNote} Namenjena je hitri orientaciji, ne
+              medicinski diagnozi.
             </p>
           </div>
 
