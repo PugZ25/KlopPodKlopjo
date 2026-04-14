@@ -13,7 +13,6 @@ import {
   ixodesSections,
   noticeText,
   preventionGroups,
-  primaryNavItems,
   regionInsight,
   removalSources,
   removalSteps,
@@ -321,24 +320,6 @@ function App() {
 
   return (
     <div className="site-page">
-      <header className="site-header">
-        <div className="brand-lockup">
-          <img className="brand-logo" src={brandLogo} alt="Logotip Klop pod klopjo" />
-          <div className="brand-copy">
-            <span className="eyebrow">Klop pod klopjo</span>
-            <strong>Preverjanje tveganja in zaščita pred klopi v Sloveniji</strong>
-          </div>
-        </div>
-
-        <nav className="site-nav" aria-label="Glavna navigacija">
-          {primaryNavItems.map((item) => (
-            <a key={item.href} className="site-nav-link" href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </header>
-
       <div className="notice-bar" role="status" aria-live="polite">
         <div className="notice-track">
           <span>{noticeText}</span>
@@ -349,7 +330,20 @@ function App() {
         <section className="hero-panel">
           <div className="hero-layout">
             <div className="hero-copy-block">
-              <h1>Klop pod klopjo</h1>
+              <div className="hero-brand-lockup">
+                <div className="hero-logo-badge" aria-hidden="true">
+                  <img className="hero-logo-image" src={brandLogo} alt="" />
+                </div>
+
+                <div className="hero-title-stack">
+                  <span className="eyebrow">Interaktivni atlas tveganja</span>
+                  <h1>Klop pod klopjo</h1>
+                  <p className="hero-subtitle">
+                    Preverjanje tveganja po občinah in zaščita pred klopi v
+                    Sloveniji.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -363,26 +357,13 @@ function App() {
         </nav>
 
         <section id="preverjanje-tveganja" className="content-section risk-stage">
-          <div className="risk-stage-header">
-            <div className="section-header">
-              <span className="section-kicker">Osrednje orodje</span>
-              <h2>Preverjanje tveganja po občinah</h2>
-              <p>
-                {activeModel.methodologyNote} Rezultat je namenjen hitri
-                orientaciji in presoji previdnosti, ne medicinski diagnozi.
-              </p>
-            </div>
-
-            <div className="risk-meta-grid">
-              <article className="risk-meta-card">
-                <span className="metric-label">Referenčni teden</span>
-                <strong>{referenceRangeLabel}</strong>
-              </article>
-              <article className="risk-meta-card">
-                <span className="metric-label">Posodobitev modela</span>
-                <strong>{formatDisplayDate(activeModel.asOfDate)}</strong>
-              </article>
-            </div>
+          <div className="section-header">
+            <span className="section-kicker">Osrednje orodje</span>
+            <h2>Preverjanje tveganja po občinah</h2>
+            <p>
+              {activeModel.methodologyNote} Rezultat je namenjen hitri
+              orientaciji in presoji previdnosti, ne medicinski diagnozi.
+            </p>
           </div>
 
           <div className="content-grid prediction-grid">

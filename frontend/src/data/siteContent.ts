@@ -5,7 +5,7 @@ export const primaryNavItems = [
 ] as const
 
 export const topicNavItems = [
-  { label: 'Interaktivni pregled', href: '#preverjanje-tveganja' },
+  { label: 'Preverite tveganje', href: '#preverjanje-tveganja' },
   { label: 'Cepljenje', href: '#cepljenje' },
   { label: 'Preventiva', href: '#preventiva' },
   { label: 'Odstranitev klopa', href: '#odstranitev-klopa' },
