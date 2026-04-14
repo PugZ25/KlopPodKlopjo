@@ -336,12 +336,7 @@ function App() {
                 </div>
 
                 <div className="hero-title-stack">
-                  <span className="eyebrow">Interaktivni atlas tveganja</span>
                   <h1>Klop pod klopjo</h1>
-                  <p className="hero-subtitle">
-                    Preverjanje tveganja po občinah in zaščita pred klopi v
-                    Sloveniji.
-                  </p>
                 </div>
               </div>
             </div>
