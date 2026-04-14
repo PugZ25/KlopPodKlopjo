@@ -47,7 +47,7 @@ export const regions: RegionRisk[] = [
       'Bolj suho obdobje trenutno znižuje relativni okoljski indeks pogojev, povezanih z boreliozo ali KME, vendar osnovna izpostavljenost ostaja.',
     factors: ['suho obdobje', 'manj vlage v tleh', 'nižja okoljska ogroženost'],
     recommendation:
-      'Osnovna zaščita je še vedno smiselna, posebej v senčnih in zaraščenih delih ter ob daljšem zadrževanju v naravi.',
+      'Osnovna preventiva je še vedno smiselna, posebej v senčnih in zaraščenih delih ter ob daljšem zadrževanju v naravi.',
     coordinates: [45.5469, 13.7294],
   },
 ]

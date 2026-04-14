@@ -264,22 +264,6 @@ function App() {
     return null
   }
 
-  const quickLocations = [
-    selectedLocation,
-    ...activeModel.featuredLocations
-      .map((featuredLocation) =>
-        activeModel.locations.find(
-          (location) => location.id === featuredLocation.id,
-        ),
-      )
-      .filter((location): location is (typeof activeModel.locations)[number] =>
-        Boolean(location),
-      ),
-  ].filter(
-    (location, index, locations) =>
-      locations.findIndex((candidate) => candidate.id === location.id) === index,
-  ).slice(0, 2)
-
   const mapLocations = activeModel.locations.map((location) => ({
     id: location.id,
     municipalityCode: location.municipalityCode,
@@ -512,33 +496,6 @@ function App() {
                 Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat
                 se prikaže samo kot nizko, srednje ali visoko tveganje.
               </p>
-
-              <div className="region-list" role="list">
-                <div className="region-list-header">
-                  <span className="section-kicker">Hitri skoki</span>
-                  <p>Dva hitra predloga za pregled.</p>
-                </div>
-
-                {quickLocations.map((location) => (
-                  <button
-                    key={location.id}
-                    type="button"
-                    className={`region-button${
-                      location.id === selectedLocation.id
-                        ? ' region-button-active'
-                        : ''
-                    }`}
-                    onClick={() => setSelectedMunicipalityCode(location.municipalityCode)}
-                  >
-                    <span>{location.municipalityName}</span>
-                    <span className="region-button-meta">
-                      <span className={`risk-pill ${levelClassName[location.level]}`}>
-                        {location.level}
-                      </span>
-                    </span>
-                  </button>
-                ))}
-              </div>
             </article>
 
             <article className="insight-card">
@@ -592,11 +549,11 @@ function App() {
 
         <section id="zascita" className="content-section knowledge-section">
           <div className="section-header">
-            <span className="section-kicker">Zaščita</span>
+            <span className="section-kicker">Preventiva</span>
             <h2>Ukrepi, ki jih rabiš najhitreje</h2>
           </div>
 
-          <nav className="subtopic-rail" aria-label="Skoki po zaščitnih vsebinah">
+          <nav className="subtopic-rail" aria-label="Skoki po preventivnih vsebinah">
             <a className="subtopic-link" href="#cepljenje">
               Cepljenje
             </a>
@@ -612,7 +569,7 @@ function App() {
             <SectionAccordion
               id="cepljenje"
               kicker="Cepljenje"
-              title="Zaščita pred KME"
+              title="Preventiva proti KME"
               description="Kdo se lahko cepi, kako poteka shema in kam se naročiš."
               defaultOpen
             >

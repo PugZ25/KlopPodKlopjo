@@ -1,6 +1,6 @@
 export const primaryNavItems = [
   { label: 'Preverjanje tveganja', href: '#preverjanje-tveganja' },
-  { label: 'Zaščita', href: '#zascita' },
+  { label: 'Preventiva', href: '#zascita' },
   { label: 'Informacije', href: '#znanje' },
 ] as const
 
