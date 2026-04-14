@@ -733,7 +733,6 @@ function App() {
               kicker="Ixodes ricinus"
               title="Navadni gozdni klop"
               description="Habitat, življenjski cikel in kako klop najde gostitelja."
-              defaultOpen
             >
               <div className="copy-flow intro-copy">
                 <p>
