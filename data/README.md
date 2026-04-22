@@ -6,6 +6,7 @@ model ali aplikacijo.
 
 ## Stopnje obdelave
 
+- `reference/`: lahki, namensko verzionirani referenčni artefakti za deploy ali avtomatizacijo
 - `raw/`: originalni preneseni podatki iz virov
 - `interim/`: očiščeni ali združeni vmesni podatki
 - `processed/`: končni podatki za model, validacijo ali frontend

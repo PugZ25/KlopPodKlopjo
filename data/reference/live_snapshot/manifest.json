@@ -1,0 +1,22 @@
+{
+  "generatedFrom": {
+    "liveFrontendModule": "frontend/src/data/liveMunicipalityRisk.ts",
+    "trainingDataset": "data/processed/training/obcina_weekly_tick_borne_catboost_ready.csv"
+  },
+  "municipalityCount": 212,
+  "staticFeatureColumnCount": 15,
+  "models": {
+    "catboost_tick_borne_lyme_env_v2": {
+      "holdoutValueCount": 31588,
+      "modelPath": "data/reference/live_snapshot/catboost_tick_borne_lyme_env_v2/model.cbm",
+      "metadataPath": "data/reference/live_snapshot/catboost_tick_borne_lyme_env_v2/metadata.json",
+      "holdoutValuesPath": "data/reference/live_snapshot/catboost_tick_borne_lyme_env_v2/holdout_values.json"
+    },
+    "catboost_tick_borne_kme_env_v2": {
+      "holdoutValueCount": 30740,
+      "modelPath": "data/reference/live_snapshot/catboost_tick_borne_kme_env_v2/model.cbm",
+      "metadataPath": "data/reference/live_snapshot/catboost_tick_borne_kme_env_v2/metadata.json",
+      "holdoutValuesPath": "data/reference/live_snapshot/catboost_tick_borne_kme_env_v2/holdout_values.json"
+    }
+  }
+}

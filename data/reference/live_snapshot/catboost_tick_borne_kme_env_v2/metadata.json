@@ -1,0 +1,307 @@
+{
+  "created_at_utc": "2026-04-12T16:46:54.425691+00:00",
+  "config_path": "/Users/zankespert/Desktop/KlopPodKlopjo/ml/training/example_tick_borne_kme_env_v2_config.json",
+  "dataset_path": "/Users/zankespert/Desktop/KlopPodKlopjo/data/processed/training/obcina_weekly_tick_borne_catboost_ready.csv",
+  "output_dir": "/Users/zankespert/Desktop/KlopPodKlopjo/data/processed/training/catboost_tick_borne_kme_env_v2",
+  "problem_type": "binary_classification",
+  "sample_weight": {
+    "column": "log_population_total",
+    "transform": "expm1",
+    "normalize": "mean"
+  },
+  "sample_weight_summary": {
+    "min": 0.03246182516883911,
+    "mean": 1.0,
+    "max": 30.37395338554981
+  },
+  "feature_columns": [
+    "dominant_clc_code",
+    "air_temperature_c_mean",
+    "relative_humidity_pct_mean",
+    "precipitation_sum_mm",
+    "soil_temperature_level_1_c_mean",
+    "soil_temperature_level_2_c_mean",
+    "soil_water_layer_1_m3_m3_mean",
+    "humidity_hours_ge_80_sum",
+    "wet_hours_ge_0_1mm_sum",
+    "tick_activity_window_hours_sum",
+    "growing_degree_hours_base_5_c_sum",
+    "rainy_days_ge_1mm_count",
+    "humid_days_ge_16h_count",
+    "tick_favorable_days_ge_6h_count",
+    "air_temperature_c_mean_lag_1w",
+    "air_temperature_c_mean_lag_2w",
+    "air_temperature_c_mean_lag_4w",
+    "air_temperature_c_mean_rolling_4w_mean",
+    "relative_humidity_pct_mean_lag_1w",
+    "relative_humidity_pct_mean_lag_4w",
+    "precipitation_sum_mm_lag_1w",
+    "precipitation_sum_mm_lag_4w",
+    "soil_water_layer_1_m3_m3_mean_lag_1w",
+    "soil_water_layer_1_m3_m3_mean_lag_4w",
+    "tick_activity_window_hours_sum_lag_1w",
+    "tick_activity_window_hours_sum_lag_4w",
+    "tick_activity_window_hours_sum_rolling_4w_mean",
+    "week_of_year_sin",
+    "week_of_year_cos",
+    "elevation_m_mean",
+    "elevation_m_std",
+    "elevation_m_range",
+    "dominant_clc_cover_pct",
+    "urban_cover_pct",
+    "agricultural_cover_pct",
+    "grassland_pasture_cover_pct",
+    "forest_cover_pct",
+    "broad_leaved_forest_cover_pct",
+    "coniferous_forest_cover_pct",
+    "mixed_forest_cover_pct",
+    "shrub_transitional_cover_pct",
+    "wetland_cover_pct",
+    "water_cover_pct"
+  ],
+  "categorical_columns": [
+    "dominant_clc_code"
+  ],
+  "cat_feature_indices": [
+    0
+  ],
+  "row_count": 106000,
+  "split_summary": {
+    "train": {
+      "row_count": 75260,
+      "unique_time_count": 355,
+      "start_time": "2016-04-04 00:00:00",
+      "end_time": "2023-01-16 00:00:00"
+    },
+    "validation": {
+      "row_count": 16112,
+      "unique_time_count": 76,
+      "start_time": "2023-01-23 00:00:00",
+      "end_time": "2024-07-01 00:00:00"
+    },
+    "test": {
+      "row_count": 14628,
+      "unique_time_count": 69,
+      "start_time": "2024-07-08 00:00:00",
+      "end_time": "2025-10-27 00:00:00"
+    }
+  },
+  "catboost": {
+    "iterations": 1800,
+    "learning_rate": 0.03,
+    "depth": 5,
+    "l2_leaf_reg": 12.0,
+    "thread_count": null,
+    "random_seed": 42,
+    "early_stopping_rounds": 150,
+    "verbose": 100,
+    "loss_function": "Logloss",
+    "eval_metric": "AUC",
+    "auto_class_weights": "Balanced",
+    "resolved_loss_function": "Logloss",
+    "best_iteration": 634
+  },
+  "metrics": {
+    "train": {
+      "accuracy": 0.9155328195588626,
+      "precision": 0.39662775616083007,
+      "recall": 0.6420323325635104,
+      "f1": 0.4903391325262567,
+      "positive_rate": 0.0632872707945788,
+      "roc_auc": 0.9180617084820566,
+      "pr_auc": 0.5240807586353494
+    },
+    "validation": {
+      "accuracy": 0.8889647467725919,
+      "precision": 0.24803356056633455,
+      "recall": 0.571256038647343,
+      "f1": 0.34588665447897626,
+      "positive_rate": 0.05139026812313803,
+      "roc_auc": 0.8387547616970543,
+      "pr_auc": 0.33953114792551836
+    },
+    "test": {
+      "accuracy": 0.9113344271260596,
+      "precision": 0.2648221343873518,
+      "recall": 0.4772079772079772,
+      "f1": 0.340620233858668,
+      "positive_rate": 0.04799015586546349,
+      "roc_auc": 0.8575643828408441,
+      "pr_auc": 0.3038548769817874
+    }
+  },
+  "feature_importances": [
+    {
+      "feature": "week_of_year_cos",
+      "importance": 10.524346893524893
+    },
+    {
+      "feature": "mixed_forest_cover_pct",
+      "importance": 8.062507995696288
+    },
+    {
+      "feature": "urban_cover_pct",
+      "importance": 7.387205419957856
+    },
+    {
+      "feature": "week_of_year_sin",
+      "importance": 6.242872295969323
+    },
+    {
+      "feature": "agricultural_cover_pct",
+      "importance": 5.637993094599369
+    },
+    {
+      "feature": "broad_leaved_forest_cover_pct",
+      "importance": 4.726459640207155
+    },
+    {
+      "feature": "elevation_m_mean",
+      "importance": 4.7050897150587705
+    },
+    {
+      "feature": "coniferous_forest_cover_pct",
+      "importance": 4.413599738378615
+    },
+    {
+      "feature": "elevation_m_range",
+      "importance": 3.7551100365104126
+    },
+    {
+      "feature": "dominant_clc_cover_pct",
+      "importance": 3.5349800523826276
+    },
+    {
+      "feature": "shrub_transitional_cover_pct",
+      "importance": 2.8617925557568453
+    },
+    {
+      "feature": "elevation_m_std",
+      "importance": 2.849653344112166
+    },
+    {
+      "feature": "grassland_pasture_cover_pct",
+      "importance": 2.6832994751397057
+    },
+    {
+      "feature": "water_cover_pct",
+      "importance": 2.469013530342222
+    },
+    {
+      "feature": "forest_cover_pct",
+      "importance": 2.434257457630034
+    },
+    {
+      "feature": "air_temperature_c_mean",
+      "importance": 2.0117855024485816
+    },
+    {
+      "feature": "air_temperature_c_mean_lag_1w",
+      "importance": 2.0023107377734513
+    },
+    {
+      "feature": "air_temperature_c_mean_rolling_4w_mean",
+      "importance": 1.855641384259833
+    },
+    {
+      "feature": "tick_activity_window_hours_sum_rolling_4w_mean",
+      "importance": 1.7732539017908007
+    },
+    {
+      "feature": "soil_temperature_level_1_c_mean",
+      "importance": 1.716118734684482
+    },
+    {
+      "feature": "growing_degree_hours_base_5_c_sum",
+      "importance": 1.6885174931016997
+    },
+    {
+      "feature": "air_temperature_c_mean_lag_2w",
+      "importance": 1.2835525962777437
+    },
+    {
+      "feature": "precipitation_sum_mm_lag_4w",
+      "importance": 1.202003593073339
+    },
+    {
+      "feature": "air_temperature_c_mean_lag_4w",
+      "importance": 1.1790748207773556
+    },
+    {
+      "feature": "soil_water_layer_1_m3_m3_mean_lag_4w",
+      "importance": 1.147803022052016
+    },
+    {
+      "feature": "dominant_clc_code",
+      "importance": 1.0638619952867134
+    },
+    {
+      "feature": "precipitation_sum_mm_lag_1w",
+      "importance": 1.010150692504186
+    },
+    {
+      "feature": "relative_humidity_pct_mean_lag_1w",
+      "importance": 0.9897549340737969
+    },
+    {
+      "feature": "soil_temperature_level_2_c_mean",
+      "importance": 0.9246563765804686
+    },
+    {
+      "feature": "relative_humidity_pct_mean",
+      "importance": 0.8948001914754623
+    },
+    {
+      "feature": "relative_humidity_pct_mean_lag_4w",
+      "importance": 0.7800914320219673
+    },
+    {
+      "feature": "tick_activity_window_hours_sum_lag_1w",
+      "importance": 0.6441641550675695
+    },
+    {
+      "feature": "soil_water_layer_1_m3_m3_mean",
+      "importance": 0.617384879626324
+    },
+    {
+      "feature": "tick_activity_window_hours_sum_lag_4w",
+      "importance": 0.6170799416568183
+    },
+    {
+      "feature": "humidity_hours_ge_80_sum",
+      "importance": 0.5934589772870701
+    },
+    {
+      "feature": "precipitation_sum_mm",
+      "importance": 0.5820992724092253
+    },
+    {
+      "feature": "wetland_cover_pct",
+      "importance": 0.5256405186352586
+    },
+    {
+      "feature": "soil_water_layer_1_m3_m3_mean_lag_1w",
+      "importance": 0.5237939077697235
+    },
+    {
+      "feature": "humid_days_ge_16h_count",
+      "importance": 0.5142921006111516
+    },
+    {
+      "feature": "tick_activity_window_hours_sum",
+      "importance": 0.4884649648385346
+    },
+    {
+      "feature": "wet_hours_ge_0_1mm_sum",
+      "importance": 0.42930362982081577
+    },
+    {
+      "feature": "tick_favorable_days_ge_6h_count",
+      "importance": 0.3341254291908397
+    },
+    {
+      "feature": "rainy_days_ge_1mm_count",
+      "importance": 0.3186335696384751
+    }
+  ]
+}

@@ -14,26 +14,32 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from typing import Any
-
-from shapely.geometry import shape
+from typing import TYPE_CHECKING, Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from catboost import CatBoostClassifier, CatBoostRegressor, Pool
-
 from ml.training.config import load_config
+
+if TYPE_CHECKING:
+    from catboost import CatBoostClassifier, CatBoostRegressor
 
 
 FRONTEND_LIVE_RISK_PATH = (
     REPO_ROOT / "frontend" / "src" / "data" / "liveMunicipalityRisk.ts"
 )
-TRAINING_DATASET_PATH = (
+LIVE_REFERENCE_ASSET_DIR = REPO_ROOT / "data" / "reference" / "live_snapshot"
+MUNICIPALITY_STATIC_FEATURES_PATH = (
+    LIVE_REFERENCE_ASSET_DIR / "municipality_static_features.json"
+)
+MUNICIPALITY_COORDINATES_PATH = (
+    LIVE_REFERENCE_ASSET_DIR / "municipality_coordinates.json"
+)
+LEGACY_TRAINING_DATASET_PATH = (
     REPO_ROOT / "data" / "processed" / "training" / "obcina_weekly_tick_borne_catboost_ready.csv"
 )
-GURS_MUNICIPALITY_GEOJSON_PATH = (
+LEGACY_GURS_MUNICIPALITY_GEOJSON_PATH = (
     REPO_ROOT / "data" / "raw" / "gurs" / "obcine-gurs-rpe.geojson"
 )
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
@@ -160,7 +166,7 @@ class ModelSpec:
     legacy_research_model_id: str
     config_path: Path
     model_path: Path
-    holdout_predictions_path: Path
+    holdout_values_path: Path
     metadata_path: Path
 
 
@@ -174,22 +180,13 @@ MODEL_SPECS = (
         / "ml"
         / "training"
         / "example_tick_borne_lyme_env_v2_config.json",
-        model_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        model_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_lyme_env_v2"
         / "model.cbm",
-        holdout_predictions_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        holdout_values_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_lyme_env_v2"
-        / "holdout_predictions.csv",
-        metadata_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        / "holdout_values.json",
+        metadata_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_lyme_env_v2"
         / "metadata.json",
     ),
@@ -202,22 +199,13 @@ MODEL_SPECS = (
         / "ml"
         / "training"
         / "example_tick_borne_kme_env_v2_config.json",
-        model_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        model_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_kme_env_v2"
         / "model.cbm",
-        holdout_predictions_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        holdout_values_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_kme_env_v2"
-        / "holdout_predictions.csv",
-        metadata_path=REPO_ROOT
-        / "data"
-        / "processed"
-        / "training"
+        / "holdout_values.json",
+        metadata_path=LIVE_REFERENCE_ASSET_DIR
         / "catboost_tick_borne_kme_env_v2"
         / "metadata.json",
     ),
@@ -258,6 +246,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def build_coordinate_lookup_from_gurs(path: Path) -> dict[str, tuple[float, float]]:
+    try:
+        from shapely.geometry import shape
+    except ModuleNotFoundError as exc:
+        raise ModuleNotFoundError(
+            "shapely is required only for the legacy GURS fallback. "
+            "Use the committed data/reference/live_snapshot asset pack or install shapely."
+        ) from exc
+
     payload = json.loads(path.read_text(encoding="utf-8"))
     features = payload.get("features", [])
     if not features:
@@ -276,6 +272,27 @@ def build_coordinate_lookup_from_gurs(path: Path) -> dict[str, tuple[float, floa
             float(representative_point.x),
         )
     return lookup
+
+
+def load_coordinate_lookup_from_reference(path: Path) -> dict[str, tuple[float, float]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not payload:
+        raise ValueError(f"Municipality coordinates payload is empty: {path}.")
+
+    lookup: dict[str, tuple[float, float]] = {}
+    for municipality_code, coordinates in payload.items():
+        if not isinstance(coordinates, list) or len(coordinates) != 2:
+            raise ValueError(
+                f"Municipality coordinates must be a two-item list for {municipality_code}."
+            )
+        lookup[str(municipality_code)] = (float(coordinates[0]), float(coordinates[1]))
+    return lookup
+
+
+def load_coordinate_lookup() -> dict[str, tuple[float, float]]:
+    if MUNICIPALITY_COORDINATES_PATH.exists():
+        return load_coordinate_lookup_from_reference(MUNICIPALITY_COORDINATES_PATH)
+    return build_coordinate_lookup_from_gurs(LEGACY_GURS_MUNICIPALITY_GEOJSON_PATH)
 
 
 def percentile_threshold(sorted_values: list[float], percentile: float) -> float:
@@ -332,7 +349,7 @@ def format_feature_label(feature_name: str) -> str:
     return FEATURE_LABELS.get(feature_name, feature_name.replace("_", " "))
 
 
-def load_static_feature_lookup(
+def load_static_feature_lookup_from_training_dataset(
     dataset_path: Path,
     *,
     required_columns: set[str],
@@ -369,7 +386,66 @@ def load_static_feature_lookup(
     return lookup
 
 
+def load_static_feature_lookup_from_reference(
+    path: Path,
+    *,
+    required_columns: set[str],
+) -> dict[str, dict[str, object]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or not payload:
+        raise ValueError(f"Static feature payload is empty: {path}.")
+
+    lookup: dict[str, dict[str, object]] = {}
+    for municipality_code, raw_values in payload.items():
+        if not isinstance(raw_values, dict):
+            raise ValueError(f"Static feature row must be an object for {municipality_code}.")
+        missing = sorted((required_columns - {"obcina_sifra"}) - set(raw_values))
+        if missing:
+            raise ValueError(
+                f"Static feature row for {municipality_code} is missing columns: {', '.join(missing)}"
+            )
+
+        feature_values: dict[str, object] = {
+            "obcina_naziv": str(raw_values["obcina_naziv"]).strip(),
+        }
+        for column in required_columns:
+            if column in {"obcina_sifra", "obcina_naziv"}:
+                continue
+            current_value = raw_values.get(column)
+            if column == "dominant_clc_code":
+                feature_values[column] = (
+                    str(current_value).strip() if current_value not in {"", None} else "__MISSING__"
+                )
+                continue
+            feature_values[column] = math.nan if current_value is None else float(current_value)
+
+        lookup[str(municipality_code)] = feature_values
+
+    return lookup
+
+
+def load_static_feature_lookup(
+    *,
+    required_columns: set[str],
+) -> dict[str, dict[str, object]]:
+    if MUNICIPALITY_STATIC_FEATURES_PATH.exists():
+        return load_static_feature_lookup_from_reference(
+            MUNICIPALITY_STATIC_FEATURES_PATH,
+            required_columns=required_columns,
+        )
+    return load_static_feature_lookup_from_training_dataset(
+        LEGACY_TRAINING_DATASET_PATH,
+        required_columns=required_columns,
+    )
+
+
 def load_holdout_values(path: Path, *, prediction_column: str) -> list[float]:
+    if path.suffix == ".json":
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(payload, list) or not payload:
+            raise ValueError(f"Holdout values payload is empty: {path}.")
+        return sorted(float(value) for value in payload)
+
     with path.open("r", encoding="utf-8", newline="") as handle:
         rows = csv.DictReader(handle)
         values = sorted(
@@ -429,7 +505,7 @@ def fetch_open_meteo_hourly(
                 else OPEN_METEO_BASE_BACKOFF_SECONDS * attempt
             )
             time.sleep(backoff_seconds)
-        except urllib.error.URLError as exc:
+        except (urllib.error.URLError, TimeoutError) as exc:
             if attempt == OPEN_METEO_MAX_ATTEMPTS:
                 raise RuntimeError(
                     f"Open-Meteo request failed for {latitude:.4f}, {longitude:.4f}: {exc}"
@@ -726,6 +802,14 @@ def predict_value(
     feature_vector: list[object],
     problem_type: str,
 ) -> float:
+    try:
+        from catboost import Pool
+    except ModuleNotFoundError as exc:
+        raise ModuleNotFoundError(
+            "catboost is required to generate live municipality scores. "
+            "Install ml/training/requirements.txt before running this script."
+        ) from exc
+
     cat_feature_indices = [
         feature_columns.index(column) for column in categorical_columns if column in feature_columns
     ]
@@ -750,10 +834,10 @@ def predict_value(
 
 def format_trend_label(delta_score: int) -> str:
     if delta_score > 0:
-        return f"+{delta_score} tock glede na prejsnji teden"
+        return f"+{delta_score} točk glede na prejšnji teden"
     if delta_score < 0:
-        return f"{delta_score} tock glede na prejsnji teden"
-    return "brez spremembe glede na prejsnji teden"
+        return f"{delta_score} točk glede na prejšnji teden"
+    return "brez spremembe glede na prejšnji teden"
 
 
 def build_live_model_payload(
@@ -767,6 +851,14 @@ def build_live_model_payload(
 ) -> dict[str, Any]:
     config = load_config(spec.config_path)
     prediction_column = "prediction_probability"
+    try:
+        from catboost import CatBoostClassifier, CatBoostRegressor
+    except ModuleNotFoundError as exc:
+        raise ModuleNotFoundError(
+            "catboost is required to generate live municipality scores. "
+            "Install ml/training/requirements.txt before running this script."
+        ) from exc
+
     model: CatBoostClassifier | CatBoostRegressor
     if config.problem_type == "regression":
         prediction_column = "prediction"
@@ -775,7 +867,7 @@ def build_live_model_payload(
         model = CatBoostClassifier()
 
     holdout_values = load_holdout_values(
-        spec.holdout_predictions_path,
+        spec.holdout_values_path,
         prediction_column=prediction_column,
     )
     model.load_model(str(spec.model_path))
@@ -870,14 +962,14 @@ def build_live_model_payload(
     disease_object_label = "boreliozo" if spec.key == "borelioza" else "KME"
     methodology_note = (
         "Live hackathon demo uporablja Open-Meteo hourly weather za zadnjih 6 tednov, "
-        "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno tocko "
-        "znotraj GURS poligona posamezne obcine. Score temelji na surovi napovedi env_v2 "
-        "klasifikacijskega modela in je namenjen primerjavi obcin znotraj iste bolezni."
+        "tedensko agregacijo po istem feature kontraktu kot env_v2 in reprezentativno točko "
+        "znotraj GURS poligona posamezne občine. Score temelji na surovi napovedi env_v2 "
+        "klasifikacijskega modela in je namenjen primerjavi občin znotraj iste bolezni."
     )
     if spec.key == "kme":
         methodology_note += (
-            " KME model je pri ucenju dodatno utezen po velikosti populacije obcine, "
-            "da zemljevid ni sistematicno pristranski do zelo majhnih obcin."
+            " KME model je pri učenju dodatno utežen po velikosti populacije občine, "
+            "da zemljevid ni sistematično pristranski do zelo majhnih občin."
         )
 
     return {
@@ -889,19 +981,19 @@ def build_live_model_payload(
         "generatedAt": generated_at,
         "referenceWeekStart": reference_window.reference_week_start.isoformat(),
         "referenceWeekEnd": reference_window.reference_week_end.isoformat(),
-        "snapshotLabel": "zadnji zakljuceni tedenski hackathon snapshot",
+        "snapshotLabel": "zadnji zaključeni tedenski hackathon snapshot",
         "weatherSource": "Open-Meteo best-match hourly weather",
         "methodologyNote": methodology_note,
         "purpose": (
-            "Live hackathon relativni obcinski okoljski indeks za "
+            "Live hackathon relativni občinski okoljski indeks za "
             f"{disease_object_label}."
         ),
         "disclaimer": (
-            "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni obcinski "
+            "To ni diagnoza ali individualna verjetnost bolezni. Gre za relativni občinski "
             "risk indeks, ki je uporaben predvsem za primerjavo lokacij znotraj iste bolezni."
         ),
         "scoreExplanation": (
-            "Score je relativni obcinski indeks 0-100, izracunan kot empiricni percentil "
+            "Score je relativni občinski indeks 0-100, izračunan kot empirični percentil "
             "surove napovedi modela znotraj holdout distribucije istega env_v2 modela."
         ),
         "topDrivers": top_drivers,
@@ -922,9 +1014,9 @@ def build_live_models(
     if max_workers < 1:
         raise ValueError("--max-workers must be at least 1.")
 
-    coordinate_lookup = build_coordinate_lookup_from_gurs(GURS_MUNICIPALITY_GEOJSON_PATH)
+    coordinate_lookup = load_coordinate_lookup()
     if not coordinate_lookup:
-        raise ValueError("Could not load municipality coordinates from GURS polygons.")
+        raise ValueError("Could not load municipality coordinates from reference assets.")
 
     combined_feature_columns = {"obcina_sifra", "obcina_naziv"}
     for spec in MODEL_SPECS:
@@ -933,7 +1025,6 @@ def build_live_models(
         combined_feature_columns.update(static_columns)
 
     static_feature_lookup = load_static_feature_lookup(
-        TRAINING_DATASET_PATH,
         required_columns=combined_feature_columns,
     )
     reference_window = resolve_reference_window(as_of_date)

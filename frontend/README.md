@@ -38,5 +38,6 @@ izhod pa je `frontend/dist`.
 ## Pomembna omejitev
 
 Frontend v produkciji ne kliče runtime API-ja za live inference. Uporablja
-vnaprej pripravljene artefakte, ki jih je treba pred objavo osvežiti lokalno.
-Celoten workflow je opisan v [../docs/live-deployment.md](../docs/live-deployment.md).
+vnaprej pripravljene artefakte, ki se praviloma osvežujejo prek tedenskega
+GitHub workflowa in nato objavijo na Vercelu. Celoten workflow je opisan v
+[../docs/live-deployment.md](../docs/live-deployment.md).
