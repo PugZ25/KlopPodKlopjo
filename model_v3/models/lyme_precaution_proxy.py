@@ -178,10 +178,18 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     expected_weather = [f"z_{name}" for name in COMPACT_WEATHER_FEATURES]
     if candidates["compact_weather"].get("features") != [*BASE_FEATURES, *expected_weather]:
         raise LymePrecautionProxyError("Compact weather feature contract changed")
+    deployment = config.get("deployment_policy", {})
+    if (
+        deployment.get("weather_required_by_product") is not True
+        or deployment.get("evidence_selected_candidate") != NO_WEATHER_ID
+        or deployment.get("deployed_candidate") != COMPACT_WEATHER_ID
+        or deployment.get("claim_that_weather_improved_validation_allowed") is not False
+    ):
+        raise LymePrecautionProxyError("Reviewed weather deployment policy changed")
     if config.get("final_fit", {}).get("runtime_recent_cases_required") is not False:
         raise LymePrecautionProxyError("Final runtime must not require recent cases")
-    if config["final_fit"].get("runtime_weather_used_by_ai_score") is not False:
-        raise LymePrecautionProxyError("Selected score may not silently use weather")
+    if config["final_fit"].get("runtime_weather_used_by_ai_score") is not True:
+        raise LymePrecautionProxyError("Reviewed live score must use operational weather")
     return config
 
 
@@ -692,27 +700,33 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         >= config["selection_rule"]["weather_candidate_minimum_improved_development_folds"]
         and all(float(audit_weather[name]) < float(audit_no_weather[name]) for name in metric_names)
     )
-    selected_candidate = COMPACT_WEATHER_ID if weather_selected else NO_WEATHER_ID
-    if (
-        selected_candidate == COMPACT_WEATHER_ID
-        and config["final_fit"]["runtime_weather_used_by_ai_score"] is not True
-    ):
+    evidence_selected_candidate = COMPACT_WEATHER_ID if weather_selected else NO_WEATHER_ID
+    deployment = config["deployment_policy"]
+    if evidence_selected_candidate != deployment["evidence_selected_candidate"]:
         raise LymePrecautionProxyError(
-            "Weather passed the evidence gate, but promotion requires a reviewed runtime contract"
+            "Recorded deployment override no longer matches the evaluation evidence"
         )
+    selected_candidate = deployment["deployed_candidate"]
     selection = {
         "selected_candidate_id": selected_candidate,
-        "weather_candidate_selected": weather_selected,
+        "evidence_selected_candidate_id": evidence_selected_candidate,
+        "deployed_candidate_id": selected_candidate,
+        "weather_candidate_passed_evidence_gate": weather_selected,
+        "weather_required_by_product": deployment["weather_required_by_product"],
+        "deployment_override_reason": deployment["override_reason"],
+        "claim_that_weather_improved_validation_allowed": deployment[
+            "claim_that_weather_improved_validation_allowed"
+        ],
         "development_weather_improved_fold_count": improved_folds,
         "development_fold_count": len(development_fold_pairs),
         "rule": config["selection_rule"],
-        "reason": (
+        "evidence_reason": (
             "compact_weather_passed_every_predeclared_gate"
             if weather_selected
             else "compact_weather_failed_stability_and_or_opened_2025_gates"
         ),
         "runtime_recent_cases_required": False,
-        "runtime_weather_used_by_ai_score": selected_candidate == COMPACT_WEATHER_ID,
+        "runtime_weather_used_by_ai_score": True,
         "untouched_lockbox_status": "none_remaining_after_2025_was_opened",
     }
 
@@ -779,10 +793,14 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     }
 
     all_final_metadata = [*final_development_metadata, *opened_rows]
-    final_rows = prepare_rows(all_final_metadata, targets, population)
+    final_base_rows = prepare_rows(all_final_metadata, targets, population)
+    final_rows, final_rows_excluded_incomplete_weather = attach_complete_weather(
+        final_base_rows, weekly_weather
+    )
     if len({row.municipality_code for row in final_rows}) != 212:
         raise LymePrecautionProxyError("Final fit does not contain 212 municipalities")
-    final_model = fit_model(final_rows, selected_candidate, None, parameters)
+    final_scaler = fit_weather_scaler(final_rows)
+    final_model = fit_model(final_rows, selected_candidate, final_scaler, parameters)
 
     output_directory = resolve_repo_path(config["outputs"]["directory"])
     output_directory.mkdir(parents=True, exist_ok=True)
@@ -794,6 +812,19 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     if any(path.parent != output_directory for path in output_paths.values()):
         raise LymePrecautionProxyError("Output filename contains a path")
     final_model.save_model(str(output_paths["model"]))
+    compact_scaler = {
+        "schema_version": 1,
+        "feature_order": list(COMPACT_WEATHER_FEATURES),
+        "fit_scope": "all_eligible_2016_2025_rows_with_complete_ERA5_Land_t_minus_4_through_t_minus_1",
+        "means": {
+            name: final_scaler.means[name] for name in COMPACT_WEATHER_FEATURES
+        },
+        "standard_deviations": {
+            name: final_scaler.standard_deviations[name]
+            for name in COMPACT_WEATHER_FEATURES
+        },
+    }
+    _write_json(output_paths["weather_scaler"], compact_scaler)
     _write_json(output_paths["display_calibration"], display_calibration)
     write_csv_rows(output_paths["fold_predictions"], PREDICTION_COLUMNS, prediction_records)
     write_csv_rows(output_paths["fold_metrics"], FOLD_METRIC_COLUMNS, fold_metrics)
@@ -805,6 +836,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "status": "sealed_for_no_current_case_inference",
         "selected_candidate_id": selected_candidate,
         "model_sha256": _sha256(output_paths["model"]),
+        "weather_scaler_sha256": _sha256(output_paths["weather_scaler"]),
         "model_structural_sha256_excluding_volatile_metadata": (
             _catboost_structure_sha256(final_model)
         ),
@@ -814,11 +846,14 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             "first_issue_week": min(row.issue_week for row in final_rows).isoformat(),
             "last_issue_week": max(row.issue_week for row in final_rows).isoformat(),
             "rows": len(final_rows),
+            "rows_excluded_incomplete_weather": final_rows_excluded_incomplete_weather,
             "includes_opened_2025_outcomes": True,
         },
         "runtime_contract": {
             "recent_cases_required": False,
-            "weather_used_by_ai_score": selected_candidate == COMPACT_WEATHER_ID,
+            "weather_used_by_ai_score": True,
+            "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
+            "source_bridge_validation_status": "mapped_variables_and_units_without_completed_cross_source_bias_calibration",
             "weather_displayed_as_separate_context": True,
             "output_is_personal_risk": False,
             "output_is_direct_tick_measurement": False,
@@ -833,7 +868,12 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             for name, value in zip(
                 feature_names(selected_candidate),
                 final_model.get_feature_importance(
-                    build_pool(final_rows, selected_candidate, None, include_labels=True)
+                    build_pool(
+                        final_rows,
+                        selected_candidate,
+                        final_scaler,
+                        include_labels=True,
+                    )
                 ),
                 strict=True,
             )
@@ -846,7 +886,11 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "selection": selection,
         "checks": {
             "runtime_case_features_absent": True,
-            "runtime_weather_not_forced_after_failed_gate": selected_candidate == NO_WEATHER_ID,
+            "runtime_weather_deployment_override_is_explicit": (
+                selected_candidate == COMPACT_WEATHER_ID
+                and evidence_selected_candidate == NO_WEATHER_ID
+                and deployment["claim_that_weather_improved_validation_allowed"] is False
+            ),
             "development_rolling_origin_used": True,
             "four_week_target_embargo_preserved": True,
             "opened_2025_labelled_retrospective_not_lockbox": True,
@@ -867,9 +911,11 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "# No-current-cases precaution proxy\n\n"
         "This phase evaluates a public-facing precaution proxy whose weekly inference does not use recent case reports. "
         "The training target remains reported Lyme cases in t+1..t+4, so the output is a relative disease-burden proxy, not a direct tick count, infection probability, diagnosis, or personal risk.\n\n"
-        f"Selected candidate: `{selected_candidate}`.\n\n"
+        f"Evidence-selected candidate: `{evidence_selected_candidate}`.\n\n"
+        f"Deployed candidate under the reviewed weather-required product policy: `{selected_candidate}`.\n\n"
         f"Compact weather improved MAE in {improved_folds}/{len(development_fold_pairs)} development folds. "
-        f"Weather selected: **{str(weather_selected).lower()}**. The current weather context is displayed separately from the AI score because the weather candidate did not pass the predeclared stability and opened-2025 gates.\n\n"
+        f"Weather passed the predictive evidence gate: **{str(weather_selected).lower()}**. "
+        "The weather candidate remains deployed only because weather was explicitly made a product requirement; this is an override, not a claim of improved validation.\n\n"
         "The display score is the selected model's predicted incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.\n",
         encoding="utf-8",
     )

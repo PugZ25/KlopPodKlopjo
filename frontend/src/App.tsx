@@ -493,7 +493,7 @@ function App() {
         <section id="preverjanje-tveganja" className="content-section risk-stage">
           <div className="section-header">
             <span className="section-kicker">Osrednje orodje</span>
-            <h2>Preverjanje signala po občinah</h2>
+            <h2>Tedenski preventivni signal po občinah</h2>
             <p>
               Prikaz je namenjen hitri orientaciji in ne predstavlja medicinske
               diagnoze.
@@ -550,7 +550,10 @@ function App() {
                     <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
                       Open-Meteo / DWD ICON
                     </a>
-                    . Podatki ne vplivajo na izračun signala.
+                    .{' '}
+                    {activeModel.weatherUsedInScore
+                      ? 'Štirje zaključeni tedni vremena vplivajo na signal za boreliozo.'
+                      : 'Pri KME so prikazani kot ločen kontekst in ne vplivajo na regionalni signal.'}
                   </p>
                   {weatherIsStale ? (
                     <p className="freshness-warning" role="status">
@@ -580,6 +583,7 @@ function App() {
                 Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat je
                 prikazan kot nizek, srednji ali visok signal. Nizek signal ne pomeni,
                 da klopov ni.
+                {' '}{activeModel.methodologyNote}
               </p>
 
               <div className="map-summary-bar">
@@ -630,7 +634,7 @@ function App() {
 
               <div className="score-row">
                 <div className="score-ring" style={riskBadgeStyle}>
-                  <span>{signalLevelLabel[selectedLocation.level]}</span>
+                  <span>{selectedLocation.score}. percentil</span>
                 </div>
                 <div>
                   <span className="metric-label">Stopnja signala</span>
@@ -656,7 +660,7 @@ function App() {
               </div>
 
               <div className="weather-context-card">
-                <span className="metric-label">Vreme v zadnjih 7 dneh</span>
+                <span className="metric-label">Vreme v zadnjem zaključenem tednu</span>
                 <div className="weather-context-grid">
                   <div>
                     <strong>{selectedLocation.weatherContext.airTemperatureC7dMean} °C</strong>
@@ -679,8 +683,10 @@ function App() {
                 </div>
                 <p>
                   Prikazane vrednosti so izračunane z vremenskim modelom za občino.
-                  Niso meritve vremenske postaje ali aktivnosti klopov in ne vplivajo
-                  na zgornji signal.
+                  Niso meritve vremenske postaje ali aktivnosti klopov.
+                  {activeModel.weatherUsedInScore
+                    ? ' Skupaj s prejšnjimi tremi zaključenimi tedni so vhod v signal za boreliozo.'
+                    : ' Ne vplivajo na regionalni signal KME.'}
                 </p>
               </div>
 

@@ -1,0 +1,22 @@
+{
+  "feature_order": [
+    "t2m_mean_c_previous_4w_mean",
+    "tp_sum_mm_previous_4w_sum",
+    "stl1_mean_c_previous_4w_mean",
+    "swvl1_mean_m3_m3_previous_4w_mean"
+  ],
+  "fit_scope": "all_eligible_2016_2025_rows_with_complete_ERA5_Land_t_minus_4_through_t_minus_1",
+  "means": {
+    "stl1_mean_c_previous_4w_mean": 11.248095666037585,
+    "swvl1_mean_m3_m3_previous_4w_mean": 0.3574842459325607,
+    "t2m_mean_c_previous_4w_mean": 11.209711637395454,
+    "tp_sum_mm_previous_4w_sum": 94.53728153729972
+  },
+  "schema_version": 1,
+  "standard_deviations": {
+    "stl1_mean_c_previous_4w_mean": 7.239735172301641,
+    "swvl1_mean_m3_m3_previous_4w_mean": 0.03759853363509866,
+    "t2m_mean_c_previous_4w_mean": 7.45516616223563,
+    "tp_sum_mm_previous_4w_sum": 56.55055871133911
+  }
+}

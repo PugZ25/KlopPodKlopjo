@@ -4,13 +4,17 @@ import csv
 import json
 from pathlib import Path
 
-from model_v3.models.lyme_precaution_proxy import NO_WEATHER_ID, load_config
+from model_v3.models.lyme_precaution_proxy import (
+    COMPACT_WEATHER_ID,
+    NO_WEATHER_ID,
+    load_config,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_proxy_contract_and_selection_do_not_require_current_cases_or_weather() -> None:
+def test_proxy_contract_uses_explicit_weather_deployment_override_without_current_cases() -> None:
     config = load_config(REPO_ROOT / "model_v3/config/lyme_precaution_proxy.json")
     manifest = json.loads(
         (REPO_ROOT / "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json").read_text(
@@ -24,11 +28,14 @@ def test_proxy_contract_and_selection_do_not_require_current_cases_or_weather() 
     )
 
     assert config["purpose"]["runtime_case_inputs_allowed"] is False
-    assert selection["selected_candidate_id"] == NO_WEATHER_ID
-    assert selection["weather_candidate_selected"] is False
+    assert selection["selected_candidate_id"] == COMPACT_WEATHER_ID
+    assert selection["evidence_selected_candidate_id"] == NO_WEATHER_ID
+    assert selection["weather_candidate_passed_evidence_gate"] is False
+    assert selection["weather_required_by_product"] is True
+    assert selection["claim_that_weather_improved_validation_allowed"] is False
     assert selection["development_weather_improved_fold_count"] == 5
     assert manifest["runtime_contract"]["recent_cases_required"] is False
-    assert manifest["runtime_contract"]["weather_used_by_ai_score"] is False
+    assert manifest["runtime_contract"]["weather_used_by_ai_score"] is True
     assert manifest["runtime_contract"]["weather_displayed_as_separate_context"] is True
 
 

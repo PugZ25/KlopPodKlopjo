@@ -16,6 +16,8 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
+from model_v3.features.weather_weekly import OUTPUT_VARIABLES, WEEKLY_COLUMNS
+from model_v3.models.weather_ablation import WeeklyWeather
 from model_v3.models.non_ml_baselines import parse_code
 
 
@@ -24,35 +26,38 @@ DEFAULT_CONFIG_PATH = (
     REPO_ROOT / "model_v3" / "config" / "open_meteo_activity_weather.json"
 )
 
-OUTPUT_COLUMNS = (
-    "municipality_code",
-    "period_start",
-    "period_end",
-    "weather_status",
-    "source_hour_count",
-    "temperature_2m_mean_c",
-    "precipitation_sum_mm",
-    "soil_temperature_6cm_mean_c",
-    "soil_moisture_3_to_9cm_mean_m3_m3",
-)
-
 EXPECTED_UNITS = {
     "time": "iso8601",
     "temperature_2m": "°C",
+    "dew_point_2m": "°C",
     "precipitation": "mm",
     "soil_temperature_6cm": "°C",
+    "soil_temperature_18cm": "°C",
     "soil_moisture_3_to_9cm": "m³/m³",
+    "soil_moisture_9_to_27cm": "m³/m³",
 }
+
+SOURCE_TO_OUTPUT = {
+    "temperature_2m": "t2m_mean_c",
+    "dew_point_2m": "d2m_mean_c",
+    "precipitation": "tp_sum_mm",
+    "soil_temperature_6cm": "stl1_mean_c",
+    "soil_temperature_18cm": "stl2_mean_c",
+    "soil_moisture_3_to_9cm": "swvl1_mean_m3_m3",
+    "soil_moisture_9_to_27cm": "swvl2_mean_m3_m3",
+}
+
+SUM_OUTPUTS = frozenset({"tp_sum_mm"})
 
 QUALITY_CHECK_NAMES = frozenset(
     {
-        "seven_complete_UTC_days",
-        "period_ends_yesterday",
+        "five_complete_pre_issue_UTC_weeks",
+        "period_ends_before_issue_week",
         "no_current_or_future_hours",
         "all_expected_sample_points_present",
         "all_expected_municipalities_present",
         "polygon_intersection_weights_sum_to_one",
-        "weather_not_used_by_disease_models",
+        "weather_used_only_by_declared_lyme_model",
         "activity_thresholds_not_created",
         "raw_response_hashes_verified",
     }
@@ -144,8 +149,8 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     if config.get("schema_version") != 1:
         raise ActivityWeatherError("Activity-weather schema_version must equal 1")
     purpose = config.get("purpose", {})
-    if purpose.get("used_by_disease_model") is not False:
-        raise ActivityWeatherError("Fresh weather may not silently enter disease models")
+    if purpose.get("used_by_disease_model") is not True:
+        raise ActivityWeatherError("Operational weather must remain a declared model input")
     if purpose.get("categorical_activity_thresholds_allowed") is not False:
         raise ActivityWeatherError("Unvalidated tick-activity thresholds are forbidden")
     source = config.get("source", {})
@@ -155,8 +160,12 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         raise ActivityWeatherError("Operational source model changed")
     if source.get("hourly_variables") != [key for key in EXPECTED_UNITS if key != "time"]:
         raise ActivityWeatherError("Fresh-weather variable contract changed")
-    if source.get("recent_complete_days") != 7:
-        raise ActivityWeatherError("Fresh-weather period must remain seven complete days")
+    if source.get("model_feature_weeks") != 4:
+        raise ActivityWeatherError("Lyme weather features must use four complete weeks")
+    if source.get("retrieval_history_weeks") != 5:
+        raise ActivityWeatherError(
+            "Operational retrieval must include five weeks for current and previous scores"
+        )
     freshness = config.get("freshness_contract", {})
     if freshness.get("partial_current_day_allowed") is not False:
         raise ActivityWeatherError("Partial current day is not allowed")
@@ -215,10 +224,10 @@ def build_plan(
     config: Mapping[str, Any], *, as_of: str | datetime, repo_root: Path = REPO_ROOT
 ) -> ActivityWeatherPlan:
     as_of_utc = _parse_utc(as_of)
-    complete_days = int(config["source"]["recent_complete_days"])
-    period_end = as_of_utc.date() - timedelta(days=1)
-    period_start = period_end - timedelta(days=complete_days - 1)
     signal_issue_week = as_of_utc.date() - timedelta(days=as_of_utc.date().weekday())
+    history_weeks = int(config["source"]["retrieval_history_weeks"])
+    period_start = signal_issue_week - timedelta(weeks=history_weeks)
+    period_end = signal_issue_week - timedelta(days=1)
     _, points = read_weights(config, repo_root=repo_root)
     batch_size = int(config["source"]["batch_size"])
     if batch_size < 1 or batch_size > 100:
@@ -431,7 +440,7 @@ def _validate_location_payload(
     requested: SamplePoint,
     expected_times: Sequence[str],
     maximum_shift: float,
-) -> dict[str, float]:
+) -> dict[str, list[float]]:
     try:
         returned_latitude = float(payload["latitude"])
         returned_longitude = float(payload["longitude"])
@@ -465,18 +474,12 @@ def _validate_location_payload(
         values[variable] = parsed
     if any(value < 0 for value in values["precipitation"]):
         raise ActivityWeatherError("Open-Meteo precipitation is negative")
-    if any(not 0 <= value <= 1 for value in values["soil_moisture_3_to_9cm"]):
-        raise ActivityWeatherError("Open-Meteo soil moisture is outside physical bounds")
-    return {
-        "temperature_2m_mean_c": sum(values["temperature_2m"]) / len(expected_times),
-        "precipitation_sum_mm": sum(values["precipitation"]),
-        "soil_temperature_6cm_mean_c": (
-            sum(values["soil_temperature_6cm"]) / len(expected_times)
-        ),
-        "soil_moisture_3_to_9cm_mean_m3_m3": (
-            sum(values["soil_moisture_3_to_9cm"]) / len(expected_times)
-        ),
-    }
+    for variable in ("soil_moisture_3_to_9cm", "soil_moisture_9_to_27cm"):
+        if any(not 0 <= value <= 1 for value in values[variable]):
+            raise ActivityWeatherError(
+                f"Open-Meteo {variable} is outside physical bounds"
+            )
+    return values
 
 
 def build_municipality_weather(
@@ -507,18 +510,24 @@ def build_municipality_weather(
     retrieved_at = _parse_utc(manifest["retrieved_at_utc"])
     period_start = date.fromisoformat(manifest["period_start"])
     period_end = date.fromisoformat(manifest["period_end"])
-    expected_days = int(config["source"]["recent_complete_days"])
-    if period_end - period_start != timedelta(days=expected_days - 1):
-        raise ActivityWeatherError("Manifest does not contain seven complete days")
-    age_days = (retrieved_at.date() - period_end).days
-    if age_days > int(config["freshness_contract"]["maximum_period_end_age_days_at_retrieval"]):
-        raise ActivityWeatherError("Operational weather is too stale")
+    issue_week = date.fromisoformat(manifest["signal_issue_week"])
+    expected_weeks = int(config["source"]["retrieval_history_weeks"])
+    if (
+        period_start != issue_week - timedelta(weeks=expected_weeks)
+        or period_end != issue_week - timedelta(days=1)
+        or period_start.weekday() != 0
+        or period_end.weekday() != 6
+    ):
+        raise ActivityWeatherError(
+            "Manifest does not contain the required complete pre-issue weeks"
+        )
+    expected_days = expected_weeks * 7
     expected_times = _expected_times(period_start, period_end)
     if len(expected_times) != expected_days * 24:
         raise ActivityWeatherError("Expected hourly support changed")
     weights, points = read_weights(config, repo_root=repo_root)
     derived_directory = manifest_path.parent / "derived"
-    output_path = derived_directory / config["outputs"]["municipality_recent_weather"]
+    output_path = derived_directory / config["outputs"]["municipality_weekly_weather"]
     quality_path = derived_directory / config["outputs"]["quality_summary"]
     if derived_directory.exists():
         if not output_path.is_file() or not quality_path.is_file():
@@ -549,7 +558,7 @@ def build_municipality_weather(
         ):
             raise ActivityWeatherError("Existing derived weather cannot be safely reused")
         return output_path, quality_path
-    summaries: dict[SamplePoint, dict[str, float]] = {}
+    summaries: dict[SamplePoint, dict[str, list[float]]] = {}
     requests = manifest.get("requests")
     if not isinstance(requests, list):
         raise ActivityWeatherError("Manifest requests are invalid")
@@ -585,28 +594,44 @@ def build_municipality_weather(
     for row in weights:
         grouped[row.municipality_code].append(row)
     output_rows: list[dict[str, Any]] = []
-    numeric_columns = OUTPUT_COLUMNS[5:]
     for code in sorted(grouped):
         municipality_weights = grouped[code]
-        output_rows.append(
-            {
-                "municipality_code": code,
-                "period_start": period_start.isoformat(),
-                "period_end": period_end.isoformat(),
-                "weather_status": "complete_recent_operational_model",
-                "source_hour_count": len(expected_times),
-                **{
-                    column: sum(
-                        row.weight * summaries[row.point][column]
+        for week_index in range(expected_weeks):
+            week_start = period_start + timedelta(weeks=week_index)
+            week_end = week_start + timedelta(days=6)
+            start_index = week_index * 168
+            stop_index = start_index + 168
+            values: dict[str, float] = {}
+            for source_variable, output in SOURCE_TO_OUTPUT.items():
+                point_values = {
+                    row.point: summaries[row.point][source_variable][start_index:stop_index]
+                    for row in municipality_weights
+                }
+                if any(len(value) != 168 for value in point_values.values()):
+                    raise ActivityWeatherError("Open-Meteo weekly slice is incomplete")
+                if output in SUM_OUTPUTS:
+                    values[output] = sum(
+                        row.weight * sum(point_values[row.point])
                         for row in municipality_weights
                     )
-                    for column in numeric_columns
-                },
-            }
-        )
+                else:
+                    values[output] = sum(
+                        row.weight * (sum(point_values[row.point]) / 168.0)
+                        for row in municipality_weights
+                    )
+            output_rows.append(
+                {
+                    "municipality_code": code,
+                    "week_start": week_start.isoformat(),
+                    "week_end": week_end.isoformat(),
+                    "weather_status": "complete",
+                    "source_hour_count": 168,
+                    **values,
+                }
+            )
     derived_directory.mkdir(parents=True, exist_ok=False)
     with output_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=OUTPUT_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=WEEKLY_COLUMNS)
         writer.writeheader()
         writer.writerows(output_rows)
     quality = {
@@ -618,7 +643,12 @@ def build_municipality_weather(
         "signal_issue_week": manifest["signal_issue_week"],
         "period_start": period_start.isoformat(),
         "period_end": period_end.isoformat(),
-        "period_end_age_days_at_retrieval": age_days,
+        "feature_window": {
+            "current_issue_week": issue_week.isoformat(),
+            "model_feature_weeks": int(config["source"]["model_feature_weeks"]),
+            "retrieval_history_weeks": expected_weeks,
+            "previous_score_supported": True,
+        },
         "source": {
             "provider": manifest["provider"],
             "upstream_model_provider": manifest["upstream_model_provider"],
@@ -628,7 +658,7 @@ def build_municipality_weather(
         "spatial": {
             "method": config["spatial_contract"]["aggregation"],
             "not_claimed": config["spatial_contract"]["not_claimed"],
-            "municipality_count": len(output_rows),
+            "municipality_count": len(grouped),
             "weight_row_count": len(weights),
             "unique_sample_point_count": len(points),
         },
@@ -636,8 +666,9 @@ def build_municipality_weather(
         "request_batch_count": len(requests),
         "municipality_dataset": {
             **_path_record(output_path, repo_root),
-            "columns": list(OUTPUT_COLUMNS),
-            "primary_key": ["municipality_code"],
+            "columns": list(WEEKLY_COLUMNS),
+            "primary_key": ["municipality_code", "week_start"],
+            "row_count": len(output_rows),
         },
         "inputs": {
             "manifest": _path_record(manifest_path, repo_root),
@@ -648,15 +679,18 @@ def build_municipality_weather(
             "pipeline_code": _path_record(Path(__file__).resolve(), repo_root),
         },
         "checks": {
-            "seven_complete_UTC_days": True,
-            "period_ends_yesterday": age_days == 1,
+            "five_complete_pre_issue_UTC_weeks": expected_weeks == 5,
+            "period_ends_before_issue_week": period_end == issue_week - timedelta(days=1),
             "no_current_or_future_hours": True,
             "all_expected_sample_points_present": len(summaries)
             == int(config["spatial_contract"]["expected_unique_sample_point_count"]),
-            "all_expected_municipalities_present": len(output_rows)
+            "all_expected_municipalities_present": len(grouped)
             == int(config["spatial_contract"]["expected_municipality_count"]),
             "polygon_intersection_weights_sum_to_one": True,
-            "weather_not_used_by_disease_models": True,
+            "weather_used_only_by_declared_lyme_model": config["purpose"][
+                "used_by_disease_model"
+            ]
+            is True,
             "activity_thresholds_not_created": True,
             "raw_response_hashes_verified": True,
         },
@@ -673,8 +707,8 @@ def read_municipality_weather(
     *,
     issue_week: date,
     municipality_codes: set[str],
-) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
-    """Read one verified seven-day context without giving it model semantics."""
+) -> tuple[dict[tuple[str, date], WeeklyWeather], dict[str, Any]]:
+    """Read verified Open-Meteo weeks mapped to the ERA5-Land feature schema."""
     quality = json.loads(quality_path.read_text(encoding="utf-8"))
     checks = quality.get("checks", {})
     if (
@@ -691,44 +725,57 @@ def read_municipality_weather(
     dataset = quality.get("municipality_dataset", {})
     if dataset.get("sha256") != _sha256(municipality_weather_path):
         raise ActivityWeatherError("Municipality activity-weather hash mismatch")
-    if tuple(dataset.get("columns", ())) != OUTPUT_COLUMNS:
+    if tuple(dataset.get("columns", ())) != WEEKLY_COLUMNS:
         raise ActivityWeatherError("Municipality activity-weather schema changed")
     period_start = date.fromisoformat(quality["period_start"])
     period_end = date.fromisoformat(quality["period_end"])
-    if period_end - period_start != timedelta(days=6):
-        raise ActivityWeatherError("Activity weather must cover exactly seven days")
+    expected_starts = [issue_week - timedelta(weeks=lag) for lag in (5, 4, 3, 2, 1)]
+    if period_start != expected_starts[0] or period_end != issue_week - timedelta(days=1):
+        raise ActivityWeatherError("Activity weather does not cover five complete weeks")
 
-    rows: dict[str, dict[str, Any]] = {}
-    numeric_columns = OUTPUT_COLUMNS[5:]
+    rows: dict[tuple[str, date], WeeklyWeather] = {}
     with municipality_weather_path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        if tuple(reader.fieldnames or ()) != OUTPUT_COLUMNS:
+        if tuple(reader.fieldnames or ()) != WEEKLY_COLUMNS:
             raise ActivityWeatherError("Municipality activity-weather CSV schema changed")
         for index, source in enumerate(reader, start=1):
             code = parse_code(
                 source["municipality_code"], context=f"activity-weather row {index}"
             )
-            if code in rows:
-                raise ActivityWeatherError(f"Duplicate municipality activity weather: {code}")
+            week_start = date.fromisoformat(source["week_start"])
+            week_end = date.fromisoformat(source["week_end"])
+            key = (code, week_start)
+            if key in rows:
+                raise ActivityWeatherError(f"Duplicate municipality activity weather: {key}")
             if (
-                source["period_start"] != period_start.isoformat()
-                or source["period_end"] != period_end.isoformat()
-                or source["weather_status"] != "complete_recent_operational_model"
+                week_start not in expected_starts
+                or week_end != week_start + timedelta(days=6)
+                or source["weather_status"] != "complete"
                 or source["source_hour_count"] != "168"
             ):
                 raise ActivityWeatherError("Municipality activity-weather row contract changed")
             try:
-                values = {column: float(source[column]) for column in numeric_columns}
+                values = {column: float(source[column]) for column in OUTPUT_VARIABLES}
             except (TypeError, ValueError) as exc:
                 raise ActivityWeatherError("Municipality activity weather is non-numeric") from exc
             if not all(math.isfinite(value) for value in values.values()):
                 raise ActivityWeatherError("Municipality activity weather is non-finite")
-            if values["precipitation_sum_mm"] < 0 or not (
-                0 <= values["soil_moisture_3_to_9cm_mean_m3_m3"] <= 1
+            if values["tp_sum_mm"] < 0 or not (
+                0 <= values["swvl1_mean_m3_m3"] <= 1
+                and 0 <= values["swvl2_mean_m3_m3"] <= 1
             ):
                 raise ActivityWeatherError("Municipality activity weather is physically invalid")
-            rows[code] = {**source, **values}
-    if set(rows) != municipality_codes:
+            rows[key] = WeeklyWeather(
+                municipality_code=code,
+                week_start=week_start,
+                week_end=week_end,
+                status="complete",
+                values=values,
+            )
+    expected_keys = {
+        (code, week_start) for code in municipality_codes for week_start in expected_starts
+    }
+    if set(rows) != expected_keys:
         raise ActivityWeatherError("Municipality activity-weather coverage differs")
     return rows, quality
 
@@ -740,6 +787,7 @@ def _plan_payload(plan: ActivityWeatherPlan) -> dict[str, Any]:
         "period_start": plan.period_start.isoformat(),
         "period_end": plan.period_end.isoformat(),
         "complete_day_count": (plan.period_end - plan.period_start).days + 1,
+        "complete_week_count": (plan.period_end - plan.period_start).days // 7 + 1,
         "sample_point_count": len(plan.sample_points),
         "request_batch_count": len(plan.batches),
     }
@@ -747,7 +795,7 @@ def _plan_payload(plan: ActivityWeatherPlan) -> dict[str, Any]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Build fresh polygon-weighted Open-Meteo activity context"
+        description="Build polygon-weighted weekly Open-Meteo model features"
     )
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH)
     subparsers = parser.add_subparsers(dest="command", required=True)

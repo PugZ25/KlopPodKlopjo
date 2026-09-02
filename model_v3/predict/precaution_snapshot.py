@@ -22,7 +22,8 @@ from model_v3.models.kme_region_model import (
     selected_region_population,
 )
 from model_v3.models.lyme_precaution_proxy import (
-    NO_WEATHER_ID,
+    COMPACT_WEATHER_FEATURES,
+    COMPACT_WEATHER_ID,
     ProxyRow,
     predict_model,
 )
@@ -32,6 +33,7 @@ from model_v3.models.seasonal_count_models import (
     seasonal_terms,
     select_population_exposure,
 )
+from model_v3.models.weather_ablation import WeatherScaler, issue_weather_features
 from model_v3.predict.lyme_operational import (
     _read_municipalities,
     _read_population,
@@ -82,16 +84,22 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         "runtime_case_inputs_allowed",
         "personal_risk_output_allowed",
         "direct_tick_measurement_claim_allowed",
-        "weather_used_by_ai_score",
         "low_means_safe",
     )
     if any(contract.get(key) is not False for key in required_false):
         raise PrecautionSnapshotError("The precaution-only safety contract changed")
     if contract.get("weather_displayed_as_separate_context") is not True:
         raise PrecautionSnapshotError("Weather must remain explicitly separate context")
+    if (
+        contract.get("weather_used_by_lyme_score") is not True
+        or contract.get("weather_used_by_kme_score") is not False
+    ):
+        raise PrecautionSnapshotError("Declared disease-specific weather use changed")
     weather = config.get("weather", {})
-    if weather.get("required_complete_days") != 7:
-        raise PrecautionSnapshotError("Weather context must use seven complete days")
+    if weather.get("required_complete_weeks") != 5 or weather.get("lyme_feature_weeks") != 4:
+        raise PrecautionSnapshotError(
+            "Weather input must support current and previous four-week Lyme features"
+        )
     if weather.get("source_model") != "icon_seamless":
         raise PrecautionSnapshotError("Fresh-weather source model changed")
     if (
@@ -105,6 +113,33 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     if case_inputs:
         raise PrecautionSnapshotError(f"Runtime case inputs are forbidden: {case_inputs}")
     return config
+
+
+def _load_weather_scaler(path: Path, expected_sha256: str) -> WeatherScaler:
+    if _sha256(path) != expected_sha256:
+        raise PrecautionSnapshotError("Lyme weather scaler hash differs from model seal")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("feature_order") != list(COMPACT_WEATHER_FEATURES):
+        raise PrecautionSnapshotError("Lyme compact weather scaler order changed")
+    means = payload.get("means", {})
+    standard_deviations = payload.get("standard_deviations", {})
+    if set(means) != set(COMPACT_WEATHER_FEATURES) or set(standard_deviations) != set(
+        COMPACT_WEATHER_FEATURES
+    ):
+        raise PrecautionSnapshotError("Lyme compact weather scaler schema changed")
+    if not all(
+        math.isfinite(float(means[name]))
+        and math.isfinite(float(standard_deviations[name]))
+        and float(standard_deviations[name]) > 0
+        for name in COMPACT_WEATHER_FEATURES
+    ):
+        raise PrecautionSnapshotError("Lyme compact weather scaler values are invalid")
+    return WeatherScaler(
+        means={name: float(means[name]) for name in COMPACT_WEATHER_FEATURES},
+        standard_deviations={
+            name: float(standard_deviations[name]) for name in COMPACT_WEATHER_FEATURES
+        },
+    )
 
 
 def _read_boundaries(path: Path, municipalities: Mapping[str, str]) -> dict[str, tuple[float, float]]:
@@ -325,7 +360,7 @@ def build_precaution_snapshot(
     municipalities = _read_municipalities(inputs["municipality"], expected_count=212)
     municipality_codes = set(municipalities)
     coordinates = _read_boundaries(inputs["municipality_boundaries"], municipalities)
-    weather_rows, weather_quality = read_municipality_weather(
+    weekly_weather, weather_quality = read_municipality_weather(
         recent_weather_path,
         weather_quality_path,
         issue_week=issue_week,
@@ -341,23 +376,27 @@ def build_precaution_snapshot(
         raise PrecautionSnapshotError("Fresh-weather source or spatial contract changed")
 
     weather_by_municipality: dict[str, dict[str, Any]] = {}
+    latest_weather_week = issue_week - timedelta(weeks=1)
     for code in sorted(municipalities):
-        context = weather_rows[code]
+        context = weekly_weather[(code, latest_weather_week)]
+        if context.values is None:
+            raise PrecautionSnapshotError("Latest Open-Meteo week is unexpectedly empty")
         weather_by_municipality[code] = {
-            "periodStart": weather_quality["period_start"],
-            "periodEnd": weather_quality["period_end"],
-            "airTemperatureC7dMean": round(context["temperature_2m_mean_c"], 1),
-            "precipitationMm7dTotal": round(context["precipitation_sum_mm"], 1),
+            "periodStart": context.week_start.isoformat(),
+            "periodEnd": context.week_end.isoformat(),
+            "airTemperatureC7dMean": round(context.values["t2m_mean_c"], 1),
+            "precipitationMm7dTotal": round(context.values["tp_sum_mm"], 1),
             "soilTemperatureC7dMean": round(
-                context["soil_temperature_6cm_mean_c"], 1
+                context.values["stl1_mean_c"], 1
             ),
             "soilMoistureM3M3_7dMean": round(
-                context["soil_moisture_3_to_9cm_mean_m3_m3"], 3
+                context.values["swvl1_mean_m3_m3"], 3
             ),
             "source": config["weather"]["source_label"],
             "dataStatus": config["weather"]["data_status"],
             "spatialMethod": config["weather"]["spatial_method"],
-            "usedInAiScore": False,
+            "usedInLymeScore": True,
+            "usedInKmeScore": False,
         }
 
     regions = read_regions(inputs["statistical_region"])
@@ -368,14 +407,17 @@ def build_precaution_snapshot(
     lyme_manifest = json.loads(inputs["lyme_model_manifest"].read_text(encoding="utf-8"))
     if (
         lyme_manifest.get("status") != "sealed_for_no_current_case_inference"
-        or lyme_manifest.get("selected_candidate_id") != NO_WEATHER_ID
+        or lyme_manifest.get("selected_candidate_id") != COMPACT_WEATHER_ID
         or lyme_manifest.get("runtime_contract", {}).get("recent_cases_required") is not False
-        or lyme_manifest.get("runtime_contract", {}).get("weather_used_by_ai_score") is not False
+        or lyme_manifest.get("runtime_contract", {}).get("weather_used_by_ai_score") is not True
         or lyme_manifest.get("model_sha256") != _sha256(inputs["lyme_model"])
     ):
         raise PrecautionSnapshotError("Lyme precaution model seal is invalid")
     lyme_calibration = _load_display_calibration(inputs["display_calibration"], "lyme")
     kme_calibration = _load_display_calibration(inputs["display_calibration"], "kme")
+    lyme_weather_scaler = _load_weather_scaler(
+        inputs["lyme_weather_scaler"], lyme_manifest["weather_scaler_sha256"]
+    )
 
     population = _read_population(inputs["population"])
     population_history = build_population_history(population)
@@ -391,6 +433,15 @@ def build_precaution_snapshot(
                 issue_week=prediction_issue,
             )
             annual_sin, annual_cos = seasonal_terms(prediction_issue)
+            weather = issue_weather_features(
+                weekly_weather,
+                municipality_code=code,
+                issue_week=prediction_issue,
+            )
+            if weather is None:
+                raise PrecautionSnapshotError(
+                    f"Open-Meteo weather features are unavailable for {code} at {prediction_issue}"
+                )
             rows.append(
                 ProxyRow(
                     municipality_code=code,
@@ -402,9 +453,15 @@ def build_precaution_snapshot(
                     population_year=exposure.year,
                     seasonal_sin=annual_sin,
                     seasonal_cos=annual_cos,
+                    weather=weather,
                 )
             )
-        predicted_cases = predict_model(lyme_model, rows, NO_WEATHER_ID, None)
+        predicted_cases = predict_model(
+            lyme_model,
+            rows,
+            COMPACT_WEATHER_ID,
+            lyme_weather_scaler,
+        )
         return {
             row.municipality_code: float(value) / row.population * 100000.0
             for row, value in zip(rows, predicted_cases, strict=True)
@@ -483,8 +540,8 @@ def build_precaution_snapshot(
         )
 
     featured_codes = config["display"]["featured_municipality_codes"]
-    weather_period_start = weather_quality["period_start"]
-    weather_period_end = weather_quality["period_end"]
+    weather_period_start = latest_weather_week.isoformat()
+    weather_period_end = (latest_weather_week + timedelta(days=6)).isoformat()
     weather_source_label = config["weather"]["source_label"]
     generated_at = weather_quality["retrieved_at_utc"]
     common_model = {
@@ -494,7 +551,6 @@ def build_precaution_snapshot(
         "referenceWeekEnd": weather_period_end,
         "weatherSource": weather_source_label,
         "weatherModel": weather_source["model"],
-        "weatherUsedInScore": False,
         "thresholds": {
             "lowUpper": lyme_calibration.low_upper,
             "mediumUpper": lyme_calibration.medium_upper,
@@ -504,24 +560,27 @@ def build_precaution_snapshot(
         "borelioza": {
             "key": "borelioza",
             "diseaseLabel": "Borelioza",
-            "modelId": NO_WEATHER_ID,
-            "snapshotLabel": "preventivni signal brez novih prijav primerov",
+            "modelId": COMPACT_WEATHER_ID,
+            "snapshotLabel": "vremensko posodobljen tedenski preventivni signal brez novih prijav primerov",
             "spatialScope": "municipality",
             "scopeLabel": "relativna primerjava občin",
             "dataStatus": "Deluje brez novejših prijav borelioze; zgodovinski podatki so uporabljeni samo pri učenju in preverjanju modela.",
-            "methodologyNote": "AI signal primerja sezono in občinski zgodovinski vzorec; sveže prijave primerov in trenutno vreme niso vhod v oceno.",
+            "methodologyNote": "Signal združuje sezono, občinski zgodovinski vzorec in Open-Meteo vreme iz štirih zaključenih tednov pred izdajo; novejše prijave primerov niso vhod v oceno.",
             "purpose": "Podpora odločitvi za previdnost pred odhodom v naravo.",
             "disclaimer": "To ni epidemiološki podatek, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
             "scoreExplanation": "Ocena 0–100 je relativni percentil modelskega signala glede na časovno ločene napovedi 2017–2024.",
             "topDrivers": [
                 "letni sezonski vzorec",
                 "občinski zgodovinski vzorec",
+                "temperatura zraka in tal v prejšnjih štirih tednih",
+                "padavine in vlažnost tal v prejšnjih štirih tednih",
                 "prebivalstvo kot epidemiološki imenovalec",
             ],
             "predictionWindowStart": (issue_week + timedelta(weeks=1)).isoformat(),
             "predictionWindowEnd": (issue_week + timedelta(weeks=4)).isoformat(),
             "locations": lyme_locations,
             "featuredLocations": _featured_locations(lyme_locations, featured_codes),
+            "weatherUsedInScore": True,
             **common_model,
         },
         "kme": {
@@ -547,6 +606,7 @@ def build_precaution_snapshot(
             "featuredLocations": _featured_locations(kme_locations, featured_codes),
             **{
                 **common_model,
+                "weatherUsedInScore": False,
                 "thresholds": {
                     "lowUpper": kme_calibration.low_upper,
                     "mediumUpper": kme_calibration.medium_upper,
@@ -559,7 +619,8 @@ def build_precaution_snapshot(
         "generatedAt": generated_at,
         "issueWeek": issue_week.isoformat(),
         "runtimeCaseInputsUsed": False,
-        "weatherUsedInAiScores": False,
+        "weatherUsedInAiScores": True,
+        "weatherUsedByDisease": {"borelioza": True, "kme": False},
         "weatherContext": {
             "source": weather_source_label,
             "sourceModel": weather_source["model"],
@@ -567,6 +628,8 @@ def build_precaution_snapshot(
             "retrievalId": weather_quality["retrieval_id"],
             "periodStart": weather_period_start,
             "periodEnd": weather_period_end,
+            "retrievalWindowStart": weather_quality["period_start"],
+            "retrievalWindowEnd": weather_quality["period_end"],
             "spatialMethod": config["weather"]["spatial_method"],
             "nativePolygonIntegration": False,
             "expectedRefreshCadenceHours": config["weather"][
@@ -602,8 +665,8 @@ def build_precaution_snapshot(
             "runtime_case_inputs_absent": True,
             "lyme_recent_cases_not_required": True,
             "kme_recent_cases_not_required": True,
-            "weather_separate_from_ai_scores": True,
-            "weather_seven_completed_days_through_yesterday": True,
+            "weather_use_is_disease_specific_and_explicit": True,
+            "weather_five_complete_pre_issue_weeks": True,
             "weather_source_is_operational_model_not_observation": True,
             "weather_uses_polygon_intersection_weights": True,
             "weather_activity_threshold_absent": True,

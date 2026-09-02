@@ -73,6 +73,13 @@
     "weather_candidate_requires_lower_opened_2025_mae_rmse_and_poisson_deviance": true,
     "fallback_candidate": "catboost_no_case_seasonal_municipality_offset"
   },
+  "deployment_policy": {
+    "weather_required_by_product": true,
+    "evidence_selected_candidate": "catboost_no_case_seasonal_municipality_offset",
+    "deployed_candidate": "catboost_no_case_compact_weather_offset",
+    "override_reason": "user_required_weather_in_the_live_municipality_signal_on_2026_09_02",
+    "claim_that_weather_improved_validation_allowed": false
+  },
   "display_calibration": {
     "reference": "selected_candidate_rolling_origin_predictions_2017_through_2024_only",
     "score": "empirical_percentile_of_predicted_incidence_per_100000",
@@ -85,14 +92,20 @@
   "final_fit": {
     "years": [2016, 2025],
     "include_opened_2025_outcomes": true,
-    "runtime_inputs": ["municipality_code", "issue_week", "strictly_earlier_population"],
+    "runtime_inputs": [
+      "municipality_code",
+      "issue_week",
+      "strictly_earlier_population",
+      "open_meteo_mapped_previous_four_complete_weeks"
+    ],
     "runtime_recent_cases_required": false,
-    "runtime_weather_used_by_ai_score": false,
+    "runtime_weather_used_by_ai_score": true,
     "weather_displayed_separately": true
   },
   "outputs": {
     "directory": "model_v3/outputs/precaution_proxy/lyme_v1",
     "model": "model.cbm",
+    "weather_scaler": "weather_scaler.json",
     "model_manifest": "model_manifest.json",
     "display_calibration": "display_calibration.json",
     "fold_predictions": "fold_predictions.csv",

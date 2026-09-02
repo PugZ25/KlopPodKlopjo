@@ -14,7 +14,8 @@ export type WeatherContext = {
   source: string
   dataStatus: 'recent_operational_model_history_not_station_observations'
   spatialMethod: 'frozen_grid_samples_weighted_by_municipality_polygon_intersections'
-  usedInAiScore: false
+  usedInLymeScore: true
+  usedInKmeScore: false
 }
 
 export type LiveMunicipalityRiskLocation = {
@@ -46,7 +47,7 @@ export type LiveMunicipalityRiskModel = {
   snapshotLabel: string
   weatherSource: string
   weatherModel: 'icon_seamless'
-  weatherUsedInScore: false
+  weatherUsedInScore: boolean
   spatialScope: 'municipality' | 'statistical_region'
   scopeLabel: string
   dataStatus: string
@@ -73,7 +74,11 @@ type PrecautionSnapshot = {
   schemaVersion: 1
   generatedAt: string
   runtimeCaseInputsUsed: false
-  weatherUsedInAiScores: false
+  weatherUsedInAiScores: true
+  weatherUsedByDisease: {
+    borelioza: true
+    kme: false
+  }
   weatherContext: {
     periodStart: string
     periodEnd: string
@@ -85,8 +90,13 @@ type PrecautionSnapshot = {
 
 const snapshot = precautionSnapshot as unknown as PrecautionSnapshot
 
-if (snapshot.runtimeCaseInputsUsed || snapshot.weatherUsedInAiScores) {
-  throw new Error('Preventivni snapshot krši pogodbo brez sprotnih primerov.')
+if (
+  snapshot.runtimeCaseInputsUsed ||
+  !snapshot.weatherUsedInAiScores ||
+  !snapshot.weatherUsedByDisease?.borelioza ||
+  snapshot.weatherUsedByDisease?.kme
+) {
+  throw new Error('Preventivni snapshot krši pogodbo bolezni in vremena.')
 }
 if (
   !Number.isFinite(Date.parse(snapshot.generatedAt)) ||

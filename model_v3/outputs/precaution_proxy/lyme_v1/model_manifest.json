@@ -1,33 +1,53 @@
 {
   "catboost_version": "1.2.10",
   "code": {
-    "bytes": 37932,
+    "bytes": 40411,
     "path": "model_v3/models/lyme_precaution_proxy.py",
-    "sha256": "689a02acc610890b1391dba9c30c3b24e8ad376b1092b958519fe2e817c646e9"
+    "sha256": "4e8ca92d0ce64b5d9510631ec73c2291e40bf1d96129a59950524c610cb30f16"
   },
   "configuration": {
-    "bytes": 4388,
+    "bytes": 4890,
     "path": "model_v3/config/lyme_precaution_proxy.json",
-    "sha256": "b980753247af4bc971f8a8a8230e4e276d631f298ec5c6d28cec998e14b18207"
+    "sha256": "c64ad3bc1ffbc4cccc5628f8025c8900caa966503b331ced7b0bfd141613d546"
   },
   "feature_importance": [
     {
       "feature": "municipality_code",
-      "importance": 14.168379873149524
+      "importance": 15.677297632644965
     },
     {
       "feature": "seasonal_sin_annual",
-      "importance": 23.05947078570287
+      "importance": 12.28054938940558
     },
     {
       "feature": "seasonal_cos_annual",
-      "importance": 62.77214934114762
+      "importance": 55.02361099483273
+    },
+    {
+      "feature": "z_t2m_mean_c_previous_4w_mean",
+      "importance": 7.163522688233318
+    },
+    {
+      "feature": "z_tp_sum_mm_previous_4w_sum",
+      "importance": 1.08706196172942
+    },
+    {
+      "feature": "z_stl1_mean_c_previous_4w_mean",
+      "importance": 6.886156797144005
+    },
+    {
+      "feature": "z_swvl1_mean_m3_m3_previous_4w_mean",
+      "importance": 1.8818005360099697
     }
   ],
   "feature_names": [
     "municipality_code",
     "seasonal_sin_annual",
-    "seasonal_cos_annual"
+    "seasonal_cos_annual",
+    "z_t2m_mean_c_previous_4w_mean",
+    "z_tp_sum_mm_previous_4w_sum",
+    "z_stl1_mean_c_previous_4w_mean",
+    "z_swvl1_mean_m3_m3_previous_4w_mean"
   ],
   "input_sources": {
     "development_weather": {
@@ -86,8 +106,8 @@
       "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
     }
   },
-  "model_sha256": "e01adad52df5a0588b1b581f85437b62e63fa6a9f0bb3c7124dd8a25ff249d13",
-  "model_structural_sha256_excluding_volatile_metadata": "bd0520b2c016cf108037f2c333aa193bfe3c2d351290d42f53f5b563fb6caf10",
+  "model_sha256": "cd4e0a3656874150307577cf0475974d2e0bc53648913ddfe491918313a49cf3",
+  "model_structural_sha256_excluding_volatile_metadata": "7af8defc05a2bab6ebce7727d6cbb83c9f80e3bc4d2a0b733ff2339eac251e56",
   "parameters": {
     "allow_writing_files": false,
     "depth": 6,
@@ -109,16 +129,20 @@
     "output_is_direct_tick_measurement": false,
     "output_is_personal_risk": false,
     "recent_cases_required": false,
+    "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
+    "source_bridge_validation_status": "mapped_variables_and_units_without_completed_cross_source_bias_calibration",
     "weather_displayed_as_separate_context": true,
-    "weather_used_by_ai_score": false
+    "weather_used_by_ai_score": true
   },
   "schema_version": 1,
-  "selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
+  "selected_candidate_id": "catboost_no_case_compact_weather_offset",
   "status": "sealed_for_no_current_case_inference",
   "training_period": {
-    "first_issue_week": "2016-01-04",
+    "first_issue_week": "2016-05-02",
     "includes_opened_2025_outcomes": true,
     "last_issue_week": "2025-11-24",
-    "rows": 108756
-  }
+    "rows": 105152,
+    "rows_excluded_incomplete_weather": 3604
+  },
+  "weather_scaler_sha256": "b7abba93f7c22e8b6584cf2422c509ad19b583f95f65f6d72ee8e2b235255c03"
 }

@@ -19,7 +19,8 @@ def test_snapshot_config_has_no_runtime_case_input() -> None:
     config = load_config(REPO_ROOT / "model_v3/config/precaution_snapshot.json")
 
     assert config["product_contract"]["runtime_case_inputs_allowed"] is False
-    assert config["product_contract"]["weather_used_by_ai_score"] is False
+    assert config["product_contract"]["weather_used_by_lyme_score"] is True
+    assert config["product_contract"]["weather_used_by_kme_score"] is False
     assert config["weather"]["expected_refresh_cadence_hours"] == 24
     assert config["weather"]["maximum_display_age_hours"] == 36
     assert not [key for key in config["inputs"] if "case" in key.lower()]
@@ -44,20 +45,22 @@ def test_frontend_snapshot_preserves_scope_and_weather_separation() -> None:
     payload = json.loads(path.read_text(encoding="utf-8"))
 
     assert payload["runtimeCaseInputsUsed"] is False
-    assert payload["weatherUsedInAiScores"] is False
+    assert payload["weatherUsedInAiScores"] is True
+    assert payload["weatherUsedByDisease"] == {"borelioza": True, "kme": False}
     assert payload["weatherContext"]["expectedRefreshCadenceHours"] == 24
     assert payload["weatherContext"]["maximumDisplayAgeHours"] == 36
     assert set(payload["models"]) == {"borelioza", "kme"}
 
-    for model in payload["models"].values():
-        assert model["weatherUsedInScore"] is False
+    for key, model in payload["models"].items():
+        assert model["weatherUsedInScore"] is (key == "borelioza")
         assert len(model["locations"]) == 212
         assert len({row["municipalityCode"] for row in model["locations"]}) == 212
         for row in model["locations"]:
             assert 0 <= row["score"] <= 100
             assert row["level"] in {"Nizko", "Srednje", "Visoko"}
             context = row["weatherContext"]
-            assert context["usedInAiScore"] is False
+            assert context["usedInLymeScore"] is True
+            assert context["usedInKmeScore"] is False
             assert context["dataStatus"] == (
                 "recent_operational_model_history_not_station_observations"
             )

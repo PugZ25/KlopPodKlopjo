@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "purpose": {
-    "product_role": "fresh_polygon_weighted_weather_context_for_possible_tick_activity",
-    "used_by_disease_model": false,
+    "product_role": "polygon_weighted_operational_weather_features_for_weekly_disease_signal",
+    "used_by_disease_model": true,
     "categorical_activity_thresholds_allowed": false,
     "personal_risk_interpretation_allowed": false,
     "data_status": "recent_operational_model_history_not_station_observations"
@@ -17,11 +17,15 @@
     "elevation": "nan",
     "hourly_variables": [
       "temperature_2m",
+      "dew_point_2m",
       "precipitation",
       "soil_temperature_6cm",
-      "soil_moisture_3_to_9cm"
+      "soil_temperature_18cm",
+      "soil_moisture_3_to_9cm",
+      "soil_moisture_9_to_27cm"
     ],
-    "recent_complete_days": 7,
+    "model_feature_weeks": 4,
+    "retrieval_history_weeks": 5,
     "batch_size": 50,
     "request_timeout_seconds": 60,
     "maximum_response_bytes_per_batch": 20000000,
@@ -40,14 +44,13 @@
     "not_claimed": "not_native_model_grid_polygon_integration"
   },
   "freshness_contract": {
-    "period": "seven_complete_UTC_days_ending_yesterday",
-    "maximum_period_end_age_days_at_retrieval": 1,
+    "period": "five_complete_Monday_to_Sunday_UTC_weeks_strictly_before_signal_issue_week",
     "partial_current_day_allowed": false,
     "future_hours_allowed": false
   },
   "outputs": {
     "retrieval_root": "data/raw/open_meteo_activity_weather/retrievals",
-    "municipality_recent_weather": "municipality_recent_weather.csv",
+    "municipality_weekly_weather": "municipality_weekly_weather.csv",
     "quality_summary": "quality_summary.json"
   }
 }

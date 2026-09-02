@@ -1,7 +1,11 @@
 {
+  "claim_that_weather_improved_validation_allowed": false,
+  "deployed_candidate_id": "catboost_no_case_compact_weather_offset",
+  "deployment_override_reason": "user_required_weather_in_the_live_municipality_signal_on_2026_09_02",
   "development_fold_count": 8,
   "development_weather_improved_fold_count": 5,
-  "reason": "compact_weather_failed_stability_and_or_opened_2025_gates",
+  "evidence_reason": "compact_weather_failed_stability_and_or_opened_2025_gates",
+  "evidence_selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
   "rule": {
     "fallback_candidate": "catboost_no_case_seasonal_municipality_offset",
     "weather_candidate_minimum_improved_development_folds": 6,
@@ -9,8 +13,9 @@
     "weather_candidate_requires_lower_opened_2025_mae_rmse_and_poisson_deviance": true
   },
   "runtime_recent_cases_required": false,
-  "runtime_weather_used_by_ai_score": false,
-  "selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
+  "runtime_weather_used_by_ai_score": true,
+  "selected_candidate_id": "catboost_no_case_compact_weather_offset",
   "untouched_lockbox_status": "none_remaining_after_2025_was_opened",
-  "weather_candidate_selected": false
+  "weather_candidate_passed_evidence_gate": false,
+  "weather_required_by_product": true
 }

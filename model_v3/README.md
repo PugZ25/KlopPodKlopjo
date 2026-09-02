@@ -14,9 +14,12 @@ precaution-snapshot pipeline. Its implemented stages follow these design rules.
 - ERA5-Land weather is a core, separate ablation layer. Its source `valid_time` is the retrospective cutoff; features use only completed weeks before `issue_week`, and weather is never extrapolated or synthesized after the verified source cutoff.
 - The documented 2026 GURS municipality zones are the same fixed analytical zones for every model year.
 
-The active public product uses a no-current-cases Lyme proxy and a separate KME
-regional model. Fresh DWD ICON weather obtained through Open-Meteo is displayed
-as a separate seven-day local context; it is not fed into either score. The
-operational contract is documented in
+The active public product uses a weather-aware, no-current-cases Lyme proxy and
+a separate KME regional model. Each Monday, fresh DWD ICON history obtained
+through Open-Meteo is converted to the same seven-variable weekly schema used
+by the retrospective ERA5-Land weather layer. The Lyme proxy uses the four
+completed weeks strictly before its issue week; the latest completed week is
+also displayed as local context. KME remains weather-free because its selected
+model and supported spatial unit are regional. The operational contract is documented in
 [OPERATIONAL_OPEN_METEO_WEATHER.md](OPERATIONAL_OPEN_METEO_WEATHER.md), and the
 model evidence in [PRECAUTION_PROXY_MODEL.md](PRECAUTION_PROXY_MODEL.md).

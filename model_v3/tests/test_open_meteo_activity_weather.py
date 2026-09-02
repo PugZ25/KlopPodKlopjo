@@ -56,35 +56,38 @@ def _fake_http_get(url: str, **_: object) -> bytes:
                 "hourly": {
                     "time": times,
                     "temperature_2m": [11.5] * hour_count,
+                    "dew_point_2m": [7.0] * hour_count,
                     "precipitation": [0.25] * hour_count,
                     "soil_temperature_6cm": [9.25] * hour_count,
+                    "soil_temperature_18cm": [8.5] * hour_count,
                     "soil_moisture_3_to_9cm": [0.31] * hour_count,
+                    "soil_moisture_9_to_27cm": [0.35] * hour_count,
                 },
             }
         )
     return json.dumps(locations).encode("utf-8")
 
 
-def test_plan_uses_latest_seven_complete_days_and_current_monday() -> None:
+def test_plan_uses_five_complete_pre_issue_weeks_and_current_monday() -> None:
     config = load_config(CONFIG_PATH)
     plan = build_plan(config, as_of="2026-09-01T12:00:00Z")
 
     assert plan.signal_issue_week == date(2026, 8, 31)
-    assert plan.period_start == date(2026, 8, 25)
-    assert plan.period_end == date(2026, 8, 31)
+    assert plan.period_start == date(2026, 7, 27)
+    assert plan.period_end == date(2026, 8, 30)
     assert len(plan.sample_points) == 298
     assert len(plan.batches) == 6
 
     next_day = build_plan(config, as_of="2026-09-02T12:00:00Z")
     assert next_day.signal_issue_week == date(2026, 8, 31)
-    assert next_day.period_start == date(2026, 8, 26)
-    assert next_day.period_end == date(2026, 9, 1)
+    assert next_day.period_start == date(2026, 7, 27)
+    assert next_day.period_end == date(2026, 8, 30)
 
 
-def test_config_forbids_model_use_and_activity_thresholds() -> None:
+def test_config_requires_lyme_model_use_and_forbids_activity_thresholds() -> None:
     config = load_config(CONFIG_PATH)
 
-    assert config["purpose"]["used_by_disease_model"] is False
+    assert config["purpose"]["used_by_disease_model"] is True
     assert config["purpose"]["categorical_activity_thresholds_allowed"] is False
     assert config["purpose"]["personal_risk_interpretation_allowed"] is False
     assert config["spatial_contract"]["not_claimed"] == (
@@ -111,13 +114,18 @@ def test_sync_build_and_verified_reader_cover_every_municipality(tmp_path: Path)
         municipality_codes=municipality_codes,
     )
 
-    assert len(rows) == 212
-    assert rows["001"]["temperature_2m_mean_c"] == pytest.approx(11.5)
-    assert rows["001"]["precipitation_sum_mm"] == pytest.approx(42.0)
-    assert rows["001"]["soil_temperature_6cm_mean_c"] == pytest.approx(9.25)
-    assert rows["001"]["soil_moisture_3_to_9cm_mean_m3_m3"] == pytest.approx(0.31)
-    assert quality["period_start"] == "2026-08-25"
-    assert quality["period_end"] == "2026-08-31"
+    assert len(rows) == 212 * 5
+    latest = rows[("001", date(2026, 8, 24))]
+    assert latest.values is not None
+    assert latest.values["t2m_mean_c"] == pytest.approx(11.5)
+    assert latest.values["d2m_mean_c"] == pytest.approx(7.0)
+    assert latest.values["tp_sum_mm"] == pytest.approx(42.0)
+    assert latest.values["stl1_mean_c"] == pytest.approx(9.25)
+    assert latest.values["stl2_mean_c"] == pytest.approx(8.5)
+    assert latest.values["swvl1_mean_m3_m3"] == pytest.approx(0.31)
+    assert latest.values["swvl2_mean_m3_m3"] == pytest.approx(0.35)
+    assert quality["period_start"] == "2026-07-27"
+    assert quality["period_end"] == "2026-08-30"
     assert quality["spatial"]["municipality_count"] == 212
     assert quality["spatial"]["unique_sample_point_count"] == 298
 

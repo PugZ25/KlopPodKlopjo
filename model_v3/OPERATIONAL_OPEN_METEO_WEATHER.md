@@ -1,8 +1,11 @@
-# Fresh Open-Meteo weather context
+# Weekly Open-Meteo weather features
 
-This is the active delivery path for the public precaution app. The disease
-signals remain weekly and require no current Lyme or KME case feed. The separate
-weather panel refreshes daily from seven completed UTC days ending yesterday.
+This is the active weather-delivery path for the public precaution app. The
+disease signals remain weekly and require no current Lyme or KME case feed. The
+pipeline refreshes daily, but its analytical window changes only on Monday: it
+retrieves the five completed Monday-to-Sunday UTC weeks strictly before the
+current issue week. Four weeks are Lyme model inputs; the fifth supports the
+previous issue week's comparison score.
 
 ## Meaning and limits
 
@@ -10,42 +13,53 @@ weather panel refreshes daily from seven completed UTC days ending yesterday.
   `icon_seamless` model.
 - Values are recent operational-model history, not weather-station observations,
   direct tick measurements, infection risk, or an epidemiological case feed.
-- Weather is not an input to either selected disease score.
+- The four most recent completed weeks are inputs to the deployed Lyme score.
+  Weather is not an input to the regional KME score.
 - No tick-activity formula or categorical activity threshold is created. Air
-  temperature, precipitation, shallow-soil temperature, and shallow-soil
-  moisture are shown as descriptive context that can support precaution.
+  temperature, dew point, precipitation, two soil-temperature layers, and two
+  soil-moisture layers are mapped to the established weekly ERA5-Land feature
+  schema. The latest completed week is also shown as descriptive context.
 - The weekly model issue date is the current Monday. A daily weather refresh does
   not change the model signal between Mondays.
+- The model target remains reported Lyme burden in `t+1` through `t+4`.
+  Therefore this is a signal issued in the current week for that declared
+  horizon, not a measurement of current-week tick activity.
 
 Open-Meteo documents multi-coordinate queries and the hourly soil variables in
 its [forecast API documentation](https://open-meteo.com/en/docs). Model selection
 and availability are documented on the
 [DWD ICON API page](https://open-meteo.com/en/docs/dwd-api).
 
-## Spatial conversion
+## Spatial conversion and source bridge
 
 The pipeline does not call one municipality centroid and does not claim native
 ICON polygon integration. It queries 298 frozen sample coordinates, disables
 Open-Meteo elevation downscaling, and selects the nearest ICON cell. It then
 applies the existing 1,043 normalized municipality/grid intersection weights
-derived from the fixed GURS 2026 municipality zones. The result contains one
-seven-day record for each of all 212 municipalities.
+derived from the fixed GURS 2026 municipality zones. The result contains five
+complete weekly records for each of all 212 municipalities.
 
-This makes the delivered spatial summaries consistent with the established
-polygon-weighted municipality layout while keeping the distinct source model
-and approximation explicit.
+This keeps the delivered spatial summaries consistent with the established
+polygon-weighted municipality layout while keeping the source approximation
+explicit. ERA5-Land trained the retrospective weather candidate; DWD ICON
+supplies live inference values. The mapped variables and units match, but a
+completed overlapping-source bias calibration is still absent. Deployment is
+therefore recorded as an explicit product-policy override, not evidence that
+the weather candidate improved validation.
 
 ## Reproducible path
 
 1. `model_v3.features.open_meteo_activity_weather plan` resolves the current
-   Monday and the seven completed days through yesterday.
+   Monday and the five completed weeks before it.
 2. `sync` downloads six immutable batched JSON responses, records exact request
    URLs and SHA-256 hashes, and writes a retrieval manifest.
 3. `build` rejects incomplete time axes, changed units, unexpected coordinates,
    non-physical precipitation or moisture, missing sample points, and changed
-   spatial weights before writing municipality values and a quality summary.
-4. `model_v3.predict.precaution_snapshot` verifies that quality summary and keeps
-   weather separate from the sealed Lyme and KME scores.
+   spatial weights before writing the seven-variable municipality-week table
+   and a quality summary.
+4. `model_v3.predict.precaution_snapshot` verifies the quality summary, applies
+   the four-week weather features to the sealed Lyme proxy, and keeps weather
+   separate from the sealed regional KME score.
 5. The daily GitHub Actions workflow verifies the frontend and publishes the
    dated static JSON. An invalid retrieval fails closed, leaving the previously
    published snapshot available.
@@ -54,8 +68,7 @@ Completed retrievals and derived outputs are idempotent: an exact manual rerun
 reuses them only after validating request support, hashes, configuration, and
 pipeline provenance. A failed download removes only its newly created partial
 directory. The frontend displays a warning when the published snapshot is more
-than 36 hours old, making a missed daily refresh visible without changing any
-disease or activity score.
+than 36 hours old, making a missed refresh visible.
 
 Relevant files:
 
@@ -76,7 +89,7 @@ python -m model_v3.features.open_meteo_activity_weather build \
   --manifest data/raw/open_meteo_activity_weather/retrievals/RETRIEVAL_ID/manifest.json
 python -m model_v3.predict.precaution_snapshot \
   --issue-week YYYY-MM-DD \
-  --recent-weather RETRIEVAL_DIRECTORY/derived/municipality_recent_weather.csv \
+  --recent-weather RETRIEVAL_DIRECTORY/derived/municipality_weekly_weather.csv \
   --weather-quality RETRIEVAL_DIRECTORY/derived/quality_summary.json
 ```
 
