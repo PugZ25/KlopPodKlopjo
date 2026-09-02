@@ -22,6 +22,924 @@
     "t2m_mean_c_previous_4w_mean": 7.45516616223563,
     "tp_sum_mm_previous_4w_sum": 56.55055871133911
   },
+  "training_issue_week_median_maximums": {
+    "stl1_mean_c_previous_4w_mean": 23.240656631392287,
+    "t2m_mean_c_previous_4w_mean": 23.79982608296671,
+    "tp_sum_mm_previous_4w_sum": 271.78557471815
+  },
+  "training_issue_week_median_minimums": {
+    "stl1_mean_c_previous_4w_mean": -1.9220006394771088,
+    "t2m_mean_c_previous_4w_mean": -4.49614113621991,
+    "tp_sum_mm_previous_4w_sum": 3.1537892075475145
+  },
+  "training_seasonal_median_outer_fence_rule": {
+    "circular_iso_week_period": 53,
+    "outer_fence_iqr_multiplier": 3.0,
+    "season_window_iso_weeks_each_side": 2
+  },
+  "training_seasonal_median_outer_fences": {
+    "1": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -2.04758156798613,
+        "support_issue_weeks": 35,
+        "upper": 6.481561752068266
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -4.107531657461355,
+        "support_issue_weeks": 35,
+        "upper": 8.178803924837203
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -153.79987136035717,
+        "support_issue_weeks": 35,
+        "upper": 288.2860972214061
+      }
+    },
+    "10": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -3.997932826964199,
+        "support_issue_weeks": 45,
+        "upper": 9.844484645798891
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.037188747645082,
+        "support_issue_weeks": 45,
+        "upper": 13.129762282192054
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -80.33105676568951,
+        "support_issue_weeks": 45,
+        "upper": 175.10307184993778
+      }
+    },
+    "11": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -5.8253360528482006,
+        "support_issue_weeks": 45,
+        "upper": 13.100847399356676
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.848321966480055,
+        "support_issue_weeks": 45,
+        "upper": 15.249938712487271
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -70.09652370093303,
+        "support_issue_weeks": 45,
+        "upper": 170.04594969821363
+      }
+    },
+    "12": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -7.875398497485955,
+        "support_issue_weeks": 45,
+        "upper": 16.21642532002471
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -5.181977098417821,
+        "support_issue_weeks": 45,
+        "upper": 15.202016558233039
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -80.94955387494778,
+        "support_issue_weeks": 45,
+        "upper": 195.06587195020688
+      }
+    },
+    "13": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -4.3642893698293665,
+        "support_issue_weeks": 45,
+        "upper": 14.82202396293605
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -2.7595286556821605,
+        "support_issue_weeks": 45,
+        "upper": 14.429901473862953
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -84.63265390382452,
+        "support_issue_weeks": 45,
+        "upper": 208.31065895221093
+      }
+    },
+    "14": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.178515391269034,
+        "support_issue_weeks": 45,
+        "upper": 13.213814334652746
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 0.1675067424425194,
+        "support_issue_weeks": 45,
+        "upper": 13.261587326912947
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -72.51203291932045,
+        "support_issue_weeks": 45,
+        "upper": 200.62625583866665
+      }
+    },
+    "15": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -0.5944621434726578,
+        "support_issue_weeks": 45,
+        "upper": 14.26720130000744
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -0.15605744827687928,
+        "support_issue_weeks": 45,
+        "upper": 14.349211093920937
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -68.53748936678899,
+        "support_issue_weeks": 45,
+        "upper": 206.41111920809408
+      }
+    },
+    "16": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.7426111316257673,
+        "support_issue_weeks": 46,
+        "upper": 17.875342303927884
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -1.900551861927764,
+        "support_issue_weeks": 46,
+        "upper": 19.232147584403076
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -62.75097135268493,
+        "support_issue_weeks": 46,
+        "upper": 217.60219305562882
+      }
+    },
+    "17": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.981470396072071,
+        "support_issue_weeks": 47,
+        "upper": 19.488446713389497
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -1.8882711629872135,
+        "support_issue_weeks": 47,
+        "upper": 20.085604738050133
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -65.4771111818578,
+        "support_issue_weeks": 47,
+        "upper": 240.05656133868268
+      }
+    },
+    "18": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -0.8381146230874315,
+        "support_issue_weeks": 48,
+        "upper": 19.804955832015636
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -0.7812930395351412,
+        "support_issue_weeks": 48,
+        "upper": 20.14152265853057
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -71.73383109895909,
+        "support_issue_weeks": 48,
+        "upper": 258.04716450422643
+      }
+    },
+    "19": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.9678965334981164,
+        "support_issue_weeks": 49,
+        "upper": 17.710529954284578
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 3.9815422865179464,
+        "support_issue_weeks": 49,
+        "upper": 18.619867606255518
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -68.7261847168795,
+        "support_issue_weeks": 49,
+        "upper": 274.53835031980844
+      }
+    },
+    "2": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -3.3474500091476775,
+        "support_issue_weeks": 36,
+        "upper": 7.515097875542023
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -4.590009571852404,
+        "support_issue_weeks": 36,
+        "upper": 8.592770769639536
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -151.699161805756,
+        "support_issue_weeks": 36,
+        "upper": 281.55572214804386
+      }
+    },
+    "20": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 2.9674511281774176,
+        "support_issue_weeks": 50,
+        "upper": 20.123943430458784
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 2.6738592534371275,
+        "support_issue_weeks": 50,
+        "upper": 21.061516765964267
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -66.48275236079732,
+        "support_issue_weeks": 50,
+        "upper": 282.80370410402435
+      }
+    },
+    "21": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 1.8825752510756093,
+        "support_issue_weeks": 50,
+        "upper": 23.01340542348489
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 0.5157571501862268,
+        "support_issue_weeks": 50,
+        "upper": 24.890980149296983
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -76.02913685139868,
+        "support_issue_weeks": 50,
+        "upper": 306.7742239699322
+      }
+    },
+    "22": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 1.5853675255325896,
+        "support_issue_weeks": 50,
+        "upper": 25.34399084951906
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 1.569814304179479,
+        "support_issue_weeks": 50,
+        "upper": 26.042863214940546
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -62.939311038034134,
+        "support_issue_weeks": 50,
+        "upper": 305.69098597038357
+      }
+    },
+    "23": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.4893691868159245,
+        "support_issue_weeks": 50,
+        "upper": 25.829141697228344
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 3.49084663048421,
+        "support_issue_weeks": 50,
+        "upper": 26.421083841048954
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -92.41395107764629,
+        "support_issue_weeks": 50,
+        "upper": 327.79696600009265
+      }
+    },
+    "24": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 4.2587234227116255,
+        "support_issue_weeks": 50,
+        "upper": 27.092005214712803
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 4.426906659786226,
+        "support_issue_weeks": 50,
+        "upper": 27.9119459863083
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -76.48226398521784,
+        "support_issue_weeks": 50,
+        "upper": 302.95075543465197
+      }
+    },
+    "25": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 6.094318425807309,
+        "support_issue_weeks": 50,
+        "upper": 27.881684044235634
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 6.1590499269996,
+        "support_issue_weeks": 50,
+        "upper": 28.544460398873444
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -93.4672455825741,
+        "support_issue_weeks": 50,
+        "upper": 307.1949552148539
+      }
+    },
+    "26": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 9.007014461291089,
+        "support_issue_weeks": 50,
+        "upper": 26.988627227390758
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 9.3117123937756,
+        "support_issue_weeks": 50,
+        "upper": 27.777577018784914
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -82.96099747418128,
+        "support_issue_weeks": 50,
+        "upper": 290.1417445449397
+      }
+    },
+    "27": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 10.699216290581766,
+        "support_issue_weeks": 50,
+        "upper": 27.64244142259343
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 10.090961122606878,
+        "support_issue_weeks": 50,
+        "upper": 29.531662460649436
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -76.63879474974459,
+        "support_issue_weeks": 50,
+        "upper": 279.08190674706543
+      }
+    },
+    "28": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 11.62959031638001,
+        "support_issue_weeks": 50,
+        "upper": 28.029913017078663
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 11.750732166441598,
+        "support_issue_weeks": 50,
+        "upper": 28.97320173284716
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -74.41480376367323,
+        "support_issue_weeks": 50,
+        "upper": 276.1165854323036
+      }
+    },
+    "29": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 13.280794354287892,
+        "support_issue_weeks": 50,
+        "upper": 27.38033188712245
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 13.77681026643446,
+        "support_issue_weeks": 50,
+        "upper": 27.914075768637414
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -48.38913645768281,
+        "support_issue_weeks": 50,
+        "upper": 241.6068579460584
+      }
+    },
+    "3": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -6.240273624205723,
+        "support_issue_weeks": 44,
+        "upper": 9.684715586835557
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.267060613510495,
+        "support_issue_weeks": 44,
+        "upper": 9.784137112594086
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -125.6338001944712,
+        "support_issue_weeks": 44,
+        "upper": 246.6154468257866
+      }
+    },
+    "30": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 15.502085405078148,
+        "support_issue_weeks": 50,
+        "upper": 25.889167802954788
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 15.580974020845577,
+        "support_issue_weeks": 50,
+        "upper": 26.821809150192365
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -55.86483758327191,
+        "support_issue_weeks": 50,
+        "upper": 256.74630568425164
+      }
+    },
+    "31": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 15.547020087874436,
+        "support_issue_weeks": 50,
+        "upper": 26.37064428951178
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 15.769986179112184,
+        "support_issue_weeks": 50,
+        "upper": 27.059386025890515
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -56.378381963097,
+        "support_issue_weeks": 50,
+        "upper": 257.13146396912043
+      }
+    },
+    "32": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 15.290649394246984,
+        "support_issue_weeks": 50,
+        "upper": 26.885510559102038
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 15.466222431261901,
+        "support_issue_weeks": 50,
+        "upper": 27.737291331701535
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -62.415702786093135,
+        "support_issue_weeks": 50,
+        "upper": 261.6594545863676
+      }
+    },
+    "33": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 15.196394402258207,
+        "support_issue_weeks": 50,
+        "upper": 27.056712105568888
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 14.79760717316043,
+        "support_issue_weeks": 50,
+        "upper": 28.42029810038156
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -64.81870912542864,
+        "support_issue_weeks": 50,
+        "upper": 263.4617093408692
+      }
+    },
+    "34": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 15.14018590956421,
+        "support_issue_weeks": 50,
+        "upper": 27.098868475089386
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 14.591926082382926,
+        "support_issue_weeks": 50,
+        "upper": 28.57455891846469
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -78.38123438441048,
+        "support_issue_weeks": 50,
+        "upper": 266.60367637712943
+      }
+    },
+    "35": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 13.948516790521957,
+        "support_issue_weeks": 50,
+        "upper": 27.756724537066088
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 13.32807320569573,
+        "support_issue_weeks": 50,
+        "upper": 29.10139246367826
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -56.191390779603324,
+        "support_issue_weeks": 50,
+        "upper": 236.5846146878166
+      }
+    },
+    "36": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 13.392277097749727,
+        "support_issue_weeks": 50,
+        "upper": 26.960121927269576
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 13.073108477911614,
+        "support_issue_weeks": 50,
+        "upper": 28.026105052300487
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -51.619214784783765,
+        "support_issue_weeks": 50,
+        "upper": 234.64683834260455
+      }
+    },
+    "37": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 12.321072808303292,
+        "support_issue_weeks": 50,
+        "upper": 26.680148950840522
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 11.07690800579222,
+        "support_issue_weeks": 50,
+        "upper": 28.301514624274535
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -51.619214784783765,
+        "support_issue_weeks": 50,
+        "upper": 234.64683834260455
+      }
+    },
+    "38": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 9.520025319339581,
+        "support_issue_weeks": 50,
+        "upper": 27.859888643811104
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 8.479343515137892,
+        "support_issue_weeks": 50,
+        "upper": 28.95031241265295
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -53.22808225375255,
+        "support_issue_weeks": 50,
+        "upper": 246.45253105055036
+      }
+    },
+    "39": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 7.133966003600058,
+        "support_issue_weeks": 50,
+        "upper": 27.83303491593946
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 6.565184099393829,
+        "support_issue_weeks": 50,
+        "upper": 28.908712020384595
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -70.59049262236313,
+        "support_issue_weeks": 50,
+        "upper": 274.6629944082254
+      }
+    },
+    "4": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -7.205752457610091,
+        "support_issue_weeks": 45,
+        "upper": 10.30280812481291
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.658598079558688,
+        "support_issue_weeks": 45,
+        "upper": 10.063176916356737
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -118.02987623110081,
+        "support_issue_weeks": 45,
+        "upper": 236.60800677679651
+      }
+    },
+    "40": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.9753622489321145,
+        "support_issue_weeks": 50,
+        "upper": 28.63188508097731
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 2.883302799492732,
+        "support_issue_weeks": 50,
+        "upper": 29.68031628503527
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -91.40202471020542,
+        "support_issue_weeks": 50,
+        "upper": 302.4117038586818
+      }
+    },
+    "41": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.4662365658384147,
+        "support_issue_weeks": 50,
+        "upper": 26.39466182857344
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 2.808024021008727,
+        "support_issue_weeks": 50,
+        "upper": 27.005680499330317
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -123.99400752117994,
+        "support_issue_weeks": 50,
+        "upper": 326.8556909669127
+      }
+    },
+    "42": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.695461134905294,
+        "support_issue_weeks": 50,
+        "upper": 23.54192406752032
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 3.438085433854557,
+        "support_issue_weeks": 50,
+        "upper": 23.695258594001025
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -115.2455706014087,
+        "support_issue_weeks": 50,
+        "upper": 310.30055093036566
+      }
+    },
+    "43": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 5.737498465624277,
+        "support_issue_weeks": 50,
+        "upper": 19.901224443592948
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 5.251932472869466,
+        "support_issue_weeks": 50,
+        "upper": 19.870864276938324
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -132.46801107498257,
+        "support_issue_weeks": 50,
+        "upper": 321.07113324769
+      }
+    },
+    "44": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 3.27703925900966,
+        "support_issue_weeks": 50,
+        "upper": 20.39282108942698
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 2.39748994382073,
+        "support_issue_weeks": 50,
+        "upper": 21.132659186482357
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -60.756323431383166,
+        "support_issue_weeks": 50,
+        "upper": 213.106760928806
+      }
+    },
+    "45": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": 2.389061871318587,
+        "support_issue_weeks": 50,
+        "upper": 19.61131817951013
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": 0.9954750297215398,
+        "support_issue_weeks": 50,
+        "upper": 20.605332193268403
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -72.35240239984324,
+        "support_issue_weeks": 50,
+        "upper": 221.80382015515107
+      }
+    },
+    "46": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.8735218355199414,
+        "support_issue_weeks": 50,
+        "upper": 21.575273354943192
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -3.545488532949502,
+        "support_issue_weeks": 50,
+        "upper": 22.568835327914034
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -130.4232671478171,
+        "support_issue_weeks": 50,
+        "upper": 295.44882573696214
+      }
+    },
+    "47": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -3.6750913897989186,
+        "support_issue_weeks": 49,
+        "upper": 21.134916218135846
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -5.057835362851829,
+        "support_issue_weeks": 49,
+        "upper": 22.029016855892827
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -129.91394217833624,
+        "support_issue_weeks": 49,
+        "upper": 296.7355563237789
+      }
+    },
+    "48": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -6.154901379216504,
+        "support_issue_weeks": 47,
+        "upper": 21.18335615474927
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -7.9716076812452785,
+        "support_issue_weeks": 47,
+        "upper": 22.350679883729182
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -70.09642386675384,
+        "support_issue_weeks": 47,
+        "upper": 254.37913394582736
+      }
+    },
+    "49": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -7.188892287200114,
+        "support_issue_weeks": 45,
+        "upper": 19.196907573836608
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -7.808044716413111,
+        "support_issue_weeks": 45,
+        "upper": 18.92182224869822
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -82.11450718696797,
+        "support_issue_weeks": 45,
+        "upper": 275.9781830011281
+      }
+    },
+    "5": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -5.736802615805535,
+        "support_issue_weeks": 45,
+        "upper": 8.34420833574017
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -5.223167644258973,
+        "support_issue_weeks": 45,
+        "upper": 8.095238388033543
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -102.2825465973315,
+        "support_issue_weeks": 45,
+        "upper": 215.6115672651041
+      }
+    },
+    "50": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -6.749275962545095,
+        "support_issue_weeks": 43,
+        "upper": 15.684668337606851
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -8.56670909988135,
+        "support_issue_weeks": 43,
+        "upper": 16.13983610098632
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -59.08718056880993,
+        "support_issue_weeks": 43,
+        "upper": 246.12220147236943
+      }
+    },
+    "51": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -4.326165155629497,
+        "support_issue_weeks": 34,
+        "upper": 11.691905346339087
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -4.806285647516045,
+        "support_issue_weeks": 34,
+        "upper": 10.592055323008829
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -49.93730266528041,
+        "support_issue_weeks": 34,
+        "upper": 233.49880395327074
+      }
+    },
+    "52": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.4647138567194884,
+        "support_issue_weeks": 33,
+        "upper": 7.236721038988677
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -2.8001577190743028,
+        "support_issue_weeks": 33,
+        "upper": 7.328498417667863
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -50.35507226229015,
+        "support_issue_weeks": 33,
+        "upper": 228.0623459185428
+      }
+    },
+    "53": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -1.0785012283894135,
+        "support_issue_weeks": 34,
+        "upper": 5.945338123876858
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -3.1784845787786304,
+        "support_issue_weeks": 34,
+        "upper": 7.4236404496943615
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -169.14937768659283,
+        "support_issue_weeks": 34,
+        "upper": 313.83306631518235
+      }
+    },
+    "6": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -4.978387633086431,
+        "support_issue_weeks": 45,
+        "upper": 7.8449430549381365
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -5.510103048728502,
+        "support_issue_weeks": 45,
+        "upper": 8.408371689283937
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -112.44281757947232,
+        "support_issue_weeks": 45,
+        "upper": 219.89090669514155
+      }
+    },
+    "7": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -4.596619460545487,
+        "support_issue_weeks": 45,
+        "upper": 7.611938672200732
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.139379719656836,
+        "support_issue_weeks": 45,
+        "upper": 9.247407250521716
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -100.360828859494,
+        "support_issue_weeks": 45,
+        "upper": 200.75867326986534
+      }
+    },
+    "8": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -2.251081590246688,
+        "support_issue_weeks": 45,
+        "upper": 6.0963946620189065
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -5.930655967742668,
+        "support_issue_weeks": 45,
+        "upper": 9.963697271250695
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -92.12813833889561,
+        "support_issue_weeks": 45,
+        "upper": 189.78175257573415
+      }
+    },
+    "9": {
+      "stl1_mean_c_previous_4w_mean": {
+        "lower": -3.1646904184309563,
+        "support_issue_weeks": 45,
+        "upper": 8.400015729805972
+      },
+      "t2m_mean_c_previous_4w_mean": {
+        "lower": -6.387230415431244,
+        "support_issue_weeks": 45,
+        "upper": 12.246160591243152
+      },
+      "tp_sum_mm_previous_4w_sum": {
+        "lower": -81.65672136080721,
+        "support_issue_weeks": 45,
+        "upper": 176.87062464342804
+      }
+    }
+  },
   "training_support_maximums": {
     "stl1_mean_c_previous_4w_mean": 28.074919637044275,
     "t2m_mean_c_previous_4w_mean": 26.895264408911473,

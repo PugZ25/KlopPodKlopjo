@@ -8,6 +8,7 @@
     "personal_risk_output_absent": true,
     "runtime_case_features_absent": true,
     "runtime_weather_deployment_override_is_explicit": true,
+    "runtime_weather_season_matched_median_fences_recorded": true,
     "runtime_weather_source_resolution_tolerances_recorded": true,
     "runtime_weather_training_support_bounds_recorded": true
   },
@@ -35,12 +36,12 @@
     "model": {
       "bytes": 230560,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
-      "sha256": "448beee7996c9e71ce338bb476f0e306dee4db78bde29edd500b9624e0e6c305"
+      "sha256": "bab438042292edbff893df1f6cf8cbb349995a7ad2031d99a623b61ba365b284"
     },
     "model_manifest": {
-      "bytes": 5490,
+      "bytes": 5501,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
-      "sha256": "a661a8b0cdd1fbdfff94ae4d1d416f7021e1d09ce187a4bbf15f8ea914beb036"
+      "sha256": "a2783106fefaf5356a1ac03b1a368854f7acd4e693d4fce6b6596920b1a9e84c"
     },
     "selection": {
       "bytes": 1134,
@@ -48,9 +49,9 @@
       "sha256": "f6f2c14e394a02e78c708e23b849af00afb0e32135929ea152d32f0527799a60"
     },
     "weather_scaler": {
-      "bytes": 1334,
+      "bytes": 27592,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json",
-      "sha256": "8e0d0787601dfac05a22307330f9c178281677ef4cefe63baa6b13d05f8a6a32"
+      "sha256": "eced2ed03d2f41e7369a9a4e782adf6a68468ebd3df715dc461075c57b24be5f"
     }
   },
   "schema_version": 1,

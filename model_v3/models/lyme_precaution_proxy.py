@@ -189,7 +189,11 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     increments = bridge.get("open_meteo_reported_increment", {})
     if (
         bridge.get("model_inputs") != list(COMPACT_WEATHER_FEATURES)
-        or bridge.get("fail_closed_outside_final_training_support") is not True
+        or bridge.get(
+            "fail_closed_outside_season_matched_training_outer_fence"
+        ) is not True
+        or bridge.get("season_window_iso_weeks_each_side") != 2
+        or float(bridge.get("outer_fence_iqr_multiplier", 0)) != 3.0
         or set(increments) != set(COMPACT_WEATHER_FEATURES)
         or not all(float(increments[name]) > 0 for name in COMPACT_WEATHER_FEATURES)
         or bridge.get("support_tolerance_rule")
@@ -813,6 +817,58 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     final_scaler = fit_weather_scaler(final_rows)
     final_model = fit_model(final_rows, selected_candidate, final_scaler, parameters)
 
+    weather_by_issue: dict[date, dict[str, list[float]]] = {}
+    for row in final_rows:
+        if row.weather is None:
+            raise LymePrecautionProxyError("Final weather row is unexpectedly empty")
+        issue_values = weather_by_issue.setdefault(
+            row.issue_week, {name: [] for name in COMPACT_WEATHER_FEATURES}
+        )
+        for name in COMPACT_WEATHER_FEATURES:
+            issue_values[name].append(row.weather.values[name])
+    issue_medians = {
+        issue: {
+            name: statistics.median(values[name])
+            for name in COMPACT_WEATHER_FEATURES
+        }
+        for issue, values in weather_by_issue.items()
+    }
+    seasonal_median_outer_fences: dict[str, dict[str, dict[str, float | int]]] = {}
+    season_window = int(deployment["operational_source_bridge"][
+        "season_window_iso_weeks_each_side"
+    ])
+    fence_multiplier = float(deployment["operational_source_bridge"][
+        "outer_fence_iqr_multiplier"
+    ])
+    for iso_week in range(1, 54):
+        seasonal_rows = [
+            values
+            for issue, values in issue_medians.items()
+            if min(
+                abs(issue.isocalendar().week - iso_week),
+                53 - abs(issue.isocalendar().week - iso_week),
+            )
+            <= season_window
+        ]
+        if len(seasonal_rows) < 20:
+            raise LymePrecautionProxyError(
+                f"Insufficient season-matched weather support for ISO week {iso_week}"
+            )
+        seasonal_median_outer_fences[str(iso_week)] = {}
+        for name in COMPACT_WEATHER_FEATURES:
+            values = np.asarray([row[name] for row in seasonal_rows], dtype=np.float64)
+            q1, q3 = np.quantile(values, [0.25, 0.75])
+            iqr = float(q3 - q1)
+            if not math.isfinite(iqr) or iqr <= 0:
+                raise LymePrecautionProxyError(
+                    f"Invalid season-matched weather IQR for ISO week {iso_week}: {name}"
+                )
+            seasonal_median_outer_fences[str(iso_week)][name] = {
+                "lower": float(q1 - fence_multiplier * iqr),
+                "upper": float(q3 + fence_multiplier * iqr),
+                "support_issue_weeks": len(seasonal_rows),
+            }
+
     output_directory = resolve_repo_path(config["outputs"]["directory"])
     output_directory.mkdir(parents=True, exist_ok=True)
     output_paths = {
@@ -841,6 +897,20 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "training_support_maximums": {
             name: max(row.weather.values[name] for row in final_rows if row.weather is not None)
             for name in COMPACT_WEATHER_FEATURES
+        },
+        "training_issue_week_median_minimums": {
+            name: min(values[name] for values in issue_medians.values())
+            for name in COMPACT_WEATHER_FEATURES
+        },
+        "training_issue_week_median_maximums": {
+            name: max(values[name] for values in issue_medians.values())
+            for name in COMPACT_WEATHER_FEATURES
+        },
+        "training_seasonal_median_outer_fences": seasonal_median_outer_fences,
+        "training_seasonal_median_outer_fence_rule": {
+            "season_window_iso_weeks_each_side": season_window,
+            "outer_fence_iqr_multiplier": fence_multiplier,
+            "circular_iso_week_period": 53,
         },
         "operational_support_tolerances": {
             name: float(deployment["operational_source_bridge"][
@@ -883,7 +953,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             "recent_cases_required": False,
             "weather_used_by_ai_score": True,
             "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
-            "source_bridge_validation_status": "mapped_variables_and_units_with_training_support_guard_without_completed_cross_source_bias_calibration",
+            "source_bridge_validation_status": "mapped_variables_and_units_with_season_matched_distribution_guard_without_completed_cross_source_bias_calibration",
             "operational_weather_features": list(COMPACT_WEATHER_FEATURES),
             "soil_moisture_excluded_from_score": "DWD_ICON_soil_moisture_was_outside_ERA5_Land_training_support_in_live_2026_08_31_audit",
             "weather_displayed_as_separate_context": True,
@@ -928,6 +998,10 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
                 < compact_scaler["training_support_maximums"][name]
                 for name in COMPACT_WEATHER_FEATURES
             ),
+            "runtime_weather_season_matched_median_fences_recorded": (
+                set(compact_scaler["training_seasonal_median_outer_fences"])
+                == {str(week) for week in range(1, 54)}
+            ),
             "runtime_weather_source_resolution_tolerances_recorded": all(
                 compact_scaler["operational_support_tolerances"][name] > 0
                 for name in COMPACT_WEATHER_FEATURES
@@ -959,7 +1033,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "The weather candidate remains deployed only because weather was explicitly made a product requirement; this is an override, not a claim of improved validation.\n\n"
         "Operational inputs are four-week air temperature, precipitation, and shallow-soil temperature. "
         "DWD ICON soil moisture is excluded from the score because the live audit placed it outside ERA5-Land training support. "
-        "Inference fails closed when a scored operational weather feature is outside its final training range; cross-source bias calibration remains incomplete.\n\n"
+        "Inference fails closed when the cross-municipality median of a scored operational feature is outside a season-matched training outer fence after source-resolution tolerance; cross-source bias calibration remains incomplete.\n\n"
         "The display score is the selected model's predicted incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.\n",
         encoding="utf-8",
     )

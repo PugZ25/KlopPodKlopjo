@@ -6,6 +6,7 @@ import csv
 import hashlib
 import json
 import math
+import statistics
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
@@ -61,6 +62,11 @@ class OperationalWeatherScaler:
     scaler: WeatherScaler
     training_support_minimums: Mapping[str, float]
     training_support_maximums: Mapping[str, float]
+    training_issue_week_median_minimums: Mapping[str, float]
+    training_issue_week_median_maximums: Mapping[str, float]
+    training_seasonal_median_outer_fences: Mapping[
+        int, Mapping[str, tuple[float, float]]
+    ]
     operational_support_tolerances: Mapping[str, float]
 
 
@@ -133,11 +139,22 @@ def _load_weather_scaler(path: Path, expected_sha256: str) -> OperationalWeather
     standard_deviations = payload.get("standard_deviations", {})
     minimums = payload.get("training_support_minimums", {})
     maximums = payload.get("training_support_maximums", {})
+    median_minimums = payload.get("training_issue_week_median_minimums", {})
+    median_maximums = payload.get("training_issue_week_median_maximums", {})
     tolerances = payload.get("operational_support_tolerances", {})
+    raw_seasonal_fences = payload.get("training_seasonal_median_outer_fences", {})
     expected_features = set(COMPACT_WEATHER_FEATURES)
     if any(
         set(values) != expected_features
-        for values in (means, standard_deviations, minimums, maximums, tolerances)
+        for values in (
+            means,
+            standard_deviations,
+            minimums,
+            maximums,
+            median_minimums,
+            median_maximums,
+            tolerances,
+        )
     ):
         raise PrecautionSnapshotError("Lyme compact weather scaler schema changed")
     if not all(
@@ -147,11 +164,34 @@ def _load_weather_scaler(path: Path, expected_sha256: str) -> OperationalWeather
         and math.isfinite(float(minimums[name]))
         and math.isfinite(float(maximums[name]))
         and float(minimums[name]) < float(maximums[name])
+        and math.isfinite(float(median_minimums[name]))
+        and math.isfinite(float(median_maximums[name]))
+        and float(median_minimums[name]) < float(median_maximums[name])
         and math.isfinite(float(tolerances[name]))
         and float(tolerances[name]) > 0
         for name in COMPACT_WEATHER_FEATURES
     ):
         raise PrecautionSnapshotError("Lyme compact weather scaler values are invalid")
+    if set(raw_seasonal_fences) != {str(week) for week in range(1, 54)}:
+        raise PrecautionSnapshotError("Lyme seasonal weather support is incomplete")
+    seasonal_fences: dict[int, dict[str, tuple[float, float]]] = {}
+    for week in range(1, 54):
+        source = raw_seasonal_fences[str(week)]
+        if not isinstance(source, dict) or set(source) != expected_features:
+            raise PrecautionSnapshotError("Lyme seasonal weather support schema changed")
+        seasonal_fences[week] = {}
+        for name in COMPACT_WEATHER_FEATURES:
+            row = source[name]
+            lower = float(row["lower"])
+            upper = float(row["upper"])
+            if (
+                not math.isfinite(lower)
+                or not math.isfinite(upper)
+                or lower >= upper
+                or int(row["support_issue_weeks"]) < 20
+            ):
+                raise PrecautionSnapshotError("Lyme seasonal weather support is invalid")
+            seasonal_fences[week][name] = (lower, upper)
     return OperationalWeatherScaler(
         scaler=WeatherScaler(
             means={name: float(means[name]) for name in COMPACT_WEATHER_FEATURES},
@@ -166,6 +206,13 @@ def _load_weather_scaler(path: Path, expected_sha256: str) -> OperationalWeather
         training_support_maximums={
             name: float(maximums[name]) for name in COMPACT_WEATHER_FEATURES
         },
+        training_issue_week_median_minimums={
+            name: float(median_minimums[name]) for name in COMPACT_WEATHER_FEATURES
+        },
+        training_issue_week_median_maximums={
+            name: float(median_maximums[name]) for name in COMPACT_WEATHER_FEATURES
+        },
+        training_seasonal_median_outer_fences=seasonal_fences,
         operational_support_tolerances={
             name: float(tolerances[name]) for name in COMPACT_WEATHER_FEATURES
         },
@@ -472,22 +519,6 @@ def build_precaution_snapshot(
                 raise PrecautionSnapshotError(
                     f"Open-Meteo weather features are unavailable for {code} at {prediction_issue}"
                 )
-            outside_support = {
-                name: weather.values[name]
-                for name in COMPACT_WEATHER_FEATURES
-                if not (
-                    lyme_weather_scaler.training_support_minimums[name]
-                    - lyme_weather_scaler.operational_support_tolerances[name]
-                    <= weather.values[name]
-                    <= lyme_weather_scaler.training_support_maximums[name]
-                    + lyme_weather_scaler.operational_support_tolerances[name]
-                )
-            }
-            if outside_support:
-                raise PrecautionSnapshotError(
-                    f"Open-Meteo weather is outside final ERA5-Land training support "
-                    f"for {code} at {prediction_issue}: {outside_support}"
-                )
             rows.append(
                 ProxyRow(
                     municipality_code=code,
@@ -501,6 +532,33 @@ def build_precaution_snapshot(
                     seasonal_cos=annual_cos,
                     weather=weather,
                 )
+            )
+        operational_medians = {
+            name: statistics.median(
+                row.weather.values[name] for row in rows if row.weather is not None
+            )
+            for name in COMPACT_WEATHER_FEATURES
+        }
+        outside_support = {
+            name: value
+            for name, value in operational_medians.items()
+            if not (
+                lyme_weather_scaler.training_seasonal_median_outer_fences[
+                    prediction_issue.isocalendar().week
+                ][name][0]
+                - lyme_weather_scaler.operational_support_tolerances[name]
+                <= value
+                <= lyme_weather_scaler.training_seasonal_median_outer_fences[
+                    prediction_issue.isocalendar().week
+                ][name][1]
+                + lyme_weather_scaler.operational_support_tolerances[name]
+            )
+        }
+        if outside_support:
+            raise PrecautionSnapshotError(
+                "Open-Meteo cross-municipality weather median is outside the "
+                f"season-matched ERA5-Land outer fence at {prediction_issue}: "
+                f"{outside_support}"
             )
         predicted_cases = predict_model(
             lyme_model,
@@ -712,7 +770,7 @@ def build_precaution_snapshot(
             "lyme_recent_cases_not_required": True,
             "kme_recent_cases_not_required": True,
             "weather_use_is_disease_specific_and_explicit": True,
-            "lyme_weather_within_final_training_support": True,
+            "lyme_weather_cross_municipality_medians_within_season_matched_training_fences": True,
             "weather_five_complete_pre_issue_weeks": True,
             "weather_source_is_operational_model_not_observation": True,
             "weather_uses_polygon_intersection_weights": True,

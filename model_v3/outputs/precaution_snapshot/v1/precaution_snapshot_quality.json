@@ -5,6 +5,7 @@
     "kme_scope_is_statistical_region": true,
     "low_never_declared_safe": true,
     "lyme_recent_cases_not_required": true,
+    "lyme_weather_cross_municipality_medians_within_season_matched_training_fences": true,
     "municipality_count_is_212": true,
     "personal_risk_output_absent": true,
     "runtime_case_inputs_absent": true,
@@ -16,19 +17,19 @@
   },
   "inputs": {
     "configuration": {
-      "bytes": 2398,
+      "bytes": 2457,
       "path": "model_v3/config/precaution_snapshot.json",
-      "sha256": "a60b1efe6a3ff479016b97d8185af42002a3d47df8d9f060448160e62bb59c7f"
+      "sha256": "137f613afc809e8bbe57235e93b7400bb7a57872dfc32181ee93f892c2702d1d"
     },
     "display_calibration": {
-      "bytes": 17807,
+      "bytes": 17810,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
-      "sha256": "f87b1df6fa10f1a03ceb64e610e2eb3b8962e8ee98ed8959fc567ec749524990"
+      "sha256": "76a0fcc3b8da5ace91803667ba8cd297f8629a5cae9537d215bb91796cdb20f6"
     },
     "generator_code": {
-      "bytes": 30816,
+      "bytes": 35471,
       "path": "model_v3/predict/precaution_snapshot.py",
-      "sha256": "705c51dcb8f570de80dccb65003098458bed1ea48a6eb2449d101f7525860c4b"
+      "sha256": "8ea3e29c13184c112f5d6af3c6520987a00a0dbd191dd96ca2b1745f664a27ee"
     },
     "kme_coefficients": {
       "bytes": 777,
@@ -41,19 +42,19 @@
       "sha256": "148232b4dbf967522d59beed6f2576385ac33518b1211d34509b794640b2a4da"
     },
     "lyme_model": {
-      "bytes": 230688,
+      "bytes": 230560,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
-      "sha256": "cd4e0a3656874150307577cf0475974d2e0bc53648913ddfe491918313a49cf3"
+      "sha256": "bab438042292edbff893df1f6cf8cbb349995a7ad2031d99a623b61ba365b284"
     },
     "lyme_model_manifest": {
-      "bytes": 5324,
+      "bytes": 5501,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
-      "sha256": "4ec8c58b446f25cc11a59c33028bdb3bdd7c027d578cca1d2b9e8d046c87c0f5"
+      "sha256": "a2783106fefaf5356a1ac03b1a368854f7acd4e693d4fce6b6596920b1a9e84c"
     },
     "lyme_weather_scaler": {
-      "bytes": 788,
+      "bytes": 27592,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json",
-      "sha256": "b7abba93f7c22e8b6584cf2422c509ad19b583f95f65f6d72ee8e2b235255c03"
+      "sha256": "eced2ed03d2f41e7369a9a4e782adf6a68468ebd3df715dc461075c57b24be5f"
     },
     "municipality": {
       "bytes": 3148,
@@ -77,13 +78,13 @@
     },
     "recent_activity_weather": {
       "bytes": 182653,
-      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150100Z/derived/municipality_weekly_weather.csv",
+      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T152200Z/derived/municipality_weekly_weather.csv",
       "sha256": "49a91f5dc05ad25c8ce452a08002a91766add7bd1cfe29cf12f62855421be1cf"
     },
     "recent_activity_weather_quality": {
       "bytes": 3061,
-      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150100Z/derived/quality_summary.json",
-      "sha256": "f436f9ef887de61850f761dbbb95038cc8d00a0ea1c0c6ec220343ba6052adba"
+      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T152200Z/derived/quality_summary.json",
+      "sha256": "20048772e2da792fb6d2c903c6cd2bbcd4876bf49e645cb6d69cb22be4bc5bca"
     },
     "statistical_region": {
       "bytes": 855,
@@ -94,14 +95,14 @@
   "issue_week": "2026-08-31",
   "outputs": {
     "frontend_snapshot": {
-      "bytes": 488827,
+      "bytes": 488858,
       "path": "frontend/src/data/precautionSnapshot.json",
-      "sha256": "cb2815ff0b8680144be7d3a1198c7f330c3eb4d0b87b97231c299bdaf7739de8"
+      "sha256": "1bedff96bf4d8491a2d9a21828ae6a00c389c8d1207ec6028bbdbc1a33e4df21"
     },
     "snapshot": {
-      "bytes": 488827,
+      "bytes": 488858,
       "path": "model_v3/outputs/precaution_snapshot/v1/precaution_snapshot.json",
-      "sha256": "cb2815ff0b8680144be7d3a1198c7f330c3eb4d0b87b97231c299bdaf7739de8"
+      "sha256": "1bedff96bf4d8491a2d9a21828ae6a00c389c8d1207ec6028bbdbc1a33e4df21"
     }
   },
   "schema_version": 1,

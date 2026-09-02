@@ -51,12 +51,26 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
     assert scaler["feature_order"] == list(COMPACT_WEATHER_FEATURES)
     assert set(scaler["training_support_minimums"]) == set(COMPACT_WEATHER_FEATURES)
     assert set(scaler["training_support_maximums"]) == set(COMPACT_WEATHER_FEATURES)
+    assert set(scaler["training_issue_week_median_minimums"]) == set(
+        COMPACT_WEATHER_FEATURES
+    )
+    assert set(scaler["training_issue_week_median_maximums"]) == set(
+        COMPACT_WEATHER_FEATURES
+    )
     assert set(scaler["operational_support_tolerances"]) == set(
         COMPACT_WEATHER_FEATURES
     )
+    assert set(scaler["training_seasonal_median_outer_fences"]) == {
+        str(week) for week in range(1, 54)
+    }
     assert all(
         scaler["training_support_minimums"][feature]
         < scaler["training_support_maximums"][feature]
+        for feature in COMPACT_WEATHER_FEATURES
+    )
+    assert all(
+        scaler["training_issue_week_median_minimums"][feature]
+        < scaler["training_issue_week_median_maximums"][feature]
         for feature in COMPACT_WEATHER_FEATURES
     )
     assert scaler["operational_support_tolerances"] == {
@@ -64,6 +78,11 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
         "t2m_mean_c_previous_4w_mean": 0.05,
         "tp_sum_mm_previous_4w_sum": 33.6,
     }
+    assert all(
+        set(scaler["training_seasonal_median_outer_fences"][str(week)])
+        == set(COMPACT_WEATHER_FEATURES)
+        for week in range(1, 54)
+    )
 
 
 def test_weather_candidate_failed_the_opened_2025_audit() -> None:

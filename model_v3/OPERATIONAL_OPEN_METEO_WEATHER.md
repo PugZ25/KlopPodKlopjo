@@ -48,8 +48,12 @@ explicit. ERA5-Land trained the retrospective weather candidate; DWD ICON
 supplies live inference values. The mapped variables and units match, but a
 completed overlapping-source bias calibration is still absent. Deployment is
 therefore recorded as an explicit product-policy override, not evidence that
-the weather candidate improved validation. Scored live features must stay
-inside their observed final-training ranges or snapshot generation fails closed.
+the weather candidate improved validation. For every scored feature, the live
+cross-municipality median must stay inside a season-matched outer fence derived
+from final-training issue-week medians in a circular ±2 ISO-week window. The
+fence is `Q1 - 3×IQR` through `Q3 + 3×IQR`, with only a source-resolution
+allowance; otherwise snapshot generation fails closed. This detects systematic
+source shifts without rejecting a legitimate local weather extreme.
 
 ## Reproducible path
 

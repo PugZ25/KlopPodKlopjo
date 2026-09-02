@@ -84,7 +84,9 @@
         "tp_sum_mm_previous_4w_sum",
         "stl1_mean_c_previous_4w_mean"
       ],
-      "fail_closed_outside_final_training_support": true,
+      "fail_closed_outside_season_matched_training_outer_fence": true,
+      "season_window_iso_weeks_each_side": 2,
+      "outer_fence_iqr_multiplier": 3.0,
       "open_meteo_reported_increment": {
         "t2m_mean_c_previous_4w_mean": 0.1,
         "tp_sum_mm_previous_4w_sum": 0.1,
