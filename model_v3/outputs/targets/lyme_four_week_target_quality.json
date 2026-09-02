@@ -1,0 +1,117 @@
+{
+  "calculation_example": {
+    "calculation": "0 + 1 + 0 + 0",
+    "included_lyme_cases": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "included_week_offsets": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "included_weeks": [
+      "2015-01-05",
+      "2015-01-12",
+      "2015-01-19",
+      "2015-01-26"
+    ],
+    "issue_week": "2014-12-29",
+    "issue_week_t_included": false,
+    "municipality_code": "001",
+    "target": 1,
+    "weeks_after_t_plus_4_included": false
+  },
+  "checks": {
+    "current_week_excluded": true,
+    "eight_week_target_created": false,
+    "exactly_t_plus_1_through_t_plus_4_included": true,
+    "feature_columns_created": false,
+    "incomplete_rows_training_eligible": false,
+    "iso_week_edges_use_date_arithmetic": true,
+    "kme_target_created": false,
+    "missing_future_weeks_imputed_as_zero": false,
+    "predictive_model_created": false,
+    "year_boundaries_use_date_arithmetic": true
+  },
+  "dataset": {
+    "bytes": 5894149,
+    "columns": [
+      "municipality_code",
+      "issue_week",
+      "target_lyme_cases_next_4w",
+      "target_window_start",
+      "target_window_end",
+      "target_status",
+      "target_training_eligible"
+    ],
+    "maximum_complete_target": 240,
+    "minimum_complete_target": 0,
+    "missing_target_value_count": 848,
+    "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+    "primary_key": [
+      "municipality_code",
+      "issue_week"
+    ],
+    "row_count": 110876,
+    "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459",
+    "status_counts": {
+      "complete": 110028,
+      "incomplete_future_horizon": 848,
+      "missing_future_week": 0
+    },
+    "training_eligible_row_count": 110028,
+    "training_ineligible_row_count": 848,
+    "unexpected_duplicate_rows": []
+  },
+  "lockbox": {
+    "complete_target_windows_entering_lockbox": 0,
+    "input_rows_skipped_before_numeric_parsing": 10812,
+    "late_development_rows_remain_explicitly_incomplete": true,
+    "numeric_case_values_parsed_from_lockbox": 0,
+    "start": "2025-01-01",
+    "target_issue_rows_materialized": 0,
+    "used_for_target_definition_or_selection": false,
+    "year": 2025
+  },
+  "pipeline": "model_v3.panel.lyme_four_week_target",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 22199,
+      "path": "model_v3/panel/lyme_four_week_target.py",
+      "sha256": "858ad225988cfcbd220dd7ff4467050a976a4ef2ad0861b366f8a98ca294418e"
+    },
+    "canonical_weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    },
+    "config": {
+      "bytes": 934,
+      "path": "model_v3/config/lyme_four_week_target.json",
+      "sha256": "e9b19793599309924cbafc1b535d3ef8996aa5b2fef6ba3576a91bd0720419fb"
+    }
+  },
+  "status": "pass",
+  "target_definition": {
+    "analysis_unit": [
+      "municipality_code",
+      "issue_week"
+    ],
+    "calculation_is_within_municipality": true,
+    "chronological_order_is_explicit": true,
+    "included_week_offsets": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "issue_week_t_included": false,
+    "target_column": "target_lyme_cases_next_4w",
+    "weeks_after_t_plus_4_included": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "municipality_code_width": 3,
+  "sources": {
+    "municipality": {
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "code_property": "SIFRA",
+      "name_property": "NAZIV"
+    },
+    "population": {
+      "path": "data/raw/surs/obcina_population_sistat.json",
+      "measure_dimension": "MERITVE",
+      "measure_code": "45",
+      "expected_measure_label": "Population - Total - 1 January",
+      "municipality_dimension": "OBČINE",
+      "year_dimension": "LETO"
+    },
+    "weekly_cases": {
+      "header_row": 1,
+      "municipality_name_column": 2,
+      "municipality_header": "Občina bivališča\n/Obolenja po tednih\n",
+      "total_label": "SKUPAJ",
+      "week_header_pattern": "^(?P<year>\\d{4})-(?P<week>\\d{2})$",
+      "blank_case_cell_value": 0,
+      "blank_case_cell_rule_source": "User-confirmed project rule",
+      "files": [
+        {
+          "path": "data/raw/nijz/lyme_2015_2025_student.xlsx",
+          "canonical_column": "lyme_cases"
+        },
+        {
+          "path": "data/raw/nijz/KME_2015_2025_student.xlsx",
+          "canonical_column": "kme_cases"
+        }
+      ],
+      "municipality_name_alias_to_code": {
+        "SV. TROJICA V SLOV. GORICAH": "204",
+        "SVETI JURIJ V SLOV. GORICAH": "210"
+      }
+    }
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/canonical",
+    "municipality": "municipality.csv",
+    "population": "population.csv",
+    "weekly_cases": "weekly_cases.csv",
+    "calendar": "calendar.csv",
+    "data_quality_summary": "data_quality_summary.json"
+  }
+}

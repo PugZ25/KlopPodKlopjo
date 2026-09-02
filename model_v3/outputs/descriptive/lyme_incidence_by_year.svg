@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+<title>Reported Lyme incidence per 100,000 by issue year</title>
+<desc>Reported Lyme cases in municipalities with valid population; Summed SURS population total on 1 January for those municipalities; issue weeks 2016-01-04 to 2024-12-30</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="30.00" y="38.00" font-size="22" font-weight="bold" fill="#16212d">Reported Lyme incidence per 100,000 by issue year</text>
+<text x="30.00" y="68.00" font-size="14" fill="#334155">Numerator: Reported Lyme cases in municipalities with valid population</text>
+<text x="30.00" y="92.00" font-size="14" fill="#334155">Denominator: Summed SURS population total on 1 January for those municipalities</text>
+<text x="30.00" y="116.00" font-size="14" fill="#334155">Period: issue weeks 2016-01-04 to 2024-12-30</text>
+<line x1="100" y1="495.00" x2="930" y2="495.00" stroke="#d9e1e8"/>
+<text x="90.00" y="500.00" text-anchor="end" font-size="12" fill="#475569">0.0</text>
+<line x1="100" y1="426.00" x2="930" y2="426.00" stroke="#d9e1e8"/>
+<text x="90.00" y="431.00" text-anchor="end" font-size="12" fill="#475569">73.2</text>
+<line x1="100" y1="357.00" x2="930" y2="357.00" stroke="#d9e1e8"/>
+<text x="90.00" y="362.00" text-anchor="end" font-size="12" fill="#475569">146.3</text>
+<line x1="100" y1="288.00" x2="930" y2="288.00" stroke="#d9e1e8"/>
+<text x="90.00" y="293.00" text-anchor="end" font-size="12" fill="#475569">219.5</text>
+<line x1="100" y1="219.00" x2="930" y2="219.00" stroke="#d9e1e8"/>
+<text x="90.00" y="224.00" text-anchor="end" font-size="12" fill="#475569">292.7</text>
+<line x1="100" y1="150.00" x2="930" y2="150.00" stroke="#d9e1e8"/>
+<text x="90.00" y="155.00" text-anchor="end" font-size="12" fill="#475569">365.8</text>
+<rect x="115.68" y="299.59" width="60.87" height="195.41" fill="#197a70"/>
+<text x="146.11" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2016</text>
+<rect x="207.90" y="287.88" width="60.87" height="207.12" fill="#197a70"/>
+<text x="238.33" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2017</text>
+<rect x="300.12" y="150.00" width="60.87" height="345.00" fill="#197a70"/>
+<text x="330.56" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2018</text>
+<rect x="392.34" y="317.66" width="60.87" height="177.34" fill="#197a70"/>
+<text x="422.78" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2019</text>
+<rect x="484.57" y="158.19" width="60.87" height="336.81" fill="#197a70"/>
+<text x="515.00" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2020</text>
+<rect x="576.79" y="363.84" width="60.87" height="131.16" fill="#197a70"/>
+<text x="607.22" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2021</text>
+<rect x="669.01" y="315.62" width="60.87" height="179.38" fill="#197a70"/>
+<text x="699.44" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2022</text>
+<rect x="761.23" y="383.00" width="60.87" height="112.00" fill="#197a70"/>
+<text x="791.67" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2023</text>
+<rect x="853.46" y="353.84" width="60.87" height="141.16" fill="#197a70"/>
+<text x="883.89" y="519.00" text-anchor="middle" font-size="12" fill="#334155">2024</text>
+<text x="515.00" y="556.00" text-anchor="middle" font-size="14" fill="#16212d">Issue year (Gregorian year of issue_week Monday)</text>
+<text x="22" y="322.50" transform="rotate(-90 22 322.50)" text-anchor="middle" font-size="14" fill="#16212d">Reported Lyme incidence per 100,000</text>
+</svg>

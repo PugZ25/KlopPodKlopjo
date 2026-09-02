@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": {
+    "selected_model_predictions": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
+    "selected_model_predictions_sha256": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da",
+    "lockbox_receipt": "model_v3/outputs/lockbox_2025/LOCKBOX_OPENED.json",
+    "lockbox_receipt_sha256": "9b1c98b809e51520013f759c58fcfc9593fab34295fddba587e196c59b16da98",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "municipality_sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "selected_model_config": "model_v3/config/lyme_catboost_challenger.json",
+    "selected_model_config_sha256": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305"
+  },
+  "selection": {
+    "selected_model_id": "catboost_poisson_s3_weather_offset",
+    "required_system_type": "final_selected_model",
+    "issue_date_rule": "latest_issue_week_available_for_selected_model_in_sealed_prediction_output",
+    "horizon_weeks": 4,
+    "expected_municipality_count": 212,
+    "required_prediction_status": "available",
+    "required_interval_status": "not_available_frozen_system_has_no_predictive_intervals"
+  },
+  "versioning": {
+    "model_version_rule": "selected_model_id_at_full_selected_model_config_sha256",
+    "data_version_rule": "sealed_selected_model_prediction_source_at_full_sha256",
+    "generated_at_rule": "completed_at_utc_from_sealed_lockbox_receipt"
+  },
+  "data_status": {
+    "valid_denominator": "retrospective_lockbox_evaluation_prediction",
+    "invalid_denominator": "retrospective_lockbox_evaluation_prediction_missing_population_denominator"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/prediction_snapshot/v1",
+    "parquet": "prediction_snapshot.parquet",
+    "json": "prediction_snapshot.json",
+    "quality_summary": "prediction_snapshot_quality.json"
+  }
+}

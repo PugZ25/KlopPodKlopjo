@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "freeze": {
+    "model_selection_document": "model_v3/MODEL_SELECTION.md",
+    "model_selection_sha256": "4b665ca2138be3e8eb061c135590868b67ce58dd4a070318de59cae632b6ea8f",
+    "lockbox_year": 2025,
+    "development_start_year": 2016,
+    "development_end_year": 2024,
+    "run_once": true,
+    "systems": [
+      "catboost_poisson_s3_weather_offset",
+      "model_s3_weather_offset_matched",
+      "baseline_d_municipality_seasonal_history"
+    ],
+    "no_post_lockbox_model_selection": true
+  },
+  "inputs": {
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "development_target": "model_v3/outputs/targets/lyme_four_week_target.csv",
+    "development_weather": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+    "development_weather_quality": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+    "weather_grid_weights": "model_v3/outputs/weather/era5_land_municipality_grid_weights.csv",
+    "raw_weather_directory": "data/raw/copernicus/era5land_slovenia/hourly",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "baseline_config": "model_v3/config/lyme_non_ml_baselines.json",
+    "statistical_config": "model_v3/config/lyme_seasonal_count_models.json",
+    "catboost_config": "model_v3/config/lyme_catboost_challenger.json",
+    "development_comparison": "model_v3/outputs/catboost_challenger/lyme_catboost_development_comparison.csv"
+  },
+  "frozen_sha256": {
+    "model_v3/config/canonical_epidemiology.json": "e626ea736a1b29d63fa73d87b79ebc37fa999aef9a594880e78fcb97e0c34d10",
+    "model_v3/config/lyme_four_week_target.json": "e9b19793599309924cbafc1b535d3ef8996aa5b2fef6ba3576a91bd0720419fb",
+    "model_v3/config/lyme_rolling_origin_validation.json": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08",
+    "model_v3/config/era5_land_weekly_weather.json": "f2cc284b660689b27a15d1e55912b2111ace90a2b6926cdeb006fea849865637",
+    "model_v3/config/weather_data_contract.json": "aeaebf963e61e4cd0d0ce3dd9610c95767ca916cf9464c693a37a4151213b13e",
+    "model_v3/config/lyme_non_ml_baselines.json": "86eec018c0566a24a24393daf52e81c39a41473d5c768ddcfd6f6b57e33fa82f",
+    "model_v3/config/lyme_seasonal_count_models.json": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935",
+    "model_v3/config/lyme_catboost_challenger.json": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305",
+    "model_v3/data/canonical_epidemiology.py": "6ad9e4458e50d6efc11b9c67879f49925af557684f7ea12311f036899b62bc4e",
+    "model_v3/panel/lyme_four_week_target.py": "858ad225988cfcbd220dd7ff4467050a976a4ef2ad0861b366f8a98ca294418e",
+    "model_v3/validation/rolling_origin.py": "c7a7e2d5208895c83ddf3cebd0be78e243eb504e79cf7f866d32f176e5299881",
+    "model_v3/features/weather_weekly.py": "6f2efb947355ae4c5954f2518b3603aadb985519e4f27f8a5f53e1f0e0c5c4e1",
+    "model_v3/models/seasonal_count_models.py": "42bb3f863906d62c9943b374f87463cdf33fa5e98c3dccdd3610a99ab93800fd",
+    "model_v3/models/catboost_challenger.py": "9b2e391ef0f08d1df92371d4dfbe98337f691a51c3bc44233fb633a29cf6e733",
+    "model_v3/requirements.txt": "b0dc82fa6b002024fc56fd727b161935c48379b6cf8ad4e0c5fe9ae497267bae",
+    "model_v3/outputs/canonical/calendar.csv": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+    "model_v3/outputs/canonical/municipality.csv": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "model_v3/outputs/canonical/population.csv": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "model_v3/outputs/targets/lyme_four_week_target.csv": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459",
+    "model_v3/outputs/weather/era5_land_municipality_weekly.csv": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f",
+    "model_v3/outputs/weather/era5_land_weekly_quality_summary.json": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75",
+    "model_v3/outputs/weather/era5_land_municipality_grid_weights.csv": "d72c63087648ab21feb038b39102208db3b2767b931af535b3374f3c2be1ff00",
+    "model_v3/outputs/catboost_challenger/lyme_catboost_development_comparison.csv": "c19c6c0fa71a855471337604d4243e693671499597ee6c108c84fd3c29a043a5"
+  },
+  "protected_input": {
+    "path": "model_v3/outputs/canonical/weekly_cases.csv",
+    "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "rule": "read_and_parse_2025_values_once_only_after_all_preflight_checks_pass"
+  },
+  "weather_extension": {
+    "dataset": "reanalysis-era5-land",
+    "product": "final_ERA5_Land",
+    "required_expver": "0001",
+    "first_valid_time": "2024-12-01T00:00:00Z",
+    "cutoff": "2025-11-30T23:00:00Z",
+    "first_file": "era5land_slovenia_2024_12.nc",
+    "last_file": "era5land_slovenia_2025_11.nc",
+    "latest_feature_week_start": "2025-11-17",
+    "latest_feature_week_end": "2025-11-23",
+    "spatial_weights": "reuse_frozen_area_weighted_polygon_overlay_weights",
+    "fixed_municipality_zones_all_years": true,
+    "post_cutoff_rule": "do_not_extrapolate_impute_or_create_weather_after_cutoff"
+  },
+  "target": {
+    "analysis_unit": "municipality_code_x_issue_week",
+    "column": "target_lyme_cases_next_4w",
+    "included_week_offsets": [1, 2, 3, 4],
+    "issue_week_included": false,
+    "lockbox_window_rule": "target_window_fully_contained_in_calendar_year_2025",
+    "future_week_completeness_rule": "all_four_future_weeks_must_exist_in_verified_canonical_calendar_otherwise_boundary_purge"
+  },
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "rmse": "root_mean_squared_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "interval_metrics": "not_available_frozen_final_system_has_no_predictive_intervals"
+  },
+  "calibration_diagnostics": {
+    "overall": [
+      "observed_total",
+      "predicted_total",
+      "observed_mean",
+      "predicted_mean",
+      "mean_signed_error_prediction_minus_observation",
+      "observed_to_predicted_total_ratio",
+      "log_observed_to_predicted_total_ratio"
+    ],
+    "reliability_groups": 10,
+    "grouping": "deterministic_equal_count_rank_groups_by_prediction_then_issue_week_then_municipality_code",
+    "diagnostic_only_no_recalibration": true
+  },
+  "error_distributions": {
+    "municipality": "one_row_per_system_and_municipality",
+    "temporal": "one_row_per_system_and_issue_week"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/lockbox_2025",
+    "weather_extension": "era5_land_municipality_weekly_lockbox_extension.csv",
+    "weather_quality": "era5_land_lockbox_extension_quality.json",
+    "predictions": "lyme_lockbox_predictions.csv",
+    "metrics": "lyme_lockbox_metrics.csv",
+    "calibration_overall": "lyme_lockbox_calibration_overall.csv",
+    "calibration_groups": "lyme_lockbox_calibration_groups.csv",
+    "municipality_errors": "lyme_lockbox_municipality_errors.csv",
+    "temporal_errors": "lyme_lockbox_temporal_errors.csv",
+    "fit_diagnostics": "lyme_lockbox_fit_diagnostics.json",
+    "quality_summary": "lyme_lockbox_quality_summary.json",
+    "receipt": "LOCKBOX_OPENED.json",
+    "report": "model_v3/LOCKBOX_EVALUATION_REPORT.md"
+  }
+}

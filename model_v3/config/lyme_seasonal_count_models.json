@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "population": "model_v3/outputs/canonical/population.csv",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "validation_manifest": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+    "baseline_fold_metrics": "model_v3/outputs/baselines/lyme_non_ml_fold_metrics.csv",
+    "baseline_aggregate_metrics": "model_v3/outputs/baselines/lyme_non_ml_aggregate_metrics.csv"
+  },
+  "modeling": {
+    "family": "poisson",
+    "link": "log",
+    "exposure_column": "population",
+    "offset_definition": "log(population)",
+    "population_measure": "Population - Total - 1 January",
+    "population_year_rule": "latest_present_year_strictly_before_issue_year",
+    "population_publication_availability": "exact_timestamps_unavailable",
+    "population_availability_safeguard": {
+      "preferred_year": "issue_year_minus_1",
+      "missing_preferred_year_rule": "use_latest_present_earlier_year",
+      "issue_or_future_year_allowed": false,
+      "exact_available_at_timestamps_required": false,
+      "interpretation": "conservative_leakage_prevention_proxy_not_verified_publication_timing"
+    },
+    "seasonality": {
+      "representation": "one_annual_harmonic_from_issue_week_date",
+      "columns": [
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ],
+      "phase_definition": "2*pi*zero_based_day_of_year/days_in_issue_year"
+    },
+    "municipality": {
+      "representation": "treatment_coded_fixed_effect",
+      "reference_rule": "lexicographically_first_training_municipality_code",
+      "unseen_validation_municipality_rule": "prediction_missing"
+    },
+    "past_epidemiology": {
+      "column": "past_4w_lyme_incidence_per_100000",
+      "case_weeks": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "latest_information_week": "t_minus_1",
+      "denominator": "same_population_exposure_as_model_offset",
+      "missing_prior_week_rule": "feature_missing"
+    },
+    "long_term_trend": {
+      "included": false,
+      "reason": "No trend form was prespecified; development-fold performance is not used to select one in this phase."
+    },
+    "fitting": {
+      "implementation": "statsmodels.genmod.generalized_linear_model.GLM",
+      "method": "IRLS",
+      "maxiter": 100,
+      "tol": 1e-08,
+      "cov_type": "nonrobust"
+    },
+    "intervals": {
+      "mean_confidence_level": 0.95,
+      "conditional_poisson_predictive_level": 0.95,
+      "conditional_predictive_interval_parameter_uncertainty": "not_included"
+    }
+  },
+  "models": [
+    {
+      "model_id": "model_s1_seasonality_offset",
+      "name": "S1 seasonality with population exposure",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ]
+    },
+    {
+      "model_id": "model_s2_seasonality_municipality_offset",
+      "name": "S2 seasonality and municipality fixed effects with population exposure",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual",
+        "municipality_fixed_effects"
+      ]
+    },
+    {
+      "model_id": "model_s3_seasonality_municipality_past_incidence_offset",
+      "name": "S3 seasonality, municipality fixed effects and past incidence with population exposure",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual",
+        "municipality_fixed_effects",
+        "past_4w_lyme_incidence_per_100000"
+      ]
+    }
+  ],
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "rmse": "root_mean_squared_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/seasonal_count_models",
+    "model_configuration": "lyme_seasonal_count_model_configuration.json",
+    "fold_predictions": "lyme_seasonal_count_fold_predictions.csv",
+    "fold_metrics": "lyme_seasonal_count_fold_metrics.csv",
+    "aggregate_metrics": "lyme_seasonal_count_aggregate_metrics.csv",
+    "development_comparison": "lyme_development_model_comparison.csv",
+    "fit_diagnostics": "lyme_seasonal_count_fit_diagnostics.csv",
+    "coefficients": "lyme_seasonal_count_coefficients.csv",
+    "quality_summary": "lyme_seasonal_count_quality_summary.json"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "checks": {
+    "all_population_codes_match_municipality": true,
+    "all_target_codes_match_municipality": true,
+    "all_weekly_case_codes_match_municipality": true,
+    "all_weekly_dates_match_calendar": true,
+    "causal_interpretations_created": false,
+    "incidence_labelled_as_risk": false,
+    "incidence_uses_only_positive_present_population": true,
+    "lockbox_case_rows_included": 0,
+    "lockbox_rows_skipped_before_numeric_parsing": true,
+    "lockbox_target_values_used": 0,
+    "missing_development_municipality_week_rows": 0,
+    "model_performance_computed": false,
+    "model_trained": false
+  },
+  "outputs": {
+    "cases_by_municipality": {
+      "bytes": 10325,
+      "path": "model_v3/outputs/descriptive/lyme_cases_by_municipality.csv",
+      "row_count": 212,
+      "sha256": "7057615ffb85d3e1949f6307e4471e0964e480fefe34b5f24eef0143cca42c21"
+    },
+    "cases_by_week_of_year": {
+      "bytes": 2035,
+      "path": "model_v3/outputs/descriptive/lyme_cases_by_iso_week.csv",
+      "row_count": 53,
+      "sha256": "73a0e26052aa17ab5ada16247316ad3e55d7247d199caf8dcbcfc410c4525b12"
+    },
+    "cases_by_year": {
+      "bytes": 459,
+      "path": "model_v3/outputs/descriptive/lyme_cases_by_year.csv",
+      "row_count": 9,
+      "sha256": "8c62cae5ee462b8eadad4057a3d19d7fc807b81638b6f5c168e0699f6f69d11c"
+    },
+    "cases_by_year_plot": {
+      "bytes": 3482,
+      "format": "svg",
+      "path": "model_v3/outputs/descriptive/lyme_cases_by_year.svg",
+      "sha256": "42ece975507d5306c8ff299925401852078159aaf890fd5766f57d34079e9e11"
+    },
+    "incidence_by_municipality_year": {
+      "bytes": 132770,
+      "path": "model_v3/outputs/descriptive/lyme_incidence_by_municipality_year.csv",
+      "row_count": 1908,
+      "sha256": "c238c8122508dac6b7531cf3b85c97345e7988f2eb821f10dfaec9539833b180"
+    },
+    "incidence_by_year": {
+      "bytes": 846,
+      "path": "model_v3/outputs/descriptive/lyme_incidence_by_year.csv",
+      "row_count": 9,
+      "sha256": "a7f45a32f071386e12f1e4f2cb54e09e6e5d532b10b8c12f94e72759c806caca"
+    },
+    "incidence_by_year_plot": {
+      "bytes": 3613,
+      "format": "svg",
+      "path": "model_v3/outputs/descriptive/lyme_incidence_by_year.svg",
+      "sha256": "9b131318521a0208b72ca612cac90a66fdbed77d2b7168d06efdb1fdc2a4ad96"
+    },
+    "missing_data_summary": {
+      "bytes": 1275,
+      "path": "model_v3/outputs/descriptive/missing_data_summary.csv",
+      "row_count": 18,
+      "sha256": "b63a3c0f7469711667e6202ab0eca72dea4db647f01c7730072047efe081dab6"
+    },
+    "population_by_municipality_year": {
+      "bytes": 59067,
+      "path": "model_v3/outputs/descriptive/population_by_municipality_year.csv",
+      "row_count": 1908,
+      "sha256": "b14cdb2ad4af4bff0685c7cd95898f80f5d5279bfc702fe446f7e721ef9e2aeb"
+    },
+    "supervised_row_summary": {
+      "bytes": 682,
+      "path": "model_v3/outputs/descriptive/supervised_row_summary.csv",
+      "row_count": 5,
+      "sha256": "5bd5bed649037302910665dd6243d1e49828e71fca7ff2f9342a8ff7e6a9b16c"
+    },
+    "target_distribution": {
+      "bytes": 9394,
+      "path": "model_v3/outputs/descriptive/lyme_next_4w_target_distribution.csv",
+      "row_count": 131,
+      "sha256": "1e057a6ad20ba514b008566e86d2d2f4d4b4f834a71ef8477fb3353b11777a6c"
+    },
+    "target_distribution_plot": {
+      "bytes": 4602,
+      "format": "svg",
+      "path": "model_v3/outputs/descriptive/lyme_next_4w_target_ecdf.svg",
+      "sha256": "e5eb9930fb9e339bc0c42f0446b5fcdd9ad82e34d273b8f12877416be30f44d1"
+    },
+    "zero_case_proportion": {
+      "bytes": 626,
+      "path": "model_v3/outputs/descriptive/lyme_zero_case_proportion.csv",
+      "row_count": 10,
+      "sha256": "aef47a84068aedc656b5282696c751d2f1e275e1c9322d7c87df6e5d38aa2d4e"
+    }
+  },
+  "period": {
+    "actual_issue_week_end": "2024-12-30",
+    "actual_issue_week_start": "2016-01-04",
+    "development_end_year": 2024,
+    "development_start_year": 2016,
+    "excluded_lockbox_year": 2025,
+    "lockbox_input_rule": "skip_at_or_after_lockbox_start_before_numeric_parsing",
+    "week_of_year_definition": "canonical_iso_week",
+    "year_definition": "gregorian_year_of_issue_week_monday"
+  },
+  "pipeline": "model_v3.evaluation.descriptive_epidemiology",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 52875,
+      "path": "model_v3/evaluation/descriptive_epidemiology.py",
+      "sha256": "52fd5c49ec81963c2fd9715f6d1ae507a61c23bd35c0043a12a1329d6561d3f2"
+    },
+    "calendar": {
+      "bytes": 10832,
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "config": {
+      "bytes": 1755,
+      "path": "model_v3/config/lyme_descriptive_epidemiology.json",
+      "sha256": "e4e96e95c51b88647f8e5af3f109d5df701f00e42d99dec852a42e5984111483"
+    },
+    "four_week_target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "municipality": {
+      "bytes": 3148,
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "status": "pass",
+  "summary": {
+    "complete_target_rows_entering_lockbox": 0,
+    "development_municipality_week_rows": 99640,
+    "development_target_candidate_rows": 99640,
+    "invalid_population_denominator_rows": 0,
+    "municipalities": 212,
+    "observed_municipality_weeks_for_zero_proportion": 99640,
+    "population_municipality_year_rows": 1908,
+    "proportion_zero_case_municipality_weeks": 0.7881473303894019,
+    "reported_lyme_cases": 40407,
+    "target_complete_rows": 98792,
+    "target_distribution_maximum": 240,
+    "target_distribution_minimum": 0,
+    "target_status_counts": {
+      "complete": 98792,
+      "incomplete_future_horizon": 848
+    },
+    "usable_supervised_rows_after_completeness_and_lockbox_rules": 98792,
+    "valid_population_denominator_rows": 1908,
+    "zero_case_municipality_weeks": 78531
+  }
+}

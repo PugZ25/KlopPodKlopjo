@@ -1,0 +1,19 @@
+dataset,column,period,n_rows,n_missing,missing_proportion
+municipality,municipality_code,canonical dimension,212,0,0
+municipality,municipality_name,canonical dimension,212,0,0
+population,municipality_code,2016-2024 issue-week years,1908,0,0
+population,year,2016-2024 issue-week years,1908,0,0
+population,population,2016-2024 issue-week years,1908,0,0
+weekly_cases,municipality_code,2016-2024 issue-week years,99640,0,0
+weekly_cases,issue_week,2016-2024 issue-week years,99640,0,0
+weekly_cases,lyme_cases,2016-2024 issue-week years,99640,0,0
+calendar,issue_week,2016-2024 issue-week years,470,0,0
+calendar,year,2016-2024 issue-week years,470,0,0
+calendar,iso_week,2016-2024 issue-week years,470,0,0
+four_week_target_metadata,municipality_code,2016-2024 issue-week years,99640,0,0
+four_week_target_metadata,issue_week,2016-2024 issue-week years,99640,0,0
+four_week_target_metadata,target_window_start,2016-2024 issue-week years,99640,0,0
+four_week_target_metadata,target_window_end,2016-2024 issue-week years,99640,0,0
+four_week_target_metadata,target_status,2016-2024 issue-week years,99640,0,0
+four_week_target_metadata,target_training_eligible,2016-2024 issue-week years,99640,0,0
+lockbox_safe_four_week_target,target_lyme_cases_next_4w,2016-2024 issue-week years,98792,0,0

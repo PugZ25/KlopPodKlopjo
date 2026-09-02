@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "development_rolling_origin_used": true,
+    "direct_tick_measurement_claim_absent": true,
+    "display_bands_monotonic_in_development_evidence": true,
+    "four_week_target_embargo_preserved": true,
+    "opened_2025_labelled_retrospective_not_lockbox": true,
+    "personal_risk_output_absent": true,
+    "runtime_case_features_absent": true,
+    "runtime_weather_not_forced_after_failed_gate": true
+  },
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 627,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/aggregate_metrics.csv",
+      "sha256": "465236d7c466731f8ab5dc04a657a24e8af3e11dbd9544f113ad7dfee3a0f5ff"
+    },
+    "display_calibration": {
+      "bytes": 17807,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
+      "sha256": "444d73b6dc6920cbc5ea7c3c6f7e9e9a2d0b3c61e5ac6f5ed539196b79f18169"
+    },
+    "fold_metrics": {
+      "bytes": 2857,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/fold_metrics.csv",
+      "sha256": "29a43f54c7b2edaed508574a68fe7ba93bb77563b41f711a20da42fac12363ec"
+    },
+    "fold_predictions": {
+      "bytes": 37776251,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/fold_predictions.csv",
+      "sha256": "d2127d6f1560aa66252926e50b839eeb3a71c27472e0e74e4e4cbe207423afa1"
+    },
+    "model": {
+      "bytes": 229984,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
+      "sha256": "e01adad52df5a0588b1b581f85437b62e63fa6a9f0bb3c7124dd8a25ff249d13"
+    },
+    "model_manifest": {
+      "bytes": 4404,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
+      "sha256": "ce742831ec16af3eb51dcf31aeb3682b6001083003e7228c1e204ee171028325"
+    },
+    "selection": {
+      "bytes": 764,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_selection.json",
+      "sha256": "a8868207c067c4cd1aad48cc58c8cb8f96e3bb73399e6d095f1125251e0e9cfe"
+    }
+  },
+  "schema_version": 1,
+  "selection": {
+    "development_fold_count": 8,
+    "development_weather_improved_fold_count": 5,
+    "reason": "compact_weather_failed_stability_and_or_opened_2025_gates",
+    "rule": {
+      "fallback_candidate": "catboost_no_case_seasonal_municipality_offset",
+      "weather_candidate_minimum_improved_development_folds": 6,
+      "weather_candidate_requires_lower_development_pooled_mae_rmse_and_poisson_deviance": true,
+      "weather_candidate_requires_lower_opened_2025_mae_rmse_and_poisson_deviance": true
+    },
+    "runtime_recent_cases_required": false,
+    "runtime_weather_used_by_ai_score": false,
+    "selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
+    "untouched_lockbox_status": "none_remaining_after_2025_was_opened",
+    "weather_candidate_selected": false
+  },
+  "status": "pass"
+}

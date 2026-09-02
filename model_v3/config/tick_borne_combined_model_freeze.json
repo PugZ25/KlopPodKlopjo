@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "freeze": {
+    "freeze_id": "reported_lyme_plus_kme_region_eight_week_v1",
+    "freeze_date": "2026-08-31",
+    "status": "FROZEN"
+  },
+  "task": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "target": "target_reported_lyme_plus_kme_cases_next_8w",
+    "target_offsets": [1, 2, 3, 4, 5, 6, 7, 8],
+    "issue_week_included": false,
+    "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases"
+  },
+  "selected_model": {
+    "candidate_id": "glm_past_combined_offset",
+    "family": "Poisson",
+    "link": "log",
+    "implementation": "statsmodels.GLM",
+    "formula": "log(E[target]) = log(region_population/100000) + intercept + annual_sin + annual_cos + statistical_region_fixed_effect + standardized_past_8w_combined_incidence",
+    "offset": "log(region_population/100000)",
+    "ordinary_predictors": [
+      "annual_sin",
+      "annual_cos",
+      "statistical_region_fixed_effect",
+      "past_8w_reported_lyme_plus_kme_incidence_per_100000"
+    ],
+    "maxiter": 100,
+    "tol": 1e-08,
+    "calibration": "none",
+    "predictive_intervals": "not_implemented"
+  },
+  "selection": {
+    "primary_metric": "pooled_MAE",
+    "selected_pooled_mae": 33.79832423964123,
+    "catboost_pooled_mae": 27.799611363236284,
+    "catboost_not_promoted_reason": "failed_predeclared_every_fold_stability_rule_improved_7_of_8_folds",
+    "weather_in_selected_model": false,
+    "catboost_in_selected_model": false
+  },
+  "finalization_support": {
+    "required_inputs": [
+      "complete_eight_week_combined_target",
+      "verified_region_mapping",
+      "strictly_earlier_population",
+      "complete_past_eight_week_combined_case_window"
+    ],
+    "weather_required": false,
+    "reason": "weather_is_not_in_the_frozen_selected_formula_and_must_not_exclude_an_otherwise_valid_final_fit_row"
+  },
+  "population": {
+    "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year",
+    "regional_aggregation": "sum_selected_municipality_populations",
+    "roles": ["model_offset", "past_incidence_denominator", "prediction_incidence_denominator"]
+  },
+  "protected_period": {
+    "iso_year": 2026,
+    "status": "NO_CANONICAL_2026_OUTCOMES_PRESENT",
+    "pipeline_outcome_access": false,
+    "external_human_outcome_access_status": "UNKNOWN_not_auditable_from_repository",
+    "full_evaluation_rule": "evaluate_only_after_complete_verified_2026_targets_exist"
+  },
+  "inputs": {
+    "development_config": "model_v3/config/tick_borne_combined_region_model.json",
+    "development_config_sha256": "3806ec4111d61f63bf658e3e314e9a846dca4ccd2fa496eafb41aaeab0fef4cb",
+    "development_code": "model_v3/models/tick_borne_combined_region_model.py",
+    "development_code_sha256": "53fc78a866aa747f4ec7747f6e25ff9b0a6e0c6987ff79ef8a976e6ec4686b44",
+    "development_selection": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_model_selection.json",
+    "development_selection_sha256": "82bf9a1a152b489961a4bd5a8ee57a1d5aeeb19aa092ab4fe92a765fcf08bda8",
+    "development_metrics": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_aggregate_metrics.csv",
+    "development_metrics_sha256": "5a98d5337d7c5a652869b68760526dd6f8ad2a215661621f820a1f66f546387c",
+    "feature_panel": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_feature_panel.csv",
+    "feature_panel_sha256": "575a5eaac6624fa18685ff802eb71447b077e48dcef9d7fbbe564e79247320b7",
+    "target": "model_v3/outputs/targets/tick_borne_combined_eight_week_target.csv",
+    "target_sha256": "ebe62a074911ad6144b407fe27249e6e9e84918210e775759ca6978edc08fd84",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "calendar_sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "population_sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/tick_borne_combined_freeze",
+    "feature_panel": "tick_borne_combined_frozen_feature_panel.csv",
+    "coefficients": "tick_borne_combined_final_coefficients.csv",
+    "scaler": "tick_borne_combined_final_scaler.json",
+    "fit_diagnostics": "tick_borne_combined_final_fit_diagnostics.json",
+    "manifest": "tick_borne_combined_freeze_manifest.json",
+    "report": "model_v3/TICK_BORNE_COMBINED_MODEL_SELECTION.md"
+  }
+}

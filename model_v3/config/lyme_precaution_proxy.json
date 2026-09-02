@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "purpose": {
+    "product": "public_precaution_proxy_not_personal_risk",
+    "training_target": "reported_lyme_cases_t_plus_1_through_t_plus_4",
+    "runtime_case_inputs_allowed": false,
+    "interpretation": "relative_expected_reported_lyme_burden_used_only_as_a_precaution_signal",
+    "direct_tick_observation_target_available": false
+  },
+  "inputs": {
+    "target": "model_v3/outputs/targets/lyme_four_week_target.csv",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "development_weather": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+    "development_weather_quality": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+    "weather_extension": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+    "weather_extension_quality": "model_v3/outputs/lockbox_2025/era5_land_lockbox_extension_quality.json",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "validation_manifest": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+    "opened_2025_predictions": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
+    "kme_fold_predictions": "model_v3/outputs/kme_region_model/kme_fold_predictions.csv"
+  },
+  "evaluation": {
+    "development_years": [2016, 2024],
+    "development_validation_years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    "opened_retrospective_audit_year": 2025,
+    "target_embargo_weeks": 4,
+    "common_weather_support_for_candidate_comparison": true,
+    "untouched_lockbox_status": "none_remaining_after_2025_was_opened"
+  },
+  "candidates": {
+    "no_weather": {
+      "candidate_id": "catboost_no_case_seasonal_municipality_offset",
+      "features": [
+        "municipality_code",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ]
+    },
+    "compact_weather": {
+      "candidate_id": "catboost_no_case_compact_weather_offset",
+      "features": [
+        "municipality_code",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual",
+        "z_t2m_mean_c_previous_4w_mean",
+        "z_tp_sum_mm_previous_4w_sum",
+        "z_stl1_mean_c_previous_4w_mean",
+        "z_swvl1_mean_m3_m3_previous_4w_mean"
+      ],
+      "weather_window": "t_minus_4_through_t_minus_1_completed_weeks"
+    },
+    "shared_parameters": {
+      "loss_function": "Poisson",
+      "prediction_type": "Exponent",
+      "iterations": 200,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 3.0,
+      "random_seed": 0,
+      "random_strength": 1.0,
+      "one_hot_max_size": 255,
+      "thread_count": 1,
+      "allow_writing_files": false,
+      "task_type": "CPU",
+      "verbose": false,
+      "has_time": true
+    }
+  },
+  "selection_rule": {
+    "weather_candidate_requires_lower_development_pooled_mae_rmse_and_poisson_deviance": true,
+    "weather_candidate_minimum_improved_development_folds": 6,
+    "weather_candidate_requires_lower_opened_2025_mae_rmse_and_poisson_deviance": true,
+    "fallback_candidate": "catboost_no_case_seasonal_municipality_offset"
+  },
+  "display_calibration": {
+    "reference": "selected_candidate_rolling_origin_predictions_2017_through_2024_only",
+    "score": "empirical_percentile_of_predicted_incidence_per_100000",
+    "quantile_grid_points": 101,
+    "low_upper_percentile": 33.333333333333336,
+    "medium_upper_percentile": 66.66666666666667,
+    "labels": ["Nizko", "Srednje", "Visoko"],
+    "absolute_risk_interpretation_allowed": false
+  },
+  "final_fit": {
+    "years": [2016, 2025],
+    "include_opened_2025_outcomes": true,
+    "runtime_inputs": ["municipality_code", "issue_week", "strictly_earlier_population"],
+    "runtime_recent_cases_required": false,
+    "runtime_weather_used_by_ai_score": false,
+    "weather_displayed_separately": true
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/precaution_proxy/lyme_v1",
+    "model": "model.cbm",
+    "model_manifest": "model_manifest.json",
+    "display_calibration": "display_calibration.json",
+    "fold_predictions": "fold_predictions.csv",
+    "fold_metrics": "fold_metrics.csv",
+    "aggregate_metrics": "aggregate_metrics.csv",
+    "selection": "model_selection.json",
+    "quality_summary": "quality_summary.json",
+    "report": "model_v3/PRECAUTION_PROXY_MODEL.md"
+  }
+}

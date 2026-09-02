@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"SIFRA": 1, "DATUM_SYS": 1704067200000},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [[14.0, 45.0], [15.0, 45.0], [15.0, 46.0], [14.0, 46.0], [14.0, 45.0]]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {"SIFRA": 2, "DATUM_SYS": 1704067200000},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [[15.0, 45.0], [15.5, 45.0], [15.5, 45.5], [15.0, 45.5], [15.0, 45.0]]
+        ]
+      }
+    }
+  ]
+}

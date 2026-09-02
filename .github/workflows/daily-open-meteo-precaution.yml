@@ -1,0 +1,128 @@
+name: Daily fresh-weather precaution snapshot
+
+on:
+  schedule:
+    - cron: "30 13 * * *"
+  workflow_dispatch:
+    inputs:
+      as_of_utc:
+        description: Optional UTC retrieval time (ISO 8601); current time if blank
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-fresh-weather-precaution-snapshot
+  cancel-in-progress: false
+
+jobs:
+  build-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: model_v3/requirements-prediction.txt
+
+      - name: Install frozen prediction dependencies
+        run: python -m pip install --requirement model_v3/requirements-prediction.txt
+
+      - name: Plan current signal week and recent weather period
+        id: plan
+        env:
+          REQUESTED_AS_OF_UTC: ${{ inputs.as_of_utc }}
+        run: |
+          if [[ -n "$REQUESTED_AS_OF_UTC" ]]; then
+            python -m model_v3.features.open_meteo_activity_weather plan \
+              --as-of "$REQUESTED_AS_OF_UTC" > "$RUNNER_TEMP/weather-plan.json"
+          else
+            python -m model_v3.features.open_meteo_activity_weather plan \
+              > "$RUNNER_TEMP/weather-plan.json"
+          fi
+          issue_week="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["signal_issue_week"])' "$RUNNER_TEMP/weather-plan.json")"
+          period_end="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["period_end"])' "$RUNNER_TEMP/weather-plan.json")"
+          as_of_utc="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["as_of_utc"])' "$RUNNER_TEMP/weather-plan.json")"
+          echo "issue_week=$issue_week" >> "$GITHUB_OUTPUT"
+          echo "period_end=$period_end" >> "$GITHUB_OUTPUT"
+          echo "as_of_utc=$as_of_utc" >> "$GITHUB_OUTPUT"
+
+      - name: Download immutable Open-Meteo ICON retrieval
+        id: weather
+        env:
+          PLAN_AS_OF_UTC: ${{ steps.plan.outputs.as_of_utc }}
+        run: |
+          python -m model_v3.features.open_meteo_activity_weather sync \
+            --as-of "$PLAN_AS_OF_UTC" > "$RUNNER_TEMP/weather-sync.txt"
+          manifest="$(tail -n 1 "$RUNNER_TEMP/weather-sync.txt")"
+          retrieval_directory="$(dirname "$manifest")"
+          python -m model_v3.features.open_meteo_activity_weather build \
+            --manifest "$manifest" > "$RUNNER_TEMP/weather-build.json"
+          recent="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["municipality_weather"])' "$RUNNER_TEMP/weather-build.json")"
+          quality="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["quality"])' "$RUNNER_TEMP/weather-build.json")"
+          echo "manifest=$manifest" >> "$GITHUB_OUTPUT"
+          echo "retrieval_directory=$retrieval_directory" >> "$GITHUB_OUTPUT"
+          echo "recent=$recent" >> "$GITHUB_OUTPUT"
+          echo "quality=$quality" >> "$GITHUB_OUTPUT"
+
+      - name: Build verified no-cases precaution snapshot
+        env:
+          ISSUE_WEEK: ${{ steps.plan.outputs.issue_week }}
+          RECENT_WEATHER: ${{ steps.weather.outputs.recent }}
+          WEATHER_QUALITY: ${{ steps.weather.outputs.quality }}
+        run: |
+          python -m model_v3.predict.precaution_snapshot \
+            --issue-week "$ISSUE_WEEK" \
+            --recent-weather "$RECENT_WEATHER" \
+            --weather-quality "$WEATHER_QUALITY"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Verify frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+
+      - name: Publish the versioned frontend snapshot
+        env:
+          ISSUE_WEEK: ${{ steps.plan.outputs.issue_week }}
+          WEATHER_PERIOD_END: ${{ steps.plan.outputs.period_end }}
+        run: |
+          if git diff --quiet -- frontend/src/data/precautionSnapshot.json; then
+            echo "Frontend snapshot is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/src/data/precautionSnapshot.json
+          git commit -m "data: refresh weather through $WEATHER_PERIOD_END for $ISSUE_WEEK"
+          git push
+
+      - name: Upload immutable source and verified outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: precaution-snapshot-${{ steps.plan.outputs.issue_week }}-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 90
+          path: |
+            ${{ steps.weather.outputs.retrieval_directory }}/
+            model_v3/outputs/precaution_snapshot/v1/
+            frontend/src/data/precautionSnapshot.json

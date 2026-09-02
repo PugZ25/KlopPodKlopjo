@@ -1,0 +1,374 @@
+{
+  "challenger": {
+    "categorical_features": [
+      "municipality_code"
+    ],
+    "challenger_id": "catboost_poisson_s3_weather_offset",
+    "feature_columns": [
+      "municipality_code",
+      "seasonal_sin_annual",
+      "seasonal_cos_annual",
+      "past_4w_lyme_incidence_per_100000",
+      "z_t2m_mean_c_lag_1w",
+      "z_t2m_mean_c_lag_2w",
+      "z_t2m_mean_c_previous_4w_mean",
+      "z_d2m_mean_c_lag_1w",
+      "z_d2m_mean_c_lag_2w",
+      "z_d2m_mean_c_previous_4w_mean",
+      "z_tp_sum_mm_lag_1w",
+      "z_tp_sum_mm_lag_2w",
+      "z_tp_sum_mm_previous_4w_sum",
+      "z_stl1_mean_c_lag_1w",
+      "z_stl1_mean_c_lag_2w",
+      "z_stl1_mean_c_previous_4w_mean",
+      "z_stl2_mean_c_lag_1w",
+      "z_stl2_mean_c_lag_2w",
+      "z_stl2_mean_c_previous_4w_mean",
+      "z_swvl1_mean_m3_m3_lag_1w",
+      "z_swvl1_mean_m3_m3_lag_2w",
+      "z_swvl1_mean_m3_m3_previous_4w_mean",
+      "z_swvl2_mean_m3_m3_lag_1w",
+      "z_swvl2_mean_m3_m3_lag_2w",
+      "z_swvl2_mean_m3_m3_previous_4w_mean"
+    ],
+    "feature_contract": "exactly_the_same_allowed_information_and_training_fold_weather_scaling_as_the_matched_statistical_reference",
+    "implementation": "catboost.CatBoostRegressor",
+    "legacy_hyperparameters_reused": false,
+    "loss_function": "Poisson",
+    "name": "CatBoost Poisson challenger with matched S3 and lagged ERA5-Land information",
+    "optimization": "single_prespecified_conservative_configuration_no_search_no_early_stopping",
+    "ordering": {
+      "has_time": true,
+      "pool_timestamp": "issue_week_date_ordinal",
+      "row_order": "issue_week_then_municipality_code"
+    },
+    "parameters": {
+      "allow_writing_files": false,
+      "depth": 6,
+      "iterations": 200,
+      "l2_leaf_reg": 3.0,
+      "learning_rate": 0.05,
+      "one_hot_max_size": 255,
+      "random_seed": 0,
+      "random_strength": 1.0,
+      "task_type": "CPU",
+      "thread_count": 1,
+      "verbose": false
+    },
+    "population_exposure": {
+      "offset_coefficient": 1.0,
+      "pool_baseline": "log(population_exposure_per_100000)",
+      "population_as_ordinary_feature": false,
+      "population_exposure_per_100000": "population_divided_by_100000",
+      "same_selected_population_used_for_past_incidence": true
+    },
+    "prediction_type": "Exponent",
+    "validation_labels_passed_to_fit": false
+  },
+  "decision": {
+    "automatic_promotion_allowed": false,
+    "numeric_materiality_threshold_prespecified": false,
+    "output_interpretation": "municipality_level_expected_reported_case_count_not_personal_risk",
+    "required_reporting": "aggregate_direction_fold_by_fold_direction_and_year_stability"
+  },
+  "development_policy": {
+    "end_year": 2024,
+    "excluded_lockbox_year": 2025,
+    "fold_strategy": "expanding_window_next_available_year",
+    "start_year": 2016
+  },
+  "excluded_training_rows_incomplete_weather": {
+    "fold_01_validate_2017": 3604,
+    "fold_02_validate_2018": 3604,
+    "fold_03_validate_2019": 3604,
+    "fold_04_validate_2020": 3604,
+    "fold_05_validate_2021": 3604,
+    "fold_06_validate_2022": 3604,
+    "fold_07_validate_2023": 3604,
+    "fold_08_validate_2024": 3604
+  },
+  "feature_columns": [
+    "municipality_code",
+    "seasonal_sin_annual",
+    "seasonal_cos_annual",
+    "past_4w_lyme_incidence_per_100000",
+    "z_t2m_mean_c_lag_1w",
+    "z_t2m_mean_c_lag_2w",
+    "z_t2m_mean_c_previous_4w_mean",
+    "z_d2m_mean_c_lag_1w",
+    "z_d2m_mean_c_lag_2w",
+    "z_d2m_mean_c_previous_4w_mean",
+    "z_tp_sum_mm_lag_1w",
+    "z_tp_sum_mm_lag_2w",
+    "z_tp_sum_mm_previous_4w_sum",
+    "z_stl1_mean_c_lag_1w",
+    "z_stl1_mean_c_lag_2w",
+    "z_stl1_mean_c_previous_4w_mean",
+    "z_stl2_mean_c_lag_1w",
+    "z_stl2_mean_c_lag_2w",
+    "z_stl2_mean_c_previous_4w_mean",
+    "z_swvl1_mean_m3_m3_lag_1w",
+    "z_swvl1_mean_m3_m3_lag_2w",
+    "z_swvl1_mean_m3_m3_previous_4w_mean",
+    "z_swvl2_mean_m3_m3_lag_1w",
+    "z_swvl2_mean_m3_m3_lag_2w",
+    "z_swvl2_mean_m3_m3_previous_4w_mean"
+  ],
+  "folds": [
+    {
+      "fold_id": "fold_01_validate_2017",
+      "n_ineligible_excluded": 0,
+      "n_train": 10176,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2016-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2016-12-26",
+      "validation_end": "2017-12-25",
+      "validation_start": "2017-01-02"
+    },
+    {
+      "fold_id": "fold_02_validate_2018",
+      "n_ineligible_excluded": 0,
+      "n_train": 21200,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2017-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2017-12-25",
+      "validation_end": "2018-12-31",
+      "validation_start": "2018-01-01"
+    },
+    {
+      "fold_id": "fold_03_validate_2019",
+      "n_ineligible_excluded": 0,
+      "n_train": 32436,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2018-12-03",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2018-12-31",
+      "validation_end": "2019-12-30",
+      "validation_start": "2019-01-07"
+    },
+    {
+      "fold_id": "fold_04_validate_2020",
+      "n_ineligible_excluded": 0,
+      "n_train": 43460,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2019-12-02",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2019-12-30",
+      "validation_end": "2020-12-28",
+      "validation_start": "2020-01-06"
+    },
+    {
+      "fold_id": "fold_05_validate_2021",
+      "n_ineligible_excluded": 0,
+      "n_train": 54484,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2020-11-30",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2020-12-28",
+      "validation_end": "2021-12-27",
+      "validation_start": "2021-01-04"
+    },
+    {
+      "fold_id": "fold_06_validate_2022",
+      "n_ineligible_excluded": 0,
+      "n_train": 65508,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2021-11-29",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2021-12-27",
+      "validation_end": "2022-12-26",
+      "validation_start": "2022-01-03"
+    },
+    {
+      "fold_id": "fold_07_validate_2023",
+      "n_ineligible_excluded": 0,
+      "n_train": 76532,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2022-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2022-12-26",
+      "validation_end": "2023-12-25",
+      "validation_start": "2023-01-02"
+    },
+    {
+      "fold_id": "fold_08_validate_2024",
+      "n_ineligible_excluded": 848,
+      "n_train": 87556,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 0,
+      "number_of_purged_rows": 848,
+      "train_issue_end": "2023-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2023-12-25",
+      "validation_end": "2024-12-30",
+      "validation_start": "2024-01-01"
+    }
+  ],
+  "library_versions": {
+    "catboost": "1.2.10",
+    "numpy": "2.4.4",
+    "statsmodels": "0.14.6"
+  },
+  "metrics": {
+    "difference_definition": "catboost_minus_matched_statistical_reference",
+    "lower_is_better": true,
+    "mae": "mean_absolute_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "rmse": "root_mean_squared_error"
+  },
+  "pipeline": "model_v3.models.catboost_challenger",
+  "reference": {
+    "allowed_information": [
+      "municipality_code",
+      "seasonal_sin_annual",
+      "seasonal_cos_annual",
+      "past_4w_lyme_incidence_per_100000",
+      "21_training_fold_standardized_ERA5_Land_weather_features"
+    ],
+    "common_training_support": "both_models_exclude_rows_without_complete_t_minus_4_through_t_minus_1_weather",
+    "latest_information": "t_minus_1_completed_week",
+    "model_id": "model_s3_weather_offset_matched",
+    "name": "S3 seasonality, municipality fixed effects, past incidence and lagged ERA5-Land weather with population exposure",
+    "past_case_window": "t_minus_4_through_t_minus_1",
+    "population_rule": "reuse_phase_9_latest_present_year_strictly_before_issue_year",
+    "selection_reason": "matched_weather_aware_extension_of_prespecified_phase_9_s3_not_selected_by_phase_13_results",
+    "static_geography_allowed": false,
+    "static_geography_exclusion_reason": "municipality_area_is_exactly_collinear_with_municipality_fixed_effects_in_the_statistical_reference",
+    "target": "target_lyme_cases_next_4w",
+    "target_window": "t_plus_1_through_t_plus_4",
+    "validation_support": "unchanged_phase_6_validation_rows_all_weather_complete",
+    "weather_features_allowed": true,
+    "weather_scaling": "training_fold_mean_and_standard_deviation_only",
+    "weather_windows": "lag_1_lag_2_and_previous_4_completed_weeks_t_minus_4_through_t_minus_1"
+  },
+  "schema_version": 2,
+  "sources": {
+    "baseline_aggregate_metrics": {
+      "bytes": 1361,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_aggregate_metrics.csv",
+      "sha256": "0c5b22630df117edbf0612a0af8badf91366941e2db176d784a6d0deb26b0624"
+    },
+    "baseline_fold_metrics": {
+      "bytes": 8196,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_fold_metrics.csv",
+      "sha256": "45b55b3ee0680593fcc8e571fec0cb5036e124420c4f7ab8c149d5a9a4be553e"
+    },
+    "builder": {
+      "bytes": 59922,
+      "path": "model_v3/models/catboost_challenger.py",
+      "sha256": "9b2e391ef0f08d1df92371d4dfbe98337f691a51c3bc44233fb633a29cf6e733"
+    },
+    "phase_13_config": {
+      "bytes": 6860,
+      "path": "model_v3/config/lyme_catboost_challenger.json",
+      "sha256": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "statistical_aggregate_metrics": {
+      "bytes": 957,
+      "path": "model_v3/outputs/seasonal_count_models/lyme_seasonal_count_aggregate_metrics.csv",
+      "sha256": "30fc8adff2867ce4b7c2af502a953736021778b6e3d1cb77230702527be5b543"
+    },
+    "statistical_config": {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    "statistical_fold_metrics": {
+      "bytes": 5445,
+      "path": "model_v3/outputs/seasonal_count_models/lyme_seasonal_count_fold_metrics.csv",
+      "sha256": "37bd33f91ad10cbcce70de50eef91c9b7995763fc2bdba28b5f8dbb940f2c2c7"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weather_ablation_aggregate_metrics": {
+      "bytes": 1089,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_aggregate_metrics.csv",
+      "sha256": "741f97d1b498e592fa787e1bd65f5588738522fd28dd9371558fc00845d14370"
+    },
+    "weather_contract": {
+      "bytes": 9623,
+      "path": "model_v3/config/weather_data_contract.json",
+      "sha256": "aeaebf963e61e4cd0d0ce3dd9610c95767ca916cf9464c693a37a4151213b13e"
+    },
+    "weather_quality_summary": {
+      "bytes": 29190,
+      "path": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+      "sha256": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75"
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    },
+    "weekly_weather": {
+      "bytes": 15885561,
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    }
+  },
+  "weather_feature_columns": [
+    "t2m_mean_c_lag_1w",
+    "t2m_mean_c_lag_2w",
+    "t2m_mean_c_previous_4w_mean",
+    "d2m_mean_c_lag_1w",
+    "d2m_mean_c_lag_2w",
+    "d2m_mean_c_previous_4w_mean",
+    "tp_sum_mm_lag_1w",
+    "tp_sum_mm_lag_2w",
+    "tp_sum_mm_previous_4w_sum",
+    "stl1_mean_c_lag_1w",
+    "stl1_mean_c_lag_2w",
+    "stl1_mean_c_previous_4w_mean",
+    "stl2_mean_c_lag_1w",
+    "stl2_mean_c_lag_2w",
+    "stl2_mean_c_previous_4w_mean",
+    "swvl1_mean_m3_m3_lag_1w",
+    "swvl1_mean_m3_m3_lag_2w",
+    "swvl1_mean_m3_m3_previous_4w_mean",
+    "swvl2_mean_m3_m3_lag_1w",
+    "swvl2_mean_m3_m3_lag_2w",
+    "swvl2_mean_m3_m3_previous_4w_mean"
+  ]
+}

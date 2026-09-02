@@ -1,0 +1,180 @@
+{
+  "aggregate_metrics": [
+    {
+      "baseline_id": "baseline_a_overall_history",
+      "baseline_name": "Overall historical count expectation",
+      "mean_fold_mae": "2.17311088997936",
+      "mean_fold_rmse": "5.14015109694077",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": "2.17386775617372",
+      "pooled_mean_poisson_deviance": "5.05353399257689",
+      "pooled_rmse": "5.51585660836204",
+      "prediction_metric_status": "complete"
+    },
+    {
+      "baseline_id": "baseline_b_municipality_history",
+      "baseline_name": "Municipality historical count expectation",
+      "mean_fold_mae": "1.66008422963318",
+      "mean_fold_rmse": "3.9537865113598",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 11,
+      "n_poisson_valid": 81821,
+      "poisson_deviance_status": "invalid_zero_prediction_positive_observation_present",
+      "pooled_mae": "1.66103398441109",
+      "pooled_mean_poisson_deviance": "",
+      "pooled_rmse": "4.29590039290925",
+      "prediction_metric_status": "complete"
+    },
+    {
+      "baseline_id": "baseline_c_seasonal_history",
+      "baseline_name": "Seasonal historical count expectation",
+      "mean_fold_mae": "2.01333691064665",
+      "mean_fold_rmse": "5.03392394292609",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": "2.01366763887743",
+      "pooled_mean_poisson_deviance": "4.10505247028895",
+      "pooled_rmse": "5.36950323726913",
+      "prediction_metric_status": "complete"
+    },
+    {
+      "baseline_id": "baseline_d_municipality_seasonal_history",
+      "baseline_name": "Municipality and seasonal historical count expectation",
+      "mean_fold_mae": "1.33549185871423",
+      "mean_fold_rmse": "3.0340220073809",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 4114,
+      "n_poisson_valid": 77718,
+      "poisson_deviance_status": "invalid_zero_prediction_positive_observation_present",
+      "pooled_mae": "1.33579582617581",
+      "pooled_mean_poisson_deviance": "",
+      "pooled_rmse": "3.18732394779901",
+      "prediction_metric_status": "complete"
+    },
+    {
+      "baseline_id": "baseline_e_four_week_persistence",
+      "baseline_name": "Previous four completed weeks persistence",
+      "mean_fold_mae": "1.37503233899692",
+      "mean_fold_rmse": "3.36356305058958",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 12863,
+      "n_poisson_valid": 68969,
+      "poisson_deviance_status": "invalid_zero_prediction_positive_observation_present",
+      "pooled_mae": "1.37600205298661",
+      "pooled_mean_poisson_deviance": "",
+      "pooled_rmse": "3.57809368570714",
+      "prediction_metric_status": "complete"
+    }
+  ],
+  "checks": {
+    "all_historical_fit_targets_precede_validation": true,
+    "all_persistence_information_precedes_issue_week": true,
+    "all_prediction_issue_weeks_precede_lockbox": true,
+    "all_prediction_target_windows_precede_lockbox": true,
+    "catboost_used": false,
+    "centered_rolling_window_used": false,
+    "classification_auc_computed": false,
+    "environmental_features_used": false,
+    "lockbox_performance_computed": false,
+    "lockbox_target_values_used": 0,
+    "lockbox_weekly_case_values_used": 0,
+    "machine_learning_model_trained": false,
+    "persistence_current_week_used": false,
+    "persistence_future_week_used": false,
+    "prediction_row_count_matches_fold_contract": true,
+    "validation_manifest_matches_regenerated_folds": true,
+    "weather_features_used": false
+  },
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 1361,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_aggregate_metrics.csv",
+      "sha256": "0c5b22630df117edbf0612a0af8badf91366941e2db176d784a6d0deb26b0624"
+    },
+    "baseline_configuration": {
+      "bytes": 7935,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_baseline_configuration.json",
+      "sha256": "504b3127238a5d557778bcb8236788c448b2c1b842c8149c4a351f096733ca90"
+    },
+    "fold_metrics": {
+      "bytes": 8196,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_fold_metrics.csv",
+      "sha256": "45b55b3ee0680593fcc8e571fec0cb5036e124420c4f7ab8c149d5a9a4be553e"
+    },
+    "fold_predictions": {
+      "bytes": 99661905,
+      "path": "model_v3/outputs/baselines/lyme_non_ml_fold_predictions.csv",
+      "sha256": "ef98842485c2c6197c782615db69d69d8151e27d83a5e9df1c80d95c3d37ee0a"
+    }
+  },
+  "pipeline": "model_v3.models.non_ml_baselines",
+  "schema_version": 1,
+  "sources": {
+    "baseline_input_config": {
+      "bytes": 3133,
+      "path": "model_v3/config/lyme_non_ml_baselines.json",
+      "sha256": "86eec018c0566a24a24393daf52e81c39a41473d5c768ddcfd6f6b57e33fa82f"
+    },
+    "builder": {
+      "bytes": 40944,
+      "path": "model_v3/models/non_ml_baselines.py",
+      "sha256": "0d21157709b776167eb09aa9cc1a59be02949c6f3f6af7b5a0049fcdc1c3e2b0"
+    },
+    "calendar": {
+      "bytes": 10832,
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "status": "pass",
+  "summary": {
+    "aggregate_metric_rows": 5,
+    "baseline_count": 5,
+    "fold_count": 8,
+    "fold_metric_rows": 40,
+    "persistence_missing_predictions": 0,
+    "prediction_rows": 409160,
+    "selected_target_values_used": 97944,
+    "validation_municipality_week_rows": 81832
+  }
+}

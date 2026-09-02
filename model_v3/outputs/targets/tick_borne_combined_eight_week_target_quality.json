@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "combined_equals_lyme_plus_kme": true,
+    "incomplete_future_window_converted_to_zero": false,
+    "issue_week_excluded": true,
+    "missing_component_converted_to_zero": false,
+    "municipality_week_grid_complete": true,
+    "negative_cases_present": false,
+    "region_week_grid_complete": true,
+    "risk_or_classification_target_created": false,
+    "target_exactly_t_plus_1_through_t_plus_8": true,
+    "year_boundaries_use_date_arithmetic": true
+  },
+  "code": {
+    "bytes": 15357,
+    "path": "model_v3/panel/tick_borne_combined_eight_week_target.py",
+    "sha256": "0ab1a957124b0d4183c6deb3f5cb33ddae1ba4cf2ce5de03e9fdf208d273d8a7"
+  },
+  "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases",
+  "configuration": {
+    "bytes": 1762,
+    "path": "model_v3/config/tick_borne_combined_eight_week_target.json",
+    "sha256": "9c63f5c618168711b3ae14dcd63b4377c2e4442980bf28cd7ab85da3b6aef560"
+  },
+  "counts": {
+    "n_calendar_weeks": 574,
+    "n_complete": 6792,
+    "n_incomplete_future_window": 96,
+    "n_regions": 12,
+    "n_rows": 6888,
+    "sum_complete_combined_target": 400164,
+    "sum_complete_kme_component": 8952,
+    "sum_complete_lyme_component": 391212
+  },
+  "inputs": {
+    "calendar": {
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "municipality_statistical_region": {
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "statistical_region": {
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "weekly_cases": {
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "outputs": {
+    "data_dictionary": {
+      "bytes": 1098,
+      "path": "model_v3/panel/TICK_BORNE_COMBINED_TARGET_DATA_DICTIONARY.md",
+      "sha256": "90934c69491ec3493fa881a63472ce7330845a39466ef259ed0b447b98790836"
+    },
+    "target": {
+      "bytes": 407422,
+      "path": "model_v3/outputs/targets/tick_borne_combined_eight_week_target.csv",
+      "sha256": "ebe62a074911ad6144b407fe27249e6e9e84918210e775759ca6978edc08fd84"
+    }
+  },
+  "pipeline": "model_v3.panel.tick_borne_combined_eight_week_target",
+  "schema_version": 1
+}

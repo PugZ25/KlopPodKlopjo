@@ -1,0 +1,58 @@
+{
+  "class": "dataset",
+  "id": [
+    "MERITVE",
+    "OBČINE",
+    "LETO"
+  ],
+  "size": [
+    1,
+    2,
+    2
+  ],
+  "dimension": {
+    "MERITVE": {
+      "category": {
+        "index": {
+          "45": 0
+        },
+        "label": {
+          "45": "Population - Total - 1 January"
+        }
+      }
+    },
+    "OBČINE": {
+      "category": {
+        "index": {
+          "001": 0,
+          "002": 1
+        },
+        "label": {
+          "001": "Alpha",
+          "002": "Beta"
+        }
+      }
+    },
+    "LETO": {
+      "category": {
+        "index": {
+          "2020": 0,
+          "2021": 1
+        },
+        "label": {
+          "2020": "2020",
+          "2021": "2021"
+        }
+      }
+    }
+  },
+  "value": [
+    100,
+    101,
+    null,
+    200
+  ],
+  "status": {
+    "2": "-"
+  }
+}

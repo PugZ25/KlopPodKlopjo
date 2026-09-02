@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+<title>Distribution of next-four-week reported Lyme case target</title>
+<desc>Target-complete municipality-weeks with target count less than or equal to x; 98,792 lockbox-safe target-complete municipality-weeks; issue weeks 2016-01-04 to 2024-12-02; target windows end by 2024-12-30</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="30.00" y="38.00" font-size="22" font-weight="bold" fill="#16212d">Distribution of next-four-week reported Lyme case target</text>
+<text x="30.00" y="68.00" font-size="14" fill="#334155">Numerator: Target-complete municipality-weeks with target count less than or equal to x</text>
+<text x="30.00" y="92.00" font-size="14" fill="#334155">Denominator: 98,792 lockbox-safe target-complete municipality-weeks</text>
+<text x="30.00" y="116.00" font-size="14" fill="#334155">Period: issue weeks 2016-01-04 to 2024-12-02; target windows end by 2024-12-30</text>
+<line x1="100" y1="495.00" x2="930" y2="495.00" stroke="#d9e1e8"/>
+<text x="90.00" y="500.00" text-anchor="end" font-size="12" fill="#475569">0.0</text>
+<line x1="100" y1="426.00" x2="930" y2="426.00" stroke="#d9e1e8"/>
+<text x="90.00" y="431.00" text-anchor="end" font-size="12" fill="#475569">0.2</text>
+<line x1="100" y1="357.00" x2="930" y2="357.00" stroke="#d9e1e8"/>
+<text x="90.00" y="362.00" text-anchor="end" font-size="12" fill="#475569">0.4</text>
+<line x1="100" y1="288.00" x2="930" y2="288.00" stroke="#d9e1e8"/>
+<text x="90.00" y="293.00" text-anchor="end" font-size="12" fill="#475569">0.6</text>
+<line x1="100" y1="219.00" x2="930" y2="219.00" stroke="#d9e1e8"/>
+<text x="90.00" y="224.00" text-anchor="end" font-size="12" fill="#475569">0.8</text>
+<line x1="100" y1="150.00" x2="930" y2="150.00" stroke="#d9e1e8"/>
+<text x="90.00" y="155.00" text-anchor="end" font-size="12" fill="#475569">1.0</text>
+<text x="100.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">0</text>
+<text x="266.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">48</text>
+<text x="432.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">96</text>
+<text x="598.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">144</text>
+<text x="764.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">192</text>
+<text x="930.00" y="519.00" text-anchor="middle" font-size="12" fill="#475569">240</text>
+<polyline points="100.00,308.30 103.46,239.23 106.92,207.52 110.38,190.10 113.83,179.73 117.29,172.58 120.75,167.81 124.21,164.60 127.67,161.80 131.12,160.04 134.58,158.58 138.04,157.43 141.50,156.47 144.96,155.65 148.42,154.99 151.88,154.49 155.33,154.03 158.79,153.66 162.25,153.29 165.71,152.94 169.17,152.73 172.62,152.50 176.08,152.26 179.54,152.10 183.00,151.96 186.46,151.84 189.92,151.73 193.38,151.60 196.83,151.48 200.29,151.39 203.75,151.30 207.21,151.25 210.67,151.22 214.12,151.15 217.58,151.09 221.04,151.01 224.50,150.95 227.96,150.93 231.42,150.87 234.88,150.82 238.33,150.80 241.79,150.76 245.25,150.73 248.71,150.69 252.17,150.67 255.62,150.64 259.08,150.62 262.54,150.61 266.00,150.59 269.46,150.56 272.92,150.55 276.38,150.54 279.83,150.54 283.29,150.52 286.75,150.51 290.21,150.51 293.67,150.50 297.12,150.49 300.58,150.47 304.04,150.45 307.50,150.45 310.96,150.44 314.42,150.43 317.88,150.41 321.33,150.41 324.79,150.38 328.25,150.38 331.71,150.37 335.17,150.36 338.62,150.36 342.08,150.34 345.54,150.34 349.00,150.33 355.92,150.31 359.38,150.30 362.83,150.29 366.29,150.27 369.75,150.27 373.21,150.26 376.67,150.25 380.12,150.25 383.58,150.24 387.04,150.23 393.96,150.23 397.42,150.22 400.88,150.21 404.33,150.20 407.79,150.19 411.25,150.18 414.71,150.17 421.62,150.17 425.08,150.17 428.54,150.16 432.00,150.16 435.46,150.15 438.92,150.15 445.83,150.14 449.29,150.14 456.21,150.14 463.12,150.13 466.58,150.13 483.88,150.12 487.33,150.11 497.71,150.10 501.17,150.10 508.08,150.10 539.21,150.09 546.12,150.09 549.58,150.09 556.50,150.08 563.42,150.08 580.71,150.07 591.08,150.07 625.67,150.07 629.12,150.06 646.42,150.06 653.33,150.05 663.71,150.05 674.08,150.05 694.83,150.04 698.29,150.04 701.75,150.03 725.96,150.03 743.25,150.02 753.62,150.02 791.67,150.02 836.62,150.01 867.75,150.01 874.67,150.01 891.96,150.00 930.00,150.00" fill="none" stroke="#197a70" stroke-width="3"/>
+<text x="515.00" y="556.00" text-anchor="middle" font-size="14" fill="#16212d">target_lyme_cases_next_4w</text>
+<text x="22" y="322.50" transform="rotate(-90 22 322.50)" text-anchor="middle" font-size="14" fill="#16212d">Cumulative proportion</text>
+</svg>

@@ -1,0 +1,8 @@
+{
+  "status": "verified",
+  "source": "SURS_NUTS3_SKTE5_7_2022",
+  "valid_from": "2022-11-17",
+  "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+  "join_key": "municipality_code",
+  "fixed_zone_rule": "The verified 2022 municipality-to-statistical-region mapping is used as a fixed analytical geography for every observed year; no historical-boundary reconstruction is claimed."
+}

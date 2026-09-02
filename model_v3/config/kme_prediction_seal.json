@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "seal": {
+    "seal_id": "kme_region_eight_week_v1_2026_predictions",
+    "sealed_date": "2026-08-30",
+    "status": "SEALED_WITHOUT_PIPELINE_ACCESS_TO_2026_KME_OUTCOMES",
+    "temporal_classification": "retrospective_ongoing_holdout_predictions_sealed_during_2026_not_fully_prospective",
+    "external_human_outcome_access_status": "UNKNOWN_not_auditable_from_repository",
+    "git_head": "274dafa952750bd2e110bfa635735756a3ad24d0",
+    "git_worktree_status": "dirty_with_pre_existing_project_changes_content_hashes_are_authoritative"
+  },
+  "prediction_period": {
+    "issue_iso_year": 2026,
+    "horizon_weeks": 8,
+    "target_offsets": [1, 2, 3, 4, 5, 6, 7, 8],
+    "issue_week_included": false,
+    "eligibility": "issue_week_and_every_target_week_must_have_ISO_week_numbering_year_2026",
+    "issue_week_generation": "derive_Mondays_from_Python_ISO_calendar_date_arithmetic"
+  },
+  "systems": [
+    {
+      "candidate_id": "glm_seasonal_region_offset",
+      "system_role": "frozen_selected_model",
+      "precomputed_for_all_eligible_2026_issue_weeks": true
+    },
+    {
+      "candidate_id": "baseline_region_historical_rate",
+      "system_role": "primary_simple_baseline",
+      "precomputed_for_all_eligible_2026_issue_weeks": true
+    },
+    {
+      "candidate_id": "baseline_persistence_8w",
+      "system_role": "secondary_sequential_baseline",
+      "precomputed_for_all_eligible_2026_issue_weeks": false,
+      "reason": "later_2026_predictions_require_prior_2026_observed_cases_that_do_not_yet_exist_in_the_active_inputs",
+      "sealed_algorithm": "sum_reported_regional_KME_cases_in_exactly_t_minus_8_through_t_minus_1",
+      "availability_rule": "generate_each_prediction_only_after_all_eight_prior_weeks_are_observed_and_before_accessing_its_t_plus_1_through_t_plus_8_target"
+    }
+  ],
+  "selected_model": {
+    "candidate_id": "glm_seasonal_region_offset",
+    "family": "Poisson",
+    "link": "log",
+    "formula": "log(E[target_kme_cases_next_8w]) = log(region_population/100000) + intercept + annual_sin + annual_cos + statistical_region_fixed_effect",
+    "offset": "log(region_population/100000)",
+    "fit_rows": "all_rows_in_the_frozen_feature_panel",
+    "maxiter": 100,
+    "tol": 1e-08,
+    "calibration": "none",
+    "predictive_intervals": "not_implemented"
+  },
+  "population": {
+    "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year",
+    "regional_aggregation": "sum_selected_municipality_populations",
+    "incidence_denominator": "same_population_as_model_offset",
+    "missing_rule": "reject_prediction_row_if_any_mapped_municipality_lacks_a_safe_earlier_value"
+  },
+  "inputs": {
+    "freeze_config": "model_v3/config/kme_model_freeze.json",
+    "freeze_config_sha256": "ac68961cbc9463805b35d2dcde86b47fa789814f8c302895d3123646bc83821b",
+    "freeze_code": "model_v3/models/kme_model_freeze.py",
+    "freeze_code_sha256": "38393d2373541654a9c236b0edfc222d089211a9f0e9e2d1f29a260e4a2ac7b3",
+    "freeze_manifest": "model_v3/outputs/kme_model_freeze/kme_model_freeze_manifest.json",
+    "freeze_manifest_sha256": "cdcdf4d4a7d82376ffd22557891e96381833804e4873878ad80f1678dd22157b",
+    "frozen_feature_panel": "model_v3/outputs/kme_model_freeze/kme_frozen_model_feature_panel.csv",
+    "frozen_feature_panel_sha256": "1dfc1a6a023e98bc45b772d5a15f674d524599faa656caef937a89ca2cb3ab2e",
+    "frozen_metrics": "model_v3/outputs/kme_model_freeze/kme_frozen_model_aggregate_metrics.csv",
+    "frozen_metrics_sha256": "7588942fb80d1f0c0d0e562a7503bc36573685d70b1b06fd14564e2006ff6e11",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "population_sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "snapshot_schema": {
+    "columns": [
+      "statistical_region_code",
+      "statistical_region_name",
+      "issue_week",
+      "target_window_start",
+      "target_window_end",
+      "horizon_weeks",
+      "candidate_id",
+      "system_role",
+      "predicted_cases",
+      "predicted_incidence_per_100000",
+      "population_exposure",
+      "population_year_min",
+      "population_year_max",
+      "lower_interval",
+      "upper_interval",
+      "model_version",
+      "data_version",
+      "sealed_date",
+      "data_status"
+    ],
+    "row_key": ["candidate_id", "statistical_region_code", "issue_week"],
+    "sort_order": ["issue_week", "statistical_region_code", "candidate_id"],
+    "interval_rule": "null_because_no_interval_method_is_frozen",
+    "json_and_parquet_source": "same_in_memory_canonical_prediction_table"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/kme_prediction_seal",
+    "coefficients": "kme_frozen_final_glm_coefficients.csv",
+    "fit_diagnostics": "kme_frozen_final_glm_fit_diagnostics.json",
+    "prediction_csv": "kme_2026_sealed_predictions.csv",
+    "prediction_parquet": "kme_2026_sealed_predictions.parquet",
+    "prediction_json": "kme_2026_sealed_predictions.json",
+    "persistence_contract": "kme_2026_persistence_baseline_contract.json",
+    "seal_manifest": "kme_2026_prediction_seal_manifest.json",
+    "report": "model_v3/predict/KME_2026_PREDICTION_SEAL.md"
+  }
+}

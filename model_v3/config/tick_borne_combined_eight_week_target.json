@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "target": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "canonical_name": "target_reported_lyme_plus_kme_cases_next_8w",
+    "composite_definition": "reported_lyme_cases_plus_reported_kme_cases",
+    "included_diseases": ["Lyme disease", "KME/TBE"],
+    "does_not_represent_all_tick_borne_diseases": true,
+    "horizon_weeks": 8,
+    "included_week_offsets": [1, 2, 3, 4, 5, 6, 7, 8],
+    "issue_week_included": false,
+    "component_missing_rule": "target_ineligible_if_either_canonical_component_is_missing",
+    "incomplete_future_window_rule": "target_ineligible_not_zero"
+  },
+  "geography": {
+    "region_mapping_version": "SURS_NUTS3_SKTE5_7_2022",
+    "fixed_mapping_all_years": true
+  },
+  "inputs": {
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "calendar_sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "outputs": {
+    "target": "model_v3/outputs/targets/tick_borne_combined_eight_week_target.csv",
+    "quality_summary": "model_v3/outputs/targets/tick_borne_combined_eight_week_target_quality.json",
+    "data_dictionary": "model_v3/panel/TICK_BORNE_COMBINED_TARGET_DATA_DICTIONARY.md"
+  }
+}

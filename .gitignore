@@ -26,6 +26,8 @@ frontend/osnutekspletne.pdf
 data/raw/**/*
 data/interim/**/*
 data/processed/**/*
+legacy/data/interim/**/*
+legacy/data/processed/**/*
 !data/raw/.gitkeep
 !data/raw/README.md
 !data/raw/copernicus/
@@ -43,7 +45,10 @@ data/processed/**/*
 !data/raw/gurs/
 !data/raw/gurs/README.md
 !data/raw/nijz/.gitkeep
+!data/raw/surs/
 !data/raw/surs/.gitkeep
+!data/raw/surs/README.md
+!data/raw/surs/statistical_regions_municipalities_2022.xlsx
 !data/raw/zgs/.gitkeep
 !data/interim/cleaned/.gitkeep
 !data/interim/features/

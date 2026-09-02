@@ -1,0 +1,282 @@
+{
+  "aggregate_metrics": {
+    "baseline_persistence_8w": {
+      "candidate_id": "baseline_persistence_8w",
+      "mean_fold_mae": 1.7901234567901234,
+      "mean_fold_rmse": 3.287676075688429,
+      "n_folds": 9,
+      "n_predictions": 4764,
+      "poisson_deviance_status": "invalid_pairs_present",
+      "pooled_mae": 1.7938706968933669,
+      "pooled_mean_poisson_deviance": null,
+      "pooled_rmse": 3.5531232934615486
+    },
+    "baseline_region_historical_rate": {
+      "candidate_id": "baseline_region_historical_rate",
+      "mean_fold_mae": 1.5130755103487497,
+      "mean_fold_rmse": 2.544929416227153,
+      "n_folds": 9,
+      "n_predictions": 4764,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.516110280797077,
+      "pooled_mean_poisson_deviance": 2.5875391931853926,
+      "pooled_rmse": 2.76524553766066
+    },
+    "glm_seasonal_region_offset": {
+      "candidate_id": "glm_seasonal_region_offset",
+      "mean_fold_mae": 1.1725455154618658,
+      "mean_fold_rmse": 2.0583593268746774,
+      "n_folds": 9,
+      "n_predictions": 4764,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.1742276355367331,
+      "pooled_mean_poisson_deviance": 1.6163934240641453,
+      "pooled_rmse": 2.191802855509838
+    }
+  },
+  "baselines": [
+    {
+      "candidate_id": "baseline_region_historical_rate",
+      "definition": "training_only_region_target_count_per_population_exposure_rescaled_to_validation_exposure",
+      "role": "primary_simple_baseline"
+    },
+    {
+      "candidate_id": "baseline_persistence_8w",
+      "definition": "reported_regional_KME_cases_in_exactly_t_minus_8_through_t_minus_1",
+      "role": "secondary_baseline"
+    }
+  ],
+  "checks": {
+    "classification_logic_used": false,
+    "eight_week_embargo": true,
+    "issue_week_excluded": true,
+    "past_cases_used_by_selected_model": false,
+    "population_is_offset_not_feature": true,
+    "population_strictly_earlier": true,
+    "post_2025_KME_outcomes_opened": false,
+    "risk_categories_created": false,
+    "target_exactly_t_plus_1_through_t_plus_8": true,
+    "train_target_end_strictly_before_validation": true,
+    "validation_targets_contained": true,
+    "weather_required_by_selected_model": false
+  },
+  "code": {
+    "bytes": 40351,
+    "path": "model_v3/models/kme_model_freeze.py",
+    "sha256": "38393d2373541654a9c236b0edfc222d089211a9f0e9e2d1f29a260e4a2ac7b3"
+  },
+  "configuration": {
+    "bytes": 6478,
+    "path": "model_v3/config/kme_model_freeze.json",
+    "sha256": "ac68961cbc9463805b35d2dcde86b47fa789814f8c302895d3123646bc83821b"
+  },
+  "finalization_support": {
+    "past_incidence_as_model_predictor": false,
+    "purpose": "evaluate_and_freeze_the_selected_formula_on_rows_required_by_the_selected_model_and_declared_baselines",
+    "reason_weather_not_required": "weather_is_not_a_predictor_in_the_selected_model_or_key_baselines_and_must_not_make_an_otherwise_valid_selected-model_row_ineligible",
+    "required_inputs": [
+      "complete_eight_week_target",
+      "verified_region_mapping",
+      "strictly_earlier_population",
+      "past_eight_completed_case_weeks_for_persistence_baseline"
+    ],
+    "weather_evidence_status": "retained_in_prior_common_support_ablation_not_selected",
+    "weather_required": false
+  },
+  "freeze": {
+    "freeze_date": "2026-08-30",
+    "freeze_id": "kme_region_eight_week_v1",
+    "git_head": "274dafa952750bd2e110bfa635735756a3ad24d0",
+    "git_worktree_status": "dirty_with_pre_existing_project_changes_content_hashes_are_authoritative",
+    "status": "FROZEN"
+  },
+  "inputs": {
+    "development_metrics": {
+      "path": "model_v3/outputs/kme_region_model/kme_aggregate_metrics.csv",
+      "sha256": "9da69cf892e86b5a6410c7cca2b94606a17c8af6b7cc4ef2cd8d158a5a13f98f"
+    },
+    "development_selection": {
+      "path": "model_v3/outputs/kme_region_model/kme_model_selection.json",
+      "sha256": "c24fbef80b56793cd0c2e9d93de18b9495a32001d5900a3e0a4d6d2f7672cfa0"
+    },
+    "municipality_statistical_region": {
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "population": {
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "selection_code": {
+      "path": "model_v3/models/kme_region_model.py",
+      "sha256": "5a0c3f666994e70c966d28812a37e370e2d6ca15764a09292eba54937348e4ae"
+    },
+    "selection_config": {
+      "path": "model_v3/config/kme_region_model.json",
+      "sha256": "5c9b73ec8b08bd1026c5730b88b1176206e105784d2becdf3de45cd8ceaad686"
+    },
+    "statistical_region": {
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "target": {
+      "path": "model_v3/outputs/targets/kme_eight_week_target.csv",
+      "sha256": "9b0040e61f54a66f78e3e7c4b6904dff91a3be7e55ead917598b4eefde605396"
+    },
+    "target_code": {
+      "path": "model_v3/panel/kme_eight_week_target.py",
+      "sha256": "5b66982154eb13ee0dafb1dbd65559876507e77dea322c27cf7ea6062557314a"
+    },
+    "target_config": {
+      "path": "model_v3/config/kme_eight_week_target.json",
+      "sha256": "2619180aa576179d23838d26d9971b0cc0486bfbdd5f3c9eb99de571693b0e77"
+    },
+    "weekly_cases": {
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "library_versions": {
+    "numpy": "2.4.4",
+    "statsmodels": "0.14.6"
+  },
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 543,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_aggregate_metrics.csv",
+      "sha256": "7588942fb80d1f0c0d0e562a7503bc36573685d70b1b06fd14564e2006ff6e11"
+    },
+    "coefficients": {
+      "bytes": 9360,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_coefficients.csv",
+      "sha256": "607da04f26adf55ccb044888433091ef5b9d7075221eea452c49e8069c7c5b77"
+    },
+    "feature_panel": {
+      "bytes": 1133129,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_feature_panel.csv",
+      "sha256": "1dfc1a6a023e98bc45b772d5a15f674d524599faa656caef937a89ca2cb3ab2e"
+    },
+    "fit_diagnostics": {
+      "bytes": 767,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_fit_diagnostics.csv",
+      "sha256": "54a98cc8658afdcdd1def570b4bd43842352c2ccf66fe44a90c2e32465d6c0ca"
+    },
+    "fold_manifest": {
+      "bytes": 1002,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_fold_manifest.csv",
+      "sha256": "c80dd73080f9aa971a36e306b1a9611859adfefc36120287679d65b2fe0407ef"
+    },
+    "fold_metrics": {
+      "bytes": 3205,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_fold_metrics.csv",
+      "sha256": "0b9d47e4fd0e3a792362d3a45dd78bc443bc52aac7f451640a699c4e169020a3"
+    },
+    "fold_predictions": {
+      "bytes": 2450008,
+      "path": "model_v3/outputs/kme_model_freeze/kme_frozen_model_fold_predictions.csv",
+      "sha256": "db6b0f4ffa537998b076608ecfb997b35b135f4adab680cbc13bbbb86981792e"
+    },
+    "report": {
+      "bytes": 7818,
+      "path": "model_v3/KME_MODEL_SELECTION.md",
+      "sha256": "387c0733bf1016f3b73a24a04cc29a13866502ab5f5dba7ec91d0d3c36dfd589"
+    }
+  },
+  "population": {
+    "missing_rule": "exclude_row_if_any_mapped_municipality_lacks_a_safe_earlier_value",
+    "regional_aggregation": "sum_selected_municipality_populations",
+    "roles": [
+      "model_offset",
+      "historical_rate_baseline_exposure"
+    ],
+    "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year"
+  },
+  "prospective_lockbox": {
+    "abandonment_rule": "any_model_change_after_outcome_access_requires_abandoning_2026_and_declaring_a_later_untouched_lockbox",
+    "eligibility_rule": "all_target_weeks_t_plus_1_through_t_plus_8_must_be_fully_contained_in_ISO_week_numbering_year_2026",
+    "external_human_outcome_access_status": "UNKNOWN_not_auditable_from_repository",
+    "iso_year": 2026,
+    "issue_week_rule": "issue_week_ISO_week_numbering_year_equals_2026",
+    "opening_rule": "seal_predictions_from_the_frozen_system_before_parsing_2026_KME_outcomes",
+    "selection_use_prohibited": true,
+    "status": "RESERVED_NOT_ACCESSED_BY_THIS_PIPELINE",
+    "temporal_classification": "retrospective_ongoing_holdout_sealed_during_2026_not_fully_prospective"
+  },
+  "schema_version": 1,
+  "selected_model": {
+    "calibration": "none",
+    "candidate_id": "glm_seasonal_region_offset",
+    "family": "Poisson",
+    "formula": "log(E[target_kme_cases_next_8w]) = log(region_population/100000) + intercept + annual_sin + annual_cos + statistical_region_fixed_effect",
+    "implementation": "statsmodels.GLM",
+    "link": "log",
+    "maxiter": 100,
+    "offset": "log(region_population/100000)",
+    "ordinary_predictors": [
+      "annual_sin",
+      "annual_cos",
+      "statistical_region_fixed_effect"
+    ],
+    "population_as_ordinary_predictor": false,
+    "predictive_intervals": "not_implemented",
+    "tol": 1e-08
+  },
+  "status": "FROZEN_DEVELOPMENT_SYSTEM_2026_PIPELINE_LOCKBOX_UNOPENED",
+  "support": {
+    "exclusions": {
+      "incomplete_past_case_window_for_persistence_baseline": 88,
+      "missing_safe_population": 53
+    },
+    "first_issue_week": "2015-02-23",
+    "last_issue_week": "2025-10-27",
+    "n_folds": 9,
+    "n_rows": 6651,
+    "n_validation_predictions_per_system": 4764,
+    "protected_rows_skipped_before_numeric_parsing": {
+      "population": 0,
+      "targets": 96,
+      "weekly_cases": 0
+    },
+    "validation_iso_years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "task": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "issue_week_included": false,
+    "output": "non_negative_expected_reported_KME_case_count",
+    "target": "target_kme_cases_next_8w",
+    "target_offsets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "validation": {
+    "first_validation_iso_year": 2017,
+    "last_validation_iso_year": 2025,
+    "minimum_distinct_training_iso_years": 2,
+    "primary_metric": "pooled_MAE",
+    "secondary_metrics": [
+      "RMSE",
+      "mean_Poisson_deviance_when_valid"
+    ],
+    "strategy": "expanding_rolling_origin_by_ISO_year",
+    "target_embargo_weeks": 8,
+    "train_target_end_rule": "strictly_before_validation_start",
+    "validation_target_rule": "entire_t_plus_1_through_t_plus_8_window_contained_in_validation_ISO_year"
+  }
+}

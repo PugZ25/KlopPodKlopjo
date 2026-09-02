@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "validation_manifest": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv"
+  },
+  "baselines": [
+    {
+      "baseline_id": "baseline_a_overall_history",
+      "name": "Overall historical count expectation",
+      "definition": "Arithmetic mean of four-week Lyme target counts across all rows in the fold training split",
+      "availability": "Only training targets with target_window_end strictly before validation_start"
+    },
+    {
+      "baseline_id": "baseline_b_municipality_history",
+      "name": "Municipality historical count expectation",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the validation row municipality",
+      "availability": "Only same-municipality training targets with target_window_end strictly before validation_start; fallback is baseline A"
+    },
+    {
+      "baseline_id": "baseline_c_seasonal_history",
+      "name": "Seasonal historical count expectation",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the validation issue week's canonical ISO week",
+      "availability": "Only same-ISO-week training targets with target_window_end strictly before validation_start; fallback is baseline A"
+    },
+    {
+      "baseline_id": "baseline_d_municipality_seasonal_history",
+      "name": "Municipality and seasonal historical count expectation",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the municipality and canonical ISO week combination",
+      "availability": "Only same-municipality and same-ISO-week training targets with target_window_end strictly before validation_start; fallback order is municipality, seasonal, overall"
+    },
+    {
+      "baseline_id": "baseline_e_four_week_persistence",
+      "name": "Previous four completed weeks persistence",
+      "definition": "Sum of canonical observed Lyme cases at exactly t-4, t-3, t-2 and t-1",
+      "availability": "Uses only municipality-specific completed weeks strictly before issue_week t; issue week t and every future week are excluded"
+    }
+  ],
+  "persistence": {
+    "prior_week_offsets": [
+      4,
+      3,
+      2,
+      1
+    ],
+    "missing_prior_week_rule": "prediction_missing"
+  },
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "rmse": "root_mean_squared_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "poisson_zero_prediction_rule": "mu_zero_y_zero_has_zero_contribution_mu_zero_y_positive_is_invalid"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/baselines",
+    "baseline_configuration": "lyme_non_ml_baseline_configuration.json",
+    "fold_predictions": "lyme_non_ml_fold_predictions.csv",
+    "fold_metrics": "lyme_non_ml_fold_metrics.csv",
+    "aggregate_metrics": "lyme_non_ml_aggregate_metrics.csv",
+    "quality_summary": "lyme_non_ml_quality_summary.json"
+  }
+}

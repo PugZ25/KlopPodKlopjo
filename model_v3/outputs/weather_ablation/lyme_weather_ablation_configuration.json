@@ -1,0 +1,190 @@
+{
+  "development_policy": {
+    "end_year": 2024,
+    "excluded_lockbox_year": 2025,
+    "fold_strategy": "expanding_window_next_available_year",
+    "start_year": 2016
+  },
+  "experiment": {
+    "candidates": [
+      {
+        "candidate_id": "statistical_baseline_s1",
+        "name": "S1 baseline on common weather support",
+        "static_geography": false,
+        "weather": false
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_static_geography",
+        "name": "S1 plus fixed municipality area",
+        "static_geography": true,
+        "weather": false
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_weather",
+        "name": "S1 plus lagged ERA5-Land weather",
+        "static_geography": false,
+        "weather": true
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+        "name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+        "static_geography": true,
+        "weather": true
+      }
+    ],
+    "common_training_support": "all_four_arms_use_rows_with_complete_t_minus_4_through_t_minus_1_weather",
+    "fixed_municipality_zones_all_years": true,
+    "instantaneous_weekly_variables": [
+      "t2m_mean_c",
+      "d2m_mean_c",
+      "stl1_mean_c",
+      "stl2_mean_c",
+      "swvl1_mean_m3_m3",
+      "swvl2_mean_m3_m3"
+    ],
+    "post_cutoff_weather_rule": "no_extrapolation_or_synthesis",
+    "reference_formula": "Phase_9_S1_seasonality_with_population_offset",
+    "static_feature": "municipality_area_km2",
+    "validation_support": "unchanged_complete_rows_from_existing_rolling_origin_folds",
+    "weather_cutoff": "2024-12-31T23:00:00Z",
+    "weather_feature_windows": {
+      "current_or_future_weather_allowed": false,
+      "lag_1_completed_week": "t_minus_1",
+      "lag_2_completed_week": "t_minus_2",
+      "latest_weather_information": "Sunday_23_UTC_immediately_before_issue_week",
+      "rolling_previous_4_completed_weeks": "t_minus_4_through_t_minus_1"
+    },
+    "weather_scaling": "training_fold_mean_and_standard_deviation_only",
+    "weekly_sum_variables": [
+      "tp_sum_mm"
+    ]
+  },
+  "fold_common_train_counts": {
+    "fold_01_validate_2017": 6572,
+    "fold_02_validate_2018": 17596,
+    "fold_03_validate_2019": 28832,
+    "fold_04_validate_2020": 39856,
+    "fold_05_validate_2021": 50880,
+    "fold_06_validate_2022": 61904,
+    "fold_07_validate_2023": 72928,
+    "fold_08_validate_2024": 83952
+  },
+  "fold_excluded_incomplete_weather_counts": {
+    "fold_01_validate_2017": 3604,
+    "fold_02_validate_2018": 3604,
+    "fold_03_validate_2019": 3604,
+    "fold_04_validate_2020": 3604,
+    "fold_05_validate_2021": 3604,
+    "fold_06_validate_2022": 3604,
+    "fold_07_validate_2023": 3604,
+    "fold_08_validate_2024": 3604
+  },
+  "library_versions": {
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "statsmodels": "0.14.6"
+  },
+  "metrics": {
+    "increment_definition": "candidate_minus_statistical_baseline_s1",
+    "lower_is_better": true,
+    "mae": "mean_absolute_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "rmse": "root_mean_squared_error"
+  },
+  "phase_9_fitting_reused": {
+    "cov_type": "nonrobust",
+    "implementation": "statsmodels.genmod.generalized_linear_model.GLM",
+    "maxiter": 100,
+    "method": "IRLS",
+    "tol": 1e-08
+  },
+  "phase_9_population_policy_reused": {
+    "exact_available_at_timestamps_required": false,
+    "interpretation": "conservative_leakage_prevention_proxy_not_verified_publication_timing",
+    "issue_or_future_year_allowed": false,
+    "missing_preferred_year_rule": "use_latest_present_earlier_year",
+    "preferred_year": "issue_year_minus_1"
+  },
+  "pipeline": "model_v3.models.weather_ablation",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 37728,
+      "path": "model_v3/models/weather_ablation.py",
+      "sha256": "d3582ebda289ea2f6d37b09137846f5da9fc2809d545b5a4dafde9900f77a20a"
+    },
+    "phase_12_config": {
+      "bytes": 3656,
+      "path": "model_v3/config/lyme_weather_ablation.json",
+      "sha256": "4e03222a8d3ee631e467fa9c778b08ec706afba0d73a083f913b14be8af77873"
+    },
+    "phase_9_config": {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "static_features": {
+      "bytes": 4474,
+      "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+      "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083"
+    },
+    "static_quality_summary": {
+      "bytes": 3305,
+      "path": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+      "sha256": "06034b797b431a68f5a241be82f2dd242c52a11d0acbb1f84c111dba3228b93a"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weather_quality_summary": {
+      "bytes": 29190,
+      "path": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+      "sha256": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75"
+    },
+    "weekly_weather": {
+      "bytes": 15885561,
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    }
+  },
+  "weather_feature_columns": [
+    "t2m_mean_c_lag_1w",
+    "t2m_mean_c_lag_2w",
+    "t2m_mean_c_previous_4w_mean",
+    "d2m_mean_c_lag_1w",
+    "d2m_mean_c_lag_2w",
+    "d2m_mean_c_previous_4w_mean",
+    "tp_sum_mm_lag_1w",
+    "tp_sum_mm_lag_2w",
+    "tp_sum_mm_previous_4w_sum",
+    "stl1_mean_c_lag_1w",
+    "stl1_mean_c_lag_2w",
+    "stl1_mean_c_previous_4w_mean",
+    "stl2_mean_c_lag_1w",
+    "stl2_mean_c_lag_2w",
+    "stl2_mean_c_previous_4w_mean",
+    "swvl1_mean_m3_m3_lag_1w",
+    "swvl1_mean_m3_m3_lag_2w",
+    "swvl1_mean_m3_m3_previous_4w_mean",
+    "swvl2_mean_m3_m3_lag_1w",
+    "swvl2_mean_m3_m3_lag_2w",
+    "swvl2_mean_m3_m3_previous_4w_mean"
+  ]
+}

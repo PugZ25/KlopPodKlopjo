@@ -1,0 +1,84 @@
+{
+  "canonical_table": {
+    "columns": [
+      "municipality_code",
+      "municipality_name",
+      "issue_date",
+      "horizon_weeks",
+      "predicted_cases",
+      "predicted_incidence_per_100k",
+      "lower_interval",
+      "upper_interval",
+      "model_version",
+      "data_version",
+      "generated_at",
+      "data_status"
+    ],
+    "data_status_counts": {
+      "retrospective_lockbox_evaluation_prediction": 212
+    },
+    "horizon_weeks": 4,
+    "issue_date": "2025-11-24",
+    "municipality_count": 212,
+    "null_counts": {
+      "data_status": 0,
+      "data_version": 0,
+      "generated_at": 0,
+      "horizon_weeks": 0,
+      "issue_date": 0,
+      "lower_interval": 212,
+      "model_version": 0,
+      "municipality_code": 0,
+      "municipality_name": 0,
+      "predicted_cases": 0,
+      "predicted_incidence_per_100k": 0,
+      "upper_interval": 212
+    },
+    "row_count": 212
+  },
+  "checks": {
+    "explicit_arrow_schema_valid": true,
+    "incidence_only_when_denominator_valid": true,
+    "json_generated_from_canonical_arrow_table": true,
+    "json_parquet_round_trip_parity": true,
+    "municipality_dimension_exact_coverage": true,
+    "one_row_per_municipality": true,
+    "outcomes_excluded": true,
+    "prediction_values_nonnegative_and_finite": true,
+    "predictive_intervals_not_fabricated": true,
+    "risk_scores_categories_probabilities_excluded": true
+  },
+  "lineage": {
+    "data_version": "sealed_selected_model_predictions@sha256:d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da",
+    "generated_at": "2026-08-14T12:59:03.767843Z",
+    "issue_date": "2025-11-24",
+    "model_version": "catboost_poisson_s3_weather_offset@sha256:b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305",
+    "source_hashes": {
+      "lockbox_receipt": "9b1c98b809e51520013f759c58fcfc9593fab34295fddba587e196c59b16da98",
+      "municipality": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+      "selected_model_config": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305",
+      "selected_model_predictions": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da"
+    },
+    "source_paths": {
+      "lockbox_receipt": "model_v3/outputs/lockbox_2025/LOCKBOX_OPENED.json",
+      "municipality": "model_v3/outputs/canonical/municipality.csv",
+      "selected_model_config": "model_v3/config/lyme_catboost_challenger.json",
+      "selected_model_predictions": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv"
+    }
+  },
+  "outputs": {
+    "json": {
+      "bytes": 146910,
+      "path": "model_v3/outputs/prediction_snapshot/v1/prediction_snapshot.json",
+      "sha256": "6a05e6ee51ce78205aee3da28d6f2638adc5b77e4e0571fa4e4d674c5bf77408"
+    },
+    "parquet": {
+      "bytes": 11563,
+      "path": "model_v3/outputs/prediction_snapshot/v1/prediction_snapshot.parquet",
+      "sha256": "e94fd749abc63abec6f59980470e69d8e43363b1c612742407538a35a501cc4f"
+    }
+  },
+  "pipeline": "model_v3.predict.prediction_snapshot",
+  "schema_version": "1.0.0",
+  "snapshot_scope": "retrospective_lockbox_evaluation_not_live_prediction"
+}

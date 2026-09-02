@@ -1,0 +1,4 @@
+metric,n_folds,n_improved_folds,n_no_change_folds,n_deteriorated_folds,proportion_improved_folds,mean_fold_difference,median_fold_difference,minimum_fold_difference,maximum_fold_difference,aggregate_reference_value,aggregate_catboost_value,aggregate_catboost_minus_reference,aggregate_relative_change_percent,aggregate_result
+mae,8,6,0,2,0.75,-0.137750709868972,-0.126779338048416,-0.344080324446278,0.0476442190408131,1.3201940738539,1.18263994149763,-0.13755413235627,-10.4192357078776,improvement
+rmse,8,6,0,2,0.75,-0.456489116731392,-0.452765232952803,-1.3198006457204,0.210509880165629,3.26493416398755,2.79990265027516,-0.465031513712388,-14.243212584245,improvement
+mean_poisson_deviance,8,7,0,1,0.875,-0.206336690921868,-0.160145319807009,-0.651734690909943,0.0457362507143833,1.72160812138867,1.515964304382,-0.205643817006668,-11.9448679668631,improvement

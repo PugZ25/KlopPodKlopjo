@@ -1,0 +1,213 @@
+{
+  "baselines": [
+    {
+      "availability": "Only training targets with target_window_end strictly before validation_start",
+      "baseline_id": "baseline_a_overall_history",
+      "definition": "Arithmetic mean of four-week Lyme target counts across all rows in the fold training split",
+      "name": "Overall historical count expectation"
+    },
+    {
+      "availability": "Only same-municipality training targets with target_window_end strictly before validation_start; fallback is baseline A",
+      "baseline_id": "baseline_b_municipality_history",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the validation row municipality",
+      "name": "Municipality historical count expectation"
+    },
+    {
+      "availability": "Only same-ISO-week training targets with target_window_end strictly before validation_start; fallback is baseline A",
+      "baseline_id": "baseline_c_seasonal_history",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the validation issue week's canonical ISO week",
+      "name": "Seasonal historical count expectation"
+    },
+    {
+      "availability": "Only same-municipality and same-ISO-week training targets with target_window_end strictly before validation_start; fallback order is municipality, seasonal, overall",
+      "baseline_id": "baseline_d_municipality_seasonal_history",
+      "definition": "Arithmetic mean of four-week Lyme target counts for the municipality and canonical ISO week combination",
+      "name": "Municipality and seasonal historical count expectation"
+    },
+    {
+      "availability": "Uses only municipality-specific completed weeks strictly before issue_week t; issue week t and every future week are excluded",
+      "baseline_id": "baseline_e_four_week_persistence",
+      "definition": "Sum of canonical observed Lyme cases at exactly t-4, t-3, t-2 and t-1",
+      "name": "Previous four completed weeks persistence"
+    }
+  ],
+  "development_policy": {
+    "end_year": 2024,
+    "excluded_lockbox_year": 2025,
+    "fold_strategy": "expanding_window_next_available_year",
+    "start_year": 2016
+  },
+  "folds": [
+    {
+      "fold_id": "fold_01_validate_2017",
+      "n_ineligible_excluded": 0,
+      "n_train": 10176,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2016-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2016-12-26",
+      "validation_end": "2017-12-25",
+      "validation_start": "2017-01-02"
+    },
+    {
+      "fold_id": "fold_02_validate_2018",
+      "n_ineligible_excluded": 0,
+      "n_train": 21200,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2017-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2017-12-25",
+      "validation_end": "2018-12-31",
+      "validation_start": "2018-01-01"
+    },
+    {
+      "fold_id": "fold_03_validate_2019",
+      "n_ineligible_excluded": 0,
+      "n_train": 32436,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2018-12-03",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2018-12-31",
+      "validation_end": "2019-12-30",
+      "validation_start": "2019-01-07"
+    },
+    {
+      "fold_id": "fold_04_validate_2020",
+      "n_ineligible_excluded": 0,
+      "n_train": 43460,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2019-12-02",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2019-12-30",
+      "validation_end": "2020-12-28",
+      "validation_start": "2020-01-06"
+    },
+    {
+      "fold_id": "fold_05_validate_2021",
+      "n_ineligible_excluded": 0,
+      "n_train": 54484,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2020-11-30",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2020-12-28",
+      "validation_end": "2021-12-27",
+      "validation_start": "2021-01-04"
+    },
+    {
+      "fold_id": "fold_06_validate_2022",
+      "n_ineligible_excluded": 0,
+      "n_train": 65508,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2021-11-29",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2021-12-27",
+      "validation_end": "2022-12-26",
+      "validation_start": "2022-01-03"
+    },
+    {
+      "fold_id": "fold_07_validate_2023",
+      "n_ineligible_excluded": 0,
+      "n_train": 76532,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2022-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2022-12-26",
+      "validation_end": "2023-12-25",
+      "validation_start": "2023-01-02"
+    },
+    {
+      "fold_id": "fold_08_validate_2024",
+      "n_ineligible_excluded": 848,
+      "n_train": 87556,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 0,
+      "number_of_purged_rows": 848,
+      "train_issue_end": "2023-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2023-12-25",
+      "validation_end": "2024-12-30",
+      "validation_start": "2024-01-01"
+    }
+  ],
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "poisson_zero_prediction_rule": "mu_zero_y_zero_has_zero_contribution_mu_zero_y_positive_is_invalid",
+    "rmse": "root_mean_squared_error"
+  },
+  "persistence": {
+    "missing_prior_week_rule": "prediction_missing",
+    "prior_week_offsets": [
+      4,
+      3,
+      2,
+      1
+    ]
+  },
+  "pipeline": "model_v3.models.non_ml_baselines",
+  "schema_version": 1,
+  "sources": {
+    "baseline_input_config": {
+      "bytes": 3133,
+      "path": "model_v3/config/lyme_non_ml_baselines.json",
+      "sha256": "86eec018c0566a24a24393daf52e81c39a41473d5c768ddcfd6f6b57e33fa82f"
+    },
+    "builder": {
+      "bytes": 40944,
+      "path": "model_v3/models/non_ml_baselines.py",
+      "sha256": "0d21157709b776167eb09aa9cc1a59be02949c6f3f6af7b5a0049fcdc1c3e2b0"
+    },
+    "calendar": {
+      "bytes": 10832,
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "target": {
+    "column": "target_lyme_cases_next_4w",
+    "forecast_window": "t_plus_1_through_t_plus_4",
+    "unit": "municipality_x_issue_week"
+  }
+}

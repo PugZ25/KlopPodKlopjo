@@ -275,6 +275,7 @@
 .map-summary-card,
 .map-legend-bar,
 .trend-card,
+.weather-context-card,
 .story-card,
 .image-card,
 .highlight-card,
@@ -449,12 +450,36 @@
   margin-top: 14px;
 }
 
+.live-meta .freshness-warning {
+  margin-top: 6px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: rgba(187, 112, 37, 0.12);
+  color: #7a4218;
+  font-weight: 700;
+}
+
 .map-shell {
   margin-top: 22px;
   overflow: hidden;
   border-radius: 28px;
   border: 1px solid rgba(55, 76, 60, 0.12);
   box-shadow: 0 20px 44px rgba(47, 58, 42, 0.12);
+  contain: layout paint;
+  isolation: isolate;
+}
+
+.map-shell-loading {
+  pointer-events: none;
+}
+
+.map-canvas:focus {
+  outline: none;
+}
+
+.map-canvas:focus-visible {
+  outline: 3px solid rgba(41, 92, 67, 0.5);
+  outline-offset: -3px;
 }
 
 .map-summary-bar {
@@ -539,7 +564,7 @@
     linear-gradient(180deg, #f5f9f4 0%, #e2ece3 100%);
 }
 
-.leaflet-container {
+.map-canvas.leaflet-container {
   font-family: inherit;
   background:
     radial-gradient(circle at top left, rgba(76, 163, 120, 0.16), transparent 34%),
@@ -586,6 +611,11 @@
   color: #1a2a22 !important;
   background: rgba(255, 253, 249, 0.94) !important;
   border-bottom: 1px solid rgba(39, 57, 45, 0.08) !important;
+}
+
+:where(a, button, summary, .leaflet-control-zoom a):focus-visible {
+  outline: 3px solid rgba(41, 92, 67, 0.5);
+  outline-offset: 3px;
 }
 
 .card-note {
@@ -776,6 +806,44 @@
 
 .trend-card strong {
   color: #f6fbf7;
+}
+
+.weather-context-card {
+  margin-top: 18px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 231, 219, 0.1);
+}
+
+.weather-context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.weather-context-grid > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.weather-context-grid strong {
+  color: #f6fbf7;
+  font-size: 1rem;
+}
+
+.weather-context-grid span,
+.weather-context-card p {
+  color: rgba(236, 244, 238, 0.72);
+  font-size: 0.82rem;
+}
+
+.weather-context-card p {
+  margin-top: 12px;
 }
 
 .action-links-panel {
@@ -975,6 +1043,7 @@
 .image-card img {
   display: block;
   width: 100%;
+  height: auto;
   border-radius: 18px;
   background: #f2f0e9;
   transition:
@@ -1301,6 +1370,10 @@
     grid-template-columns: 1fr;
   }
 
+  .weather-context-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero-panel {
     padding: 20px;
   }
@@ -1374,6 +1447,13 @@
   .subtopic-link,
   .action-link,
   .disease-tab {
+    transition: none;
+  }
+
+  .accordion-indicator,
+  .image-card img,
+  .image-card-hint,
+  .leaflet-interactive {
     transition: none;
   }
 

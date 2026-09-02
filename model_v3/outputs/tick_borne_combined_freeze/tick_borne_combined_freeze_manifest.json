@@ -1,0 +1,233 @@
+{
+  "checks": {
+    "2026_outcomes_accessed": false,
+    "catboost_in_selected_model": false,
+    "classification_logic_used": false,
+    "combined_scope_explicit": true,
+    "issue_week_excluded": true,
+    "past_case_window_exactly_t_minus_8_through_t_minus_1": true,
+    "population_is_offset_not_feature": true,
+    "population_strictly_earlier": true,
+    "risk_categories_created": false,
+    "target_exactly_t_plus_1_through_t_plus_8": true,
+    "weather_in_selected_model": false,
+    "weather_required_for_final_fit_row": false
+  },
+  "code": {
+    "bytes": 23733,
+    "path": "model_v3/models/tick_borne_combined_model_freeze.py",
+    "sha256": "a6e537919a0f20de5bf0984a4c71f88c720d42f47236ea563a48c154bad6880a"
+  },
+  "configuration": {
+    "bytes": 4984,
+    "path": "model_v3/config/tick_borne_combined_model_freeze.json",
+    "sha256": "7ee204c808302ec825e08ccdcd4a36606adae4234906c082247f6ad2311e130a"
+  },
+  "finalization_support": {
+    "reason": "weather_is_not_in_the_frozen_selected_formula_and_must_not_exclude_an_otherwise_valid_final_fit_row",
+    "required_inputs": [
+      "complete_eight_week_combined_target",
+      "verified_region_mapping",
+      "strictly_earlier_population",
+      "complete_past_eight_week_combined_case_window"
+    ],
+    "weather_required": false
+  },
+  "fit": {
+    "candidate_id": "glm_past_combined_offset",
+    "converged": true,
+    "design_columns": [
+      "intercept",
+      "seasonal_sin_annual",
+      "seasonal_cos_annual",
+      "region[02]",
+      "region[03]",
+      "region[04]",
+      "region[05]",
+      "region[06]",
+      "region[07]",
+      "region[08]",
+      "region[09]",
+      "region[10]",
+      "region[11]",
+      "region[12]",
+      "z_past_8w_reported_lyme_plus_kme_incidence_per_100000"
+    ],
+    "deviance": 88910.21340777556,
+    "iterations": 6,
+    "n_parameters": 15,
+    "n_training_rows": 6651,
+    "pearson_chi2": 96954.69332847241,
+    "reference_region": "01",
+    "region_levels": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
+    ],
+    "statsmodels_version": "0.14.6",
+    "warning_count": 0,
+    "warning_messages": []
+  },
+  "freeze": {
+    "freeze_date": "2026-08-31",
+    "freeze_id": "reported_lyme_plus_kme_region_eight_week_v1",
+    "status": "FROZEN"
+  },
+  "inputs": {
+    "calendar": {
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "development_code": {
+      "path": "model_v3/models/tick_borne_combined_region_model.py",
+      "sha256": "53fc78a866aa747f4ec7747f6e25ff9b0a6e0c6987ff79ef8a976e6ec4686b44"
+    },
+    "development_config": {
+      "path": "model_v3/config/tick_borne_combined_region_model.json",
+      "sha256": "3806ec4111d61f63bf658e3e314e9a846dca4ccd2fa496eafb41aaeab0fef4cb"
+    },
+    "development_metrics": {
+      "path": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_aggregate_metrics.csv",
+      "sha256": "5a98d5337d7c5a652869b68760526dd6f8ad2a215661621f820a1f66f546387c"
+    },
+    "development_selection": {
+      "path": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_model_selection.json",
+      "sha256": "82bf9a1a152b489961a4bd5a8ee57a1d5aeeb19aa092ab4fe92a765fcf08bda8"
+    },
+    "feature_panel": {
+      "path": "model_v3/outputs/tick_borne_combined_model/tick_borne_combined_feature_panel.csv",
+      "sha256": "575a5eaac6624fa18685ff802eb71447b077e48dcef9d7fbbe564e79247320b7"
+    },
+    "municipality_statistical_region": {
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "population": {
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "statistical_region": {
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "target": {
+      "path": "model_v3/outputs/targets/tick_borne_combined_eight_week_target.csv",
+      "sha256": "ebe62a074911ad6144b407fe27249e6e9e84918210e775759ca6978edc08fd84"
+    },
+    "weekly_cases": {
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "outputs": {
+    "coefficients": {
+      "bytes": 893,
+      "path": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_final_coefficients.csv",
+      "sha256": "5511a9ba9480e84278aa5c3464029caf69e24df38c962a6192eecb25f352035c"
+    },
+    "feature_panel": {
+      "bytes": 1227373,
+      "path": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_frozen_feature_panel.csv",
+      "sha256": "7b14ae3a5ee64f14c52480facd649e35e7670eaf0a41ad8618b23945fb8f3d1c"
+    },
+    "fit_diagnostics": {
+      "bytes": 820,
+      "path": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_final_fit_diagnostics.json",
+      "sha256": "51947e419b7f4cf7818fd1655460bc81dfb04e93188448dea5e5c9416e91aa69"
+    },
+    "report": {
+      "bytes": 2567,
+      "path": "model_v3/TICK_BORNE_COMBINED_MODEL_SELECTION.md",
+      "sha256": "81b2f2cdcdb8511c532c5d28c201ef9226b6b80cafe47efae27c72c88ea75396"
+    },
+    "scaler": {
+      "bytes": 192,
+      "path": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_final_scaler.json",
+      "sha256": "56e37fe03b2293deaa3517590e8c52c5af5f0c8e4ffdea48195c5da49b873832"
+    }
+  },
+  "population": {
+    "regional_aggregation": "sum_selected_municipality_populations",
+    "roles": [
+      "model_offset",
+      "past_incidence_denominator",
+      "prediction_incidence_denominator"
+    ],
+    "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year"
+  },
+  "protected_period": {
+    "external_human_outcome_access_status": "UNKNOWN_not_auditable_from_repository",
+    "full_evaluation_rule": "evaluate_only_after_complete_verified_2026_targets_exist",
+    "iso_year": 2026,
+    "pipeline_outcome_access": false,
+    "status": "NO_CANONICAL_2026_OUTCOMES_PRESENT"
+  },
+  "scaler": {
+    "feature": "past_8w_reported_lyme_plus_kme_incidence_per_100000",
+    "fit_scope": "all_frozen_feature_panel_rows",
+    "mean": 35.782637851863306,
+    "standard_deviation": 40.08803224344381
+  },
+  "schema_version": 1,
+  "selected_model": {
+    "calibration": "none",
+    "candidate_id": "glm_past_combined_offset",
+    "family": "Poisson",
+    "formula": "log(E[target]) = log(region_population/100000) + intercept + annual_sin + annual_cos + statistical_region_fixed_effect + standardized_past_8w_combined_incidence",
+    "implementation": "statsmodels.GLM",
+    "link": "log",
+    "maxiter": 100,
+    "offset": "log(region_population/100000)",
+    "ordinary_predictors": [
+      "annual_sin",
+      "annual_cos",
+      "statistical_region_fixed_effect",
+      "past_8w_reported_lyme_plus_kme_incidence_per_100000"
+    ],
+    "predictive_intervals": "not_implemented",
+    "tol": 1e-08
+  },
+  "selection": {
+    "catboost_in_selected_model": false,
+    "catboost_not_promoted_reason": "failed_predeclared_every_fold_stability_rule_improved_7_of_8_folds",
+    "catboost_pooled_mae": 27.799611363236284,
+    "primary_metric": "pooled_MAE",
+    "selected_pooled_mae": 33.79832423964123,
+    "weather_in_selected_model": false
+  },
+  "status": "FROZEN_COMBINED_MODEL_2026_OUTCOMES_UNOPENED",
+  "support": {
+    "exclusions": {
+      "incomplete_past_case_window": 88,
+      "missing_safe_population": 53
+    },
+    "first_issue_week": "2015-02-23",
+    "last_issue_week": "2025-10-27",
+    "n_rows": 6651
+  },
+  "task": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases",
+    "issue_week_included": false,
+    "target": "target_reported_lyme_plus_kme_cases_next_8w",
+    "target_offsets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  }
+}

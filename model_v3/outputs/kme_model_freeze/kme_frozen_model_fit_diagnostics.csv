@@ -1,0 +1,10 @@
+fold_id,validation_iso_year,candidate_id,n_train,n_validation,n_parameters,converged,iterations,warning_count,warning_messages
+kme_frozen_2017,2017,glm_seasonal_region_offset,1023,528,14,true,7,0,
+kme_frozen_2018,2018,glm_seasonal_region_offset,1647,528,14,true,6,0,
+kme_frozen_2019,2019,glm_seasonal_region_offset,2271,528,14,true,7,0,
+kme_frozen_2020,2020,glm_seasonal_region_offset,2895,540,14,true,7,0,
+kme_frozen_2021,2021,glm_seasonal_region_offset,3531,528,14,true,7,0,
+kme_frozen_2022,2022,glm_seasonal_region_offset,4155,528,14,true,7,0,
+kme_frozen_2023,2023,glm_seasonal_region_offset,4779,528,14,true,7,0,
+kme_frozen_2024,2024,glm_seasonal_region_offset,5403,528,14,true,7,0,
+kme_frozen_2025,2025,glm_seasonal_region_offset,6027,528,14,true,7,0,

@@ -1,0 +1,41 @@
+fold_id,baseline_id,baseline_name,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,mae,rmse,mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+fold_01_validate_2017,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,1.92773804469018,4.39365012390427,4.16682721778928,valid,10176,0
+fold_01_validate_2017,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,1.40265903432914,3.02321629877473,,invalid_zero_prediction_positive_observation_present,10169,7
+fold_01_validate_2017,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,1.73144820962383,4.23091619270393,3.41584860334453,valid,10176,0
+fold_01_validate_2017,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.18180031446541,2.22151783909875,,invalid_zero_prediction_positive_observation_present,8395,1781
+fold_01_validate_2017,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,1.39494889937107,3.0271796814691,,invalid_zero_prediction_positive_observation_present,8418,1758
+fold_02_validate_2018,baseline_a_overall_history,Overall historical count expectation,10388,10388,0,complete,2.85023621232046,8.00322298465413,8.00309646358818,valid,10388,0
+fold_02_validate_2018,baseline_b_municipality_history,Municipality historical count expectation,10388,10388,0,complete,2.378478051598,6.40425726367589,,invalid_zero_prediction_positive_observation_present,10384,4
+fold_02_validate_2018,baseline_c_seasonal_history,Seasonal historical count expectation,10388,10388,0,complete,2.4698926918578,7.69660723975374,5.92243622852183,valid,10388,0
+fold_02_validate_2018,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10388,10388,0,complete,1.74499422410474,4.47773983432196,,invalid_zero_prediction_positive_observation_present,9340,1048
+fold_02_validate_2018,baseline_e_four_week_persistence,Previous four completed weeks persistence,10388,10388,0,complete,2.11850211782826,5.06831459767381,,invalid_zero_prediction_positive_observation_present,8808,1580
+fold_03_validate_2019,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,1.97614624124837,3.97596175597251,3.9367282404818,valid,10176,0
+fold_03_validate_2019,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,1.40812484585029,2.8120505314813,1.88229559529987,valid,10176,0
+fold_03_validate_2019,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,1.89952249218781,3.92877028706781,3.41529048428716,valid,10176,0
+fold_03_validate_2019,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.22723401467505,2.5073725149489,,invalid_zero_prediction_positive_observation_present,9713,463
+fold_03_validate_2019,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,1.23083726415094,2.63363360082534,,invalid_zero_prediction_positive_observation_present,8394,1782
+fold_04_validate_2020,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,2.97274993704903,8.95697906057039,8.30146680563295,valid,10176,0
+fold_04_validate_2020,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,2.41949973155392,7.15835913893528,4.13077187033572,valid,10176,0
+fold_04_validate_2020,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,2.59075645989083,8.64054178037215,6.10540541354743,valid,10176,0
+fold_04_validate_2020,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.66752653301887,4.74365279024701,,invalid_zero_prediction_positive_observation_present,9830,346
+fold_04_validate_2020,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,2.13286163522013,5.55668686070436,,invalid_zero_prediction_positive_observation_present,8636,1540
+fold_05_validate_2021,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,1.92885831926192,3.47577913693958,3.75180162876833,valid,10176,0
+fold_05_validate_2021,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,1.45329324511171,2.98715630899681,2.05786805004509,valid,10176,0
+fold_05_validate_2021,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,1.93528539219176,3.57966999385315,3.47031539333615,valid,10176,0
+fold_05_validate_2021,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.40247641509434,3.21862577613373,,invalid_zero_prediction_positive_observation_present,10027,149
+fold_05_validate_2021,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,0.969339622641509,2.38900620110765,,invalid_zero_prediction_positive_observation_present,8616,1560
+fold_06_validate_2022,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,2.17883912313461,4.85043459921239,4.86002058594624,valid,10176,0
+fold_06_validate_2022,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,1.60504346797338,3.73529639936081,2.38796771334355,valid,10176,0
+fold_06_validate_2022,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,2.04033429873225,4.69915637924897,3.93064703061379,valid,10176,0
+fold_06_validate_2022,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.18504323899371,2.4584432605206,,invalid_zero_prediction_positive_observation_present,10037,139
+fold_06_validate_2022,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,1.32537342767296,3.63607071165094,,invalid_zero_prediction_positive_observation_present,8608,1568
+fold_07_validate_2023,baseline_a_overall_history,Overall historical count expectation,10176,10176,0,complete,1.76218332346777,3.47286089367355,3.58500303034045,valid,10176,0
+fold_07_validate_2023,baseline_b_municipality_history,Municipality historical count expectation,10176,10176,0,complete,1.30527970870573,2.64873546587705,1.90457323428937,valid,10176,0
+fold_07_validate_2023,baseline_c_seasonal_history,Seasonal historical count expectation,10176,10176,0,complete,1.75501351417213,3.55490297789837,3.31127222587015,valid,10176,0
+fold_07_validate_2023,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10176,10176,0,complete,1.23153919586703,2.66212568919752,,invalid_zero_prediction_positive_observation_present,10086,90
+fold_07_validate_2023,baseline_e_four_week_persistence,Previous four completed weeks persistence,10176,10176,0,complete,0.82252358490566,2.05046397571946,,invalid_zero_prediction_positive_observation_present,8725,1451
+fold_08_validate_2024,baseline_a_overall_history,Overall historical count expectation,10388,10388,0,complete,1.78813591866253,3.99232022059934,3.78823906099643,valid,10388,0
+fold_08_validate_2024,baseline_b_municipality_history,Municipality historical count expectation,10388,10388,0,complete,1.30829575194325,2.86122068377652,1.86032636669085,valid,10388,0
+fold_08_validate_2024,baseline_c_seasonal_history,Seasonal historical count expectation,10388,10388,0,complete,1.68444222651681,3.94082669251061,3.24917304257146,valid,10388,0
+fold_08_validate_2024,baseline_d_municipality_seasonal_history,Municipality and seasonal historical count expectation,10388,10388,0,complete,1.04332093349469,1.98269835457872,,invalid_zero_prediction_positive_observation_present,10290,98
+fold_08_validate_2024,baseline_e_four_week_persistence,Previous four completed weeks persistence,10388,10388,0,complete,1.00587216018483,2.54714877556596,,invalid_zero_prediction_positive_observation_present,8764,1624

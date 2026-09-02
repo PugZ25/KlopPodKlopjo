@@ -1,0 +1,2 @@
+candidate_id,candidate_name,n_folds,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+catboost_poisson_s3_weather_offset,CatBoost Poisson challenger with matched S3 and lagged ERA5-Land information,8,81832,81832,0,complete,1.18263994149763,1.1820272280099,2.79990265027516,2.59198644722002,1.515964304382,valid,81832,0

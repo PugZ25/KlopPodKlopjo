@@ -1,10 +1,20 @@
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react'
 import brandLogo from '../logo.png'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
-import { MapView } from './components/MapView'
+import type { MapViewProps } from './components/MapView'
 import {
   liveMunicipalityRiskModels,
+  precautionSnapshotMetadata,
   type DiseaseModelKey,
   type RiskLevel,
 } from './data/liveMunicipalityRisk'
@@ -21,13 +31,18 @@ import {
   vaccinationHighlights,
   vaccinationSources,
 } from './data/siteContent'
-import { findMunicipalityByCoordinates } from './utils/municipalityLookup'
 import './App.css'
 
 const levelClassName = {
   Nizko: 'level-low',
   Srednje: 'level-medium',
   Visoko: 'level-high',
+} as const
+
+const signalLevelLabel = {
+  Nizko: 'Nizek',
+  Srednje: 'Srednji',
+  Visoko: 'Visok',
 } as const
 
 const levelAccentColor = {
@@ -63,17 +78,31 @@ type SectionAccordionProps = {
 }
 
 type InteractiveImageProps = LightboxImage & {
+  height: number
   onOpen: (image: LightboxImage) => void
+  width: number
 }
 
 const diseaseTabs: DiseaseModelKey[] = ['borelioza', 'kme']
+const MapView = lazy(async () => {
+  const module = await import('./components/MapView')
+  return { default: module.MapView }
+})
+const displayDateFormatter = new Intl.DateTimeFormat('sl-SI', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+const snapshotGeneratedAtMilliseconds = Date.parse(
+  precautionSnapshotMetadata.generatedAt,
+)
+const weatherIsStale =
+  !Number.isFinite(snapshotGeneratedAtMilliseconds) ||
+  Date.now() - snapshotGeneratedAtMilliseconds >
+    precautionSnapshotMetadata.maximumDisplayAgeHours * 60 * 60 * 1000
 
 function formatDisplayDate(value: string) {
-  return new Intl.DateTimeFormat('sl-SI', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(new Date(`${value}T00:00:00`))
+  return displayDateFormatter.format(new Date(`${value}T00:00:00`))
 }
 
 function buildTimeHorizonLabel(diseaseKey: DiseaseModelKey) {
@@ -89,17 +118,17 @@ function buildSummary(level: RiskLevel, diseaseKey: DiseaseModelKey) {
 
   if (level === 'Visoko') {
     if (diseaseKey === 'kme') {
-      return 'Ocena tveganja za KME je visoka. Tveganje je lahko povečano, zato so zaščitni ukrepi, pregled telesa po obisku narave in cepljenje proti KME posebej pomembni.'
+      return 'Signal za KME je visok. Zato so zaščitni ukrepi, pregled telesa po obisku narave in cepljenje proti KME še posebej pomembni.'
     }
 
-    return 'Ocena tveganja za boreliozo je visoka. Tveganje je lahko povečano, zato so zaščitni ukrepi in pregled telesa po obisku narave posebej pomembni.'
+    return 'Signal za boreliozo je visok. Zato so zaščitni ukrepi in pregled telesa po obisku narave še posebej pomembni.'
   }
 
   if (level === 'Srednje') {
-    return `Ocena tveganja za ${diseaseObjectLabel} je srednja. Tveganje je lahko zmerno, zato so priporočeni zaščitni ukrepi.`
+    return `Signal za ${diseaseObjectLabel} je srednji. Zato so priporočeni zaščitni ukrepi.`
   }
 
-  return `Ocena tveganja za ${diseaseObjectLabel} je nizka. Tveganje je lahko majhno, vendar še vedno upoštevaj zaščitne ukrepe.`
+  return `Signal za ${diseaseObjectLabel} je nizek, vendar še vedno upoštevaj zaščitne ukrepe.`
 }
 
 function buildRiskBadgeStyle(level: RiskLevel, score: number): CSSProperties {
@@ -113,14 +142,14 @@ function buildRiskBadgeStyle(level: RiskLevel, score: number): CSSProperties {
 
 function buildMovementLabel(deltaScore: number) {
   if (deltaScore >= 8) {
-    return 'Tveganje se povečuje.'
+    return 'Signal se povečuje.'
   }
 
   if (deltaScore <= -8) {
-    return 'Tveganje se zmanjšuje.'
+    return 'Signal se zmanjšuje.'
   }
 
-  return 'Tveganje ostaja podobno.'
+  return 'Signal ostaja podoben.'
 }
 
 function formatGeolocationError(error: GeolocationPositionError) {
@@ -192,7 +221,14 @@ function SectionAccordion({
   )
 }
 
-function InteractiveImage({ src, alt, caption, onOpen }: InteractiveImageProps) {
+function InteractiveImage({
+  src,
+  alt,
+  caption,
+  height,
+  onOpen,
+  width,
+}: InteractiveImageProps) {
   return (
     <figure className="image-card">
       <button
@@ -201,13 +237,69 @@ function InteractiveImage({ src, alt, caption, onOpen }: InteractiveImageProps) 
         onClick={() => onOpen({ src, alt, caption })}
         aria-label="Povečaj sliko"
       >
-        <img src={src} alt={alt} />
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+        />
         <span className="image-card-hint" aria-hidden="true">
           Povečaj
         </span>
       </button>
       <figcaption>{caption}</figcaption>
     </figure>
+  )
+}
+
+function MapPlaceholder({
+  placeholderRef,
+}: {
+  placeholderRef?: React.RefObject<HTMLDivElement | null>
+}) {
+  return (
+    <div ref={placeholderRef} className="map-shell map-shell-loading" aria-hidden="true">
+      <div className="map-canvas" />
+    </div>
+  )
+}
+
+function DeferredMapView(props: MapViewProps) {
+  const [shouldLoad, setShouldLoad] = useState(
+    () => typeof window === 'undefined' || !('IntersectionObserver' in window),
+  )
+  const placeholderRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const placeholder = placeholderRef.current
+    if (shouldLoad || !placeholder) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '480px 0px' },
+    )
+
+    observer.observe(placeholder)
+    return () => observer.disconnect()
+  }, [shouldLoad])
+
+  if (!shouldLoad) {
+    return <MapPlaceholder placeholderRef={placeholderRef} />
+  }
+
+  return (
+    <Suspense fallback={<MapPlaceholder />}>
+      <MapView {...props} />
+    </Suspense>
   )
 }
 
@@ -246,6 +338,19 @@ function App() {
   }, [expandedImage])
 
   const activeModel = liveMunicipalityRiskModels[selectedDiseaseKey]
+  const mapLocations = useMemo(
+    () =>
+      activeModel.locations.map((location) => ({
+        id: location.id,
+        municipalityCode: location.municipalityCode,
+        name: location.municipalityName,
+        score: location.score,
+        level: location.level,
+        coordinates: location.coordinates,
+        regionName: location.regionName,
+      })),
+    [activeModel],
+  )
   const fallbackLocation = activeModel.locations[0]
   const selectedLocation =
     activeModel.locations.find(
@@ -256,14 +361,6 @@ function App() {
     return null
   }
 
-  const mapLocations = activeModel.locations.map((location) => ({
-    id: location.id,
-    municipalityCode: location.municipalityCode,
-    name: location.municipalityName,
-    score: location.score,
-    level: location.level,
-    coordinates: location.coordinates,
-  }))
   const selectedMapLocation =
     mapLocations.find((location) => location.id === selectedLocation.id) ??
     mapLocations[0]
@@ -315,6 +412,9 @@ function App() {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         try {
+          const { findMunicipalityByCoordinates } = await import(
+            './utils/municipalityLookup'
+          )
           const municipality = await findMunicipalityByCoordinates(
             position.coords.latitude,
             position.coords.longitude,
@@ -363,7 +463,15 @@ function App() {
             <div className="hero-copy-block">
               <div className="hero-brand-lockup">
                 <div className="hero-logo-badge" aria-hidden="true">
-                  <img className="hero-logo-image" src={brandLogo} alt="" />
+                  <img
+                    className="hero-logo-image"
+                    src={brandLogo}
+                    alt=""
+                    width="386"
+                    height="386"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
                 </div>
 
                 <div className="hero-title-stack">
@@ -385,10 +493,10 @@ function App() {
         <section id="preverjanje-tveganja" className="content-section risk-stage">
           <div className="section-header">
             <span className="section-kicker">Osrednje orodje</span>
-            <h2>Preverjanje tveganja po občinah</h2>
+            <h2>Preverjanje signala po občinah</h2>
             <p>
-              {activeModel.methodologyNote} Namenjena je hitri orientaciji, ne
-              medicinski diagnozi.
+              Prikaz je namenjen hitri orientaciji in ne predstavlja medicinske
+              diagnoze.
             </p>
           </div>
 
@@ -399,8 +507,11 @@ function App() {
                 <h2>Izberi bolezen in občino</h2>
                 <p>
                   Pregledaj zemljevid, klikni občino ali uporabi svojo lokacijo.
-                  Fokus strani je prav lokalna ocena tveganja in hiter prehod do
-                  ustreznih ukrepov.
+                  Tako hitro preveriš lokalni signal in najdeš ustrezne zaščitne
+                  ukrepe.
+                  {activeModel.spatialScope === 'statistical_region'
+                    ? ' Pri KME signal velja za celotno statistično regijo.'
+                    : ''}
                 </p>
               </div>
 
@@ -432,9 +543,21 @@ function App() {
                 </button>
 
                 <div className="live-meta">
-                  <span className="metric-label">Referenčni teden</span>
+                  <span className="metric-label">Obdobje vremenskih podatkov</span>
                   <strong>{referenceRangeLabel}</strong>
-                  <p>Vremenski vir: Open-Meteo. Podatki so prikazani po občinah.</p>
+                  <p>
+                    Vremenski vir:{' '}
+                    <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
+                      Open-Meteo / DWD ICON
+                    </a>
+                    . Podatki ne vplivajo na izračun signala.
+                  </p>
+                  {weatherIsStale ? (
+                    <p className="freshness-warning" role="status">
+                      Vremenski podatki niso bili pravočasno osveženi. Upoštevaj
+                      prikazano obdobje.
+                    </p>
+                  ) : null}
                 </div>
               </div>
 
@@ -444,17 +567,19 @@ function App() {
                 </p>
               ) : null}
 
-              <MapView
+              <DeferredMapView
                 locations={mapLocations}
                 selectedLocationId={selectedLocation.id}
                 onSelectLocation={handleSelectLocation}
                 diseaseLabel={activeModel.diseaseLabel}
                 selectedLocation={selectedMapLocation}
+                spatialScope={activeModel.spatialScope}
               />
 
               <p className="card-note">
-                Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat
-                se prikaže samo kot nizko, srednje ali visoko tveganje.
+                Klikni na občinski poligon ali uporabi svojo lokacijo. Rezultat je
+                prikazan kot nizek, srednji ali visok signal. Nizek signal ne pomeni,
+                da klopov ni.
               </p>
 
               <div className="map-summary-bar">
@@ -463,12 +588,15 @@ function App() {
                   <div className="map-summary-headline">
                     <strong>{selectedLocation.municipalityName}</strong>
                     <span className={`risk-pill ${levelClassName[selectedLocation.level]}`}>
-                      {selectedLocation.level}
+                      {signalLevelLabel[selectedLocation.level]}
                     </span>
                   </div>
                   <p>
-                    Ocena za {buildDiseaseObjectLabel(selectedDiseaseKey)} za{' '}
+                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} za{' '}
                     {timeHorizon}.
+                    {activeModel.spatialScope === 'statistical_region'
+                      ? ' Pri KME je enak za vse občine v izbrani statistični regiji.'
+                      : ''}{' '}
                     Izberi občino na zemljevidu ali uporabi svojo lokacijo.
                   </p>
                 </div>
@@ -476,15 +604,15 @@ function App() {
                 <div className="map-legend-bar" aria-hidden="true">
                   <span className="map-legend-chip">
                     <span className="map-legend-dot map-legend-dot-low" />
-                    Nizko
+                    Nizek
                   </span>
                   <span className="map-legend-chip">
                     <span className="map-legend-dot map-legend-dot-medium" />
-                    Srednje
+                    Srednji
                   </span>
                   <span className="map-legend-chip">
                     <span className="map-legend-dot map-legend-dot-high" />
-                    Visoko
+                    Visok
                   </span>
                 </div>
               </div>
@@ -492,22 +620,24 @@ function App() {
 
             <article className="insight-card">
               <div className="section-header">
-                <span className="section-kicker">Ocena tveganja</span>
+                <span className="section-kicker">Ocena</span>
                 <h2>
-                  {activeModel.diseaseLabel} v občini {selectedLocation.municipalityName}
+                  {selectedDiseaseKey === 'kme'
+                    ? `${activeModel.diseaseLabel} v statistični regiji ${selectedLocation.regionName}`
+                    : `${activeModel.diseaseLabel} v občini ${selectedLocation.municipalityName}`}
                 </h2>
               </div>
 
               <div className="score-row">
                 <div className="score-ring" style={riskBadgeStyle}>
-                  <span>{selectedLocation.level}</span>
+                  <span>{signalLevelLabel[selectedLocation.level]}</span>
                 </div>
                 <div>
-                  <span className="metric-label">Občinsko tveganje</span>
+                  <span className="metric-label">Stopnja signala</span>
                   <span
                     className={`risk-pill ${levelClassName[selectedLocation.level]}`}
                   >
-                    {selectedLocation.level}
+                    {signalLevelLabel[selectedLocation.level]}
                   </span>
                   <div
                     className={`summary-panel ${summaryPanelClassName[selectedLocation.level]}`}
@@ -523,6 +653,35 @@ function App() {
               <div className="trend-card">
                 <span className="metric-label">Tedenski premik</span>
                 <strong>{buildMovementLabel(selectedLocation.trendDeltaScore)}</strong>
+              </div>
+
+              <div className="weather-context-card">
+                <span className="metric-label">Vreme v zadnjih 7 dneh</span>
+                <div className="weather-context-grid">
+                  <div>
+                    <strong>{selectedLocation.weatherContext.airTemperatureC7dMean} °C</strong>
+                    <span>Temperatura zraka</span>
+                  </div>
+                  <div>
+                    <strong>{selectedLocation.weatherContext.precipitationMm7dTotal} mm</strong>
+                    <span>Padavine</span>
+                  </div>
+                  <div>
+                    <strong>{selectedLocation.weatherContext.soilTemperatureC7dMean} °C</strong>
+                    <span>Temperatura tal</span>
+                  </div>
+                  <div>
+                    <strong>
+                      {selectedLocation.weatherContext.soilMoistureM3M3_7dMean} m³/m³
+                    </strong>
+                    <span>Vlažnost tal</span>
+                  </div>
+                </div>
+                <p>
+                  Prikazane vrednosti so izračunane z vremenskim modelom za občino.
+                  Niso meritve vremenske postaje ali aktivnosti klopov in ne vplivajo
+                  na zgornji signal.
+                </p>
               </div>
 
               <div className="action-links-panel">
@@ -619,6 +778,8 @@ function App() {
                   src={vaccinationScheduleImage}
                   alt="Shema cepljenja FSME-IMMUN za osnovno serijo in poživitvene odmerke."
                   caption="Osnovna serija vsebuje tri odmerke, po njej pa sledijo revakcinacije glede na starost."
+                  width={1362}
+                  height={567}
                   onOpen={setExpandedImage}
                 />
               </div>
@@ -851,6 +1012,8 @@ function App() {
                   src={tbeMapImage}
                   alt="Zemljevid razširjenosti klopnega meningoencefalitisa v Evropi in Aziji."
                   caption="Razširjenost virusa klopnega meningoencefalitisa poudarja, da je Slovenija del širšega endemičnega prostora."
+                  width={945}
+                  height={376}
                   onOpen={setExpandedImage}
                 />
               </div>

@@ -1,0 +1,6 @@
+metric,value,definition,period_start,period_end
+development_target_candidate_rows,99640,Rows with issue_week year inside the configured development period.,2016-01-04,2024-12-30
+target_complete_rows,98792,Rows passing the Phase 5 target completeness rule.,2016-01-04,2024-12-30
+complete_rows_with_target_window_entering_lockbox,0,Target-complete rows excluded because target_window_end reaches 2025.,2016-01-04,2024-12-30
+usable_supervised_rows_after_completeness_and_lockbox_rules,98792,Complete target rows whose entire target window ends before the lockbox.,2016-01-04,2024-12-02
+target_incomplete_rows,848,Development rows not passing target completeness.,2016-01-04,2024-12-30

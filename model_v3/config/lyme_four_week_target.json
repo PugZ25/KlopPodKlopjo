@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "input": {
+    "path": "model_v3/outputs/canonical/weekly_cases.csv",
+    "municipality_code_column": "municipality_code",
+    "issue_week_column": "issue_week",
+    "lyme_cases_column": "lyme_cases"
+  },
+  "target": {
+    "column": "target_lyme_cases_next_4w",
+    "included_week_offsets": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "window_start_column": "target_window_start",
+    "window_end_column": "target_window_end",
+    "status_column": "target_status",
+    "training_eligibility_column": "target_training_eligible"
+  },
+  "lockbox": {
+    "year": 2025,
+    "input_row_rule": "skip_at_or_after_lockbox_start_before_numeric_parsing",
+    "target_materialization_rule": "issue_week_strictly_before_lockbox_start"
+  },
+  "output": {
+    "directory": "model_v3/outputs/targets",
+    "target_dataset": "lyme_four_week_target.csv",
+    "quality_summary": "lyme_four_week_target_quality.json"
+  }
+}

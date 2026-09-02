@@ -1,0 +1,10 @@
+candidate_id,candidate_name,metric,control_value,candidate_value,candidate_minus_control,result
+statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,pooled_mae,1.53067360780108,1.53029959987287,-0.000374007928211295,improvement
+statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,pooled_rmse,3.74153512725481,3.70042755783108,-0.0411075694237337,improvement
+statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,pooled_mean_poisson_deviance,2.13234384230936,2.13278743910568,0.000443596796318779,deterioration
+statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,pooled_mae,1.53067360780108,1.53788519351991,0.00721158571883596,deterioration
+statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,pooled_rmse,3.74153512725481,3.89541305026378,0.153877923008966,deterioration
+statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,pooled_mean_poisson_deviance,2.13234384230936,2.19788711191123,0.0655432696018661,deterioration
+statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,pooled_mae,1.53067360780108,1.53848213167895,0.00780852387787312,deterioration
+statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,pooled_rmse,3.74153512725481,3.87833366497466,0.136798537719851,deterioration
+statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,pooled_mean_poisson_deviance,2.13234384230936,2.20064742022616,0.0683035779168,deterioration

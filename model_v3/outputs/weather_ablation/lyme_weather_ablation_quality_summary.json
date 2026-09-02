@@ -1,0 +1,300 @@
+{
+  "aggregate_metrics": [
+    {
+      "candidate_id": "statistical_baseline_s1",
+      "candidate_name": "S1 baseline on common weather support",
+      "mean_fold_mae": 1.5305033225521996,
+      "mean_fold_rmse": 3.671227944509677,
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.5306736078010763,
+      "pooled_mean_poisson_deviance": 2.1323438423093606,
+      "pooled_rmse": 3.741535127254813,
+      "prediction_metric_status": "complete"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "candidate_name": "S1 plus fixed municipality area",
+      "mean_fold_mae": 1.5301161541557096,
+      "mean_fold_rmse": 3.6204575261186425,
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.530299599872865,
+      "pooled_mean_poisson_deviance": 2.1327874391056794,
+      "pooled_rmse": 3.7004275578310795,
+      "prediction_metric_status": "complete"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_weather",
+      "candidate_name": "S1 plus lagged ERA5-Land weather",
+      "mean_fold_mae": 1.537805956611162,
+      "mean_fold_rmse": 3.7708715900269896,
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.5378851935199123,
+      "pooled_mean_poisson_deviance": 2.1978871119112267,
+      "pooled_rmse": 3.8954130502637794,
+      "prediction_metric_status": "complete"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+      "candidate_name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+      "mean_fold_mae": 1.5383915643783503,
+      "mean_fold_rmse": 3.74097219292991,
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.5384821316789494,
+      "pooled_mean_poisson_deviance": 2.2006474202261606,
+      "pooled_rmse": 3.878333664974664,
+      "prediction_metric_status": "complete"
+    }
+  ],
+  "checks": {
+    "all_training_targets_precede_validation": true,
+    "catboost_not_used": true,
+    "classification_and_risk_categories_not_created": true,
+    "fixed_212_municipality_zones_all_years": true,
+    "latest_weather_is_t_minus_1_completed_week": true,
+    "lockbox_issue_weeks_excluded": true,
+    "lockbox_target_windows_excluded": true,
+    "missing_weather_never_zero_imputed": true,
+    "population_remains_offset": true,
+    "same_common_training_rows_all_four_arms": true,
+    "same_validation_rows_all_four_arms": true,
+    "target_is_t_plus_1_through_t_plus_4": true,
+    "validation_manifest_matches_regenerated_folds": true,
+    "weather_cutoff_not_exceeded": true,
+    "weather_scaling_is_training_fold_only": true,
+    "weather_strictly_precedes_issue_week": true
+  },
+  "common_training_support": {
+    "excluded_incomplete_weather_by_fold": {
+      "fold_01_validate_2017": 3604,
+      "fold_02_validate_2018": 3604,
+      "fold_03_validate_2019": 3604,
+      "fold_04_validate_2020": 3604,
+      "fold_05_validate_2021": 3604,
+      "fold_06_validate_2022": 3604,
+      "fold_07_validate_2023": 3604,
+      "fold_08_validate_2024": 3604
+    },
+    "rows_by_fold": {
+      "fold_01_validate_2017": 6572,
+      "fold_02_validate_2018": 17596,
+      "fold_03_validate_2019": 28832,
+      "fold_04_validate_2020": 39856,
+      "fold_05_validate_2021": 50880,
+      "fold_06_validate_2022": 61904,
+      "fold_07_validate_2023": 72928,
+      "fold_08_validate_2024": 83952
+    }
+  },
+  "incremental_comparison": [
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "candidate_minus_control": -0.00037400792821129514,
+      "candidate_name": "S1 plus fixed municipality area",
+      "candidate_value": 1.530299599872865,
+      "control_value": 1.5306736078010763,
+      "metric": "pooled_mae",
+      "result": "improvement"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "candidate_minus_control": -0.041107569423733725,
+      "candidate_name": "S1 plus fixed municipality area",
+      "candidate_value": 3.7004275578310795,
+      "control_value": 3.741535127254813,
+      "metric": "pooled_rmse",
+      "result": "improvement"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "candidate_minus_control": 0.00044359679631877924,
+      "candidate_name": "S1 plus fixed municipality area",
+      "candidate_value": 2.1327874391056794,
+      "control_value": 2.1323438423093606,
+      "metric": "pooled_mean_poisson_deviance",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_weather",
+      "candidate_minus_control": 0.0072115857188359556,
+      "candidate_name": "S1 plus lagged ERA5-Land weather",
+      "candidate_value": 1.5378851935199123,
+      "control_value": 1.5306736078010763,
+      "metric": "pooled_mae",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_weather",
+      "candidate_minus_control": 0.1538779230089662,
+      "candidate_name": "S1 plus lagged ERA5-Land weather",
+      "candidate_value": 3.8954130502637794,
+      "control_value": 3.741535127254813,
+      "metric": "pooled_rmse",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_weather",
+      "candidate_minus_control": 0.06554326960186607,
+      "candidate_name": "S1 plus lagged ERA5-Land weather",
+      "candidate_value": 2.1978871119112267,
+      "control_value": 2.1323438423093606,
+      "metric": "pooled_mean_poisson_deviance",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+      "candidate_minus_control": 0.007808523877873119,
+      "candidate_name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+      "candidate_value": 1.5384821316789494,
+      "control_value": 1.5306736078010763,
+      "metric": "pooled_mae",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+      "candidate_minus_control": 0.13679853771985062,
+      "candidate_name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+      "candidate_value": 3.878333664974664,
+      "control_value": 3.741535127254813,
+      "metric": "pooled_rmse",
+      "result": "deterioration"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+      "candidate_minus_control": 0.06830357791679997,
+      "candidate_name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+      "candidate_value": 2.2006474202261606,
+      "control_value": 2.1323438423093606,
+      "metric": "pooled_mean_poisson_deviance",
+      "result": "deterioration"
+    }
+  ],
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 1089,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_aggregate_metrics.csv",
+      "sha256": "741f97d1b498e592fa787e1bd65f5588738522fd28dd9371558fc00845d14370"
+    },
+    "coefficients": {
+      "bytes": 57082,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_coefficients.csv",
+      "sha256": "9db71f2de1d6f7f14abf0da3e1ccf009c1fb25327964a14c9e51758bbd7c15fb"
+    },
+    "experiment_configuration": {
+      "bytes": 6811,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_configuration.json",
+      "sha256": "4978067a6dc6cbe281b0ea7204c90506b77a1f765ea960acd3cacec0a5cb7ecd"
+    },
+    "fit_diagnostics": {
+      "bytes": 40719,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_fit_diagnostics.csv",
+      "sha256": "5124c300f625ab830bf64b9155ae9fb54bf21d08547b7d13132f475a346e31d0"
+    },
+    "fold_metrics": {
+      "bytes": 6328,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_fold_metrics.csv",
+      "sha256": "c7107c53b42ec573fc0a1143e28846395756afdce8896445a938185408fa2c3a"
+    },
+    "fold_predictions": {
+      "bytes": 88859945,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_fold_predictions.csv",
+      "sha256": "ae7cfceea89090e5ad3f61726ba7ed56963afa70d479f958fe57ab931dabdabc"
+    },
+    "incremental_comparison": {
+      "bytes": 1643,
+      "path": "model_v3/outputs/weather_ablation/lyme_weather_ablation_incremental_comparison.csv",
+      "sha256": "30c28709350ccd6fce8a22a413720c9c8de767dcc030159e24bb4b0e02c1b59f"
+    }
+  },
+  "pipeline": "model_v3.models.weather_ablation",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 37728,
+      "path": "model_v3/models/weather_ablation.py",
+      "sha256": "d3582ebda289ea2f6d37b09137846f5da9fc2809d545b5a4dafde9900f77a20a"
+    },
+    "phase_12_config": {
+      "bytes": 3656,
+      "path": "model_v3/config/lyme_weather_ablation.json",
+      "sha256": "4e03222a8d3ee631e467fa9c778b08ec706afba0d73a083f913b14be8af77873"
+    },
+    "phase_9_config": {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "static_features": {
+      "bytes": 4474,
+      "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+      "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083"
+    },
+    "static_quality_summary": {
+      "bytes": 3305,
+      "path": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+      "sha256": "06034b797b431a68f5a241be82f2dd242c52a11d0acbb1f84c111dba3228b93a"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weather_quality_summary": {
+      "bytes": 29190,
+      "path": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+      "sha256": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75"
+    },
+    "weekly_weather": {
+      "bytes": 15885561,
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    }
+  },
+  "status": "pass",
+  "summary": {
+    "candidate_count": 4,
+    "expected_prediction_rows": 327328,
+    "fold_count": 8,
+    "prediction_rows": 327328,
+    "weather_cutoff": "2024-12-31T23:00:00Z",
+    "weather_feature_count": 21
+  }
+}

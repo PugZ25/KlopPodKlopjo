@@ -1,0 +1,14 @@
+{
+  "approval_status": "implemented_development_system_not_lockbox_validated",
+  "best_non_ml_candidate_id": "glm_seasonal_region_offset",
+  "best_non_ml_pooled_mae": 1.2289081535157136,
+  "catboost_improves_every_fold_vs_best_non_ml": false,
+  "catboost_n_folds_improving_vs_best_non_ml": 4,
+  "catboost_pooled_mae": 1.2075621850459202,
+  "catboost_promoted": false,
+  "n_compared_folds": 8,
+  "primary_metric": "pooled_mae",
+  "selected_candidate_id": "glm_seasonal_region_offset",
+  "selection_rule": "CatBoost requires lower pooled MAE and lower MAE in every validation fold; otherwise select the lowest pooled-MAE non-ML system.",
+  "status": "development_selection_no_untouched_lockbox"
+}

@@ -1,0 +1,89 @@
+{
+  "checks": {
+    "all_areas_positive_and_finite": true,
+    "all_geometries_present_and_valid_for_area": true,
+    "elevation_features_created": false,
+    "land_cover_features_created": false,
+    "lockbox_outcome_data_accessed": false,
+    "municipality_codes_match_canonical_exactly": true,
+    "municipality_codes_unique": true,
+    "weather_features_created": false
+  },
+  "dataset": {
+    "bytes": 4474,
+    "columns": [
+      "municipality_code",
+      "municipality_area_km2"
+    ],
+    "maximum_area_km2": 555.7212281633938,
+    "minimum_area_km2": 6.927544658156274,
+    "missing_value_count": 0,
+    "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+    "primary_key": [
+      "municipality_code"
+    ],
+    "row_count": 212,
+    "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083",
+    "total_area_km2": 20273.3624942367
+  },
+  "feature_dictionary": {
+    "municipality_area_km2": {
+      "column": "municipality_area_km2",
+      "ellipsoid": "WGS84",
+      "missing_data_rule": "fail_on_missing_invalid_or_nonpositive_geometry_area",
+      "multipolygon_rule": "sum_polygon_areas",
+      "polygon_hole_rule": "subtract_absolute_geodesic_hole_areas",
+      "source_geom_area_property_exclusion_reason": "unit_not_verified_in_active_source_documentation",
+      "source_geom_area_property_used": false,
+      "transformation": "absolute_wgs84_ellipsoidal_polygon_area_m2_divided_by_1000000",
+      "unit": "square_kilometres"
+    }
+  },
+  "library_versions": {
+    "pyproj": "3.7.2"
+  },
+  "pipeline": "model_v3.features.static_geography",
+  "schema_version": 1,
+  "source_geometry_system_time": {
+    "maximum_utc": "2026-04-03T09:40:53+00:00",
+    "meaning": "GURS DATUM_SYS; semantic interpretation not asserted",
+    "minimum_utc": "2025-10-02T17:06:46+00:00",
+    "missing_count": 0
+  },
+  "sources": {
+    "builder": {
+      "bytes": 17909,
+      "path": "model_v3/features/static_geography.py",
+      "sha256": "15f2816c5521c1b57f1c2d793fe96990e1b3c876d38aa88142d26ffcbd827269"
+    },
+    "canonical_municipality": {
+      "bytes": 3148,
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
+    },
+    "config": {
+      "bytes": 1570,
+      "path": "model_v3/config/static_geography.json",
+      "sha256": "febbca32e6dd38cae2e5e4cf180ed023eee561a20d618170a21e5d2fd74c0d8b"
+    },
+    "municipality_geometry": {
+      "bytes": 20087123,
+      "crs": "EPSG:4326",
+      "download_date": "2026-04-04",
+      "format": "GeoJSON",
+      "layer": "TEMELJNE_VSEBINE/GH_Prostorske_enote/MapServer/1530",
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "provider": "Geodetic Administration of the Republic of Slovenia (GURS)",
+      "sha256": "4b9a508f938700c2b4b4aa9f0b49ae03d73cbdb177cfd1445a30251edf6c73c9"
+    }
+  },
+  "status": "pass",
+  "temporal_scope": {
+    "fixed_analytical_zones_all_years": true,
+    "historical_boundary_reconstruction": false,
+    "interpretation": "the_same_documented_212_municipality_zones_are_used_for_every_model_year",
+    "source_snapshot_interpretation": "static descriptor of the documented GURS snapshot",
+    "used_as_time_varying_feature": false,
+    "zone_snapshot": "GURS_2026-04-04"
+  }
+}

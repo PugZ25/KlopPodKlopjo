@@ -1,0 +1,100 @@
+{
+  "canonical_table": {
+    "columns": [
+      "statistical_region_code",
+      "statistical_region_name",
+      "issue_date",
+      "horizon_weeks",
+      "predicted_cases",
+      "predicted_incidence_per_100k",
+      "lower_interval",
+      "upper_interval",
+      "model_version",
+      "data_version",
+      "generated_at",
+      "data_status"
+    ],
+    "data_status_counts": {
+      "repository_controlled_2026_prediction_no_2026_KME_outcome_access": 12
+    },
+    "horizon_weeks": 8,
+    "issue_date": "2026-08-24",
+    "null_counts": {
+      "data_status": 0,
+      "data_version": 0,
+      "generated_at": 0,
+      "horizon_weeks": 0,
+      "issue_date": 0,
+      "lower_interval": 12,
+      "model_version": 0,
+      "predicted_cases": 0,
+      "predicted_incidence_per_100k": 0,
+      "statistical_region_code": 0,
+      "statistical_region_name": 0,
+      "upper_interval": 12
+    },
+    "row_count": 12,
+    "statistical_region_count": 12
+  },
+  "checks": {
+    "2026_KME_outcomes_read": false,
+    "explicit_arrow_schema_valid": true,
+    "incidence_uses_same_denominator_as_offset": true,
+    "issue_week_excluded": true,
+    "json_generated_from_canonical_arrow_table": true,
+    "json_parquet_round_trip_parity": true,
+    "one_row_per_statistical_region": true,
+    "outcomes_excluded": true,
+    "population_strictly_earlier_than_issue_time": true,
+    "prediction_values_nonnegative_and_finite": true,
+    "predictive_intervals_not_fabricated": true,
+    "risk_scores_categories_probabilities_excluded": true,
+    "selected_model_only": true,
+    "statistical_region_dimension_exact_coverage": true,
+    "target_exactly_t_plus_1_through_t_plus_8": true
+  },
+  "code": {
+    "bytes": 19254,
+    "path": "model_v3/predict/kme_prediction_snapshot.py",
+    "sha256": "9c00cf6573fb60b7a6b64f2bf9f87fb4d1f2afffcc29d04cdcdd7396fff7fe30"
+  },
+  "configuration": {
+    "bytes": 1714,
+    "path": "model_v3/config/kme_prediction_snapshot.json",
+    "sha256": "00a4f870470110be0035d0b12a63e76264206224b94a2337b8398f9ffffaf528"
+  },
+  "lineage": {
+    "data_version": "kme_data@sha256:340ffae552aaffe721317f98459ada4ff964dae2a086bf97e76d4980088eabe9",
+    "generated_at": "2026-08-30T00:00:00Z",
+    "issue_date": "2026-08-24",
+    "model_version": "glm_seasonal_region_offset@sha256:1263c02735ca074e9c0e087ea0f9b7c81eff390a3df5e4d0639669fa497d8f70",
+    "seal_date": "2026-08-30",
+    "source_hashes": {
+      "seal_manifest": "148232b4dbf967522d59beed6f2576385ac33518b1211d34509b794640b2a4da",
+      "sealed_predictions": "a7ade5ecca9c22cb3588c7963dff3e0edfc31b2239672b95a23c6d85f7ac0906",
+      "selected_model_config": "ac68961cbc9463805b35d2dcde86b47fa789814f8c302895d3123646bc83821b",
+      "statistical_region": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "source_paths": {
+      "seal_manifest": "model_v3/outputs/kme_prediction_seal/kme_2026_prediction_seal_manifest.json",
+      "sealed_predictions": "model_v3/outputs/kme_prediction_seal/kme_2026_sealed_predictions.csv",
+      "selected_model_config": "model_v3/config/kme_model_freeze.json",
+      "statistical_region": "model_v3/outputs/canonical/statistical_region.csv"
+    }
+  },
+  "outputs": {
+    "json": {
+      "bytes": 8151,
+      "path": "model_v3/outputs/kme_prediction_snapshot/v1/prediction_snapshot.json",
+      "sha256": "4f426031da1d599d5e41ee965a8448e1866e9404cd85597d24fa72cdd650897c"
+    },
+    "parquet": {
+      "bytes": 5160,
+      "path": "model_v3/outputs/kme_prediction_snapshot/v1/prediction_snapshot.parquet",
+      "sha256": "f3b122006968eadc8a3334a98368f1db3ba1c04fa3be06f4742d8ef9e81f3142"
+    }
+  },
+  "pipeline": "model_v3.predict.kme_prediction_snapshot",
+  "schema_version": "1.0.0",
+  "snapshot_scope": "repository_controlled_2026_prediction_not_observed_performance"
+}

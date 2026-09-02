@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "population": "model_v3/outputs/canonical/population.csv",
+    "static_features": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+    "static_quality_summary": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+    "weekly_weather": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+    "weather_quality_summary": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "validation_manifest": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+    "phase_9_config": "model_v3/config/lyme_seasonal_count_models.json"
+  },
+  "experiment": {
+    "reference_formula": "Phase_9_S1_seasonality_with_population_offset",
+    "common_training_support": "all_four_arms_use_rows_with_complete_t_minus_4_through_t_minus_1_weather",
+    "validation_support": "unchanged_complete_rows_from_existing_rolling_origin_folds",
+    "candidates": [
+      {
+        "candidate_id": "statistical_baseline_s1",
+        "name": "S1 baseline on common weather support",
+        "static_geography": false,
+        "weather": false
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_static_geography",
+        "name": "S1 plus fixed municipality area",
+        "static_geography": true,
+        "weather": false
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_weather",
+        "name": "S1 plus lagged ERA5-Land weather",
+        "static_geography": false,
+        "weather": true
+      },
+      {
+        "candidate_id": "statistical_baseline_s1_plus_static_geography_weather",
+        "name": "S1 plus fixed municipality area and lagged ERA5-Land weather",
+        "static_geography": true,
+        "weather": true
+      }
+    ],
+    "weather_feature_windows": {
+      "lag_1_completed_week": "t_minus_1",
+      "lag_2_completed_week": "t_minus_2",
+      "rolling_previous_4_completed_weeks": "t_minus_4_through_t_minus_1",
+      "latest_weather_information": "Sunday_23_UTC_immediately_before_issue_week",
+      "current_or_future_weather_allowed": false
+    },
+    "instantaneous_weekly_variables": [
+      "t2m_mean_c",
+      "d2m_mean_c",
+      "stl1_mean_c",
+      "stl2_mean_c",
+      "swvl1_mean_m3_m3",
+      "swvl2_mean_m3_m3"
+    ],
+    "weekly_sum_variables": [
+      "tp_sum_mm"
+    ],
+    "weather_scaling": "training_fold_mean_and_standard_deviation_only",
+    "static_feature": "municipality_area_km2",
+    "fixed_municipality_zones_all_years": true,
+    "weather_cutoff": "2024-12-31T23:00:00Z",
+    "post_cutoff_weather_rule": "no_extrapolation_or_synthesis"
+  },
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "rmse": "root_mean_squared_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "increment_definition": "candidate_minus_statistical_baseline_s1",
+    "lower_is_better": true
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/weather_ablation",
+    "experiment_configuration": "lyme_weather_ablation_configuration.json",
+    "fold_predictions": "lyme_weather_ablation_fold_predictions.csv",
+    "fold_metrics": "lyme_weather_ablation_fold_metrics.csv",
+    "aggregate_metrics": "lyme_weather_ablation_aggregate_metrics.csv",
+    "incremental_comparison": "lyme_weather_ablation_incremental_comparison.csv",
+    "fit_diagnostics": "lyme_weather_ablation_fit_diagnostics.csv",
+    "coefficients": "lyme_weather_ablation_coefficients.csv",
+    "quality_summary": "lyme_weather_ablation_quality_summary.json"
+  }
+}

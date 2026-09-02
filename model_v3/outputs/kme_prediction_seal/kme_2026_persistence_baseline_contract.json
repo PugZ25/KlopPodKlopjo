@@ -1,0 +1,29 @@
+{
+  "algorithm": "sum_reported_regional_KME_cases_in_exactly_t_minus_8_through_t_minus_1",
+  "availability_rule": "generate_each_prediction_only_after_all_eight_prior_weeks_are_observed_and_before_accessing_its_t_plus_1_through_t_plus_8_target",
+  "candidate_id": "baseline_persistence_8w",
+  "current_or_future_target_values_allowed": false,
+  "missing_past_week_rule": "prediction_unavailable_not_zero",
+  "prediction_period": {
+    "eligibility": "issue_week_and_every_target_week_must_have_ISO_week_numbering_year_2026",
+    "horizon_weeks": 8,
+    "issue_iso_year": 2026,
+    "issue_week_generation": "derive_Mondays_from_Python_ISO_calendar_date_arithmetic",
+    "issue_week_included": false,
+    "target_offsets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "reason_values_not_present": "later_2026_predictions_require_prior_2026_observed_cases_that_do_not_yet_exist_in_the_active_inputs",
+  "schema_version": 1,
+  "seal_code_sha256": "08ffbbfd3084f6b8b81d337f0af40d0ee65b2c706a229968846c70ab1bfbfdda",
+  "seal_config_sha256": "dd1938fb6c1d1ca857d7b311203bd83930b11ddcd87bf2c7b9d8d7facdaeb05f",
+  "status": "ALGORITHM_SEALED_NUMERIC_2026_VALUES_NOT_PRECOMPUTABLE"
+}

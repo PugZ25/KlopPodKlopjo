@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "design": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "target": "target_reported_lyme_plus_kme_cases_next_8w",
+    "target_offsets": [1, 2, 3, 4, 5, 6, 7, 8],
+    "issue_week_included": false,
+    "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases",
+    "region_mapping_version": "SURS_NUTS3_SKTE5_7_2022",
+    "fixed_region_mapping_all_years": true,
+    "evaluation_interpretation": "rolling_origin_development_evidence_2018_through_2025",
+    "protected_future_period": "ISO_2026_not_present_in_canonical_outcomes"
+  },
+  "inputs": {
+    "target": "model_v3/outputs/targets/tick_borne_combined_eight_week_target.csv",
+    "target_sha256": "ebe62a074911ad6144b407fe27249e6e9e84918210e775759ca6978edc08fd84",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "calendar_sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "population_sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde",
+    "municipality_area": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+    "municipality_area_sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083",
+    "development_weather": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+    "development_weather_sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f",
+    "weather_extension": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+    "weather_extension_sha256": "66e825259402005c258488d2aac65ea6eed3fc8720f9934b2d2326f52d93adfe"
+  },
+  "feature_contract": {
+    "population": {
+      "role": "exposure_offset_and_past_incidence_denominator",
+      "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year",
+      "offset": "log(region_population_divided_by_100000)",
+      "ordinary_feature": false
+    },
+    "seasonality": {
+      "features": ["seasonal_sin_annual", "seasonal_cos_annual"],
+      "definition": "one_annual_harmonic_from_issue_week_date"
+    },
+    "past_epidemiology": {
+      "window": "t_minus_8_through_t_minus_1",
+      "features": ["past_8w_reported_lyme_plus_kme_incidence_per_100000"],
+      "latest_information": "t_minus_1"
+    },
+    "weather": {
+      "source_product": "final_ERA5_Land_0001",
+      "municipality_to_region_aggregation": "municipality_area_weighted_mean_polygon_overlay_inputs",
+      "window": "t_minus_4_through_t_minus_1_completed_weeks",
+      "features": [
+        "t2m_mean_c_previous_4w_mean",
+        "tp_sum_mm_previous_4w_sum",
+        "stl1_mean_c_previous_4w_mean",
+        "swvl1_mean_m3_m3_previous_4w_mean"
+      ],
+      "missing_rule": "exclude_row_from_all_compared_systems",
+      "current_or_future_weather_allowed": false
+    }
+  },
+  "validation": {
+    "strategy": "expanding_rolling_origin_by_ISO_year",
+    "minimum_distinct_training_iso_years": 2,
+    "first_candidate_validation_iso_year": 2018,
+    "last_validation_iso_year": 2025,
+    "train_target_end_rule": "strictly_before_validation_start",
+    "validation_target_rule": "entire_t_plus_1_through_t_plus_8_window_in_validation_ISO_year",
+    "target_embargo_weeks": 8,
+    "common_feature_complete_support": true
+  },
+  "systems": [
+    {"candidate_id": "baseline_region_historical_rate", "system_type": "baseline"},
+    {"candidate_id": "baseline_persistence_8w", "system_type": "baseline"},
+    {"candidate_id": "glm_seasonal_region_offset", "system_type": "statistical_model"},
+    {"candidate_id": "glm_past_combined_offset", "system_type": "statistical_model"},
+    {"candidate_id": "glm_weather_only_offset", "system_type": "statistical_model"},
+    {"candidate_id": "glm_seasonal_region_weather_offset", "system_type": "statistical_model"},
+    {"candidate_id": "glm_combined_weather_offset", "system_type": "statistical_model"},
+    {"candidate_id": "catboost_combined_weather_offset", "system_type": "ml_challenger"}
+  ],
+  "glm": {
+    "family": "poisson",
+    "link": "log",
+    "implementation": "statsmodels.GLM",
+    "maxiter": 100,
+    "tol": 1e-08,
+    "continuous_scaling": "training_fold_mean_and_standard_deviation_only"
+  },
+  "catboost": {
+    "loss_function": "Poisson",
+    "prediction_type": "Exponent",
+    "iterations": 200,
+    "depth": 4,
+    "learning_rate": 0.03,
+    "l2_leaf_reg": 10.0,
+    "random_seed": 0,
+    "random_strength": 0.5,
+    "one_hot_max_size": 32,
+    "thread_count": 1,
+    "allow_writing_files": false,
+    "task_type": "CPU",
+    "verbose": false,
+    "has_time": true,
+    "hyperparameter_search": false
+  },
+  "selection_rule": {
+    "primary_metric": "pooled_mae",
+    "catboost_promotion": "requires_lower_pooled_MAE_than_best_non_ML_system_and_lower_MAE_in_every_validation_fold",
+    "otherwise": "select_lowest_pooled_MAE_non_ML_system",
+    "no_classification_selection": true
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/tick_borne_combined_model",
+    "feature_panel": "tick_borne_combined_feature_panel.csv",
+    "fold_manifest": "tick_borne_combined_fold_manifest.csv",
+    "fold_predictions": "tick_borne_combined_fold_predictions.csv",
+    "fold_metrics": "tick_borne_combined_fold_metrics.csv",
+    "aggregate_metrics": "tick_borne_combined_aggregate_metrics.csv",
+    "fit_diagnostics": "tick_borne_combined_fit_diagnostics.csv",
+    "coefficients": "tick_borne_combined_glm_coefficients.csv",
+    "feature_importance": "tick_borne_combined_catboost_feature_importance.csv",
+    "selection": "tick_borne_combined_model_selection.json",
+    "quality_summary": "tick_borne_combined_model_quality.json",
+    "report": "model_v3/models/TICK_BORNE_COMBINED_MODEL.md"
+  }
+}

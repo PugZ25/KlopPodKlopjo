@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "source": {
+    "dataset": "reanalysis-era5-land",
+    "area_north_west_south_east": [
+      46.9,
+      13.3,
+      45.3,
+      16.6
+    ],
+    "variables": [
+      "2m_temperature",
+      "2m_dewpoint_temperature",
+      "total_precipitation",
+      "soil_temperature_level_1",
+      "soil_temperature_level_2",
+      "volumetric_soil_water_layer_1",
+      "volumetric_soil_water_layer_2"
+    ],
+    "hours_utc": [
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00",
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+    ],
+    "data_format": "grib",
+    "download_format": "unarchived",
+    "nominal_availability_lag_days": 5,
+    "allowed_expver": [
+      "0001",
+      "0005"
+    ],
+    "vintage_labels": {
+      "0001": "final_era5_land",
+      "0005": "preliminary_era5_land_t"
+    }
+  },
+  "feature_contract": {
+    "issue_week_day": "Monday",
+    "required_completed_weather_weeks": [
+      4,
+      3,
+      2,
+      1
+    ],
+    "week_definition": "Monday_00_UTC_through_Sunday_23_UTC",
+    "required_hours_per_week": 168,
+    "current_week_allowed": false,
+    "future_weather_allowed": false,
+    "missing_weather_rule": "fail_prediction_readiness_never_fill_or_zero",
+    "precipitation_rule": "deaccumulate_hourly_on_grid_then_area_weight_and_sum",
+    "instantaneous_rule": "area_weight_hourly_then_arithmetic_mean_168_hours"
+  },
+  "spatial_contract": {
+    "municipality_geometry_snapshot": "GURS_2026-04-04",
+    "fixed_analytical_zones_all_years": true,
+    "area_crs": "EPSG:3794",
+    "weights": "model_v3/outputs/weather/era5_land_municipality_grid_weights.csv",
+    "weights_sha256": "d72c63087648ab21feb038b39102208db3b2767b931af535b3374f3c2be1ff00",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "municipality_sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "grid_match_rule": "every_weight_latitude_longitude_must_match_downloaded_grid_at_grid_cell_index",
+    "nan_rule": "exclude_nan_cells_and_renormalize_present_intersection_weights"
+  },
+  "provenance": {
+    "raw_files_immutable": true,
+    "required_manifest_fields": [
+      "retrieval_id",
+      "retrieved_at_utc",
+      "issue_week",
+      "requested_weather_start",
+      "requested_weather_end",
+      "source_context_start",
+      "dataset",
+      "data_format",
+      "requests",
+      "files"
+    ],
+    "preliminary_files_must_be_retained_until_final_bridge": true,
+    "silent_preliminary_final_replacement_allowed": false
+  },
+  "bridge": {
+    "comparison_unit": "municipality_x_complete_week",
+    "metrics": [
+      "mean_signed_difference_preliminary_minus_final",
+      "mae",
+      "rmse",
+      "maximum_absolute_difference"
+    ],
+    "promotion_thresholds": null,
+    "status_without_thresholds": "diagnostic_only_no_operational_promotion_authorized"
+  },
+  "outputs": {
+    "retrieval_root": "data/raw/copernicus/era5land_operational/retrievals",
+    "weekly_weather": "municipality_weekly.csv",
+    "quality_summary": "quality_summary.json",
+    "bridge_summary": "bridge_summary.json"
+  }
+}

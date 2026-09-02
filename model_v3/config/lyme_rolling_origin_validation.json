@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "input": {
+    "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+    "municipality_code_column": "municipality_code",
+    "issue_week_column": "issue_week",
+    "target_window_start_column": "target_window_start",
+    "target_window_end_column": "target_window_end",
+    "target_status_column": "target_status",
+    "target_training_eligibility_column": "target_training_eligible"
+  },
+  "policy": {
+    "development_start_year": 2016,
+    "development_end_year": 2024,
+    "lockbox_year": 2025,
+    "fold_strategy": "expanding_window_next_available_year",
+    "required_target_status": "complete",
+    "train_target_end_rule": "strictly_before_validation_start",
+    "validation_target_window_rule": "fully_contained_in_validation_period"
+  },
+  "output": {
+    "directory": "model_v3/outputs/validation",
+    "fold_manifest": "lyme_rolling_origin_fold_manifest.csv",
+    "quality_summary": "lyme_rolling_origin_quality.json"
+  }
+}

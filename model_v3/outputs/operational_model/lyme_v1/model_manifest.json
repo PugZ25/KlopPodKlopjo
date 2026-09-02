@@ -1,0 +1,214 @@
+{
+  "artifacts": {
+    "model": {
+      "bytes": 232312,
+      "path": "catboost_poisson_s3_weather_offset.cbm",
+      "sha256": "f1454a6121372ffc5e1c27faf24034d809716ed6c15ce292b0c7a558318a6d6b",
+      "structural_sha256_excluding_volatile_metadata": "ff880876287af131596319708b37211252ffcf8723489488fce6061be83fb2fc"
+    },
+    "scaler": {
+      "bytes": 2900,
+      "path": "weather_scaler.json",
+      "sha256": "3ccf6169ce8c38100fde79615ba277d3a2829c408ecda8d6d144726e077b11e4"
+    }
+  },
+  "catboost_version": "1.2.10",
+  "feature_columns": [
+    "municipality_code",
+    "seasonal_sin_annual",
+    "seasonal_cos_annual",
+    "past_4w_lyme_incidence_per_100000",
+    "z_t2m_mean_c_lag_1w",
+    "z_t2m_mean_c_lag_2w",
+    "z_t2m_mean_c_previous_4w_mean",
+    "z_d2m_mean_c_lag_1w",
+    "z_d2m_mean_c_lag_2w",
+    "z_d2m_mean_c_previous_4w_mean",
+    "z_tp_sum_mm_lag_1w",
+    "z_tp_sum_mm_lag_2w",
+    "z_tp_sum_mm_previous_4w_sum",
+    "z_stl1_mean_c_lag_1w",
+    "z_stl1_mean_c_lag_2w",
+    "z_stl1_mean_c_previous_4w_mean",
+    "z_stl2_mean_c_lag_1w",
+    "z_stl2_mean_c_lag_2w",
+    "z_stl2_mean_c_previous_4w_mean",
+    "z_swvl1_mean_m3_m3_lag_1w",
+    "z_swvl1_mean_m3_m3_lag_2w",
+    "z_swvl1_mean_m3_m3_previous_4w_mean",
+    "z_swvl2_mean_m3_m3_lag_1w",
+    "z_swvl2_mean_m3_m3_lag_2w",
+    "z_swvl2_mean_m3_m3_previous_4w_mean"
+  ],
+  "fit_rule": "one_fixed_seed_refit_of_the_frozen_selected_configuration_no_operational_retraining_volatile_catboost_serialization_metadata_excluded_from_structural_identity",
+  "frozen_input_records": [
+    {
+      "bytes": 1573,
+      "path": "model_v3/config/canonical_epidemiology.json",
+      "sha256": "e626ea736a1b29d63fa73d87b79ebc37fa999aef9a594880e78fcb97e0c34d10"
+    },
+    {
+      "bytes": 934,
+      "path": "model_v3/config/lyme_four_week_target.json",
+      "sha256": "e9b19793599309924cbafc1b535d3ef8996aa5b2fef6ba3576a91bd0720419fb"
+    },
+    {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    {
+      "bytes": 3784,
+      "path": "model_v3/config/era5_land_weekly_weather.json",
+      "sha256": "f2cc284b660689b27a15d1e55912b2111ace90a2b6926cdeb006fea849865637"
+    },
+    {
+      "bytes": 9623,
+      "path": "model_v3/config/weather_data_contract.json",
+      "sha256": "aeaebf963e61e4cd0d0ce3dd9610c95767ca916cf9464c693a37a4151213b13e"
+    },
+    {
+      "bytes": 3133,
+      "path": "model_v3/config/lyme_non_ml_baselines.json",
+      "sha256": "86eec018c0566a24a24393daf52e81c39a41473d5c768ddcfd6f6b57e33fa82f"
+    },
+    {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    {
+      "bytes": 6860,
+      "path": "model_v3/config/lyme_catboost_challenger.json",
+      "sha256": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305"
+    },
+    {
+      "bytes": 47380,
+      "path": "model_v3/data/canonical_epidemiology.py",
+      "sha256": "6ad9e4458e50d6efc11b9c67879f49925af557684f7ea12311f036899b62bc4e"
+    },
+    {
+      "bytes": 22199,
+      "path": "model_v3/panel/lyme_four_week_target.py",
+      "sha256": "858ad225988cfcbd220dd7ff4467050a976a4ef2ad0861b366f8a98ca294418e"
+    },
+    {
+      "bytes": 24105,
+      "path": "model_v3/validation/rolling_origin.py",
+      "sha256": "c7a7e2d5208895c83ddf3cebd0be78e243eb504e79cf7f866d32f176e5299881"
+    },
+    {
+      "bytes": 31354,
+      "path": "model_v3/features/weather_weekly.py",
+      "sha256": "6f2efb947355ae4c5954f2518b3603aadb985519e4f27f8a5f53e1f0e0c5c4e1"
+    },
+    {
+      "bytes": 59345,
+      "path": "model_v3/models/seasonal_count_models.py",
+      "sha256": "42bb3f863906d62c9943b374f87463cdf33fa5e98c3dccdd3610a99ab93800fd"
+    },
+    {
+      "bytes": 59922,
+      "path": "model_v3/models/catboost_challenger.py",
+      "sha256": "9b2e391ef0f08d1df92371d4dfbe98337f691a51c3bc44233fb633a29cf6e733"
+    },
+    {
+      "bytes": 141,
+      "path": "model_v3/requirements.txt",
+      "sha256": "b0dc82fa6b002024fc56fd727b161935c48379b6cf8ad4e0c5fe9ae497267bae"
+    },
+    {
+      "bytes": 10832,
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    {
+      "bytes": 3148,
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
+    },
+    {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    {
+      "bytes": 15885561,
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    },
+    {
+      "bytes": 29190,
+      "path": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+      "sha256": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75"
+    },
+    {
+      "bytes": 55244,
+      "path": "model_v3/outputs/weather/era5_land_municipality_grid_weights.csv",
+      "sha256": "d72c63087648ab21feb038b39102208db3b2767b931af535b3374f3c2be1ff00"
+    },
+    {
+      "bytes": 4304,
+      "path": "model_v3/outputs/catboost_challenger/lyme_catboost_development_comparison.csv",
+      "sha256": "c19c6c0fa71a855471337604d4243e693671499597ee6c108c84fd3c29a043a5"
+    }
+  ],
+  "frozen_lockbox_config": {
+    "bytes": 7452,
+    "path": "model_v3/config/lyme_lockbox_evaluation_2025.json",
+    "sha256": "a61eeab9a223a1e416f9957a459e23b30209023a14b187e9cbfc4bc990b9c46d"
+  },
+  "frozen_selected_model_config": {
+    "bytes": 6860,
+    "path": "model_v3/config/lyme_catboost_challenger.json",
+    "sha256": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305"
+  },
+  "operational_retraining_allowed": false,
+  "runtime_versions": {
+    "catboost": "1.2.10",
+    "numpy": "2.4.4",
+    "statsmodels": "0.14.6"
+  },
+  "schema_version": 1,
+  "selected_model_id": "catboost_poisson_s3_weather_offset",
+  "status": "sealed",
+  "training": {
+    "eligible_target_rows": 98792,
+    "final_training_rows": 95188,
+    "first_issue_week": "2016-05-02",
+    "last_issue_week": "2024-12-02",
+    "latest_target_window_end": "2024-12-30",
+    "municipality_count": 212,
+    "rows_after_past_case_completeness": 98792,
+    "rows_excluded_incomplete_weather": 3604
+  },
+  "training_period": "2016-2024_development_rows_only",
+  "weather_feature_columns": [
+    "t2m_mean_c_lag_1w",
+    "t2m_mean_c_lag_2w",
+    "t2m_mean_c_previous_4w_mean",
+    "d2m_mean_c_lag_1w",
+    "d2m_mean_c_lag_2w",
+    "d2m_mean_c_previous_4w_mean",
+    "tp_sum_mm_lag_1w",
+    "tp_sum_mm_lag_2w",
+    "tp_sum_mm_previous_4w_sum",
+    "stl1_mean_c_lag_1w",
+    "stl1_mean_c_lag_2w",
+    "stl1_mean_c_previous_4w_mean",
+    "stl2_mean_c_lag_1w",
+    "stl2_mean_c_lag_2w",
+    "stl2_mean_c_previous_4w_mean",
+    "swvl1_mean_m3_m3_lag_1w",
+    "swvl1_mean_m3_m3_lag_2w",
+    "swvl1_mean_m3_m3_previous_4w_mean",
+    "swvl2_mean_m3_m3_lag_1w",
+    "swvl2_mean_m3_m3_lag_2w",
+    "swvl2_mean_m3_m3_previous_4w_mean"
+  ]
+}

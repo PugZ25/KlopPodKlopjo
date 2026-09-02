@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "population": "model_v3/outputs/canonical/population.csv",
+    "static_features": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+    "static_quality_summary": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+    "validation_config": "model_v3/config/lyme_rolling_origin_validation.json",
+    "validation_manifest": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+    "phase_9_config": "model_v3/config/lyme_seasonal_count_models.json",
+    "phase_9_fold_predictions": "model_v3/outputs/seasonal_count_models/lyme_seasonal_count_fold_predictions.csv"
+  },
+  "experiment": {
+    "control": {
+      "candidate_id": "statistical_baseline_s1",
+      "name": "Phase 9 S1 unchanged",
+      "phase_9_model_id": "model_s1_seasonality_offset",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ],
+      "formula": "target_lyme_cases_next_4w ~ 1 + seasonal_sin_annual + seasonal_cos_annual + offset(log(population))"
+    },
+    "augmented": {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "name": "Phase 9 S1 plus municipality area",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual",
+        "municipality_area_km2"
+      ],
+      "formula": "target_lyme_cases_next_4w ~ 1 + seasonal_sin_annual + seasonal_cos_annual + municipality_area_km2 + offset(log(population))"
+    },
+    "static_feature_columns": [
+      "municipality_area_km2"
+    ],
+    "baseline_change_rule": "only_append_declared_static_feature_columns",
+    "s2_s3_exclusion_reason": "municipality fixed effects make time-invariant municipality descriptors exactly non-identifiable"
+  },
+  "metrics": {
+    "mae": "mean_absolute_error",
+    "rmse": "root_mean_squared_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "increment_definition": "augmented_minus_control",
+    "lower_is_better": true
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/static_geography_ablation",
+    "experiment_configuration": "lyme_static_geography_ablation_configuration.json",
+    "fold_predictions": "lyme_static_geography_ablation_fold_predictions.csv",
+    "fold_metrics": "lyme_static_geography_ablation_fold_metrics.csv",
+    "aggregate_metrics": "lyme_static_geography_ablation_aggregate_metrics.csv",
+    "incremental_comparison": "lyme_static_geography_ablation_incremental_comparison.csv",
+    "fit_diagnostics": "lyme_static_geography_ablation_fit_diagnostics.csv",
+    "coefficients": "lyme_static_geography_ablation_coefficients.csv",
+    "quality_summary": "lyme_static_geography_ablation_quality_summary.json"
+  }
+}

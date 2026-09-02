@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "data/raw/surs/statistical_regions_municipalities_2022.xlsx",
+    "sha256": "b032009504dee70a17dd454bc1718c8c7f4eb776ff03583be29245dcf4fbbbc9",
+    "provider": "Statistical Office of the Republic of Slovenia (SURS)",
+    "classification": "NUTS3,_SKTE5,7",
+    "version": "2022",
+    "valid_from": "2022-11-17",
+    "table_id": "17597",
+    "download_url": "https://www.stat.si/Klasje/Klasje/createXlsx?q=17597&s=1",
+    "sheet": "NUTS3,_SKTE5,7, 2022 - Tabela",
+    "region_level": 1,
+    "municipality_level": 2
+  },
+  "canonical_municipality": {
+    "path": "model_v3/outputs/canonical/municipality.csv",
+    "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "join_key": "municipality_code"
+  },
+  "policy": {
+    "expected_region_count": 12,
+    "expected_municipality_count": 212,
+    "municipality_code_rule": "three_digit_suffix_of_level_2_category_code",
+    "region_code_rule": "two_digit_level_1_category_code_and_level_2_parent_code",
+    "name_join_allowed": false,
+    "fixed_mapping_all_analysis_years": true,
+    "historical_region_reconstruction": false
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/canonical",
+    "statistical_region": "statistical_region.csv",
+    "municipality_statistical_region": "municipality_statistical_region.csv",
+    "quality_summary": "statistical_region_quality_summary.json"
+  }
+}

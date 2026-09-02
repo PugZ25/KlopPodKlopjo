@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "municipality_sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "calendar_sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "canonical_contract": {
+    "case_column": "kme_cases",
+    "expected_municipality_count": 212,
+    "expected_statistical_region_count": 12,
+    "week_date_semantics": "canonical_ISO_Monday",
+    "year_semantics": "ISO_week_numbering_year",
+    "blank_case_semantics": "zero_under_user_confirmed_NIJZ_rule"
+  },
+  "descriptive_windows": {
+    "horizons_weeks": [4, 8, 12],
+    "definition": "rolling_sum_of_each_complete_consecutive_observed_H_week_interval_including_window_start",
+    "stride_weeks": 1,
+    "missing_week_rule": "reject_dataset",
+    "purpose": "descriptive_candidate_outcome_feasibility_only_not_an_implemented_forecast_target",
+    "nonoverlap_diagnostic": "blocks_anchored_at_earliest_canonical_week_with_incomplete_final_block_excluded"
+  },
+  "statistical_region_mapping": {
+    "status": "verified",
+    "source": "SURS_NUTS3_SKTE5_7_2022",
+    "valid_from": "2022-11-17",
+    "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "join_key": "municipality_code",
+    "fixed_zone_rule": "The verified 2022 municipality-to-statistical-region mapping is used as a fixed analytical geography for every observed year; no historical-boundary reconstruction is claimed."
+  },
+  "candidate_designs": [
+    {"design_id": "A", "analysis_level": "municipality", "horizon_weeks": 4},
+    {"design_id": "B", "analysis_level": "municipality", "horizon_weeks": 8},
+    {"design_id": "C", "analysis_level": "municipality", "horizon_weeks": 12},
+    {"design_id": "D", "analysis_level": "statistical_region", "horizon_weeks": 4},
+    {"design_id": "E", "analysis_level": "statistical_region", "horizon_weeks": 8}
+  ],
+  "provisional_recommendation": {
+    "design_id": "E",
+    "label": "statistical_region_x_8_week_outcome_window",
+    "status": "approved_by_user_instruction_and_implemented",
+    "scope": "selected_after_all_declared_candidate_designs_were_computed",
+    "reason": "Regional aggregation materially reduces structural zeros. Eight weeks provides more event-bearing windows than four weeks while preserving twice as many anchored non-overlapping temporal blocks as twelve weeks."
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/kme_feasibility",
+    "cases_by_year": "kme_cases_by_year.csv",
+    "cases_by_municipality": "kme_cases_by_municipality.csv",
+    "cases_by_statistical_region": "kme_cases_by_statistical_region.csv",
+    "window_distribution": "kme_window_count_distribution.csv",
+    "design_comparison": "kme_candidate_design_comparison.csv",
+    "region_status": "kme_statistical_region_status.json",
+    "quality_summary": "kme_feasibility_quality_summary.json",
+    "report": "model_v3/evaluation/KME_FEASIBILITY_ANALYSIS.md"
+  }
+}

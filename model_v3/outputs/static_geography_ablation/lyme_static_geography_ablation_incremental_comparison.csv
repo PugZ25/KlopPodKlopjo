@@ -1,0 +1,4 @@
+metric,control_value,augmented_value,augmented_minus_control,result
+pooled_mae,1.50911885173055,1.50880351048158,-0.000315341248975365,improvement
+pooled_rmse,3.72150062401024,3.68442549357911,-0.0370751304311252,improvement
+pooled_mean_poisson_deviance,2.12920241474067,2.12976327220199,0.000560857461323394,deterioration

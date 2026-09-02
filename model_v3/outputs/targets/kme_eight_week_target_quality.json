@@ -1,0 +1,64 @@
+{
+  "checks": {
+    "included_offsets_exactly_t_plus_1_through_t_plus_8": true,
+    "incomplete_rows_training_eligible": false,
+    "issue_week_excluded": true,
+    "kme_model_trained": false,
+    "missing_future_weeks_converted_to_zero": false,
+    "region_week_unique": true
+  },
+  "inputs": {
+    "calendar": {
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427"
+    },
+    "municipality_statistical_region": {
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "statistical_region": {
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "weekly_cases": {
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "output": {
+    "bytes": 366906,
+    "path": "model_v3/outputs/targets/kme_eight_week_target.csv",
+    "sha256": "9b0040e61f54a66f78e3e7c4b6904dff91a3be7e55ead917598b4eefde605396"
+  },
+  "pipeline": "model_v3.panel.kme_eight_week_target",
+  "schema_version": 1,
+  "summary": {
+    "fraction_nonzero_complete_targets": 0.4174028268551237,
+    "maximum_complete_target": 28,
+    "n_complete_rows": 6792,
+    "n_incomplete_rows": 96,
+    "n_nonzero_complete_targets": 2835,
+    "n_regions": 12,
+    "n_rows": 6888,
+    "n_weeks": 574
+  },
+  "target_contract": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "column": "target_kme_cases_next_8w",
+    "complete_status": "complete",
+    "horizon_weeks": 8,
+    "included_week_offsets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "incomplete_status": "incomplete_future_window",
+    "issue_week_included": false,
+    "missing_future_week_rule": "ineligible_not_zero"
+  }
+}

@@ -1,0 +1,5 @@
+candidate_id,candidate_name,n_folds,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+statistical_baseline_s1,S1 baseline on common weather support,8,81832,81832,0,complete,1.53067360780108,1.5305033225522,3.74153512725481,3.67122794450968,2.13234384230936,valid,81832,0
+statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,8,81832,81832,0,complete,1.53029959987287,1.53011615415571,3.70042755783108,3.62045752611864,2.13278743910568,valid,81832,0
+statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,8,81832,81832,0,complete,1.53788519351991,1.53780595661116,3.89541305026378,3.77087159002699,2.19788711191123,valid,81832,0
+statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,8,81832,81832,0,complete,1.53848213167895,1.53839156437835,3.87833366497466,3.74097219292991,2.20064742022616,valid,81832,0

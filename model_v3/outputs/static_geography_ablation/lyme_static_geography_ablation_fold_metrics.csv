@@ -1,0 +1,17 @@
+fold_id,candidate_id,candidate_name,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,mae,rmse,mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+fold_01_validate_2017,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.18215721118716,2.38695205102346,1.63721230705021,valid,10176,0
+fold_01_validate_2017,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.1823456856187,2.38930106239651,1.6374701829902,valid,10176,0
+fold_02_validate_2018,statistical_baseline_s1,Phase 9 S1 unchanged,10388,10388,0,complete,1.85729215001441,4.35161828908189,2.80466805584624,valid,10388,0
+fold_02_validate_2018,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10388,10388,0,complete,1.86238429526406,4.41341568201679,2.79869839588089,valid,10388,0
+fold_03_validate_2019,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.38868968153239,3.42284946211059,1.74401544867718,valid,10176,0
+fold_03_validate_2019,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.38295607489769,3.25912381332858,1.73949914289077,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.89773580530538,4.85662372532841,2.73601446933411,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.90516887371172,4.97257537594637,2.73336252262772,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.55439990633383,4.19291498636223,2.18874345743101,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.54989049847288,4.02280883080978,2.19013375768378,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.56357245983142,3.74641409994965,2.22786382517425,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.56314005309889,3.66702268467695,2.23482070586262,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1,Phase 9 S1 unchanged,10176,10176,0,complete,1.37229145728206,3.37555564359243,1.93942414950512,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10176,10176,0,complete,1.36952990562171,3.28983652351835,1.94325629467446,valid,10176,0
+fold_08_validate_2024,statistical_baseline_s1,Phase 9 S1 unchanged,10388,10388,0,complete,1.2548556813596,2.80496529757558,1.74951554712615,valid,10388,0
+fold_08_validate_2024,statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,10388,10388,0,complete,1.25297616713703,2.75911178104559,1.7547419703834,valid,10388,0

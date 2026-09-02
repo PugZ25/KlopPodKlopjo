@@ -1,0 +1,4 @@
+model_id,model_name,n_folds,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+model_s1_seasonality_offset,S1 seasonality with population exposure,8,81832,81832,0,complete,1.50911885173055,1.50887429410578,3.72150062401024,3.64223669437803,2.12920241474067,valid,81832,0
+model_s2_seasonality_municipality_offset,S2 seasonality and municipality fixed effects with population exposure,8,81832,81832,0,complete,1.33014679465326,1.32969354349635,3.23464466655147,3.05181459263369,1.7079617441444,valid,81832,0
+model_s3_seasonality_municipality_past_incidence_offset,"S3 seasonality, municipality fixed effects and past incidence with population exposure",8,81832,81832,0,complete,1.27578668381131,1.27517506337499,3.09644013721697,2.89756200605766,1.63375870585689,valid,81832,0

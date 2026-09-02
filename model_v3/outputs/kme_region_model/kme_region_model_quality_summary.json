@@ -1,0 +1,421 @@
+{
+  "aggregate_metrics": [
+    {
+      "candidate_id": "baseline_region_historical_rate",
+      "mean_fold_mae": 1.5794280098507416,
+      "mean_fold_rmse": 2.6186100885326025,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 6,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "invalid_pairs_present",
+      "pooled_mae": 1.5826968261391767,
+      "pooled_mean_poisson_deviance": null,
+      "pooled_rmse": 2.8189570586889565,
+      "system_type": "baseline"
+    },
+    {
+      "candidate_id": "baseline_persistence_8w",
+      "mean_fold_mae": 1.8254419191919191,
+      "mean_fold_rmse": 3.383307473206037,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 0,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "invalid_pairs_present",
+      "pooled_mae": 1.8295561850802644,
+      "pooled_mean_poisson_deviance": null,
+      "pooled_rmse": 3.6612974681308867,
+      "system_type": "baseline"
+    },
+    {
+      "candidate_id": "glm_seasonal_region_offset",
+      "mean_fold_mae": 1.2274065427145524,
+      "mean_fold_rmse": 2.1349968757250477,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 7,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.2289081535157136,
+      "pooled_mean_poisson_deviance": 1.6828917468694917,
+      "pooled_rmse": 2.24248125939023,
+      "system_type": "statistical_model"
+    },
+    {
+      "candidate_id": "glm_past_kme_offset",
+      "mean_fold_mae": 1.2310609801639525,
+      "mean_fold_rmse": 2.156609284428701,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 7,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.232810892176967,
+      "pooled_mean_poisson_deviance": 1.7351476862665947,
+      "pooled_rmse": 2.2784454824864673,
+      "system_type": "statistical_model"
+    },
+    {
+      "candidate_id": "glm_weather_only_offset",
+      "mean_fold_mae": 1.6195205115092979,
+      "mean_fold_rmse": 2.6696279113921015,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 5,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.6232201897186178,
+      "pooled_mean_poisson_deviance": 2.908071308337619,
+      "pooled_rmse": 2.880734554079979,
+      "system_type": "statistical_model"
+    },
+    {
+      "candidate_id": "glm_seasonal_region_weather_offset",
+      "mean_fold_mae": 1.2596202105559755,
+      "mean_fold_rmse": 2.187394050911545,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 7,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.261763155916513,
+      "pooled_mean_poisson_deviance": 1.7786752983902516,
+      "pooled_rmse": 2.3283789427358363,
+      "system_type": "statistical_model"
+    },
+    {
+      "candidate_id": "glm_compact_weather_offset",
+      "mean_fold_mae": 1.2640791455432039,
+      "mean_fold_rmse": 2.200765584338152,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 7,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.2665274710923329,
+      "pooled_mean_poisson_deviance": 1.844672464771733,
+      "pooled_rmse": 2.3598787012805884,
+      "system_type": "statistical_model"
+    },
+    {
+      "candidate_id": "catboost_compact_weather_offset",
+      "mean_fold_mae": 1.2057132052395172,
+      "mean_fold_rmse": 2.1113155702726933,
+      "n_folds": 8,
+      "n_folds_improving_over_persistence_mae": 7,
+      "n_predictions": 4236,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": 1.2075621850459202,
+      "pooled_mean_poisson_deviance": 1.5717568603631629,
+      "pooled_rmse": 2.226511530328418,
+      "system_type": "ml_challenger"
+    }
+  ],
+  "checks": {
+    "area_as_ordinary_feature": false,
+    "catboost_hyperparameter_search": false,
+    "current_or_future_weather_used": false,
+    "eight_week_boundary_purge_applied": true,
+    "issue_week_excluded_from_target": true,
+    "past_cases_latest_t_minus_1": true,
+    "personal_risk_output_created": false,
+    "population_as_ordinary_feature": false,
+    "population_issue_or_future_year_used": false,
+    "risk_categories_created": false,
+    "target_exactly_t_plus_1_through_t_plus_8": true,
+    "train_target_end_strictly_before_validation": true,
+    "untouched_KME_lockbox_claimed": false,
+    "validation_target_windows_contained": true,
+    "weather_latest_completed_week_t_minus_1": true,
+    "weather_scaling_fit_on_validation": false
+  },
+  "code": {
+    "bytes": 62995,
+    "path": "model_v3/models/kme_region_model.py",
+    "sha256": "5a0c3f666994e70c966d28812a37e370e2d6ca15764a09292eba54937348e4ae"
+  },
+  "configuration": {
+    "bytes": 7341,
+    "path": "model_v3/config/kme_region_model.json",
+    "sha256": "5c9b73ec8b08bd1026c5730b88b1176206e105784d2becdf3de45cd8ceaad686"
+  },
+  "data_support": {
+    "excluded_target_rows": {
+      "incomplete_past_case_window": 88,
+      "incomplete_weather_window": 699,
+      "missing_safe_population": 53
+    },
+    "first_issue_week": "2016-05-02",
+    "last_issue_week": "2025-10-27",
+    "n_feature_complete_rows": 5952,
+    "n_folds": 8,
+    "n_validation_predictions_per_system": 4236,
+    "validation_iso_years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "feature_contract": {
+    "excluded_to_limit_small_sample_complexity": [
+      "dewpoint",
+      "soil_temperature_level_2",
+      "soil_moisture_layer_2",
+      "separate_weather_lag_1_and_lag_2_features",
+      "land_cover",
+      "elevation",
+      "long_term_trend"
+    ],
+    "past_epidemiology": {
+      "features": [
+        "past_8w_kme_incidence_per_100000"
+      ],
+      "latest_information": "t_minus_1",
+      "window": "t_minus_8_through_t_minus_1"
+    },
+    "population": {
+      "offset": "log(region_population_divided_by_100000)",
+      "ordinary_feature": false,
+      "role": "exposure_offset_and_past_incidence_denominator",
+      "selection": "latest_present_municipality_population_year_strictly_before_issue_calendar_year"
+    },
+    "seasonality": {
+      "definition": "one_annual_harmonic_from_issue_week_date",
+      "features": [
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ]
+    },
+    "static_geography": {
+      "municipality_area_km2_role": "weather_aggregation_weight_only",
+      "ordinary_model_feature": false,
+      "reason": "region area is time-invariant and redundant with region fixed effects or region category"
+    },
+    "weather": {
+      "current_or_future_weather_allowed": false,
+      "features": [
+        "t2m_mean_c_previous_4w_mean",
+        "tp_sum_mm_previous_4w_sum",
+        "stl1_mean_c_previous_4w_mean",
+        "swvl1_mean_m3_m3_previous_4w_mean"
+      ],
+      "missing_rule": "exclude_row_from_all_compared_systems",
+      "municipality_to_region_aggregation": "municipality_area_weighted_mean",
+      "source_product": "final_ERA5_Land_0001",
+      "window": "t_minus_4_through_t_minus_1_completed_weeks"
+    }
+  },
+  "fold_manifest": [
+    {
+      "fold_id": "kme_2018",
+      "n_purged_target_boundary": 96,
+      "n_train": 948,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2017-10-30",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2017-12-25",
+      "validation_end": "2018-12-24",
+      "validation_iso_year": 2018,
+      "validation_start": "2018-01-01"
+    },
+    {
+      "fold_id": "kme_2019",
+      "n_purged_target_boundary": 96,
+      "n_train": 1572,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2018-10-29",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2018-12-24",
+      "validation_end": "2019-12-23",
+      "validation_iso_year": 2019,
+      "validation_start": "2018-12-31"
+    },
+    {
+      "fold_id": "kme_2020",
+      "n_purged_target_boundary": 96,
+      "n_train": 2196,
+      "n_validation": 540,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2019-10-28",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2019-12-23",
+      "validation_end": "2020-12-28",
+      "validation_iso_year": 2020,
+      "validation_start": "2019-12-30"
+    },
+    {
+      "fold_id": "kme_2021",
+      "n_purged_target_boundary": 96,
+      "n_train": 2832,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2020-11-02",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2020-12-28",
+      "validation_end": "2021-12-27",
+      "validation_iso_year": 2021,
+      "validation_start": "2021-01-04"
+    },
+    {
+      "fold_id": "kme_2022",
+      "n_purged_target_boundary": 96,
+      "n_train": 3456,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2021-11-01",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2021-12-27",
+      "validation_end": "2022-12-26",
+      "validation_iso_year": 2022,
+      "validation_start": "2022-01-03"
+    },
+    {
+      "fold_id": "kme_2023",
+      "n_purged_target_boundary": 96,
+      "n_train": 4080,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2022-10-31",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2022-12-26",
+      "validation_end": "2023-12-25",
+      "validation_iso_year": 2023,
+      "validation_start": "2023-01-02"
+    },
+    {
+      "fold_id": "kme_2024",
+      "n_purged_target_boundary": 96,
+      "n_train": 4704,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2023-10-30",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2023-12-25",
+      "validation_end": "2024-12-23",
+      "validation_iso_year": 2024,
+      "validation_start": "2024-01-01"
+    },
+    {
+      "fold_id": "kme_2025",
+      "n_purged_target_boundary": 96,
+      "n_train": 5328,
+      "n_validation": 528,
+      "target_embargo_weeks": 8,
+      "train_issue_end": "2024-10-28",
+      "train_issue_start": "2016-05-02",
+      "train_target_end_max": "2024-12-23",
+      "validation_end": "2025-10-27",
+      "validation_iso_year": 2025,
+      "validation_start": "2024-12-30"
+    }
+  ],
+  "inputs": {
+    "development_weather": {
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    },
+    "municipality_area": {
+      "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+      "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083"
+    },
+    "municipality_statistical_region": {
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "population": {
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "statistical_region": {
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "target": {
+      "path": "model_v3/outputs/targets/kme_eight_week_target.csv",
+      "sha256": "9b0040e61f54a66f78e3e7c4b6904dff91a3be7e55ead917598b4eefde605396"
+    },
+    "weather_extension": {
+      "path": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+      "sha256": "66e825259402005c258488d2aac65ea6eed3fc8720f9934b2d2326f52d93adfe"
+    },
+    "weekly_cases": {
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "library_versions": {
+    "catboost": "1.2.10",
+    "numpy": "2.4.4",
+    "statsmodels": "0.14.6"
+  },
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 1407,
+      "path": "model_v3/outputs/kme_region_model/kme_aggregate_metrics.csv",
+      "sha256": "9da69cf892e86b5a6410c7cca2b94606a17c8af6b7cc4ef2cd8d158a5a13f98f"
+    },
+    "coefficients": {
+      "bytes": 55706,
+      "path": "model_v3/outputs/kme_region_model/kme_glm_coefficients.csv",
+      "sha256": "c6ff89c11e00ccbf716a07d31ebf472219c63ae541d30deeeb00120fb87730da"
+    },
+    "feature_importance": {
+      "bytes": 5966,
+      "path": "model_v3/outputs/kme_region_model/kme_catboost_feature_importance.csv",
+      "sha256": "ee0c4f01dffedfe9f0b8e3b5fac578d211490f9d45a7597592f21df20da25a5a"
+    },
+    "feature_panel": {
+      "bytes": 1825123,
+      "path": "model_v3/outputs/kme_region_model/kme_region_feature_panel.csv",
+      "sha256": "3af31f25be33864636b4d97e923eebffddbef4013ea46828d9eb9e58eeb15b99"
+    },
+    "fit_diagnostics": {
+      "bytes": 17074,
+      "path": "model_v3/outputs/kme_region_model/kme_fit_diagnostics.csv",
+      "sha256": "deb0ca502c8f726c9233071cd0dd0d63961885d2b694cab3843451ef3621a41c"
+    },
+    "fold_manifest": {
+      "bytes": 854,
+      "path": "model_v3/outputs/kme_region_model/kme_rolling_origin_fold_manifest.csv",
+      "sha256": "fce9e22165179fc08a71b57858d3e543f3f866d0b17c3780daba96d279c9bb89"
+    },
+    "fold_metrics": {
+      "bytes": 7032,
+      "path": "model_v3/outputs/kme_region_model/kme_fold_metrics.csv",
+      "sha256": "614d301436a1ab080136cd67112f7495855a32135800ad915698c5c5b950c687"
+    },
+    "fold_predictions": {
+      "bytes": 8317974,
+      "path": "model_v3/outputs/kme_region_model/kme_fold_predictions.csv",
+      "sha256": "b801836af84273803100f1202ed0af273c869a179c1219e12480e5842cb0601a"
+    },
+    "report": {
+      "bytes": 6096,
+      "path": "model_v3/models/KME_REGION_MODEL.md",
+      "sha256": "6bd32a79e09df42580083e5acfc98f06f7e354f09fc7c5ad236569c4714360e2"
+    },
+    "selection": {
+      "bytes": 695,
+      "path": "model_v3/outputs/kme_region_model/kme_model_selection.json",
+      "sha256": "c24fbef80b56793cd0c2e9d93de18b9495a32001d5900a3e0a4d6d2f7672cfa0"
+    }
+  },
+  "pipeline": "model_v3.models.kme_region_model",
+  "schema_version": 1,
+  "selection": {
+    "approval_status": "implemented_development_system_not_lockbox_validated",
+    "best_non_ml_candidate_id": "glm_seasonal_region_offset",
+    "best_non_ml_pooled_mae": 1.2289081535157136,
+    "catboost_improves_every_fold_vs_best_non_ml": false,
+    "catboost_n_folds_improving_vs_best_non_ml": 4,
+    "catboost_pooled_mae": 1.2075621850459202,
+    "catboost_promoted": false,
+    "n_compared_folds": 8,
+    "primary_metric": "pooled_mae",
+    "selected_candidate_id": "glm_seasonal_region_offset",
+    "selection_rule": "CatBoost requires lower pooled MAE and lower MAE in every validation fold; otherwise select the lowest pooled-MAE non-ML system.",
+    "status": "development_selection_no_untouched_lockbox"
+  },
+  "status": "complete_development_evaluation_no_untouched_lockbox"
+}

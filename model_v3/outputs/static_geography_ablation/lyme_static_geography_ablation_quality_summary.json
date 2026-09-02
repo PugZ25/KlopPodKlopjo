@@ -1,0 +1,225 @@
+{
+  "aggregate_metrics": [
+    {
+      "candidate_id": "statistical_baseline_s1",
+      "candidate_name": "Phase 9 S1 unchanged",
+      "mean_fold_mae": "1.50887429410578",
+      "mean_fold_rmse": "3.64223669437803",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": "1.50911885173055",
+      "pooled_mean_poisson_deviance": "2.12920241474067",
+      "pooled_rmse": "3.72150062401024",
+      "prediction_metric_status": "complete"
+    },
+    {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "candidate_name": "Phase 9 S1 plus municipality area",
+      "mean_fold_mae": "1.50854894422783",
+      "mean_fold_rmse": "3.59664946921737",
+      "n_available_predictions": 81832,
+      "n_expected_predictions": 81832,
+      "n_folds": 8,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 81832,
+      "poisson_deviance_status": "valid",
+      "pooled_mae": "1.50880351048158",
+      "pooled_mean_poisson_deviance": "2.12976327220199",
+      "pooled_rmse": "3.68442549357911",
+      "prediction_metric_status": "complete"
+    }
+  ],
+  "checks": {
+    "all_design_matrices_full_rank": true,
+    "all_fit_target_windows_precede_validation": true,
+    "all_fits_converged": true,
+    "all_population_years_precede_issue_year": true,
+    "all_prediction_issue_weeks_precede_lockbox": true,
+    "all_prediction_target_windows_precede_lockbox": true,
+    "candidate_prediction_counts_identical": true,
+    "control_design_columns_equal_phase_9_s1": true,
+    "control_predictions_reproduce_phase_9_s1_within_csv_tolerance": true,
+    "no_catboost_used": true,
+    "no_classification_metrics_used": true,
+    "no_elevation_features_used": true,
+    "no_land_cover_features_used": true,
+    "no_lockbox_performance_computed": true,
+    "no_lockbox_population_values_used": true,
+    "no_lockbox_target_values_used": true,
+    "no_static_feature_missing_values_imputed": true,
+    "no_weather_features_used": true,
+    "offset_coefficient_fixed_to_one": true,
+    "only_augmented_design_column_is_municipality_area_km2": true,
+    "phase_9_predictions_excluded_from_feature_matrix": true,
+    "phase_9_predictions_used_only_for_postfit_control_parity_check": true,
+    "population_excluded_from_ordinary_design_columns": true,
+    "population_used_as_explicit_exposure": true,
+    "prediction_row_count_matches_fold_contract": true,
+    "validation_manifest_matches_regenerated_folds": true
+  },
+  "incremental_comparison": [
+    {
+      "augmented_minus_control": "-0.000315341248975365",
+      "augmented_value": "1.50880351048158",
+      "control_value": "1.50911885173055",
+      "metric": "pooled_mae",
+      "result": "improvement"
+    },
+    {
+      "augmented_minus_control": "-0.0370751304311252",
+      "augmented_value": "3.68442549357911",
+      "control_value": "3.72150062401024",
+      "metric": "pooled_rmse",
+      "result": "improvement"
+    },
+    {
+      "augmented_minus_control": "0.000560857461323394",
+      "augmented_value": "2.12976327220199",
+      "control_value": "2.12920241474067",
+      "metric": "pooled_mean_poisson_deviance",
+      "result": "deterioration"
+    }
+  ],
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 642,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_aggregate_metrics.csv",
+      "sha256": "0330de774b21f112cb2e833ef1c605bda29564392bb7e89439599c4ff4db24c3"
+    },
+    "coefficients": {
+      "bytes": 6452,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_coefficients.csv",
+      "sha256": "9d8622e4959b145bd735206f920e48dfa349fa79257c3c2e85f8d19c766b7bb6"
+    },
+    "experiment_configuration": {
+      "bytes": 9342,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_configuration.json",
+      "sha256": "1c5de8a848e881ff5651d5848dfaa892d503c036850e2cc6d3dce77360669588"
+    },
+    "fit_diagnostics": {
+      "bytes": 5659,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_fit_diagnostics.csv",
+      "sha256": "45cbb91bb22cf1b31ad8a1d80b7084024837b948610d51f3207286245322d1f2"
+    },
+    "fold_metrics": {
+      "bytes": 2975,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_fold_metrics.csv",
+      "sha256": "be0fa2b49eb1c4e2b464df95ca4f9791c4ebf8ca2e843298eb394b3aa4f2e8f1"
+    },
+    "fold_predictions": {
+      "bytes": 45237244,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_fold_predictions.csv",
+      "sha256": "17f1c0a7b9b1af0388e2f2d629a9f147527ac79b872403eb33f587dc88864fb4"
+    },
+    "incremental_comparison": {
+      "bytes": 323,
+      "path": "model_v3/outputs/static_geography_ablation/lyme_static_geography_ablation_incremental_comparison.csv",
+      "sha256": "3b6a7a9dadd320c29a8d127d84a047a6be55544d04436e7d27555679f073aa87"
+    }
+  },
+  "pipeline": "model_v3.models.static_geography_ablation",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 40735,
+      "path": "model_v3/models/static_geography_ablation.py",
+      "sha256": "812c4c3b58fb575694f0eff322d56aaef5dd07486ca2f1e012bd155da4061fbb"
+    },
+    "phase_11_config": {
+      "bytes": 2819,
+      "path": "model_v3/config/lyme_static_geography_ablation.json",
+      "sha256": "49ef38bfd84b546b1ddfacf77ec2aabb6099e7f00d4c84131bc7441bf1bc74cb"
+    },
+    "phase_9_config": {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    "phase_9_fold_predictions": {
+      "bytes": 93403798,
+      "path": "model_v3/outputs/seasonal_count_models/lyme_seasonal_count_fold_predictions.csv",
+      "sha256": "8fe75d8a7c22856d2e0050c01d3962574f735e15106e4dc174f5427c6918e711"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "static_features": {
+      "bytes": 4474,
+      "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+      "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083"
+    },
+    "static_quality_summary": {
+      "bytes": 3305,
+      "path": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+      "sha256": "06034b797b431a68f5a241be82f2dd242c52a11d0acbb1f84c111dba3228b93a"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    }
+  },
+  "static_feature": {
+    "column": "municipality_area_km2",
+    "dictionary": {
+      "column": "municipality_area_km2",
+      "ellipsoid": "WGS84",
+      "missing_data_rule": "fail_on_missing_invalid_or_nonpositive_geometry_area",
+      "multipolygon_rule": "sum_polygon_areas",
+      "polygon_hole_rule": "subtract_absolute_geodesic_hole_areas",
+      "source_geom_area_property_exclusion_reason": "unit_not_verified_in_active_source_documentation",
+      "source_geom_area_property_used": false,
+      "transformation": "absolute_wgs84_ellipsoidal_polygon_area_m2_divided_by_1000000",
+      "unit": "square_kilometres"
+    },
+    "source": {
+      "bytes": 20087123,
+      "crs": "EPSG:4326",
+      "download_date": "2026-04-04",
+      "format": "GeoJSON",
+      "layer": "TEMELJNE_VSEBINE/GH_Prostorske_enote/MapServer/1530",
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "provider": "Geodetic Administration of the Republic of Slovenia (GURS)",
+      "sha256": "4b9a508f938700c2b4b4aa9f0b49ae03d73cbdb177cfd1445a30251edf6c73c9"
+    },
+    "temporal_scope": {
+      "fixed_analytical_zones_all_years": true,
+      "historical_boundary_reconstruction": false,
+      "interpretation": "the_same_documented_212_municipality_zones_are_used_for_every_model_year",
+      "source_snapshot_interpretation": "static descriptor of the documented GURS snapshot",
+      "used_as_time_varying_feature": false,
+      "zone_snapshot": "GURS_2026-04-04"
+    }
+  },
+  "status": "pass",
+  "summary": {
+    "candidate_count": 2,
+    "converged_fits": 16,
+    "fit_count": 16,
+    "fold_count": 8,
+    "maximum_absolute_control_prediction_difference_from_phase_9_s1": 4.973799150320701e-13,
+    "maximum_population_year_lag": 1,
+    "minimum_population_year_lag": 1,
+    "nonconverged_fits": 0,
+    "prediction_rows": 163664,
+    "validation_municipality_week_rows": 81832
+  }
+}

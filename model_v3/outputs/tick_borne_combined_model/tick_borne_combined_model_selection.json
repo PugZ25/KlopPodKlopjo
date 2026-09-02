@@ -1,0 +1,15 @@
+{
+  "approval_status": "combined_development_system_ready_for_freeze",
+  "best_non_ml_candidate_id": "glm_past_combined_offset",
+  "best_non_ml_pooled_mae": 33.79832423964123,
+  "catboost_improves_every_fold_vs_best_non_ml": false,
+  "catboost_n_folds_improving_vs_best_non_ml": 7,
+  "catboost_pooled_mae": 27.799611363236284,
+  "catboost_promoted": false,
+  "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases",
+  "n_compared_folds": 8,
+  "primary_metric": "pooled_mae",
+  "selected_candidate_id": "glm_past_combined_offset",
+  "selection_rule": "CatBoost requires lower pooled MAE and lower MAE in every validation fold; otherwise select the lowest pooled-MAE non-ML system.",
+  "status": "development_selection_no_untouched_lockbox"
+}

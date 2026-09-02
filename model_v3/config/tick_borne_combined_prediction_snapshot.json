@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "prediction": {
+    "issue_week": "2025-12-29",
+    "issue_iso_year": 2026,
+    "horizon_weeks": 8,
+    "target_window_start": "2026-01-05",
+    "target_window_end": "2026-02-23",
+    "past_case_window_start": "2025-11-03",
+    "past_case_window_end": "2025-12-22",
+    "past_case_offsets": [-8, -7, -6, -5, -4, -3, -2, -1],
+    "generated_at": "2026-08-31T00:00:00Z",
+    "temporal_classification": "repository_controlled_retrospective_prediction_not_fully_prospective"
+  },
+  "inputs": {
+    "freeze_config": "model_v3/config/tick_borne_combined_model_freeze.json",
+    "freeze_config_sha256": "7ee204c808302ec825e08ccdcd4a36606adae4234906c082247f6ad2311e130a",
+    "freeze_code": "model_v3/models/tick_borne_combined_model_freeze.py",
+    "freeze_code_sha256": "a6e537919a0f20de5bf0984a4c71f88c720d42f47236ea563a48c154bad6880a",
+    "freeze_manifest": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_freeze_manifest.json",
+    "freeze_manifest_sha256": "573b38626723bee4b29b5432ff66e455b35e9aab164fba1d5c7d975c5535b586",
+    "coefficients": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_final_coefficients.csv",
+    "coefficients_sha256": "5511a9ba9480e84278aa5c3464029caf69e24df38c962a6192eecb25f352035c",
+    "scaler": "model_v3/outputs/tick_borne_combined_freeze/tick_borne_combined_final_scaler.json",
+    "scaler_sha256": "56e37fe03b2293deaa3517590e8c52c5af5f0c8e4ffdea48195c5da49b873832",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "population_sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "selection": {
+    "selected_model_id": "glm_past_combined_offset",
+    "expected_statistical_region_count": 12,
+    "predictive_intervals": "not_implemented",
+    "composite_scope": "reported_Lyme_plus_KME_only_not_all_tick_borne_diseases"
+  },
+  "data_status": "repository_controlled_retrospective_combined_prediction_no_2026_outcome_access",
+  "outputs": {
+    "directory": "model_v3/outputs/tick_borne_combined_prediction_snapshot/v1",
+    "parquet": "prediction_snapshot.parquet",
+    "json": "prediction_snapshot.json",
+    "quality_summary": "prediction_snapshot_quality.json",
+    "contract": "model_v3/predict/TICK_BORNE_COMBINED_PREDICTION_CONTRACT.md"
+  }
+}

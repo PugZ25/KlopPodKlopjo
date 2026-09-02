@@ -1,0 +1,198 @@
+{
+  "calibration_overall": [
+    {
+      "calibration_status": "valid",
+      "candidate_id": "catboost_poisson_s3_weather_offset",
+      "candidate_name": "Frozen CatBoost Poisson final model",
+      "diagnostic_only_no_recalibration": true,
+      "log_observed_to_predicted_total_ratio": 0.1454664304262364,
+      "mean_signed_error_prediction_minus_observation": -0.2644985539854577,
+      "n": 9964,
+      "observed_mean": 1.9537334403853874,
+      "observed_to_predicted_total_ratio": 1.1565789080695301,
+      "observed_total": 19467.0,
+      "predicted_mean": 1.6892348863999296,
+      "predicted_total": 16831.536408088898
+    },
+    {
+      "calibration_status": "valid",
+      "candidate_id": "model_s3_weather_offset_matched",
+      "candidate_name": "Matched S3 weather Poisson GLM",
+      "diagnostic_only_no_recalibration": true,
+      "log_observed_to_predicted_total_ratio": 0.18716795486320545,
+      "mean_signed_error_prediction_minus_observation": -0.33349362570127616,
+      "n": 9964,
+      "observed_mean": 1.9537334403853874,
+      "observed_to_predicted_total_ratio": 1.2058297930212853,
+      "observed_total": 19467.0,
+      "predicted_mean": 1.6202398146841113,
+      "predicted_total": 16144.069513512484
+    },
+    {
+      "calibration_status": "valid",
+      "candidate_id": "baseline_d_municipality_seasonal_history",
+      "candidate_name": "Municipality and seasonal historical expectation",
+      "diagnostic_only_no_recalibration": true,
+      "log_observed_to_predicted_total_ratio": 0.10510497176486995,
+      "mean_signed_error_prediction_minus_observation": -0.19492394843659397,
+      "n": 9964,
+      "observed_mean": 1.9537334403853874,
+      "observed_to_predicted_total_ratio": 1.110827209728448,
+      "observed_total": 19467.0,
+      "predicted_mean": 1.7588094919487933,
+      "predicted_total": 17524.777777777777
+    }
+  ],
+  "checks": {
+    "all_predictions_available": true,
+    "all_systems_use_same_lockbox_rows": true,
+    "frozen_hashes_verified_before_open": true,
+    "issue_week_excluded_from_target": true,
+    "no_calibration_applied": true,
+    "no_intervals_added_after_freeze": true,
+    "no_model_reselection": true,
+    "no_threshold_or_classification_logic": true,
+    "past_case_information_strictly_precedes_issue_week": true,
+    "population_year_strictly_precedes_issue_year": true,
+    "protected_weekly_cases_parsed_once": true,
+    "target_is_exactly_t_plus_1_through_t_plus_4": true,
+    "target_windows_fully_contained_in_2025": true,
+    "training_targets_end_before_lockbox": true,
+    "weather_information_strictly_precedes_issue_week": true
+  },
+  "freeze": {
+    "development_end_year": 2024,
+    "development_start_year": 2016,
+    "lockbox_year": 2025,
+    "model_selection_document": "model_v3/MODEL_SELECTION.md",
+    "model_selection_sha256": "4b665ca2138be3e8eb061c135590868b67ce58dd4a070318de59cae632b6ea8f",
+    "no_post_lockbox_model_selection": true,
+    "run_once": true,
+    "systems": [
+      "catboost_poisson_s3_weather_offset",
+      "model_s3_weather_offset_matched",
+      "baseline_d_municipality_seasonal_history"
+    ]
+  },
+  "metrics": [
+    {
+      "candidate_id": "catboost_poisson_s3_weather_offset",
+      "candidate_name": "Frozen CatBoost Poisson final model",
+      "interval_metric_status": "not_available_frozen_system_has_no_predictive_intervals",
+      "mae": 1.1687786860368568,
+      "mean_poisson_deviance": 1.5385090673078776,
+      "n_available_predictions": 9964,
+      "n_expected_predictions": 9964,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 9964,
+      "poisson_deviance_status": "valid",
+      "prediction_metric_status": "complete",
+      "rmse": 2.1629384466187336,
+      "system_type": "final_selected_model"
+    },
+    {
+      "candidate_id": "model_s3_weather_offset_matched",
+      "candidate_name": "Matched S3 weather Poisson GLM",
+      "interval_metric_status": "not_available_frozen_system_has_no_predictive_intervals",
+      "mae": 1.2183277771535863,
+      "mean_poisson_deviance": 1.6689094649606913,
+      "n_available_predictions": 9964,
+      "n_expected_predictions": 9964,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 0,
+      "n_poisson_valid": 9964,
+      "poisson_deviance_status": "valid",
+      "prediction_metric_status": "complete",
+      "rmse": 2.3498345729478305,
+      "system_type": "primary_statistical_comparator"
+    },
+    {
+      "candidate_id": "baseline_d_municipality_seasonal_history",
+      "candidate_name": "Municipality and seasonal historical expectation",
+      "interval_metric_status": "not_available_frozen_system_has_no_predictive_intervals",
+      "mae": 1.2041125830768544,
+      "mean_poisson_deviance": null,
+      "n_available_predictions": 9964,
+      "n_expected_predictions": 9964,
+      "n_missing_predictions": 0,
+      "n_poisson_invalid": 157,
+      "n_poisson_valid": 9807,
+      "poisson_deviance_status": "invalid_zero_prediction_positive_observation_present",
+      "prediction_metric_status": "complete",
+      "rmse": 2.1180627444470885,
+      "system_type": "secondary_epidemiological_baseline"
+    }
+  ],
+  "outputs": {
+    "calibration_groups": {
+      "bytes": 6377,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_calibration_groups.csv",
+      "sha256": "25312322e922795a8ad1f2876e95ceb77c9d14203db4d409d2c07e5b473fdc67"
+    },
+    "calibration_overall": {
+      "bytes": 865,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_calibration_overall.csv",
+      "sha256": "902ac4a3610c301dc54a7ab3dd643f0517c01043c387b09de5cf87adc885bc5b"
+    },
+    "fit_diagnostics": {
+      "bytes": 3466,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_fit_diagnostics.json",
+      "sha256": "b429131c419ab566042ccc05f1fd3ee854bfb65a7b2a583734f31f55b29dfe47"
+    },
+    "metrics": {
+      "bytes": 1013,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_metrics.csv",
+      "sha256": "0387b64220d5a62c38b9cdd7a34b26b07df6f5c32dab43e8a016f787f660c5e9"
+    },
+    "municipality_errors": {
+      "bytes": 143439,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_municipality_errors.csv",
+      "sha256": "7417b48c8a95b1590fbed89f0c70f97338559dc61b2862a0a50401f04d16489c"
+    },
+    "predictions": {
+      "bytes": 10861280,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
+      "sha256": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da"
+    },
+    "report": {
+      "bytes": 6073,
+      "path": "model_v3/LOCKBOX_EVALUATION_REPORT.md",
+      "sha256": "c16986977bbbd0bd59ac117aa0ed8d2ccb2e18067a3d5ff0fe49727758c0b5eb"
+    },
+    "temporal_errors": {
+      "bytes": 33365,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_temporal_errors.csv",
+      "sha256": "5b9befb6df8d1591da592e6cc786848269055b44831340fe10cff49b060db640"
+    },
+    "weather_extension": {
+      "bytes": 1822547,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+      "sha256": "66e825259402005c258488d2aac65ea6eed3fc8720f9934b2d2326f52d93adfe"
+    },
+    "weather_quality": {
+      "bytes": 4684,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_lockbox_extension_quality.json",
+      "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
+    }
+  },
+  "pipeline": "model_v3.evaluation.lockbox_evaluation",
+  "protected_input": {
+    "lockbox_rows_parsed": 10812,
+    "parse_count": 1,
+    "path": "model_v3/outputs/canonical/weekly_cases.csv",
+    "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+  },
+  "schema_version": 1,
+  "status": "pass",
+  "support": {
+    "calendar_week_end": "2025-12-22",
+    "issue_week_end": "2025-11-24",
+    "issue_week_start": "2025-01-06",
+    "n_boundary_purged_issue_weeks": 4,
+    "n_calendar_weeks": 51,
+    "n_issue_weeks": 47,
+    "n_municipalities": 212,
+    "n_predictions_per_system": 9964
+  }
+}

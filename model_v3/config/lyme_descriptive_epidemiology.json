@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "calendar": "model_v3/outputs/canonical/calendar.csv",
+    "four_week_target": "model_v3/outputs/targets/lyme_four_week_target.csv"
+  },
+  "period": {
+    "development_start_year": 2016,
+    "development_end_year": 2024,
+    "excluded_lockbox_year": 2025,
+    "year_definition": "gregorian_year_of_issue_week_monday",
+    "lockbox_input_rule": "skip_at_or_after_lockbox_start_before_numeric_parsing"
+  },
+  "incidence": {
+    "scale": 100000,
+    "population_measure": "Population - Total - 1 January",
+    "valid_denominator_rule": "population_is_present_and_greater_than_zero"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/descriptive",
+    "cases_by_year": "lyme_cases_by_year.csv",
+    "cases_by_week_of_year": "lyme_cases_by_iso_week.csv",
+    "cases_by_municipality": "lyme_cases_by_municipality.csv",
+    "population_by_municipality_year": "population_by_municipality_year.csv",
+    "incidence_by_municipality_year": "lyme_incidence_by_municipality_year.csv",
+    "incidence_by_year": "lyme_incidence_by_year.csv",
+    "zero_case_proportion": "lyme_zero_case_proportion.csv",
+    "target_distribution": "lyme_next_4w_target_distribution.csv",
+    "missing_data_summary": "missing_data_summary.csv",
+    "supervised_row_summary": "supervised_row_summary.csv",
+    "cases_by_year_plot": "lyme_cases_by_year.svg",
+    "incidence_by_year_plot": "lyme_incidence_by_year.svg",
+    "target_distribution_plot": "lyme_next_4w_target_ecdf.svg",
+    "quality_summary": "descriptive_quality_summary.json"
+  }
+}

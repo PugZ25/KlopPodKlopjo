@@ -71,7 +71,6 @@ button {
 }
 
 img,
-svg,
-canvas {
+svg {
   max-width: 100%;
 }

@@ -1,0 +1,725 @@
+{
+  "checks": {
+    "all_source_expver_is_0001": true,
+    "fixed_212_municipality_zones_all_years": true,
+    "incomplete_weeks_explicit_and_values_blank": true,
+    "missing_weather_never_converted_to_zero": true,
+    "no_post_cutoff_weather_created": true,
+    "only_development_files_opened": true,
+    "precipitation_large_negative_differences_absent": true,
+    "spatial_weights_sum_to_one": true,
+    "weather_cutoff_exact": true,
+    "weekly_primary_key_unique": true
+  },
+  "library_versions": {
+    "netCDF4": "1.7.4",
+    "numpy": "2.4.4",
+    "pyproj": "3.7.2",
+    "scipy": "1.17.1",
+    "shapely": "2.1.2",
+    "xarray": "2026.2.0"
+  },
+  "pipeline": "model_v3.features.weather_weekly",
+  "policy": {
+    "availability_rule": "weather_valid_time_is_the_cutoff_no_additional_publication_embargo",
+    "fixed_analytical_zones_all_years": true,
+    "issue_feature_rule": "only_completed_weather_weeks_strictly_before_issue_week",
+    "post_cutoff_rule": "do_not_extrapolate_impute_or_create_weather_after_cutoff",
+    "weather_cutoff": "2024-12-31T23:00:00Z"
+  },
+  "schema_version": 1,
+  "source_audit": {
+    "expver_values": [
+      "0001"
+    ],
+    "files_from_lockbox_year_opened": 0,
+    "files_opened": 106,
+    "first_valid_time": "2016-03-30T00:00:00+00:00",
+    "grid_shape": [
+      17,
+      34
+    ],
+    "last_valid_time": "2024-12-31T23:00:00+00:00",
+    "lockbox_or_later_filenames_skipped_before_open": 13,
+    "most_negative_precipitation_roundoff_corrected_m": -6.100162863731384e-08,
+    "precipitation_roundoff_negative_corrections": 632301,
+    "raw_nan_counts": {
+      "d2m": 1689072,
+      "stl1": 1689072,
+      "stl2": 1689072,
+      "swvl1": 1689072,
+      "swvl2": 1689072,
+      "t2m": 1689072,
+      "tp": 1689072
+    }
+  },
+  "sources": {
+    "builder": {
+      "bytes": 31354,
+      "path": "model_v3/features/weather_weekly.py",
+      "sha256": "6f2efb947355ae4c5954f2518b3603aadb985519e4f27f8a5f53e1f0e0c5c4e1"
+    },
+    "canonical_municipality": {
+      "bytes": 3148,
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
+    },
+    "config": {
+      "bytes": 3784,
+      "path": "model_v3/config/era5_land_weekly_weather.json",
+      "sha256": "f2cc284b660689b27a15d1e55912b2111ace90a2b6926cdeb006fea849865637"
+    },
+    "hourly_files": [
+      {
+        "bytes": 381472,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_03.nc",
+        "sha256": "425e3488d107b86a021ca5d2e630251ec986a2d9e17be9a8b07667d5043495ab"
+      },
+      {
+        "bytes": 4457508,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_04.nc",
+        "sha256": "3e153b34ad096393d9680ce5531df2dd0863ec71e1e249961ee33a664bd18f71"
+      },
+      {
+        "bytes": 4836019,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_05.nc",
+        "sha256": "3ec99290aa7004c826b55f35ad02ac397b5fd402bd6bc74fe462135cdc2c79c2"
+      },
+      {
+        "bytes": 4748434,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_06.nc",
+        "sha256": "fb0393ee541cc2b6019df5045f664134eb513169d633801a0cc55decc055e894"
+      },
+      {
+        "bytes": 4753728,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_07.nc",
+        "sha256": "cea80bf78e1ea59f70716bd3374a30dcf510e4fec97b63b704250df5f31fe538"
+      },
+      {
+        "bytes": 4603287,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_08.nc",
+        "sha256": "54d1654a5e88ccd6aeecec78795e805427c818e38d69b38f8f556b53a75db14c"
+      },
+      {
+        "bytes": 4467851,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_09.nc",
+        "sha256": "caf373e1eb303714a973a99425fe98981ffe04707794a9f4b3bbfa8fa0d13b63"
+      },
+      {
+        "bytes": 4725776,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_10.nc",
+        "sha256": "1d50dcb50463386d335afc5a85f43c33bb5ba20d0202fa8f344c0a3c6e3e1d73"
+      },
+      {
+        "bytes": 4628037,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_11.nc",
+        "sha256": "5d7cd9985a10a420d0e1351ceaca1cedec2ed8a584ddf1699f60bc832b408781"
+      },
+      {
+        "bytes": 4056773,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2016_12.nc",
+        "sha256": "094dd243bc767af4103cf7838699e8cdfdf851dbe497126314f1b62b6a77b0e8"
+      },
+      {
+        "bytes": 4334281,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_01.nc",
+        "sha256": "97c8f40d05ea65094dedc2a5781c83fd91e5e2e3942c23e165293093534ae296"
+      },
+      {
+        "bytes": 4122971,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_02.nc",
+        "sha256": "dc361b4333affca9787e57a84018561d8dadeba9708f54bcd6e6fa5ba7a464e7"
+      },
+      {
+        "bytes": 4416454,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_03.nc",
+        "sha256": "a58e47443563af629193a868c3773e46bd6788bf92fd2501aac6b51efa9f8d33"
+      },
+      {
+        "bytes": 4597552,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_04.nc",
+        "sha256": "4b58400629932fc035ed501f01f350d7ec0ebe25de654c17b314f8e907e32db7"
+      },
+      {
+        "bytes": 4716183,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_05.nc",
+        "sha256": "775da8726b2aa147e9eb9d5047d86c0f744d40a253053fb17f3bb7067c66eaed"
+      },
+      {
+        "bytes": 4536331,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_06.nc",
+        "sha256": "78f0d1d9ca5be15f68e67efb01bdc63cf148075c04d207d2f35323e9e6af1b15"
+      },
+      {
+        "bytes": 4649461,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_07.nc",
+        "sha256": "2088ca973d753c4e4868c7576432371b7c64983f86e1c5e9cbb5be6dcab2c7b1"
+      },
+      {
+        "bytes": 4509654,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_08.nc",
+        "sha256": "8de6682b3d330fcbfb33ef5eac31b228894f4f74a197e34d33359a19826a5e00"
+      },
+      {
+        "bytes": 4752876,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_09.nc",
+        "sha256": "f8fb86046a2dc1e965d9e27ad54dd640f8044efc53a9e42ebf42cca29910b1d3"
+      },
+      {
+        "bytes": 4381375,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_10.nc",
+        "sha256": "43400ddcd811a746785455d62b5cfa135daf6878da6dc138f2c07df6240787af"
+      },
+      {
+        "bytes": 4496343,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_11.nc",
+        "sha256": "229c90bb82e20aef929e4ee397accc505ff6b3b94fad7f7e93986277e52c0bd9"
+      },
+      {
+        "bytes": 4689361,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2017_12.nc",
+        "sha256": "ae55057263313e2e552fd8b6a88e58d2e94237976faf8721653aabee60ee1f8c"
+      },
+      {
+        "bytes": 4650343,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_01.nc",
+        "sha256": "0f929d2a546199f521e21aab2a776947f46de957d83cd7ecaa1c7e155f8b69c9"
+      },
+      {
+        "bytes": 4257240,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_02.nc",
+        "sha256": "62dedbc8f385bb8394fe23e13c7e2fd39dc796df469d2ea5aa3000b005bb0bf0"
+      },
+      {
+        "bytes": 4756520,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_03.nc",
+        "sha256": "3edb33d0863c312c4879abb5233ef7d0b5aa146cbdb31d26cf443bcb8b104930"
+      },
+      {
+        "bytes": 4454073,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_04.nc",
+        "sha256": "f93cdac7328b582d420270a1a15fbdadae90cb04b3a3a58b370a3e15e589f910"
+      },
+      {
+        "bytes": 4922197,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_05.nc",
+        "sha256": "aca61203241d0db0cc83edf94fb46821d38e6dfb7c3da3c2a45b7e4257e10ff1"
+      },
+      {
+        "bytes": 4726526,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_06.nc",
+        "sha256": "21c7d7dda9437b524a5437d2736b8a2b075cde14e0403f38ef1d172d2a8b48c5"
+      },
+      {
+        "bytes": 4810666,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_07.nc",
+        "sha256": "2a7edf326cb0dfb0c2b471ba5b1e749b604b1de31bee1e5bdb1fd9216f5b89f1"
+      },
+      {
+        "bytes": 4693237,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_08.nc",
+        "sha256": "f74bb86130579daf3a2ba7ed67b831f8258c457447aba90a7d51c57f7374ad7e"
+      },
+      {
+        "bytes": 4469106,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_09.nc",
+        "sha256": "bb528bc98728525a5db5de17e667b4731ef6b88b6e17788648df41d1ec9e662c"
+      },
+      {
+        "bytes": 4572041,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_10.nc",
+        "sha256": "0ed30b2785828b961d765651bb1cf14c012b0100550d7d65cdda41b7696b705a"
+      },
+      {
+        "bytes": 4556652,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_11.nc",
+        "sha256": "57c5d5377d25345c5a74ee00e4ef1ba06fef462d7e3e4b3aa46cf4360d75153e"
+      },
+      {
+        "bytes": 4464324,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2018_12.nc",
+        "sha256": "4ece5941de80f6d0932e608c9a78b5414643642f0b84a83aaf2f71db9c8d9882"
+      },
+      {
+        "bytes": 4507957,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_01.nc",
+        "sha256": "c142949c743ba1d484ac9faf6618ef5f74be7b3237c1bbdde0cefe3c4501a5f6"
+      },
+      {
+        "bytes": 3859298,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_02.nc",
+        "sha256": "248cde052adbbbc8cbcc659eb59b186b4131f8d297e8525fa5db0783de7f1c1c"
+      },
+      {
+        "bytes": 4511753,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_03.nc",
+        "sha256": "e4be8ff74427bf81f7ba592d08b7db7b76e7dbb218aa666301f7e36bbba57dd6"
+      },
+      {
+        "bytes": 4619226,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_04.nc",
+        "sha256": "4275644603b99f0092d30ea840e04f874092cd9f5bc4fe20ed60086b9e7d5dc9"
+      },
+      {
+        "bytes": 4984393,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_05.nc",
+        "sha256": "27f21f793919019233b9f543237b0e29e0f65d060affe40bd52fb795b103102c"
+      },
+      {
+        "bytes": 4487458,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_06.nc",
+        "sha256": "093e2f9b574730edbb9e3c0551c1656c3941d550de44dc0c8e24747b0a0d9ad1"
+      },
+      {
+        "bytes": 4738554,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_07.nc",
+        "sha256": "f4ce062b11e83b7e49c5d92d4419a947ad1fdd34ac9292668b4e4bef77a74be7"
+      },
+      {
+        "bytes": 4721989,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_08.nc",
+        "sha256": "46758ff41cffa8a83b2a1dbd7deebaca3002278cb40918a2a2aa2389f4d2eddb"
+      },
+      {
+        "bytes": 4471062,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_09.nc",
+        "sha256": "d325bbf66c29cfd487e69cc50bf0e7db21773600009130666693cac561eff548"
+      },
+      {
+        "bytes": 4520528,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_10.nc",
+        "sha256": "56f38a76993b75ca0d442196ddd284cb0f41fcd941630d9ac29e0bf868139c6a"
+      },
+      {
+        "bytes": 4784556,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_11.nc",
+        "sha256": "981d3d26f3ec6535f53ce2914c8433eb06becfda6662342027a370db4f5e7661"
+      },
+      {
+        "bytes": 4583413,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2019_12.nc",
+        "sha256": "2cb0098b8545efe4dffec9ec26cb387112a700dec5faadeb8885d40e1066a6a1"
+      },
+      {
+        "bytes": 4125933,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_01.nc",
+        "sha256": "cf3f5b728f36ba2f8947cbc90c00b156864d430132d22dba9ca7726b8d15181f"
+      },
+      {
+        "bytes": 4159411,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_02.nc",
+        "sha256": "72832b9b4b24af302786c5e3e7dd24346b7aafdd53d48dbfc7a8a3ec55648d7e"
+      },
+      {
+        "bytes": 4597533,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_03.nc",
+        "sha256": "97569936b9344f7a7a42b42058988d1d01bc42f7787292c7284cba50ae88526a"
+      },
+      {
+        "bytes": 4176171,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_04.nc",
+        "sha256": "fda7ef72af707c2efe14eeb94c0c3ff110f5bebc2cafd691e1ae04eb9e0c14c3"
+      },
+      {
+        "bytes": 4734629,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_05.nc",
+        "sha256": "bae162730544ab38a415f0de1998f6d0afcea5d2fcbd685d69ce8a08c0575dab"
+      },
+      {
+        "bytes": 4711013,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_06.nc",
+        "sha256": "742c814f60ebba290ed897d84e72eef7e14f78a1d599d8548fca92d7fc739487"
+      },
+      {
+        "bytes": 4674452,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_07.nc",
+        "sha256": "c73910ea37aa113bebfd87e6cbf0f16b7fe17f2459838470a18e3806281e5ee9"
+      },
+      {
+        "bytes": 4767962,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_08.nc",
+        "sha256": "2c2cc9214f33e44de232ebe335a0e45141a8d054f291355e635e5b05b3fb7705"
+      },
+      {
+        "bytes": 4435142,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_09.nc",
+        "sha256": "f24361f5153bb86a6a8ca73c61e558501d9538e692680e7c29114517c8a7eb3d"
+      },
+      {
+        "bytes": 4703520,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_10.nc",
+        "sha256": "25387971b8aa25206af4a47c3469f07ee6cc46436217befdfbc6d7aba2e98ab6"
+      },
+      {
+        "bytes": 4209204,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_11.nc",
+        "sha256": "67f6b9285f05378ba40124cff311cdc8896d96a397ada0ccfd479ba274fd18c7"
+      },
+      {
+        "bytes": 4784631,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2020_12.nc",
+        "sha256": "e091635c79db9c15f118b35170bef52620c1f9c5239e26faf1f9ec4463c5adf8"
+      },
+      {
+        "bytes": 4708670,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_01.nc",
+        "sha256": "cf260c6aef591e9f5ef817869bb4affccec8b008d61d463ef007358d095f740a"
+      },
+      {
+        "bytes": 4047765,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_02.nc",
+        "sha256": "8f303090a37b6b7a7f77964a194ea999beb60325229f32a6502435bf0acb5551"
+      },
+      {
+        "bytes": 4420029,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_03.nc",
+        "sha256": "3eb955e54e754f8656ae1c750819c7ac550e986d31eab4eb1bf04f7e4152bbb2"
+      },
+      {
+        "bytes": 4608047,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_04.nc",
+        "sha256": "69c4adfdea3112bd2c859c994dbf0a01586b092410ed6578c7cf43121fe0db06"
+      },
+      {
+        "bytes": 4850533,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_05.nc",
+        "sha256": "144733b8911b3bab1418ced2f787d64cb4f85203ffef943b321a4fd1fe0f5629"
+      },
+      {
+        "bytes": 4381114,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_06.nc",
+        "sha256": "9ef535b40cafde342b7b421243a5bf5de1f2df1b90a027716484b2dfd26e322c"
+      },
+      {
+        "bytes": 4740565,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_07.nc",
+        "sha256": "feffe5ca70cc262159361cd74662bf57cf47eb32cc58861907e990d3aed88913"
+      },
+      {
+        "bytes": 4759446,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_08.nc",
+        "sha256": "ffa14708be31865882e43c9dff4ced64891bf0eaf03530c26c9c24ca35563d5b"
+      },
+      {
+        "bytes": 4329912,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_09.nc",
+        "sha256": "34a6232abc7358751be38e0fe00c8e339690b0f567fd5068f1ece89b75618369"
+      },
+      {
+        "bytes": 4480589,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_10.nc",
+        "sha256": "1776466914acefd59e6a2859cc1852dc7555449c46fd21f05d0de4ced8f07c1e"
+      },
+      {
+        "bytes": 4517104,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_11.nc",
+        "sha256": "c8fd8050614d0611dd43f9aaab9cd8224ae2603b2815e9b3c10630217856677a"
+      },
+      {
+        "bytes": 4590174,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2021_12.nc",
+        "sha256": "74b28b9e1e2d3f331603056afbada8391c865b80e73e49eae5087b4d4e21f046"
+      },
+      {
+        "bytes": 4250799,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_01.nc",
+        "sha256": "e274a0ed7feeee6514be3bf2004804543d1b38850a3c6d8ec03a813cc530565a"
+      },
+      {
+        "bytes": 4009686,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_02.nc",
+        "sha256": "1ce095acdbd7548eff17656528593fca1290387c1ae76ea857d21046bd965587"
+      },
+      {
+        "bytes": 4174083,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_03.nc",
+        "sha256": "b630794bf940f24ec60f91caab04bd28c26b98b2e373c8dfe2e7a010b91803c6"
+      },
+      {
+        "bytes": 4517342,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_04.nc",
+        "sha256": "117f0360fd76f4fc20250e0d1b7cd2def71285ba09632b8ef7fc76ac1e586071"
+      },
+      {
+        "bytes": 4759485,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_05.nc",
+        "sha256": "2753213ee63812a85271713e7d23556de9caa02be881a9548e1c2a851e55891a"
+      },
+      {
+        "bytes": 4576144,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_06.nc",
+        "sha256": "56ae16ef03c5e3c0810998d932d88d7c89b83eac995f59ba49028285ca7a4986"
+      },
+      {
+        "bytes": 4592815,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_07.nc",
+        "sha256": "d0ba1565b1d46b5e47ca79a98fc7550ef9b832d65e4b9797940bea0c6dbf69f4"
+      },
+      {
+        "bytes": 4683490,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_08.nc",
+        "sha256": "3fdf7d9292cfcf77a9f377322015308463550e83d340df4fa27eb1e5007c8abc"
+      },
+      {
+        "bytes": 4699177,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_09.nc",
+        "sha256": "98ef5935ffac6d4332497525ef11490bd8cecf4257298e3c7fc15bd7b54b538f"
+      },
+      {
+        "bytes": 4386731,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_10.nc",
+        "sha256": "f46c0837331b93953fd0d0cecaacdb5cf9a33f3c465e27f9cd7246bdd7469671"
+      },
+      {
+        "bytes": 4527718,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_11.nc",
+        "sha256": "7b411fe3e722890822f38fd2ac4b21513e1539e856ad6abf8a297cc46967e15d"
+      },
+      {
+        "bytes": 4766785,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2022_12.nc",
+        "sha256": "fb277808b6b507dca99e08aee5f29ca1660d196579443dcc74c0f90572cdc127"
+      },
+      {
+        "bytes": 4706662,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_01.nc",
+        "sha256": "d5ae83e679517a195989a7bd9f058497ad727f2350abb3eb6193fc67759f344b"
+      },
+      {
+        "bytes": 4009619,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_02.nc",
+        "sha256": "397a185478c2335f583178818cf98c9772f8cbeaa8c3b73b61fc4fd0e8b35f9e"
+      },
+      {
+        "bytes": 4599626,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_03.nc",
+        "sha256": "8c2fc33ed4b866aa03a3ce9be430ebfa9f873c4ca05e1bde0a29408b3c37a69a"
+      },
+      {
+        "bytes": 4599581,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_04.nc",
+        "sha256": "4234b084cf7540bea831f6632528e66f9c428e1e5f4e783cb4b0ce3d27609e73"
+      },
+      {
+        "bytes": 4847710,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_05.nc",
+        "sha256": "61165bd6e34712452a5e2aebd0feee58864fd94cf7705286a7146bdaf6aef678"
+      },
+      {
+        "bytes": 4615242,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_06.nc",
+        "sha256": "4d9e928f3cb6539f68153022168796cbc6e31f9b50056c945f16f0002b3ed840"
+      },
+      {
+        "bytes": 4763116,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_07.nc",
+        "sha256": "fd39263f16b4e9fea3128043d33366d026fb3f000d18c0586eed2db4e8a96a86"
+      },
+      {
+        "bytes": 4663013,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_08.nc",
+        "sha256": "c48a24693769bbbeed8f7f9acd71555e3c5944071f342fe5d4fc91b87b6c1139"
+      },
+      {
+        "bytes": 4350127,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_09.nc",
+        "sha256": "ce24e76ee1b4d310187ad956b0670c7fb8628ff3d15db1208cc1ec21bb29cfb3"
+      },
+      {
+        "bytes": 4594965,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_10.nc",
+        "sha256": "ce7a7be3fdb43649e8dcb8e6f3bc703d4e0931a13fdcebc588e0940faace640e"
+      },
+      {
+        "bytes": 4560750,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_11.nc",
+        "sha256": "7834e58cb2340561178bd8c402e21d148275d8e5e644ab8680d18808bd4213f5"
+      },
+      {
+        "bytes": 4528522,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2023_12.nc",
+        "sha256": "136ba234066e90955ced5f9dc24960add3849464d7e34ad9fc1e8f6e7796ac9e"
+      },
+      {
+        "bytes": 4403311,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_01.nc",
+        "sha256": "0cfc12c1b4ac81bef8ced6f64ddb0ad971dd108fdb5cfa49d99aea89c99224fa"
+      },
+      {
+        "bytes": 4248006,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_02.nc",
+        "sha256": "fa28aacff4334045f1c0e90668a8d66d438571ec3811a48ce1d627caf4782842"
+      },
+      {
+        "bytes": 4752083,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_03.nc",
+        "sha256": "3d0edf1bc9c1bad4d59afefc51bd46bffa946f31b381fa3e6076eb948cb4b12e"
+      },
+      {
+        "bytes": 4426730,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_04.nc",
+        "sha256": "d005d413a5db09030b12e757efd44bce3406f51349986b73975c74bce3befd86"
+      },
+      {
+        "bytes": 4880001,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_05.nc",
+        "sha256": "7136f3b297606b84e1d6eb9b294fbceb5bf77a6bc97bb9518323ba3bc438818d"
+      },
+      {
+        "bytes": 4617205,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_06.nc",
+        "sha256": "d2c9b8b483bed2f0ed883d2c2cdb999a7318cb40b8cf3c30708f684afaec19bc"
+      },
+      {
+        "bytes": 4647165,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_07.nc",
+        "sha256": "8a5079ee7faaf997c6ddde24ff7b13d293337cb1afe930ccbdc4dad36a15d9c7"
+      },
+      {
+        "bytes": 4552740,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_08.nc",
+        "sha256": "337fdce8004b2dab3818f99cb6e1ad4d195616d8fccb8ce95f1b95e87a801a09"
+      },
+      {
+        "bytes": 4676947,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_09.nc",
+        "sha256": "c81853bded82eab57d5b27e5488dfea04c40f5a7b9f6d96960658be564e09770"
+      },
+      {
+        "bytes": 4643240,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_10.nc",
+        "sha256": "b20d116e404c2266261fcdd72e51fe1a3157112802541bf71a87d17b67fb32e2"
+      },
+      {
+        "bytes": 4225189,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_11.nc",
+        "sha256": "0be5af215ac9f1e32c34f69834355f2009df1579856bc06de0e3f30a512687ee"
+      },
+      {
+        "bytes": 4393321,
+        "path": "data/raw/copernicus/era5land_slovenia/hourly/era5land_slovenia_2024_12.nc",
+        "sha256": "d55859efb402cf439c6715f83a83d379ee3e1903f11c14fc991f69fc793c2351"
+      }
+    ],
+    "municipality_geometry": {
+      "bytes": 20087123,
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "sha256": "4b9a508f938700c2b4b4aa9f0b49ae03d73cbdb177cfd1445a30251edf6c73c9"
+    },
+    "raw_readme": {
+      "bytes": 363,
+      "path": "data/raw/copernicus/era5land_slovenia/README.md",
+      "sha256": "78a53a4fdc443cf3979bef0c29562b14cc0eb75e50ede582b6e776d4afd4033c"
+    }
+  },
+  "spatial_audit": {
+    "fixed_zone_snapshot": "GURS_2026-04-04",
+    "maximum_geometry_coverage_ratio": 1.0000000000000047,
+    "minimum_geometry_coverage_ratio": 0.9999999999999929,
+    "municipality_count": 212,
+    "weight_row_count": 1043
+  },
+  "spatial_weights_dataset": {
+    "bytes": 55244,
+    "columns": [
+      "municipality_code",
+      "grid_cell_index",
+      "latitude",
+      "longitude",
+      "intersection_area_m2",
+      "normalized_intersection_weight"
+    ],
+    "path": "model_v3/outputs/weather/era5_land_municipality_grid_weights.csv",
+    "row_count": 1043,
+    "sha256": "d72c63087648ab21feb038b39102208db3b2767b931af535b3374f3c2be1ff00"
+  },
+  "status": "pass",
+  "variables": [
+    {
+      "output": "t2m_mean_c",
+      "output_unit": "degree_Celsius",
+      "source": "t2m",
+      "source_unit": "K",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "output": "d2m_mean_c",
+      "output_unit": "degree_Celsius",
+      "source": "d2m",
+      "source_unit": "K",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "output": "tp_sum_mm",
+      "output_unit": "mm",
+      "source": "tp",
+      "source_unit": "m",
+      "transformation": "official_hourly_deaccumulation_then_multiply_1000",
+      "weekly_aggregation": "sum"
+    },
+    {
+      "output": "stl1_mean_c",
+      "output_unit": "degree_Celsius",
+      "source": "stl1",
+      "source_unit": "K",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "output": "stl2_mean_c",
+      "output_unit": "degree_Celsius",
+      "source": "stl2",
+      "source_unit": "K",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "output": "swvl1_mean_m3_m3",
+      "output_unit": "m3_m3",
+      "source": "swvl1",
+      "source_unit": "m**3 m**-3",
+      "transformation": "none",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "output": "swvl2_mean_m3_m3",
+      "output_unit": "m3_m3",
+      "source": "swvl2",
+      "source_unit": "m**3 m**-3",
+      "transformation": "none",
+      "weekly_aggregation": "mean"
+    }
+  ],
+  "weekly_dataset": {
+    "bytes": 15885561,
+    "columns": [
+      "municipality_code",
+      "week_start",
+      "week_end",
+      "weather_status",
+      "source_hour_count",
+      "minimum_present_hours",
+      "t2m_mean_c",
+      "d2m_mean_c",
+      "tp_sum_mm",
+      "stl1_mean_c",
+      "stl2_mean_c",
+      "swvl1_mean_m3_m3",
+      "swvl2_mean_m3_m3"
+    ],
+    "complete_row_count": 96672,
+    "complete_week_count": 456,
+    "distinct_week_count": 458,
+    "incomplete_row_count": 424,
+    "incomplete_week_count": 2,
+    "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+    "primary_key": [
+      "municipality_code",
+      "week_start"
+    ],
+    "row_count": 97096,
+    "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+  }
+}

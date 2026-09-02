@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "hourly_directory": "data/raw/copernicus/era5land_slovenia/hourly",
+    "raw_readme": "data/raw/copernicus/era5land_slovenia/README.md",
+    "municipality_geometry": "data/raw/gurs/obcine-gurs-rpe.geojson",
+    "canonical_municipality": "model_v3/outputs/canonical/municipality.csv"
+  },
+  "source_contract": {
+    "dataset": "reanalysis-era5-land",
+    "product": "final_ERA5_Land",
+    "required_expver": "0001",
+    "raw_temporal_resolution": "hourly_UTC_valid_time",
+    "grid": "regular_0.1_degree_latitude_longitude",
+    "development_start_year": 2016,
+    "development_end_year": 2024,
+    "lockbox_year": 2025,
+    "weather_cutoff": "2024-12-31T23:00:00Z",
+    "availability_rule": "weather_valid_time_is_the_cutoff_no_additional_publication_embargo",
+    "post_cutoff_rule": "do_not_extrapolate_impute_or_create_weather_after_cutoff"
+  },
+  "municipality_policy": {
+    "geometry_snapshot": "GURS_2026-04-04",
+    "fixed_analytical_zones_all_years": true,
+    "historical_boundary_reconstruction": false,
+    "code_property": "SIFRA",
+    "source_crs": "EPSG:4326",
+    "area_crs": "EPSG:3794"
+  },
+  "spatial_aggregation": {
+    "grid_cell_construction": "coordinate_midpoint_edges",
+    "aggregation": "municipality_grid_cell_intersection_area_weighted_mean",
+    "source_nan_rule": "exclude_nan_grid_cells_and_renormalize_present_intersection_weights",
+    "no_present_grid_cell_rule": "fail",
+    "municipality_coverage_rule": "entire_fixed_municipality_geometry_must_be_covered_by_grid_extent"
+  },
+  "weekly_aggregation": {
+    "week_definition": "Monday_00_UTC_through_Sunday_23_UTC",
+    "expected_hours": 168,
+    "incomplete_week_rule": "explicit_incomplete_status_and_blank_weather_values",
+    "instantaneous_variables": "arithmetic_mean_of_168_hourly_municipality_values",
+    "precipitation": "deaccumulate_hourly_then_sum_168_hourly_mm_values",
+    "tiny_negative_precipitation_rule": "clamp_only_float32_roundoff_within_machine_epsilon_scale_otherwise_fail"
+  },
+  "variables": [
+    {
+      "source": "t2m",
+      "output": "t2m_mean_c",
+      "source_unit": "K",
+      "output_unit": "degree_Celsius",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "source": "d2m",
+      "output": "d2m_mean_c",
+      "source_unit": "K",
+      "output_unit": "degree_Celsius",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "source": "tp",
+      "output": "tp_sum_mm",
+      "source_unit": "m",
+      "output_unit": "mm",
+      "transformation": "official_hourly_deaccumulation_then_multiply_1000",
+      "weekly_aggregation": "sum"
+    },
+    {
+      "source": "stl1",
+      "output": "stl1_mean_c",
+      "source_unit": "K",
+      "output_unit": "degree_Celsius",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "source": "stl2",
+      "output": "stl2_mean_c",
+      "source_unit": "K",
+      "output_unit": "degree_Celsius",
+      "transformation": "K_minus_273.15",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "source": "swvl1",
+      "output": "swvl1_mean_m3_m3",
+      "source_unit": "m**3 m**-3",
+      "output_unit": "m3_m3",
+      "transformation": "none",
+      "weekly_aggregation": "mean"
+    },
+    {
+      "source": "swvl2",
+      "output": "swvl2_mean_m3_m3",
+      "source_unit": "m**3 m**-3",
+      "output_unit": "m3_m3",
+      "transformation": "none",
+      "weekly_aggregation": "mean"
+    }
+  ],
+  "outputs": {
+    "directory": "model_v3/outputs/weather",
+    "weekly_weather": "era5_land_municipality_weekly.csv",
+    "spatial_weights": "era5_land_municipality_grid_weights.csv",
+    "quality_summary": "era5_land_weekly_quality_summary.json"
+  }
+}

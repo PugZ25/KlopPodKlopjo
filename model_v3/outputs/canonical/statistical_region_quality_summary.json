@@ -1,0 +1,156 @@
+{
+  "canonical_municipality": {
+    "actual_sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+    "path": "model_v3/outputs/canonical/municipality.csv"
+  },
+  "checks": {
+    "all_municipality_region_parents_present": true,
+    "canonical_code_parity": true,
+    "fixed_mapping_all_analysis_years": true,
+    "municipality_codes_unique": true,
+    "municipality_count": 212,
+    "name_join_used": false,
+    "region_codes_unique": true,
+    "region_count": 12
+  },
+  "municipalities_per_region": {
+    "01": 27,
+    "02": 41,
+    "03": 12,
+    "04": 31,
+    "05": 4,
+    "06": 6,
+    "07": 21,
+    "08": 25,
+    "09": 18,
+    "10": 6,
+    "11": 13,
+    "12": 8
+  },
+  "name_difference_count": 19,
+  "name_differences": [
+    {
+      "canonical_municipality_name": "Dobrova-Polhov Gradec",
+      "municipality_code": "021",
+      "surs_municipality_name": "Dobrova - Polhov Gradec"
+    },
+    {
+      "canonical_municipality_name": "Gorenja vas-Poljane",
+      "municipality_code": "027",
+      "surs_municipality_name": "Gorenja vas - Poljane"
+    },
+    {
+      "canonical_municipality_name": "Hrpelje-Kozina",
+      "municipality_code": "035",
+      "surs_municipality_name": "Hrpelje - Kozina"
+    },
+    {
+      "canonical_municipality_name": "Izola",
+      "municipality_code": "040",
+      "surs_municipality_name": "Izola/Isola"
+    },
+    {
+      "canonical_municipality_name": "Koper",
+      "municipality_code": "050",
+      "surs_municipality_name": "Koper/Capodistria"
+    },
+    {
+      "canonical_municipality_name": "Lendava",
+      "municipality_code": "059",
+      "surs_municipality_name": "Lendava/Lendva"
+    },
+    {
+      "canonical_municipality_name": "Miren-Kostanjevica",
+      "municipality_code": "075",
+      "surs_municipality_name": "Miren - Kostanjevica"
+    },
+    {
+      "canonical_municipality_name": "Piran",
+      "municipality_code": "090",
+      "surs_municipality_name": "Piran/Pirano"
+    },
+    {
+      "canonical_municipality_name": "Rače-Fram",
+      "municipality_code": "098",
+      "surs_municipality_name": "Rače - Fram"
+    },
+    {
+      "canonical_municipality_name": "Dobrovnik",
+      "municipality_code": "156",
+      "surs_municipality_name": "Dobrovnik/Dobronak"
+    },
+    {
+      "canonical_municipality_name": "Hoče-Slivnica",
+      "municipality_code": "160",
+      "surs_municipality_name": "Hoče - Slivnica"
+    },
+    {
+      "canonical_municipality_name": "Hodoš",
+      "municipality_code": "161",
+      "surs_municipality_name": "Hodoš/Hodos"
+    },
+    {
+      "canonical_municipality_name": "Šempeter-Vrtojba",
+      "municipality_code": "183",
+      "surs_municipality_name": "Šempeter - Vrtojba"
+    },
+    {
+      "canonical_municipality_name": "Mokronog-Trebelno",
+      "municipality_code": "199",
+      "surs_municipality_name": "Mokronog - Trebelno"
+    },
+    {
+      "canonical_municipality_name": "Renče-Vogrsko",
+      "municipality_code": "201",
+      "surs_municipality_name": "Renče - Vogrsko"
+    },
+    {
+      "canonical_municipality_name": "Sveta Trojica v Slovenskih goricah",
+      "municipality_code": "204",
+      "surs_municipality_name": "Sveta Trojica v Slov. goricah"
+    },
+    {
+      "canonical_municipality_name": "Log-Dragomer",
+      "municipality_code": "208",
+      "surs_municipality_name": "Log - Dragomer"
+    },
+    {
+      "canonical_municipality_name": "Sveti Jurij v Slovenskih goricah",
+      "municipality_code": "210",
+      "surs_municipality_name": "Sveti Jurij v Slov. goricah"
+    },
+    {
+      "canonical_municipality_name": "Ankaran",
+      "municipality_code": "213",
+      "surs_municipality_name": "Ankaran/Ancarano"
+    }
+  ],
+  "outputs": {
+    "municipality_statistical_region": {
+      "bytes": 1739,
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "statistical_region": {
+      "bytes": 855,
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    }
+  },
+  "pipeline": "model_v3.data.statistical_regions",
+  "schema_version": 1,
+  "source": {
+    "actual_sha256": "b032009504dee70a17dd454bc1718c8c7f4eb776ff03583be29245dcf4fbbbc9",
+    "classification": "NUTS3,_SKTE5,7",
+    "download_url": "https://www.stat.si/Klasje/Klasje/createXlsx?q=17597&s=1",
+    "municipality_level": 2,
+    "path": "data/raw/surs/statistical_regions_municipalities_2022.xlsx",
+    "provider": "Statistical Office of the Republic of Slovenia (SURS)",
+    "region_level": 1,
+    "sha256": "b032009504dee70a17dd454bc1718c8c7f4eb776ff03583be29245dcf4fbbbc9",
+    "sheet": "NUTS3,_SKTE5,7, 2022 - Tabela",
+    "table_id": "17597",
+    "valid_from": "2022-11-17",
+    "version": "2022"
+  }
+}

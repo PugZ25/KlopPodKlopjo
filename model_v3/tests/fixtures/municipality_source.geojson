@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "SIFRA": 1,
+        "NAZIV": "Alpha"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "SIFRA": 2,
+        "NAZIV": "Beta"
+      },
+      "geometry": null
+    }
+  ]
+}

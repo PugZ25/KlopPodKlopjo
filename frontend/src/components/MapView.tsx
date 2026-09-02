@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MapContainer, Polygon, Tooltip, useMap, ZoomControl } from 'react-leaflet'
+import type { LatLngExpression } from 'leaflet'
 import type { MunicipalityBoundary } from '../utils/municipalityLookup'
 import { loadMunicipalityBoundaries } from '../utils/municipalityLookup'
+import 'leaflet/dist/leaflet.css'
 
 export type MapRiskLocation = {
   id: string
@@ -10,19 +12,26 @@ export type MapRiskLocation = {
   score: number
   level: 'Nizko' | 'Srednje' | 'Visoko'
   coordinates: [number, number]
+  regionName: string
 }
 
-type MapViewProps = {
+export type MapViewProps = {
   locations: MapRiskLocation[]
   selectedLocationId: string
   onSelectLocation: (locationId: string) => void
   diseaseLabel: string
   selectedLocation: MapRiskLocation
+  spatialScope: 'municipality' | 'statistical_region'
 }
 
-type ChoroplethBoundary = MunicipalityBoundary & {
+type PreparedBoundary = Pick<MunicipalityBoundary, 'code' | 'name'> & {
+  positions: LatLngExpression[][] | LatLngExpression[][][]
+}
+
+type ChoroplethBoundary = PreparedBoundary & {
   locationId: string
   level: MapRiskLocation['level']
+  regionName: string
 }
 
 const levelColors: Record<MapRiskLocation['level'], string> = {
@@ -31,18 +40,33 @@ const levelColors: Record<MapRiskLocation['level'], string> = {
   Visoko: '#c1543f',
 }
 
+const signalLevelLabel: Record<MapRiskLocation['level'], string> = {
+  Nizko: 'Nizek',
+  Srednje: 'Srednji',
+  Visoko: 'Visok',
+}
+
 const SLOVENIA_BOUNDS: [[number, number], [number, number]] = [
   [45.2, 13.2],
   [47.1, 16.8],
 ]
 
+// Extent of the fixed 2026 GURS asset in public/municipality-boundaries.json.
+const SLOVENIA_VIEW_BOUNDS: [[number, number], [number, number]] = [
+  [45.42145, 13.37548],
+  [46.87666, 16.59669],
+]
+
 const SLOVENIA_CENTER: [number, number] = [46.15, 14.95]
+let preparedBoundaryPromise: Promise<PreparedBoundary[]> | null = null
 
 function buildDiseaseObjectLabel(diseaseLabel: string) {
   return diseaseLabel === 'Borelioza' ? 'boreliozo' : diseaseLabel.toLowerCase()
 }
 
-function buildPolygonPositions(boundary: MunicipalityBoundary) {
+function buildPolygonPositions(
+  boundary: MunicipalityBoundary,
+): PreparedBoundary['positions'] {
   const positions = boundary.polygons.map((polygon) =>
     polygon.map((ring) =>
       ring.map(([longitude, latitude]) => [latitude, longitude] as [number, number]),
@@ -50,6 +74,20 @@ function buildPolygonPositions(boundary: MunicipalityBoundary) {
   )
 
   return positions.length === 1 ? positions[0] : positions
+}
+
+function loadPreparedBoundaries() {
+  if (!preparedBoundaryPromise) {
+    preparedBoundaryPromise = loadMunicipalityBoundaries().then((boundaries) =>
+      boundaries.map((boundary) => ({
+        code: boundary.code,
+        name: boundary.name,
+        positions: buildPolygonPositions(boundary),
+      })),
+    )
+  }
+
+  return preparedBoundaryPromise
 }
 
 function MapFocus({
@@ -62,34 +100,53 @@ function MapFocus({
   const map = useMap()
 
   useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    map.invalidateSize()
+    map.setMinZoom(isTouchMap ? 6 : 7)
+    map.invalidateSize({ pan: false })
 
     if (isTouchMap) {
-      map.fitBounds(SLOVENIA_BOUNDS, {
-        animate: !prefersReducedMotion,
-        duration: prefersReducedMotion ? 0 : 0.9,
-        padding: [18, 18],
+      map.fitBounds(SLOVENIA_VIEW_BOUNDS, {
+        animate: false,
+        padding: [6, 6],
         maxZoom: 7,
       })
-    } else {
-      map.flyTo(coordinates, map.getZoom(), {
-        animate: !prefersReducedMotion,
-        duration: prefersReducedMotion ? 0 : 0.9,
-      })
+    }
+  }, [isTouchMap, map])
+
+  useEffect(() => {
+    if (isTouchMap) {
+      return
     }
 
-    const timeoutId = window.setTimeout(() => {
-      map.invalidateSize()
-    }, 60)
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    map.flyTo(coordinates, map.getZoom(), {
+      animate: !prefersReducedMotion,
+      duration: prefersReducedMotion ? 0 : 0.9,
+    })
+  }, [coordinates, isTouchMap, map])
+
+  useEffect(() => {
+    if (!('ResizeObserver' in window)) {
+      return
+    }
+
+    let frameId = 0
+    const observer = new ResizeObserver(() => {
+      window.cancelAnimationFrame(frameId)
+      frameId = window.requestAnimationFrame(() => {
+        map.invalidateSize({ pan: false })
+      })
+    })
+
+    observer.observe(map.getContainer())
 
     return () => {
-      window.clearTimeout(timeoutId)
+      observer.disconnect()
+      window.cancelAnimationFrame(frameId)
     }
-  }, [coordinates, isTouchMap, map])
+  }, [map])
 
   return null
 }
@@ -100,7 +157,7 @@ function detectTouchMap() {
   }
 
   return (
-    window.innerWidth <= 760 ||
+    window.matchMedia('(max-width: 760px)').matches ||
     window.matchMedia('(hover: none), (pointer: coarse)').matches
   )
 }
@@ -111,8 +168,9 @@ export function MapView({
   onSelectLocation,
   diseaseLabel,
   selectedLocation,
+  spatialScope,
 }: MapViewProps) {
-  const [boundaries, setBoundaries] = useState<ChoroplethBoundary[]>([])
+  const [preparedBoundaries, setPreparedBoundaries] = useState<PreparedBoundary[]>([])
   const [isTouchMap, setIsTouchMap] = useState(detectTouchMap)
 
   useEffect(() => {
@@ -122,58 +180,60 @@ export function MapView({
 
     updateTouchMode()
 
-    const coarsePointerQuery = window.matchMedia('(hover: none), (pointer: coarse)')
-    coarsePointerQuery.addEventListener?.('change', updateTouchMode)
-    window.addEventListener('resize', updateTouchMode)
+    const viewportQuery = window.matchMedia('(max-width: 760px)')
+    const pointerQuery = window.matchMedia('(hover: none), (pointer: coarse)')
+    viewportQuery.addEventListener?.('change', updateTouchMode)
+    pointerQuery.addEventListener?.('change', updateTouchMode)
 
     return () => {
-      coarsePointerQuery.removeEventListener?.('change', updateTouchMode)
-      window.removeEventListener('resize', updateTouchMode)
+      viewportQuery.removeEventListener?.('change', updateTouchMode)
+      pointerQuery.removeEventListener?.('change', updateTouchMode)
     }
   }, [])
 
   useEffect(() => {
     let isActive = true
 
-    loadMunicipalityBoundaries()
+    loadPreparedBoundaries()
       .then((payload) => {
         if (!isActive) {
           return
         }
 
-        const locationByCode = new Map(
-          locations.map((location) => [location.municipalityCode, location]),
-        )
-
-        setBoundaries(
-          payload
-            .map((boundary) => {
-              const location = locationByCode.get(boundary.code)
-              if (!location) {
-                return null
-              }
-
-              return {
-                ...boundary,
-                locationId: location.id,
-                level: location.level,
-              }
-            })
-            .filter(
-              (boundary): boundary is ChoroplethBoundary => Boolean(boundary),
-            ),
-        )
+        setPreparedBoundaries(payload)
       })
       .catch(() => {
         if (isActive) {
-          setBoundaries([])
+          setPreparedBoundaries([])
         }
       })
 
     return () => {
       isActive = false
     }
-  }, [locations])
+  }, [])
+
+  const boundaries = useMemo(() => {
+    const locationByCode = new Map(
+      locations.map((location) => [location.municipalityCode, location]),
+    )
+
+    return preparedBoundaries
+      .map((boundary) => {
+        const location = locationByCode.get(boundary.code)
+        if (!location) {
+          return null
+        }
+
+        return {
+          ...boundary,
+          locationId: location.id,
+          level: location.level,
+          regionName: location.regionName,
+        }
+      })
+      .filter((boundary): boundary is ChoroplethBoundary => Boolean(boundary))
+  }, [locations, preparedBoundaries])
 
   const focusedLocation =
     locations.find((location) => location.id === selectedLocationId) ?? selectedLocation
@@ -185,18 +245,19 @@ export function MapView({
       <MapContainer
         center={mapCenter}
         zoom={mapZoom}
-        minZoom={7}
+        minZoom={isTouchMap ? 6 : 7}
         maxZoom={11}
         maxBounds={SLOVENIA_BOUNDS}
         maxBoundsViscosity={isTouchMap ? 0.85 : 1}
         scrollWheelZoom={!isTouchMap}
         dragging
-        touchZoom={isTouchMap ? 'center' : true}
+        touchZoom
         doubleClickZoom={!isTouchMap}
         zoomSnap={0.5}
         zoomDelta={0.5}
         zoomControl={false}
         attributionControl={false}
+        preferCanvas={isTouchMap}
         className="map-canvas"
       >
         <MapFocus coordinates={focusedLocation.coordinates} isTouchMap={isTouchMap} />
@@ -208,12 +269,17 @@ export function MapView({
           return (
             <Polygon
               key={boundary.code}
-              positions={buildPolygonPositions(boundary)}
+              positions={boundary.positions}
+              smoothFactor={isTouchMap ? 1.5 : 1}
               pathOptions={{
-                color: isSelected ? '#14231a' : levelColors[boundary.level],
+                color: isSelected
+                  ? isTouchMap
+                    ? '#244b38'
+                    : '#14231a'
+                  : levelColors[boundary.level],
                 fillColor: levelColors[boundary.level],
                 fillOpacity: isSelected ? 0.86 : isTouchMap ? 0.54 : 0.42,
-                weight: isSelected ? (isTouchMap ? 3.5 : 3.1) : isTouchMap ? 1.4 : 1.05,
+                weight: isSelected ? (isTouchMap ? 2 : 3.1) : isTouchMap ? 1.1 : 1.05,
               }}
               eventHandlers={{
                 click: (event) => {
@@ -226,8 +292,14 @@ export function MapView({
                 <Tooltip sticky>
                   <strong>{boundary.name}</strong>
                   <br />
-                  {boundary.level} občinsko tveganje za{' '}
+                  {signalLevelLabel[boundary.level]} signal za{' '}
                   {buildDiseaseObjectLabel(diseaseLabel)}
+                  {spatialScope === 'statistical_region' ? (
+                    <>
+                      <br />
+                      Statistična regija: {boundary.regionName}
+                    </>
+                  ) : null}
                 </Tooltip>
               ) : null}
             </Polygon>

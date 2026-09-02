@@ -1,0 +1,1909 @@
+municipality_code,municipality_name,year,population_total_on_1_january,denominator_status
+001,Ajdovščina,2016,19047,valid
+001,Ajdovščina,2017,19093,valid
+001,Ajdovščina,2018,19130,valid
+001,Ajdovščina,2019,19249,valid
+001,Ajdovščina,2020,19418,valid
+001,Ajdovščina,2021,19704,valid
+001,Ajdovščina,2022,19727,valid
+001,Ajdovščina,2023,19811,valid
+001,Ajdovščina,2024,19891,valid
+002,Beltinci,2016,8261,valid
+002,Beltinci,2017,8233,valid
+002,Beltinci,2018,8183,valid
+002,Beltinci,2019,8104,valid
+002,Beltinci,2020,8059,valid
+002,Beltinci,2021,8068,valid
+002,Beltinci,2022,8104,valid
+002,Beltinci,2023,8082,valid
+002,Beltinci,2024,8071,valid
+003,Bled,2016,8035,valid
+003,Bled,2017,7981,valid
+003,Bled,2018,7873,valid
+003,Bled,2019,7835,valid
+003,Bled,2020,7868,valid
+003,Bled,2021,8217,valid
+003,Bled,2022,8250,valid
+003,Bled,2023,8190,valid
+003,Bled,2024,8157,valid
+004,Bohinj,2016,5139,valid
+004,Bohinj,2017,5149,valid
+004,Bohinj,2018,5125,valid
+004,Bohinj,2019,5105,valid
+004,Bohinj,2020,5145,valid
+004,Bohinj,2021,5611,valid
+004,Bohinj,2022,5676,valid
+004,Bohinj,2023,5439,valid
+004,Bohinj,2024,5275,valid
+005,Borovnica,2016,4275,valid
+005,Borovnica,2017,4376,valid
+005,Borovnica,2018,4412,valid
+005,Borovnica,2019,4483,valid
+005,Borovnica,2020,4579,valid
+005,Borovnica,2021,4664,valid
+005,Borovnica,2022,4629,valid
+005,Borovnica,2023,4681,valid
+005,Borovnica,2024,4726,valid
+006,Bovec,2016,3124,valid
+006,Bovec,2017,3082,valid
+006,Bovec,2018,3049,valid
+006,Bovec,2019,3048,valid
+006,Bovec,2020,3073,valid
+006,Bovec,2021,3245,valid
+006,Bovec,2022,3178,valid
+006,Bovec,2023,3044,valid
+006,Bovec,2024,3054,valid
+007,Brda,2016,5659,valid
+007,Brda,2017,5625,valid
+007,Brda,2018,5623,valid
+007,Brda,2019,5602,valid
+007,Brda,2020,5619,valid
+007,Brda,2021,5639,valid
+007,Brda,2022,5632,valid
+007,Brda,2023,5590,valid
+007,Brda,2024,5573,valid
+008,Brezovica,2016,11974,valid
+008,Brezovica,2017,12092,valid
+008,Brezovica,2018,12186,valid
+008,Brezovica,2019,12412,valid
+008,Brezovica,2020,12671,valid
+008,Brezovica,2021,12785,valid
+008,Brezovica,2022,12823,valid
+008,Brezovica,2023,12838,valid
+008,Brezovica,2024,13004,valid
+009,Brežice,2016,24254,valid
+009,Brežice,2017,24204,valid
+009,Brežice,2018,24086,valid
+009,Brežice,2019,24084,valid
+009,Brežice,2020,24051,valid
+009,Brežice,2021,24419,valid
+009,Brežice,2022,24370,valid
+009,Brežice,2023,24417,valid
+009,Brežice,2024,24450,valid
+010,Tišina,2016,4039,valid
+010,Tišina,2017,4012,valid
+010,Tišina,2018,3976,valid
+010,Tišina,2019,3952,valid
+010,Tišina,2020,3970,valid
+010,Tišina,2021,3965,valid
+010,Tišina,2022,3941,valid
+010,Tišina,2023,3968,valid
+010,Tišina,2024,3948,valid
+011,Celje,2016,49077,valid
+011,Celje,2017,49380,valid
+011,Celje,2018,49377,valid
+011,Celje,2019,49473,valid
+011,Celje,2020,49540,valid
+011,Celje,2021,49007,valid
+011,Celje,2022,48679,valid
+011,Celje,2023,48776,valid
+011,Celje,2024,49289,valid
+012,Cerklje na Gorenjskem,2016,7506,valid
+012,Cerklje na Gorenjskem,2017,7569,valid
+012,Cerklje na Gorenjskem,2018,7619,valid
+012,Cerklje na Gorenjskem,2019,7632,valid
+012,Cerklje na Gorenjskem,2020,7769,valid
+012,Cerklje na Gorenjskem,2021,7859,valid
+012,Cerklje na Gorenjskem,2022,7901,valid
+012,Cerklje na Gorenjskem,2023,7854,valid
+012,Cerklje na Gorenjskem,2024,7825,valid
+013,Cerknica,2016,11402,valid
+013,Cerknica,2017,11494,valid
+013,Cerknica,2018,11491,valid
+013,Cerknica,2019,11554,valid
+013,Cerknica,2020,11580,valid
+013,Cerknica,2021,11691,valid
+013,Cerknica,2022,11718,valid
+013,Cerknica,2023,11785,valid
+013,Cerknica,2024,11870,valid
+014,Cerkno,2016,4644,valid
+014,Cerkno,2017,4602,valid
+014,Cerkno,2018,4588,valid
+014,Cerkno,2019,4580,valid
+014,Cerkno,2020,4547,valid
+014,Cerkno,2021,4547,valid
+014,Cerkno,2022,4546,valid
+014,Cerkno,2023,4516,valid
+014,Cerkno,2024,4452,valid
+015,Črenšovci,2016,4002,valid
+015,Črenšovci,2017,3951,valid
+015,Črenšovci,2018,3926,valid
+015,Črenšovci,2019,3949,valid
+015,Črenšovci,2020,3968,valid
+015,Črenšovci,2021,3972,valid
+015,Črenšovci,2022,3982,valid
+015,Črenšovci,2023,3935,valid
+015,Črenšovci,2024,3928,valid
+016,Črna na Koroškem,2016,3337,valid
+016,Črna na Koroškem,2017,3308,valid
+016,Črna na Koroškem,2018,3314,valid
+016,Črna na Koroškem,2019,3303,valid
+016,Črna na Koroškem,2020,3285,valid
+016,Črna na Koroškem,2021,3252,valid
+016,Črna na Koroškem,2022,3201,valid
+016,Črna na Koroškem,2023,3193,valid
+016,Črna na Koroškem,2024,3061,valid
+017,Črnomelj,2016,14407,valid
+017,Črnomelj,2017,14365,valid
+017,Črnomelj,2018,14313,valid
+017,Črnomelj,2019,14299,valid
+017,Črnomelj,2020,14241,valid
+017,Črnomelj,2021,14308,valid
+017,Črnomelj,2022,14279,valid
+017,Črnomelj,2023,14236,valid
+017,Črnomelj,2024,14232,valid
+018,Destrnik,2016,2539,valid
+018,Destrnik,2017,2544,valid
+018,Destrnik,2018,2554,valid
+018,Destrnik,2019,2585,valid
+018,Destrnik,2020,2643,valid
+018,Destrnik,2021,2647,valid
+018,Destrnik,2022,2632,valid
+018,Destrnik,2023,2641,valid
+018,Destrnik,2024,2694,valid
+019,Divača,2016,3955,valid
+019,Divača,2017,4000,valid
+019,Divača,2018,4085,valid
+019,Divača,2019,4157,valid
+019,Divača,2020,4213,valid
+019,Divača,2021,4334,valid
+019,Divača,2022,4371,valid
+019,Divača,2023,4443,valid
+019,Divača,2024,4501,valid
+020,Dobrepolje,2016,3898,valid
+020,Dobrepolje,2017,3870,valid
+020,Dobrepolje,2018,3881,valid
+020,Dobrepolje,2019,3856,valid
+020,Dobrepolje,2020,3878,valid
+020,Dobrepolje,2021,3882,valid
+020,Dobrepolje,2022,3871,valid
+020,Dobrepolje,2023,3923,valid
+020,Dobrepolje,2024,3934,valid
+021,Dobrova-Polhov Gradec,2016,7582,valid
+021,Dobrova-Polhov Gradec,2017,7618,valid
+021,Dobrova-Polhov Gradec,2018,7661,valid
+021,Dobrova-Polhov Gradec,2019,7664,valid
+021,Dobrova-Polhov Gradec,2020,7800,valid
+021,Dobrova-Polhov Gradec,2021,7843,valid
+021,Dobrova-Polhov Gradec,2022,7844,valid
+021,Dobrova-Polhov Gradec,2023,7946,valid
+021,Dobrova-Polhov Gradec,2024,8039,valid
+022,Dol pri Ljubljani,2016,5934,valid
+022,Dol pri Ljubljani,2017,5961,valid
+022,Dol pri Ljubljani,2018,6008,valid
+022,Dol pri Ljubljani,2019,6218,valid
+022,Dol pri Ljubljani,2020,6310,valid
+022,Dol pri Ljubljani,2021,6378,valid
+022,Dol pri Ljubljani,2022,6348,valid
+022,Dol pri Ljubljani,2023,6352,valid
+022,Dol pri Ljubljani,2024,6432,valid
+023,Domžale,2016,35278,valid
+023,Domžale,2017,35513,valid
+023,Domžale,2018,35675,valid
+023,Domžale,2019,36264,valid
+023,Domžale,2020,36675,valid
+023,Domžale,2021,36683,valid
+023,Domžale,2022,36905,valid
+023,Domžale,2023,37477,valid
+023,Domžale,2024,37821,valid
+024,Dornava,2016,2882,valid
+024,Dornava,2017,2905,valid
+024,Dornava,2018,2885,valid
+024,Dornava,2019,2892,valid
+024,Dornava,2020,2902,valid
+024,Dornava,2021,2896,valid
+024,Dornava,2022,2880,valid
+024,Dornava,2023,2902,valid
+024,Dornava,2024,2891,valid
+025,Dravograd,2016,8885,valid
+025,Dravograd,2017,8856,valid
+025,Dravograd,2018,8799,valid
+025,Dravograd,2019,8783,valid
+025,Dravograd,2020,8884,valid
+025,Dravograd,2021,8844,valid
+025,Dravograd,2022,8882,valid
+025,Dravograd,2023,8862,valid
+025,Dravograd,2024,8815,valid
+026,Duplek,2016,6726,valid
+026,Duplek,2017,6803,valid
+026,Duplek,2018,6890,valid
+026,Duplek,2019,6937,valid
+026,Duplek,2020,6996,valid
+026,Duplek,2021,6959,valid
+026,Duplek,2022,7015,valid
+026,Duplek,2023,7046,valid
+026,Duplek,2024,6999,valid
+027,Gorenja vas-Poljane,2016,7429,valid
+027,Gorenja vas-Poljane,2017,7500,valid
+027,Gorenja vas-Poljane,2018,7541,valid
+027,Gorenja vas-Poljane,2019,7539,valid
+027,Gorenja vas-Poljane,2020,7557,valid
+027,Gorenja vas-Poljane,2021,7665,valid
+027,Gorenja vas-Poljane,2022,7672,valid
+027,Gorenja vas-Poljane,2023,7646,valid
+027,Gorenja vas-Poljane,2024,7656,valid
+028,Gorišnica,2016,3978,valid
+028,Gorišnica,2017,3968,valid
+028,Gorišnica,2018,4025,valid
+028,Gorišnica,2019,4069,valid
+028,Gorišnica,2020,4112,valid
+028,Gorišnica,2021,4161,valid
+028,Gorišnica,2022,4180,valid
+028,Gorišnica,2023,4182,valid
+028,Gorišnica,2024,4188,valid
+029,Gornja Radgona,2016,8467,valid
+029,Gornja Radgona,2017,8447,valid
+029,Gornja Radgona,2018,8403,valid
+029,Gornja Radgona,2019,8392,valid
+029,Gornja Radgona,2020,8417,valid
+029,Gornja Radgona,2021,8474,valid
+029,Gornja Radgona,2022,8476,valid
+029,Gornja Radgona,2023,8489,valid
+029,Gornja Radgona,2024,8503,valid
+030,Gornji Grad,2016,2547,valid
+030,Gornji Grad,2017,2547,valid
+030,Gornji Grad,2018,2543,valid
+030,Gornji Grad,2019,2511,valid
+030,Gornji Grad,2020,2476,valid
+030,Gornji Grad,2021,2480,valid
+030,Gornji Grad,2022,2552,valid
+030,Gornji Grad,2023,2559,valid
+030,Gornji Grad,2024,2595,valid
+031,Gornji Petrovci,2016,2057,valid
+031,Gornji Petrovci,2017,2058,valid
+031,Gornji Petrovci,2018,2013,valid
+031,Gornji Petrovci,2019,1985,valid
+031,Gornji Petrovci,2020,1995,valid
+031,Gornji Petrovci,2021,2040,valid
+031,Gornji Petrovci,2022,2010,valid
+031,Gornji Petrovci,2023,1982,valid
+031,Gornji Petrovci,2024,2002,valid
+032,Grosuplje,2016,20059,valid
+032,Grosuplje,2017,20284,valid
+032,Grosuplje,2018,20672,valid
+032,Grosuplje,2019,21013,valid
+032,Grosuplje,2020,21314,valid
+032,Grosuplje,2021,21398,valid
+032,Grosuplje,2022,21333,valid
+032,Grosuplje,2023,21587,valid
+032,Grosuplje,2024,21870,valid
+033,Šalovci,2016,1437,valid
+033,Šalovci,2017,1430,valid
+033,Šalovci,2018,1411,valid
+033,Šalovci,2019,1392,valid
+033,Šalovci,2020,1380,valid
+033,Šalovci,2021,1388,valid
+033,Šalovci,2022,1372,valid
+033,Šalovci,2023,1369,valid
+033,Šalovci,2024,1334,valid
+034,Hrastnik,2016,9316,valid
+034,Hrastnik,2017,9269,valid
+034,Hrastnik,2018,9188,valid
+034,Hrastnik,2019,9154,valid
+034,Hrastnik,2020,9113,valid
+034,Hrastnik,2021,9058,valid
+034,Hrastnik,2022,8963,valid
+034,Hrastnik,2023,8967,valid
+034,Hrastnik,2024,8939,valid
+035,Hrpelje-Kozina,2016,4366,valid
+035,Hrpelje-Kozina,2017,4371,valid
+035,Hrpelje-Kozina,2018,4402,valid
+035,Hrpelje-Kozina,2019,4467,valid
+035,Hrpelje-Kozina,2020,4604,valid
+035,Hrpelje-Kozina,2021,4851,valid
+035,Hrpelje-Kozina,2022,4970,valid
+035,Hrpelje-Kozina,2023,5131,valid
+035,Hrpelje-Kozina,2024,5181,valid
+036,Idrija,2016,11927,valid
+036,Idrija,2017,11800,valid
+036,Idrija,2018,11757,valid
+036,Idrija,2019,11748,valid
+036,Idrija,2020,11811,valid
+036,Idrija,2021,11735,valid
+036,Idrija,2022,11729,valid
+036,Idrija,2023,11757,valid
+036,Idrija,2024,11706,valid
+037,Ig,2016,7163,valid
+037,Ig,2017,7277,valid
+037,Ig,2018,7366,valid
+037,Ig,2019,7463,valid
+037,Ig,2020,7617,valid
+037,Ig,2021,7656,valid
+037,Ig,2022,7695,valid
+037,Ig,2023,7718,valid
+037,Ig,2024,7793,valid
+038,Ilirska Bistrica,2016,13594,valid
+038,Ilirska Bistrica,2017,13482,valid
+038,Ilirska Bistrica,2018,13329,valid
+038,Ilirska Bistrica,2019,13340,valid
+038,Ilirska Bistrica,2020,13297,valid
+038,Ilirska Bistrica,2021,13379,valid
+038,Ilirska Bistrica,2022,13399,valid
+038,Ilirska Bistrica,2023,13362,valid
+038,Ilirska Bistrica,2024,13313,valid
+039,Ivančna Gorica,2016,16182,valid
+039,Ivančna Gorica,2017,16361,valid
+039,Ivančna Gorica,2018,16544,valid
+039,Ivančna Gorica,2019,16793,valid
+039,Ivančna Gorica,2020,17008,valid
+039,Ivančna Gorica,2021,17538,valid
+039,Ivančna Gorica,2022,17599,valid
+039,Ivančna Gorica,2023,17738,valid
+039,Ivančna Gorica,2024,18114,valid
+040,Izola,2016,15962,valid
+040,Izola,2017,16015,valid
+040,Izola,2018,16015,valid
+040,Izola,2019,16322,valid
+040,Izola,2020,16486,valid
+040,Izola,2021,16737,valid
+040,Izola,2022,16647,valid
+040,Izola,2023,16564,valid
+040,Izola,2024,16479,valid
+041,Jesenice,2016,20858,valid
+041,Jesenice,2017,20754,valid
+041,Jesenice,2018,20759,valid
+041,Jesenice,2019,20991,valid
+041,Jesenice,2020,21340,valid
+041,Jesenice,2021,21679,valid
+041,Jesenice,2022,21758,valid
+041,Jesenice,2023,21883,valid
+041,Jesenice,2024,21944,valid
+042,Juršinci,2016,2356,valid
+042,Juršinci,2017,2375,valid
+042,Juršinci,2018,2375,valid
+042,Juršinci,2019,2362,valid
+042,Juršinci,2020,2380,valid
+042,Juršinci,2021,2421,valid
+042,Juršinci,2022,2501,valid
+042,Juršinci,2023,2481,valid
+042,Juršinci,2024,2458,valid
+043,Kamnik,2016,29362,valid
+043,Kamnik,2017,29416,valid
+043,Kamnik,2018,29487,valid
+043,Kamnik,2019,29686,valid
+043,Kamnik,2020,29925,valid
+043,Kamnik,2021,29989,valid
+043,Kamnik,2022,29793,valid
+043,Kamnik,2023,29979,valid
+043,Kamnik,2024,30020,valid
+044,Kanal,2016,5431,valid
+044,Kanal,2017,5342,valid
+044,Kanal,2018,5311,valid
+044,Kanal,2019,5301,valid
+044,Kanal,2020,5291,valid
+044,Kanal,2021,5289,valid
+044,Kanal,2022,5245,valid
+044,Kanal,2023,5213,valid
+044,Kanal,2024,5106,valid
+045,Kidričevo,2016,6449,valid
+045,Kidričevo,2017,6417,valid
+045,Kidričevo,2018,6450,valid
+045,Kidričevo,2019,6495,valid
+045,Kidričevo,2020,6541,valid
+045,Kidričevo,2021,6539,valid
+045,Kidričevo,2022,6547,valid
+045,Kidričevo,2023,6586,valid
+045,Kidričevo,2024,6594,valid
+046,Kobarid,2016,4121,valid
+046,Kobarid,2017,4105,valid
+046,Kobarid,2018,4104,valid
+046,Kobarid,2019,4079,valid
+046,Kobarid,2020,4052,valid
+046,Kobarid,2021,4032,valid
+046,Kobarid,2022,4044,valid
+046,Kobarid,2023,4046,valid
+046,Kobarid,2024,4045,valid
+047,Kobilje,2016,574,valid
+047,Kobilje,2017,560,valid
+047,Kobilje,2018,559,valid
+047,Kobilje,2019,542,valid
+047,Kobilje,2020,542,valid
+047,Kobilje,2021,540,valid
+047,Kobilje,2022,532,valid
+047,Kobilje,2023,512,valid
+047,Kobilje,2024,511,valid
+048,Kočevje,2016,16005,valid
+048,Kočevje,2017,15881,valid
+048,Kočevje,2018,15771,valid
+048,Kočevje,2019,15686,valid
+048,Kočevje,2020,15674,valid
+048,Kočevje,2021,15644,valid
+048,Kočevje,2022,15623,valid
+048,Kočevje,2023,15674,valid
+048,Kočevje,2024,15661,valid
+049,Komen,2016,3518,valid
+049,Komen,2017,3523,valid
+049,Komen,2018,3537,valid
+049,Komen,2019,3534,valid
+049,Komen,2020,3529,valid
+049,Komen,2021,3655,valid
+049,Komen,2022,3634,valid
+049,Komen,2023,3578,valid
+049,Komen,2024,3509,valid
+050,Koper,2016,51045,valid
+050,Koper,2017,51361,valid
+050,Koper,2018,51794,valid
+050,Koper,2019,52234,valid
+050,Koper,2020,52630,valid
+050,Koper,2021,53292,valid
+050,Koper,2022,53462,valid
+050,Koper,2023,53875,valid
+050,Koper,2024,54252,valid
+051,Kozje,2016,3092,valid
+051,Kozje,2017,3077,valid
+051,Kozje,2018,3054,valid
+051,Kozje,2019,3037,valid
+051,Kozje,2020,2989,valid
+051,Kozje,2021,3030,valid
+051,Kozje,2022,3029,valid
+051,Kozje,2023,3010,valid
+051,Kozje,2024,2993,valid
+052,Kranj,2016,56115,valid
+052,Kranj,2017,56081,valid
+052,Kranj,2018,55950,valid
+052,Kranj,2019,56267,valid
+052,Kranj,2020,57065,valid
+052,Kranj,2021,57185,valid
+052,Kranj,2022,56639,valid
+052,Kranj,2023,57171,valid
+052,Kranj,2024,57138,valid
+053,Kranjska Gora,2016,5294,valid
+053,Kranjska Gora,2017,5286,valid
+053,Kranjska Gora,2018,5212,valid
+053,Kranjska Gora,2019,5201,valid
+053,Kranjska Gora,2020,5225,valid
+053,Kranjska Gora,2021,7522,valid
+053,Kranjska Gora,2022,7689,valid
+053,Kranjska Gora,2023,5878,valid
+053,Kranjska Gora,2024,5247,valid
+054,Krško,2016,25884,valid
+054,Krško,2017,25853,valid
+054,Krško,2018,25833,valid
+054,Krško,2019,25996,valid
+054,Krško,2020,26224,valid
+054,Krško,2021,25904,valid
+054,Krško,2022,25833,valid
+054,Krško,2023,25982,valid
+054,Krško,2024,26019,valid
+055,Kungota,2016,4761,valid
+055,Kungota,2017,4788,valid
+055,Kungota,2018,4762,valid
+055,Kungota,2019,4705,valid
+055,Kungota,2020,4724,valid
+055,Kungota,2021,4844,valid
+055,Kungota,2022,4916,valid
+055,Kungota,2023,4950,valid
+055,Kungota,2024,5032,valid
+056,Kuzma,2016,1582,valid
+056,Kuzma,2017,1577,valid
+056,Kuzma,2018,1555,valid
+056,Kuzma,2019,1573,valid
+056,Kuzma,2020,1573,valid
+056,Kuzma,2021,1624,valid
+056,Kuzma,2022,1654,valid
+056,Kuzma,2023,1636,valid
+056,Kuzma,2024,1625,valid
+057,Laško,2016,13156,valid
+057,Laško,2017,13145,valid
+057,Laško,2018,13081,valid
+057,Laško,2019,13006,valid
+057,Laško,2020,13067,valid
+057,Laško,2021,13123,valid
+057,Laško,2022,12976,valid
+057,Laško,2023,13013,valid
+057,Laško,2024,13002,valid
+058,Lenart,2016,8275,valid
+058,Lenart,2017,8251,valid
+058,Lenart,2018,8287,valid
+058,Lenart,2019,8432,valid
+058,Lenart,2020,8502,valid
+058,Lenart,2021,8512,valid
+058,Lenart,2022,8561,valid
+058,Lenart,2023,8648,valid
+058,Lenart,2024,8591,valid
+059,Lendava,2016,10538,valid
+059,Lendava,2017,10506,valid
+059,Lendava,2018,10406,valid
+059,Lendava,2019,10411,valid
+059,Lendava,2020,10426,valid
+059,Lendava,2021,10486,valid
+059,Lendava,2022,10312,valid
+059,Lendava,2023,10211,valid
+059,Lendava,2024,10180,valid
+060,Litija,2016,15099,valid
+060,Litija,2017,15215,valid
+060,Litija,2018,15317,valid
+060,Litija,2019,15356,valid
+060,Litija,2020,15499,valid
+060,Litija,2021,15743,valid
+060,Litija,2022,15720,valid
+060,Litija,2023,15753,valid
+060,Litija,2024,15834,valid
+061,Ljubljana,2016,288307,valid
+061,Ljubljana,2017,288919,valid
+061,Ljubljana,2018,289518,valid
+061,Ljubljana,2019,292988,valid
+061,Ljubljana,2020,295504,valid
+061,Ljubljana,2021,294464,valid
+061,Ljubljana,2022,293218,valid
+061,Ljubljana,2023,296228,valid
+061,Ljubljana,2024,297575,valid
+062,Ljubno,2016,2604,valid
+062,Ljubno,2017,2572,valid
+062,Ljubno,2018,2545,valid
+062,Ljubno,2019,2541,valid
+062,Ljubno,2020,2550,valid
+062,Ljubno,2021,2576,valid
+062,Ljubno,2022,2542,valid
+062,Ljubno,2023,2560,valid
+062,Ljubno,2024,2512,valid
+063,Ljutomer,2016,11491,valid
+063,Ljutomer,2017,11374,valid
+063,Ljutomer,2018,11329,valid
+063,Ljutomer,2019,11261,valid
+063,Ljutomer,2020,11268,valid
+063,Ljutomer,2021,11233,valid
+063,Ljutomer,2022,11140,valid
+063,Ljutomer,2023,11042,valid
+063,Ljutomer,2024,11000,valid
+064,Logatec,2016,13752,valid
+064,Logatec,2017,13802,valid
+064,Logatec,2018,13976,valid
+064,Logatec,2019,14150,valid
+064,Logatec,2020,14396,valid
+064,Logatec,2021,14681,valid
+064,Logatec,2022,14699,valid
+064,Logatec,2023,15065,valid
+064,Logatec,2024,15046,valid
+065,Loška dolina,2016,3857,valid
+065,Loška dolina,2017,3835,valid
+065,Loška dolina,2018,3731,valid
+065,Loška dolina,2019,3744,valid
+065,Loška dolina,2020,3757,valid
+065,Loška dolina,2021,3703,valid
+065,Loška dolina,2022,3624,valid
+065,Loška dolina,2023,3550,valid
+065,Loška dolina,2024,3526,valid
+066,Loški Potok,2016,1866,valid
+066,Loški Potok,2017,1863,valid
+066,Loški Potok,2018,1838,valid
+066,Loški Potok,2019,1798,valid
+066,Loški Potok,2020,1789,valid
+066,Loški Potok,2021,1816,valid
+066,Loški Potok,2022,1807,valid
+066,Loški Potok,2023,1797,valid
+066,Loški Potok,2024,1803,valid
+067,Luče,2016,1495,valid
+067,Luče,2017,1490,valid
+067,Luče,2018,1472,valid
+067,Luče,2019,1462,valid
+067,Luče,2020,1448,valid
+067,Luče,2021,1454,valid
+067,Luče,2022,1455,valid
+067,Luče,2023,1437,valid
+067,Luče,2024,1421,valid
+068,Lukovica,2016,5731,valid
+068,Lukovica,2017,5761,valid
+068,Lukovica,2018,5799,valid
+068,Lukovica,2019,5838,valid
+068,Lukovica,2020,5890,valid
+068,Lukovica,2021,5888,valid
+068,Lukovica,2022,5978,valid
+068,Lukovica,2023,6020,valid
+068,Lukovica,2024,6131,valid
+069,Majšperk,2016,3986,valid
+069,Majšperk,2017,4016,valid
+069,Majšperk,2018,4021,valid
+069,Majšperk,2019,4042,valid
+069,Majšperk,2020,4056,valid
+069,Majšperk,2021,4060,valid
+069,Majšperk,2022,4026,valid
+069,Majšperk,2023,4002,valid
+069,Majšperk,2024,4011,valid
+070,Maribor,2016,111832,valid
+070,Maribor,2017,111079,valid
+070,Maribor,2018,110871,valid
+070,Maribor,2019,112065,valid
+070,Maribor,2020,112682,valid
+070,Maribor,2021,113778,valid
+070,Maribor,2022,113004,valid
+070,Maribor,2023,113000,valid
+070,Maribor,2024,113747,valid
+071,Medvode,2016,16032,valid
+071,Medvode,2017,16236,valid
+071,Medvode,2018,16362,valid
+071,Medvode,2019,16573,valid
+071,Medvode,2020,16829,valid
+071,Medvode,2021,16811,valid
+071,Medvode,2022,16792,valid
+071,Medvode,2023,17076,valid
+071,Medvode,2024,17213,valid
+072,Mengeš,2016,7708,valid
+072,Mengeš,2017,7752,valid
+072,Mengeš,2018,7917,valid
+072,Mengeš,2019,8117,valid
+072,Mengeš,2020,8279,valid
+072,Mengeš,2021,8411,valid
+072,Mengeš,2022,8487,valid
+072,Mengeš,2023,8592,valid
+072,Mengeš,2024,8654,valid
+073,Metlika,2016,8382,valid
+073,Metlika,2017,8325,valid
+073,Metlika,2018,8339,valid
+073,Metlika,2019,8375,valid
+073,Metlika,2020,8470,valid
+073,Metlika,2021,8480,valid
+073,Metlika,2022,8452,valid
+073,Metlika,2023,8465,valid
+073,Metlika,2024,8439,valid
+074,Mežica,2016,3599,valid
+074,Mežica,2017,3573,valid
+074,Mežica,2018,3541,valid
+074,Mežica,2019,3565,valid
+074,Mežica,2020,3595,valid
+074,Mežica,2021,3598,valid
+074,Mežica,2022,3567,valid
+074,Mežica,2023,3564,valid
+074,Mežica,2024,3554,valid
+075,Miren-Kostanjevica,2016,4825,valid
+075,Miren-Kostanjevica,2017,4838,valid
+075,Miren-Kostanjevica,2018,4858,valid
+075,Miren-Kostanjevica,2019,4949,valid
+075,Miren-Kostanjevica,2020,4977,valid
+075,Miren-Kostanjevica,2021,5029,valid
+075,Miren-Kostanjevica,2022,5072,valid
+075,Miren-Kostanjevica,2023,5100,valid
+075,Miren-Kostanjevica,2024,5058,valid
+076,Mislinja,2016,4577,valid
+076,Mislinja,2017,4561,valid
+076,Mislinja,2018,4557,valid
+076,Mislinja,2019,4544,valid
+076,Mislinja,2020,4566,valid
+076,Mislinja,2021,4520,valid
+076,Mislinja,2022,4532,valid
+076,Mislinja,2023,4535,valid
+076,Mislinja,2024,4571,valid
+077,Moravče,2016,5271,valid
+077,Moravče,2017,5309,valid
+077,Moravče,2018,5328,valid
+077,Moravče,2019,5414,valid
+077,Moravče,2020,5449,valid
+077,Moravče,2021,5469,valid
+077,Moravče,2022,5522,valid
+077,Moravče,2023,5569,valid
+077,Moravče,2024,5651,valid
+078,Moravske Toplice,2016,5847,valid
+078,Moravske Toplice,2017,5831,valid
+078,Moravske Toplice,2018,5826,valid
+078,Moravske Toplice,2019,5812,valid
+078,Moravske Toplice,2020,5837,valid
+078,Moravske Toplice,2021,5958,valid
+078,Moravske Toplice,2022,5990,valid
+078,Moravske Toplice,2023,5971,valid
+078,Moravske Toplice,2024,5964,valid
+079,Mozirje,2016,4056,valid
+079,Mozirje,2017,4038,valid
+079,Mozirje,2018,4092,valid
+079,Mozirje,2019,4106,valid
+079,Mozirje,2020,4150,valid
+079,Mozirje,2021,4244,valid
+079,Mozirje,2022,4401,valid
+079,Mozirje,2023,4489,valid
+079,Mozirje,2024,4532,valid
+080,Murska Sobota,2016,18924,valid
+080,Murska Sobota,2017,18870,valid
+080,Murska Sobota,2018,18734,valid
+080,Murska Sobota,2019,18730,valid
+080,Murska Sobota,2020,18758,valid
+080,Murska Sobota,2021,18622,valid
+080,Murska Sobota,2022,18543,valid
+080,Murska Sobota,2023,18651,valid
+080,Murska Sobota,2024,18577,valid
+081,Muta,2016,3364,valid
+081,Muta,2017,3389,valid
+081,Muta,2018,3382,valid
+081,Muta,2019,3383,valid
+081,Muta,2020,3414,valid
+081,Muta,2021,3417,valid
+081,Muta,2022,3402,valid
+081,Muta,2023,3394,valid
+081,Muta,2024,3358,valid
+082,Naklo,2016,5283,valid
+082,Naklo,2017,5350,valid
+082,Naklo,2018,5377,valid
+082,Naklo,2019,5422,valid
+082,Naklo,2020,5384,valid
+082,Naklo,2021,5431,valid
+082,Naklo,2022,5380,valid
+082,Naklo,2023,5495,valid
+082,Naklo,2024,5471,valid
+083,Nazarje,2016,2582,valid
+083,Nazarje,2017,2582,valid
+083,Nazarje,2018,2588,valid
+083,Nazarje,2019,2623,valid
+083,Nazarje,2020,2639,valid
+083,Nazarje,2021,2611,valid
+083,Nazarje,2022,2682,valid
+083,Nazarje,2023,2673,valid
+083,Nazarje,2024,2691,valid
+084,Nova Gorica,2016,31798,valid
+084,Nova Gorica,2017,31825,valid
+084,Nova Gorica,2018,31638,valid
+084,Nova Gorica,2019,31799,valid
+084,Nova Gorica,2020,31884,valid
+084,Nova Gorica,2021,31845,valid
+084,Nova Gorica,2022,31824,valid
+084,Nova Gorica,2023,32034,valid
+084,Nova Gorica,2024,31956,valid
+085,Novo mesto,2016,36503,valid
+085,Novo mesto,2017,36433,valid
+085,Novo mesto,2018,36533,valid
+085,Novo mesto,2019,37063,valid
+085,Novo mesto,2020,37587,valid
+085,Novo mesto,2021,37398,valid
+085,Novo mesto,2022,37615,valid
+085,Novo mesto,2023,38075,valid
+085,Novo mesto,2024,38348,valid
+086,Odranci,2016,1637,valid
+086,Odranci,2017,1631,valid
+086,Odranci,2018,1621,valid
+086,Odranci,2019,1641,valid
+086,Odranci,2020,1632,valid
+086,Odranci,2021,1619,valid
+086,Odranci,2022,1595,valid
+086,Odranci,2023,1606,valid
+086,Odranci,2024,1592,valid
+087,Ormož,2016,12316,valid
+087,Ormož,2017,12213,valid
+087,Ormož,2018,12112,valid
+087,Ormož,2019,11942,valid
+087,Ormož,2020,11906,valid
+087,Ormož,2021,11886,valid
+087,Ormož,2022,11890,valid
+087,Ormož,2023,11912,valid
+087,Ormož,2024,11813,valid
+088,Osilnica,2016,372,valid
+088,Osilnica,2017,377,valid
+088,Osilnica,2018,370,valid
+088,Osilnica,2019,369,valid
+088,Osilnica,2020,353,valid
+088,Osilnica,2021,327,valid
+088,Osilnica,2022,321,valid
+088,Osilnica,2023,339,valid
+088,Osilnica,2024,331,valid
+089,Pesnica,2016,7391,valid
+089,Pesnica,2017,7365,valid
+089,Pesnica,2018,7369,valid
+089,Pesnica,2019,7331,valid
+089,Pesnica,2020,7410,valid
+089,Pesnica,2021,7508,valid
+089,Pesnica,2022,7576,valid
+089,Pesnica,2023,7608,valid
+089,Pesnica,2024,7709,valid
+090,Piran,2016,17829,valid
+090,Piran,2017,17782,valid
+090,Piran,2018,17643,valid
+090,Piran,2019,17671,valid
+090,Piran,2020,17676,valid
+090,Piran,2021,18457,valid
+090,Piran,2022,18432,valid
+090,Piran,2023,18253,valid
+090,Piran,2024,18119,valid
+091,Pivka,2016,6064,valid
+091,Pivka,2017,6073,valid
+091,Pivka,2018,6044,valid
+091,Pivka,2019,6162,valid
+091,Pivka,2020,6201,valid
+091,Pivka,2021,6190,valid
+091,Pivka,2022,6230,valid
+091,Pivka,2023,6226,valid
+091,Pivka,2024,6162,valid
+092,Podčetrtek,2016,3325,valid
+092,Podčetrtek,2017,3353,valid
+092,Podčetrtek,2018,3353,valid
+092,Podčetrtek,2019,3430,valid
+092,Podčetrtek,2020,3446,valid
+092,Podčetrtek,2021,3614,valid
+092,Podčetrtek,2022,3657,valid
+092,Podčetrtek,2023,3597,valid
+092,Podčetrtek,2024,3618,valid
+093,Podvelka,2016,2371,valid
+093,Podvelka,2017,2365,valid
+093,Podvelka,2018,2358,valid
+093,Podvelka,2019,2355,valid
+093,Podvelka,2020,2339,valid
+093,Podvelka,2021,2365,valid
+093,Podvelka,2022,2337,valid
+093,Podvelka,2023,2310,valid
+093,Podvelka,2024,2258,valid
+094,Postojna,2016,16068,valid
+094,Postojna,2017,16176,valid
+094,Postojna,2018,16207,valid
+094,Postojna,2019,16189,valid
+094,Postojna,2020,16442,valid
+094,Postojna,2021,16675,valid
+094,Postojna,2022,16753,valid
+094,Postojna,2023,17264,valid
+094,Postojna,2024,17672,valid
+095,Preddvor,2016,3582,valid
+095,Preddvor,2017,3597,valid
+095,Preddvor,2018,3619,valid
+095,Preddvor,2019,3688,valid
+095,Preddvor,2020,3714,valid
+095,Preddvor,2021,3780,valid
+095,Preddvor,2022,3811,valid
+095,Preddvor,2023,3870,valid
+095,Preddvor,2024,3865,valid
+096,Ptuj,2016,23129,valid
+096,Ptuj,2017,23117,valid
+096,Ptuj,2018,23162,valid
+096,Ptuj,2019,23257,valid
+096,Ptuj,2020,23530,valid
+096,Ptuj,2021,23611,valid
+096,Ptuj,2022,23509,valid
+096,Ptuj,2023,23525,valid
+096,Ptuj,2024,23872,valid
+097,Puconci,2016,5990,valid
+097,Puconci,2017,5948,valid
+097,Puconci,2018,5938,valid
+097,Puconci,2019,5881,valid
+097,Puconci,2020,5873,valid
+097,Puconci,2021,5904,valid
+097,Puconci,2022,5871,valid
+097,Puconci,2023,5890,valid
+097,Puconci,2024,5882,valid
+098,Rače-Fram,2016,7105,valid
+098,Rače-Fram,2017,7150,valid
+098,Rače-Fram,2018,7247,valid
+098,Rače-Fram,2019,7371,valid
+098,Rače-Fram,2020,7531,valid
+098,Rače-Fram,2021,7623,valid
+098,Rače-Fram,2022,7749,valid
+098,Rače-Fram,2023,7959,valid
+098,Rače-Fram,2024,8036,valid
+099,Radeče,2016,4279,valid
+099,Radeče,2017,4240,valid
+099,Radeče,2018,4211,valid
+099,Radeče,2019,4165,valid
+099,Radeče,2020,4139,valid
+099,Radeče,2021,4164,valid
+099,Radeče,2022,4146,valid
+099,Radeče,2023,4108,valid
+099,Radeče,2024,4114,valid
+100,Radenci,2016,5138,valid
+100,Radenci,2017,5160,valid
+100,Radenci,2018,5151,valid
+100,Radenci,2019,5108,valid
+100,Radenci,2020,5112,valid
+100,Radenci,2021,5098,valid
+100,Radenci,2022,5056,valid
+100,Radenci,2023,5202,valid
+100,Radenci,2024,5104,valid
+101,Radlje ob Dravi,2016,6215,valid
+101,Radlje ob Dravi,2017,6184,valid
+101,Radlje ob Dravi,2018,6191,valid
+101,Radlje ob Dravi,2019,6185,valid
+101,Radlje ob Dravi,2020,6169,valid
+101,Radlje ob Dravi,2021,6164,valid
+101,Radlje ob Dravi,2022,6181,valid
+101,Radlje ob Dravi,2023,6142,valid
+101,Radlje ob Dravi,2024,6180,valid
+102,Radovljica,2016,18816,valid
+102,Radovljica,2017,18822,valid
+102,Radovljica,2018,18872,valid
+102,Radovljica,2019,19025,valid
+102,Radovljica,2020,19072,valid
+102,Radovljica,2021,19195,valid
+102,Radovljica,2022,19325,valid
+102,Radovljica,2023,19315,valid
+102,Radovljica,2024,19406,valid
+103,Ravne na Koroškem,2016,11342,valid
+103,Ravne na Koroškem,2017,11302,valid
+103,Ravne na Koroškem,2018,11253,valid
+103,Ravne na Koroškem,2019,11294,valid
+103,Ravne na Koroškem,2020,11348,valid
+103,Ravne na Koroškem,2021,11289,valid
+103,Ravne na Koroškem,2022,11228,valid
+103,Ravne na Koroškem,2023,11199,valid
+103,Ravne na Koroškem,2024,11170,valid
+104,Ribnica,2016,9347,valid
+104,Ribnica,2017,9390,valid
+104,Ribnica,2018,9377,valid
+104,Ribnica,2019,9483,valid
+104,Ribnica,2020,9527,valid
+104,Ribnica,2021,9644,valid
+104,Ribnica,2022,9684,valid
+104,Ribnica,2023,9783,valid
+104,Ribnica,2024,9807,valid
+105,Rogašovci,2016,3111,valid
+105,Rogašovci,2017,3065,valid
+105,Rogašovci,2018,3084,valid
+105,Rogašovci,2019,3060,valid
+105,Rogašovci,2020,3024,valid
+105,Rogašovci,2021,3114,valid
+105,Rogašovci,2022,3125,valid
+105,Rogašovci,2023,3104,valid
+105,Rogašovci,2024,3076,valid
+106,Rogaška Slatina,2016,10958,valid
+106,Rogaška Slatina,2017,10994,valid
+106,Rogaška Slatina,2018,11002,valid
+106,Rogaška Slatina,2019,11057,valid
+106,Rogaška Slatina,2020,11132,valid
+106,Rogaška Slatina,2021,11323,valid
+106,Rogaška Slatina,2022,11438,valid
+106,Rogaška Slatina,2023,11614,valid
+106,Rogaška Slatina,2024,11594,valid
+107,Rogatec,2016,3093,valid
+107,Rogatec,2017,3051,valid
+107,Rogatec,2018,3042,valid
+107,Rogatec,2019,3060,valid
+107,Rogatec,2020,3106,valid
+107,Rogatec,2021,3138,valid
+107,Rogatec,2022,3055,valid
+107,Rogatec,2023,3034,valid
+107,Rogatec,2024,3049,valid
+108,Ruše,2016,7150,valid
+108,Ruše,2017,7075,valid
+108,Ruše,2018,7087,valid
+108,Ruše,2019,7070,valid
+108,Ruše,2020,7017,valid
+108,Ruše,2021,7055,valid
+108,Ruše,2022,7091,valid
+108,Ruše,2023,7127,valid
+108,Ruše,2024,7149,valid
+109,Semič,2016,3780,valid
+109,Semič,2017,3798,valid
+109,Semič,2018,3767,valid
+109,Semič,2019,3824,valid
+109,Semič,2020,3864,valid
+109,Semič,2021,3887,valid
+109,Semič,2022,3864,valid
+109,Semič,2023,3832,valid
+109,Semič,2024,3834,valid
+110,Sevnica,2016,17510,valid
+110,Sevnica,2017,17469,valid
+110,Sevnica,2018,17446,valid
+110,Sevnica,2019,17537,valid
+110,Sevnica,2020,17642,valid
+110,Sevnica,2021,17639,valid
+110,Sevnica,2022,17661,valid
+110,Sevnica,2023,17654,valid
+110,Sevnica,2024,17632,valid
+111,Sežana,2016,13160,valid
+111,Sežana,2017,13236,valid
+111,Sežana,2018,13276,valid
+111,Sežana,2019,13425,valid
+111,Sežana,2020,13551,valid
+111,Sežana,2021,13802,valid
+111,Sežana,2022,13842,valid
+111,Sežana,2023,13824,valid
+111,Sežana,2024,13839,valid
+112,Slovenj Gradec,2016,16720,valid
+112,Slovenj Gradec,2017,16621,valid
+112,Slovenj Gradec,2018,16525,valid
+112,Slovenj Gradec,2019,16596,valid
+112,Slovenj Gradec,2020,16591,valid
+112,Slovenj Gradec,2021,16595,valid
+112,Slovenj Gradec,2022,16716,valid
+112,Slovenj Gradec,2023,16955,valid
+112,Slovenj Gradec,2024,17062,valid
+113,Slovenska Bistrica,2016,25413,valid
+113,Slovenska Bistrica,2017,25468,valid
+113,Slovenska Bistrica,2018,25524,valid
+113,Slovenska Bistrica,2019,25599,valid
+113,Slovenska Bistrica,2020,25827,valid
+113,Slovenska Bistrica,2021,25949,valid
+113,Slovenska Bistrica,2022,26042,valid
+113,Slovenska Bistrica,2023,26206,valid
+113,Slovenska Bistrica,2024,26129,valid
+114,Slovenske Konjice,2016,14623,valid
+114,Slovenske Konjice,2017,14726,valid
+114,Slovenske Konjice,2018,14848,valid
+114,Slovenske Konjice,2019,14917,valid
+114,Slovenske Konjice,2020,15042,valid
+114,Slovenske Konjice,2021,15263,valid
+114,Slovenske Konjice,2022,15221,valid
+114,Slovenske Konjice,2023,15313,valid
+114,Slovenske Konjice,2024,15485,valid
+115,Starše,2016,4072,valid
+115,Starše,2017,4005,valid
+115,Starše,2018,3973,valid
+115,Starše,2019,3974,valid
+115,Starše,2020,4046,valid
+115,Starše,2021,4081,valid
+115,Starše,2022,4077,valid
+115,Starše,2023,4132,valid
+115,Starše,2024,4148,valid
+116,Sveti Jurij ob Ščavnici,2016,2863,valid
+116,Sveti Jurij ob Ščavnici,2017,2827,valid
+116,Sveti Jurij ob Ščavnici,2018,2830,valid
+116,Sveti Jurij ob Ščavnici,2019,2806,valid
+116,Sveti Jurij ob Ščavnici,2020,2782,valid
+116,Sveti Jurij ob Ščavnici,2021,2834,valid
+116,Sveti Jurij ob Ščavnici,2022,2855,valid
+116,Sveti Jurij ob Ščavnici,2023,2816,valid
+116,Sveti Jurij ob Ščavnici,2024,2790,valid
+117,Šenčur,2016,8580,valid
+117,Šenčur,2017,8557,valid
+117,Šenčur,2018,8592,valid
+117,Šenčur,2019,8650,valid
+117,Šenčur,2020,8814,valid
+117,Šenčur,2021,8829,valid
+117,Šenčur,2022,8893,valid
+117,Šenčur,2023,8939,valid
+117,Šenčur,2024,8786,valid
+118,Šentilj,2016,8339,valid
+118,Šentilj,2017,8371,valid
+118,Šentilj,2018,8521,valid
+118,Šentilj,2019,8438,valid
+118,Šentilj,2020,8351,valid
+118,Šentilj,2021,8375,valid
+118,Šentilj,2022,8367,valid
+118,Šentilj,2023,8403,valid
+118,Šentilj,2024,8475,valid
+119,Šentjernej,2016,6993,valid
+119,Šentjernej,2017,7094,valid
+119,Šentjernej,2018,7062,valid
+119,Šentjernej,2019,7125,valid
+119,Šentjernej,2020,7199,valid
+119,Šentjernej,2021,7225,valid
+119,Šentjernej,2022,7247,valid
+119,Šentjernej,2023,7356,valid
+119,Šentjernej,2024,7418,valid
+120,Šentjur,2016,18990,valid
+120,Šentjur,2017,19001,valid
+120,Šentjur,2018,18971,valid
+120,Šentjur,2019,19084,valid
+120,Šentjur,2020,19225,valid
+120,Šentjur,2021,19378,valid
+120,Šentjur,2022,19378,valid
+120,Šentjur,2023,19482,valid
+120,Šentjur,2024,19579,valid
+121,Škocjan,2016,3236,valid
+121,Škocjan,2017,3267,valid
+121,Škocjan,2018,3261,valid
+121,Škocjan,2019,3290,valid
+121,Škocjan,2020,3352,valid
+121,Škocjan,2021,3429,valid
+121,Škocjan,2022,3419,valid
+121,Škocjan,2023,3423,valid
+121,Škocjan,2024,3478,valid
+122,Škofja Loka,2016,22927,valid
+122,Škofja Loka,2017,22935,valid
+122,Škofja Loka,2018,22919,valid
+122,Škofja Loka,2019,23076,valid
+122,Škofja Loka,2020,23297,valid
+122,Škofja Loka,2021,23462,valid
+122,Škofja Loka,2022,23622,valid
+122,Škofja Loka,2023,23779,valid
+122,Škofja Loka,2024,23901,valid
+123,Škofljica,2016,10618,valid
+123,Škofljica,2017,10917,valid
+123,Škofljica,2018,11098,valid
+123,Škofljica,2019,11180,valid
+123,Škofljica,2020,11577,valid
+123,Škofljica,2021,11657,valid
+123,Škofljica,2022,11666,valid
+123,Škofljica,2023,11897,valid
+123,Škofljica,2024,12017,valid
+124,Šmarje pri Jelšah,2016,10260,valid
+124,Šmarje pri Jelšah,2017,10253,valid
+124,Šmarje pri Jelšah,2018,10227,valid
+124,Šmarje pri Jelšah,2019,10256,valid
+124,Šmarje pri Jelšah,2020,10271,valid
+124,Šmarje pri Jelšah,2021,10375,valid
+124,Šmarje pri Jelšah,2022,10361,valid
+124,Šmarje pri Jelšah,2023,10505,valid
+124,Šmarje pri Jelšah,2024,10573,valid
+125,Šmartno ob Paki,2016,3240,valid
+125,Šmartno ob Paki,2017,3203,valid
+125,Šmartno ob Paki,2018,3224,valid
+125,Šmartno ob Paki,2019,3261,valid
+125,Šmartno ob Paki,2020,3265,valid
+125,Šmartno ob Paki,2021,3278,valid
+125,Šmartno ob Paki,2022,3324,valid
+125,Šmartno ob Paki,2023,3369,valid
+125,Šmartno ob Paki,2024,3379,valid
+126,Šoštanj,2016,8705,valid
+126,Šoštanj,2017,8641,valid
+126,Šoštanj,2018,8667,valid
+126,Šoštanj,2019,8701,valid
+126,Šoštanj,2020,8784,valid
+126,Šoštanj,2021,8847,valid
+126,Šoštanj,2022,8822,valid
+126,Šoštanj,2023,9064,valid
+126,Šoštanj,2024,9132,valid
+127,Štore,2016,4239,valid
+127,Štore,2017,4242,valid
+127,Štore,2018,4257,valid
+127,Štore,2019,4616,valid
+127,Štore,2020,4529,valid
+127,Štore,2021,4477,valid
+127,Štore,2022,4396,valid
+127,Štore,2023,4466,valid
+127,Štore,2024,4452,valid
+128,Tolmin,2016,11281,valid
+128,Tolmin,2017,11211,valid
+128,Tolmin,2018,11147,valid
+128,Tolmin,2019,11073,valid
+128,Tolmin,2020,11003,valid
+128,Tolmin,2021,11018,valid
+128,Tolmin,2022,10953,valid
+128,Tolmin,2023,10899,valid
+128,Tolmin,2024,10838,valid
+129,Trbovlje,2016,16339,valid
+129,Trbovlje,2017,16221,valid
+129,Trbovlje,2018,16052,valid
+129,Trbovlje,2019,16018,valid
+129,Trbovlje,2020,16105,valid
+129,Trbovlje,2021,16024,valid
+129,Trbovlje,2022,15893,valid
+129,Trbovlje,2023,15958,valid
+129,Trbovlje,2024,16000,valid
+130,Trebnje,2016,12354,valid
+130,Trebnje,2017,12522,valid
+130,Trebnje,2018,12662,valid
+130,Trebnje,2019,12903,valid
+130,Trebnje,2020,13133,valid
+130,Trebnje,2021,13310,valid
+130,Trebnje,2022,13413,valid
+130,Trebnje,2023,13477,valid
+130,Trebnje,2024,13574,valid
+131,Tržič,2016,14872,valid
+131,Tržič,2017,14870,valid
+131,Tržič,2018,14766,valid
+131,Tržič,2019,14880,valid
+131,Tržič,2020,14961,valid
+131,Tržič,2021,15054,valid
+131,Tržič,2022,15011,valid
+131,Tržič,2023,15058,valid
+131,Tržič,2024,15120,valid
+132,Turnišče,2016,3263,valid
+132,Turnišče,2017,3248,valid
+132,Turnišče,2018,3206,valid
+132,Turnišče,2019,3194,valid
+132,Turnišče,2020,3145,valid
+132,Turnišče,2021,3190,valid
+132,Turnišče,2022,3153,valid
+132,Turnišče,2023,3163,valid
+132,Turnišče,2024,3123,valid
+133,Velenje,2016,32747,valid
+133,Velenje,2017,32718,valid
+133,Velenje,2018,32802,valid
+133,Velenje,2019,33293,valid
+133,Velenje,2020,33656,valid
+133,Velenje,2021,33715,valid
+133,Velenje,2022,33548,valid
+133,Velenje,2023,33474,valid
+133,Velenje,2024,33775,valid
+134,Velike Lašče,2016,4264,valid
+134,Velike Lašče,2017,4303,valid
+134,Velike Lašče,2018,4303,valid
+134,Velike Lašče,2019,4351,valid
+134,Velike Lašče,2020,4410,valid
+134,Velike Lašče,2021,4520,valid
+134,Velike Lašče,2022,4584,valid
+134,Velike Lašče,2023,4520,valid
+134,Velike Lašče,2024,4537,valid
+135,Videm,2016,5481,valid
+135,Videm,2017,5523,valid
+135,Videm,2018,5538,valid
+135,Videm,2019,5568,valid
+135,Videm,2020,5625,valid
+135,Videm,2021,5684,valid
+135,Videm,2022,5601,valid
+135,Videm,2023,5614,valid
+135,Videm,2024,5598,valid
+136,Vipava,2016,5605,valid
+136,Vipava,2017,5615,valid
+136,Vipava,2018,5580,valid
+136,Vipava,2019,5600,valid
+136,Vipava,2020,5703,valid
+136,Vipava,2021,5767,valid
+136,Vipava,2022,5822,valid
+136,Vipava,2023,5867,valid
+136,Vipava,2024,5891,valid
+137,Vitanje,2016,2269,valid
+137,Vitanje,2017,2271,valid
+137,Vitanje,2018,2251,valid
+137,Vitanje,2019,2262,valid
+137,Vitanje,2020,2272,valid
+137,Vitanje,2021,2267,valid
+137,Vitanje,2022,2266,valid
+137,Vitanje,2023,2242,valid
+137,Vitanje,2024,2238,valid
+138,Vodice,2016,4804,valid
+138,Vodice,2017,4831,valid
+138,Vodice,2018,4861,valid
+138,Vodice,2019,4958,valid
+138,Vodice,2020,4985,valid
+138,Vodice,2021,4983,valid
+138,Vodice,2022,4974,valid
+138,Vodice,2023,5123,valid
+138,Vodice,2024,5201,valid
+139,Vojnik,2016,8685,valid
+139,Vojnik,2017,8725,valid
+139,Vojnik,2018,8732,valid
+139,Vojnik,2019,8801,valid
+139,Vojnik,2020,8907,valid
+139,Vojnik,2021,9009,valid
+139,Vojnik,2022,9063,valid
+139,Vojnik,2023,9146,valid
+139,Vojnik,2024,9219,valid
+140,Vrhnika,2016,16848,valid
+140,Vrhnika,2017,16907,valid
+140,Vrhnika,2018,16978,valid
+140,Vrhnika,2019,17272,valid
+140,Vrhnika,2020,17529,valid
+140,Vrhnika,2021,17613,valid
+140,Vrhnika,2022,17684,valid
+140,Vrhnika,2023,17923,valid
+140,Vrhnika,2024,18151,valid
+141,Vuzenica,2016,2687,valid
+141,Vuzenica,2017,2670,valid
+141,Vuzenica,2018,2685,valid
+141,Vuzenica,2019,2658,valid
+141,Vuzenica,2020,2649,valid
+141,Vuzenica,2021,2649,valid
+141,Vuzenica,2022,2652,valid
+141,Vuzenica,2023,2667,valid
+141,Vuzenica,2024,2641,valid
+142,Zagorje ob Savi,2016,16650,valid
+142,Zagorje ob Savi,2017,16575,valid
+142,Zagorje ob Savi,2018,16504,valid
+142,Zagorje ob Savi,2019,16434,valid
+142,Zagorje ob Savi,2020,16439,valid
+142,Zagorje ob Savi,2021,16379,valid
+142,Zagorje ob Savi,2022,16307,valid
+142,Zagorje ob Savi,2023,16413,valid
+142,Zagorje ob Savi,2024,16470,valid
+143,Zavrč,2016,1722,valid
+143,Zavrč,2017,1819,valid
+143,Zavrč,2018,1768,valid
+143,Zavrč,2019,1525,valid
+143,Zavrč,2020,1479,valid
+143,Zavrč,2021,1527,valid
+143,Zavrč,2022,1506,valid
+143,Zavrč,2023,1484,valid
+143,Zavrč,2024,1478,valid
+144,Zreče,2016,6395,valid
+144,Zreče,2017,6409,valid
+144,Zreče,2018,6402,valid
+144,Zreče,2019,6443,valid
+144,Zreče,2020,6550,valid
+144,Zreče,2021,6600,valid
+144,Zreče,2022,6576,valid
+144,Zreče,2023,6645,valid
+144,Zreče,2024,6653,valid
+146,Železniki,2016,6705,valid
+146,Železniki,2017,6675,valid
+146,Železniki,2018,6709,valid
+146,Železniki,2019,6689,valid
+146,Železniki,2020,6720,valid
+146,Železniki,2021,6699,valid
+146,Železniki,2022,6685,valid
+146,Železniki,2023,6643,valid
+146,Železniki,2024,6672,valid
+147,Žiri,2016,4870,valid
+147,Žiri,2017,4841,valid
+147,Žiri,2018,4871,valid
+147,Žiri,2019,4876,valid
+147,Žiri,2020,4933,valid
+147,Žiri,2021,4981,valid
+147,Žiri,2022,4990,valid
+147,Žiri,2023,5055,valid
+147,Žiri,2024,5047,valid
+148,Benedikt,2016,2491,valid
+148,Benedikt,2017,2486,valid
+148,Benedikt,2018,2514,valid
+148,Benedikt,2019,2577,valid
+148,Benedikt,2020,2615,valid
+148,Benedikt,2021,2614,valid
+148,Benedikt,2022,2684,valid
+148,Benedikt,2023,2735,valid
+148,Benedikt,2024,2728,valid
+149,Bistrica ob Sotli,2016,1365,valid
+149,Bistrica ob Sotli,2017,1353,valid
+149,Bistrica ob Sotli,2018,1346,valid
+149,Bistrica ob Sotli,2019,1327,valid
+149,Bistrica ob Sotli,2020,1336,valid
+149,Bistrica ob Sotli,2021,1356,valid
+149,Bistrica ob Sotli,2022,1361,valid
+149,Bistrica ob Sotli,2023,1354,valid
+149,Bistrica ob Sotli,2024,1348,valid
+150,Bloke,2016,1538,valid
+150,Bloke,2017,1522,valid
+150,Bloke,2018,1532,valid
+150,Bloke,2019,1555,valid
+150,Bloke,2020,1564,valid
+150,Bloke,2021,1616,valid
+150,Bloke,2022,1610,valid
+150,Bloke,2023,1564,valid
+150,Bloke,2024,1566,valid
+151,Braslovče,2016,5473,valid
+151,Braslovče,2017,5556,valid
+151,Braslovče,2018,5524,valid
+151,Braslovče,2019,5523,valid
+151,Braslovče,2020,5639,valid
+151,Braslovče,2021,5656,valid
+151,Braslovče,2022,5681,valid
+151,Braslovče,2023,5723,valid
+151,Braslovče,2024,5819,valid
+152,Cankova,2016,1814,valid
+152,Cankova,2017,1794,valid
+152,Cankova,2018,1755,valid
+152,Cankova,2019,1735,valid
+152,Cankova,2020,1734,valid
+152,Cankova,2021,1753,valid
+152,Cankova,2022,1740,valid
+152,Cankova,2023,1765,valid
+152,Cankova,2024,1769,valid
+153,Cerkvenjak,2016,2044,valid
+153,Cerkvenjak,2017,2074,valid
+153,Cerkvenjak,2018,2037,valid
+153,Cerkvenjak,2019,2058,valid
+153,Cerkvenjak,2020,2083,valid
+153,Cerkvenjak,2021,2171,valid
+153,Cerkvenjak,2022,2179,valid
+153,Cerkvenjak,2023,2216,valid
+153,Cerkvenjak,2024,2247,valid
+154,Dobje,2016,981,valid
+154,Dobje,2017,977,valid
+154,Dobje,2018,965,valid
+154,Dobje,2019,966,valid
+154,Dobje,2020,949,valid
+154,Dobje,2021,934,valid
+154,Dobje,2022,942,valid
+154,Dobje,2023,969,valid
+154,Dobje,2024,970,valid
+155,Dobrna,2016,2192,valid
+155,Dobrna,2017,2226,valid
+155,Dobrna,2018,2208,valid
+155,Dobrna,2019,2226,valid
+155,Dobrna,2020,2234,valid
+155,Dobrna,2021,2250,valid
+155,Dobrna,2022,2277,valid
+155,Dobrna,2023,2297,valid
+155,Dobrna,2024,2313,valid
+156,Dobrovnik,2016,1277,valid
+156,Dobrovnik,2017,1274,valid
+156,Dobrovnik,2018,1291,valid
+156,Dobrovnik,2019,1284,valid
+156,Dobrovnik,2020,1284,valid
+156,Dobrovnik,2021,1293,valid
+156,Dobrovnik,2022,1263,valid
+156,Dobrovnik,2023,1254,valid
+156,Dobrovnik,2024,1258,valid
+157,Dolenjske Toplice,2016,3407,valid
+157,Dolenjske Toplice,2017,3447,valid
+157,Dolenjske Toplice,2018,3436,valid
+157,Dolenjske Toplice,2019,3489,valid
+157,Dolenjske Toplice,2020,3553,valid
+157,Dolenjske Toplice,2021,3593,valid
+157,Dolenjske Toplice,2022,3589,valid
+157,Dolenjske Toplice,2023,3611,valid
+157,Dolenjske Toplice,2024,3618,valid
+158,Grad,2016,2166,valid
+158,Grad,2017,2110,valid
+158,Grad,2018,2105,valid
+158,Grad,2019,2076,valid
+158,Grad,2020,2042,valid
+158,Grad,2021,2087,valid
+158,Grad,2022,2063,valid
+158,Grad,2023,2005,valid
+158,Grad,2024,1985,valid
+159,Hajdina,2016,3712,valid
+159,Hajdina,2017,3747,valid
+159,Hajdina,2018,3745,valid
+159,Hajdina,2019,3797,valid
+159,Hajdina,2020,3879,valid
+159,Hajdina,2021,3938,valid
+159,Hajdina,2022,3873,valid
+159,Hajdina,2023,3897,valid
+159,Hajdina,2024,4001,valid
+160,Hoče-Slivnica,2016,11273,valid
+160,Hoče-Slivnica,2017,11285,valid
+160,Hoče-Slivnica,2018,11415,valid
+160,Hoče-Slivnica,2019,11768,valid
+160,Hoče-Slivnica,2020,11753,valid
+160,Hoče-Slivnica,2021,11720,valid
+160,Hoče-Slivnica,2022,11723,valid
+160,Hoče-Slivnica,2023,11885,valid
+160,Hoče-Slivnica,2024,11981,valid
+161,Hodoš,2016,375,valid
+161,Hodoš,2017,367,valid
+161,Hodoš,2018,362,valid
+161,Hodoš,2019,354,valid
+161,Hodoš,2020,353,valid
+161,Hodoš,2021,369,valid
+161,Hodoš,2022,362,valid
+161,Hodoš,2023,357,valid
+161,Hodoš,2024,346,valid
+162,Horjul,2016,2970,valid
+162,Horjul,2017,2980,valid
+162,Horjul,2018,3017,valid
+162,Horjul,2019,3016,valid
+162,Horjul,2020,3024,valid
+162,Horjul,2021,2985,valid
+162,Horjul,2022,3006,valid
+162,Horjul,2023,3024,valid
+162,Horjul,2024,3044,valid
+163,Jezersko,2016,624,valid
+163,Jezersko,2017,625,valid
+163,Jezersko,2018,629,valid
+163,Jezersko,2019,634,valid
+163,Jezersko,2020,625,valid
+163,Jezersko,2021,666,valid
+163,Jezersko,2022,667,valid
+163,Jezersko,2023,671,valid
+163,Jezersko,2024,662,valid
+164,Komenda,2016,6001,valid
+164,Komenda,2017,6108,valid
+164,Komenda,2018,6192,valid
+164,Komenda,2019,6268,valid
+164,Komenda,2020,6387,valid
+164,Komenda,2021,6444,valid
+164,Komenda,2022,6482,valid
+164,Komenda,2023,6643,valid
+164,Komenda,2024,6739,valid
+165,Kostel,2016,641,valid
+165,Kostel,2017,640,valid
+165,Kostel,2018,637,valid
+165,Kostel,2019,639,valid
+165,Kostel,2020,635,valid
+165,Kostel,2021,691,valid
+165,Kostel,2022,678,valid
+165,Kostel,2023,621,valid
+165,Kostel,2024,624,valid
+166,Križevci,2016,3618,valid
+166,Križevci,2017,3613,valid
+166,Križevci,2018,3568,valid
+166,Križevci,2019,3560,valid
+166,Križevci,2020,3537,valid
+166,Križevci,2021,3549,valid
+166,Križevci,2022,3536,valid
+166,Križevci,2023,3564,valid
+166,Križevci,2024,3536,valid
+167,Lovrenc na Pohorju,2016,3088,valid
+167,Lovrenc na Pohorju,2017,3055,valid
+167,Lovrenc na Pohorju,2018,3014,valid
+167,Lovrenc na Pohorju,2019,2979,valid
+167,Lovrenc na Pohorju,2020,2963,valid
+167,Lovrenc na Pohorju,2021,2988,valid
+167,Lovrenc na Pohorju,2022,2958,valid
+167,Lovrenc na Pohorju,2023,2944,valid
+167,Lovrenc na Pohorju,2024,2951,valid
+168,Markovci,2016,4011,valid
+168,Markovci,2017,4012,valid
+168,Markovci,2018,3999,valid
+168,Markovci,2019,4014,valid
+168,Markovci,2020,4039,valid
+168,Markovci,2021,4025,valid
+168,Markovci,2022,4022,valid
+168,Markovci,2023,4102,valid
+168,Markovci,2024,4090,valid
+169,Miklavž na Dravskem polju,2016,6525,valid
+169,Miklavž na Dravskem polju,2017,6566,valid
+169,Miklavž na Dravskem polju,2018,6553,valid
+169,Miklavž na Dravskem polju,2019,6744,valid
+169,Miklavž na Dravskem polju,2020,6929,valid
+169,Miklavž na Dravskem polju,2021,6996,valid
+169,Miklavž na Dravskem polju,2022,7045,valid
+169,Miklavž na Dravskem polju,2023,7147,valid
+169,Miklavž na Dravskem polju,2024,7189,valid
+170,Mirna Peč,2016,2911,valid
+170,Mirna Peč,2017,2933,valid
+170,Mirna Peč,2018,2962,valid
+170,Mirna Peč,2019,2974,valid
+170,Mirna Peč,2020,2988,valid
+170,Mirna Peč,2021,3034,valid
+170,Mirna Peč,2022,3077,valid
+170,Mirna Peč,2023,3130,valid
+170,Mirna Peč,2024,3192,valid
+171,Oplotnica,2016,4076,valid
+171,Oplotnica,2017,4099,valid
+171,Oplotnica,2018,4100,valid
+171,Oplotnica,2019,4118,valid
+171,Oplotnica,2020,4137,valid
+171,Oplotnica,2021,4154,valid
+171,Oplotnica,2022,4131,valid
+171,Oplotnica,2023,4146,valid
+171,Oplotnica,2024,4176,valid
+172,Podlehnik,2016,1818,valid
+172,Podlehnik,2017,1880,valid
+172,Podlehnik,2018,1865,valid
+172,Podlehnik,2019,1817,valid
+172,Podlehnik,2020,1801,valid
+172,Podlehnik,2021,1853,valid
+172,Podlehnik,2022,1844,valid
+172,Podlehnik,2023,1819,valid
+172,Podlehnik,2024,1831,valid
+173,Polzela,2016,6135,valid
+173,Polzela,2017,6176,valid
+173,Polzela,2018,6172,valid
+173,Polzela,2019,6191,valid
+173,Polzela,2020,6258,valid
+173,Polzela,2021,6321,valid
+173,Polzela,2022,6386,valid
+173,Polzela,2023,6410,valid
+173,Polzela,2024,6469,valid
+174,Prebold,2016,5007,valid
+174,Prebold,2017,5067,valid
+174,Prebold,2018,5068,valid
+174,Prebold,2019,5084,valid
+174,Prebold,2020,5103,valid
+174,Prebold,2021,5210,valid
+174,Prebold,2022,5302,valid
+174,Prebold,2023,5343,valid
+174,Prebold,2024,5329,valid
+175,Prevalje,2016,6763,valid
+175,Prevalje,2017,6753,valid
+175,Prevalje,2018,6797,valid
+175,Prevalje,2019,6794,valid
+175,Prevalje,2020,6799,valid
+175,Prevalje,2021,6800,valid
+175,Prevalje,2022,6732,valid
+175,Prevalje,2023,6798,valid
+175,Prevalje,2024,6737,valid
+176,Razkrižje,2016,1278,valid
+176,Razkrižje,2017,1289,valid
+176,Razkrižje,2018,1268,valid
+176,Razkrižje,2019,1265,valid
+176,Razkrižje,2020,1277,valid
+176,Razkrižje,2021,1265,valid
+176,Razkrižje,2022,1237,valid
+176,Razkrižje,2023,1233,valid
+176,Razkrižje,2024,1232,valid
+177,Ribnica na Pohorju,2016,1180,valid
+177,Ribnica na Pohorju,2017,1179,valid
+177,Ribnica na Pohorju,2018,1148,valid
+177,Ribnica na Pohorju,2019,1128,valid
+177,Ribnica na Pohorju,2020,1116,valid
+177,Ribnica na Pohorju,2021,1142,valid
+177,Ribnica na Pohorju,2022,1141,valid
+177,Ribnica na Pohorju,2023,1099,valid
+177,Ribnica na Pohorju,2024,1085,valid
+178,Selnica ob Dravi,2016,4522,valid
+178,Selnica ob Dravi,2017,4470,valid
+178,Selnica ob Dravi,2018,4480,valid
+178,Selnica ob Dravi,2019,4494,valid
+178,Selnica ob Dravi,2020,4493,valid
+178,Selnica ob Dravi,2021,4562,valid
+178,Selnica ob Dravi,2022,4513,valid
+178,Selnica ob Dravi,2023,4473,valid
+178,Selnica ob Dravi,2024,4469,valid
+179,Sodražica,2016,2186,valid
+179,Sodražica,2017,2184,valid
+179,Sodražica,2018,2171,valid
+179,Sodražica,2019,2177,valid
+179,Sodražica,2020,2185,valid
+179,Sodražica,2021,2249,valid
+179,Sodražica,2022,2269,valid
+179,Sodražica,2023,2284,valid
+179,Sodražica,2024,2308,valid
+180,Solčava,2016,514,valid
+180,Solčava,2017,521,valid
+180,Solčava,2018,513,valid
+180,Solčava,2019,514,valid
+180,Solčava,2020,513,valid
+180,Solčava,2021,529,valid
+180,Solčava,2022,524,valid
+180,Solčava,2023,511,valid
+180,Solčava,2024,514,valid
+181,Sveta Ana,2016,2319,valid
+181,Sveta Ana,2017,2309,valid
+181,Sveta Ana,2018,2286,valid
+181,Sveta Ana,2019,2285,valid
+181,Sveta Ana,2020,2294,valid
+181,Sveta Ana,2021,2323,valid
+181,Sveta Ana,2022,2326,valid
+181,Sveta Ana,2023,2326,valid
+181,Sveta Ana,2024,2360,valid
+182,Sveti Andraž v Slov. goricah,2016,1160,valid
+182,Sveti Andraž v Slov. goricah,2017,1143,valid
+182,Sveti Andraž v Slov. goricah,2018,1157,valid
+182,Sveti Andraž v Slov. goricah,2019,1180,valid
+182,Sveti Andraž v Slov. goricah,2020,1180,valid
+182,Sveti Andraž v Slov. goricah,2021,1203,valid
+182,Sveti Andraž v Slov. goricah,2022,1201,valid
+182,Sveti Andraž v Slov. goricah,2023,1193,valid
+182,Sveti Andraž v Slov. goricah,2024,1196,valid
+183,Šempeter-Vrtojba,2016,6279,valid
+183,Šempeter-Vrtojba,2017,6244,valid
+183,Šempeter-Vrtojba,2018,6168,valid
+183,Šempeter-Vrtojba,2019,6234,valid
+183,Šempeter-Vrtojba,2020,6292,valid
+183,Šempeter-Vrtojba,2021,6292,valid
+183,Šempeter-Vrtojba,2022,6164,valid
+183,Šempeter-Vrtojba,2023,6175,valid
+183,Šempeter-Vrtojba,2024,6267,valid
+184,Tabor,2016,1645,valid
+184,Tabor,2017,1647,valid
+184,Tabor,2018,1668,valid
+184,Tabor,2019,1645,valid
+184,Tabor,2020,1669,valid
+184,Tabor,2021,1670,valid
+184,Tabor,2022,1693,valid
+184,Tabor,2023,1735,valid
+184,Tabor,2024,1750,valid
+185,Trnovska vas,2016,1341,valid
+185,Trnovska vas,2017,1371,valid
+185,Trnovska vas,2018,1365,valid
+185,Trnovska vas,2019,1359,valid
+185,Trnovska vas,2020,1366,valid
+185,Trnovska vas,2021,1374,valid
+185,Trnovska vas,2022,1385,valid
+185,Trnovska vas,2023,1404,valid
+185,Trnovska vas,2024,1398,valid
+186,Trzin,2016,3889,valid
+186,Trzin,2017,3881,valid
+186,Trzin,2018,3869,valid
+186,Trzin,2019,3922,valid
+186,Trzin,2020,3940,valid
+186,Trzin,2021,3925,valid
+186,Trzin,2022,3900,valid
+186,Trzin,2023,3956,valid
+186,Trzin,2024,4073,valid
+187,Velika Polana,2016,1449,valid
+187,Velika Polana,2017,1443,valid
+187,Velika Polana,2018,1439,valid
+187,Velika Polana,2019,1416,valid
+187,Velika Polana,2020,1392,valid
+187,Velika Polana,2021,1380,valid
+187,Velika Polana,2022,1387,valid
+187,Velika Polana,2023,1393,valid
+187,Velika Polana,2024,1394,valid
+188,Veržej,2016,1299,valid
+188,Veržej,2017,1315,valid
+188,Veržej,2018,1291,valid
+188,Veržej,2019,1288,valid
+188,Veržej,2020,1325,valid
+188,Veržej,2021,1344,valid
+188,Veržej,2022,1371,valid
+188,Veržej,2023,1368,valid
+188,Veržej,2024,1358,valid
+189,Vransko,2016,2599,valid
+189,Vransko,2017,2604,valid
+189,Vransko,2018,2602,valid
+189,Vransko,2019,2616,valid
+189,Vransko,2020,2624,valid
+189,Vransko,2021,2646,valid
+189,Vransko,2022,2672,valid
+189,Vransko,2023,2683,valid
+189,Vransko,2024,2725,valid
+190,Žalec,2016,21306,valid
+190,Žalec,2017,21261,valid
+190,Žalec,2018,21243,valid
+190,Žalec,2019,21340,valid
+190,Žalec,2020,21492,valid
+190,Žalec,2021,21528,valid
+190,Žalec,2022,21477,valid
+190,Žalec,2023,21675,valid
+190,Žalec,2024,21788,valid
+191,Žetale,2016,1301,valid
+191,Žetale,2017,1300,valid
+191,Žetale,2018,1296,valid
+191,Žetale,2019,1293,valid
+191,Žetale,2020,1309,valid
+191,Žetale,2021,1303,valid
+191,Žetale,2022,1309,valid
+191,Žetale,2023,1293,valid
+191,Žetale,2024,1288,valid
+192,Žirovnica,2016,4381,valid
+192,Žirovnica,2017,4392,valid
+192,Žirovnica,2018,4411,valid
+192,Žirovnica,2019,4398,valid
+192,Žirovnica,2020,4394,valid
+192,Žirovnica,2021,4465,valid
+192,Žirovnica,2022,4479,valid
+192,Žirovnica,2023,4509,valid
+192,Žirovnica,2024,4535,valid
+193,Žužemberk,2016,4592,valid
+193,Žužemberk,2017,4606,valid
+193,Žužemberk,2018,4621,valid
+193,Žužemberk,2019,4628,valid
+193,Žužemberk,2020,4702,valid
+193,Žužemberk,2021,4741,valid
+193,Žužemberk,2022,4719,valid
+193,Žužemberk,2023,4681,valid
+193,Žužemberk,2024,4663,valid
+194,Šmartno pri Litiji,2016,5515,valid
+194,Šmartno pri Litiji,2017,5545,valid
+194,Šmartno pri Litiji,2018,5565,valid
+194,Šmartno pri Litiji,2019,5603,valid
+194,Šmartno pri Litiji,2020,5642,valid
+194,Šmartno pri Litiji,2021,5661,valid
+194,Šmartno pri Litiji,2022,5700,valid
+194,Šmartno pri Litiji,2023,5768,valid
+194,Šmartno pri Litiji,2024,5756,valid
+195,Apače,2016,3581,valid
+195,Apače,2017,3544,valid
+195,Apače,2018,3546,valid
+195,Apače,2019,3516,valid
+195,Apače,2020,3533,valid
+195,Apače,2021,3556,valid
+195,Apače,2022,3556,valid
+195,Apače,2023,3536,valid
+195,Apače,2024,3580,valid
+196,Cirkulane,2016,2287,valid
+196,Cirkulane,2017,2344,valid
+196,Cirkulane,2018,2324,valid
+196,Cirkulane,2019,2391,valid
+196,Cirkulane,2020,2345,valid
+196,Cirkulane,2021,2378,valid
+196,Cirkulane,2022,2363,valid
+196,Cirkulane,2023,2366,valid
+196,Cirkulane,2024,2378,valid
+197,Kostanjevica na Krki,2016,2419,valid
+197,Kostanjevica na Krki,2017,2425,valid
+197,Kostanjevica na Krki,2018,2437,valid
+197,Kostanjevica na Krki,2019,2450,valid
+197,Kostanjevica na Krki,2020,2432,valid
+197,Kostanjevica na Krki,2021,2446,valid
+197,Kostanjevica na Krki,2022,2453,valid
+197,Kostanjevica na Krki,2023,2472,valid
+197,Kostanjevica na Krki,2024,2464,valid
+198,Makole,2016,2039,valid
+198,Makole,2017,2025,valid
+198,Makole,2018,2019,valid
+198,Makole,2019,2015,valid
+198,Makole,2020,2010,valid
+198,Makole,2021,2051,valid
+198,Makole,2022,2048,valid
+198,Makole,2023,2038,valid
+198,Makole,2024,2028,valid
+199,Mokronog-Trebelno,2016,3032,valid
+199,Mokronog-Trebelno,2017,3045,valid
+199,Mokronog-Trebelno,2018,3033,valid
+199,Mokronog-Trebelno,2019,3057,valid
+199,Mokronog-Trebelno,2020,3089,valid
+199,Mokronog-Trebelno,2021,3164,valid
+199,Mokronog-Trebelno,2022,3164,valid
+199,Mokronog-Trebelno,2023,3229,valid
+199,Mokronog-Trebelno,2024,3223,valid
+200,Poljčane,2016,4421,valid
+200,Poljčane,2017,4432,valid
+200,Poljčane,2018,4360,valid
+200,Poljčane,2019,4431,valid
+200,Poljčane,2020,4449,valid
+200,Poljčane,2021,4467,valid
+200,Poljčane,2022,4493,valid
+200,Poljčane,2023,4432,valid
+200,Poljčane,2024,4396,valid
+201,Renče-Vogrsko,2016,4323,valid
+201,Renče-Vogrsko,2017,4365,valid
+201,Renče-Vogrsko,2018,4307,valid
+201,Renče-Vogrsko,2019,4354,valid
+201,Renče-Vogrsko,2020,4371,valid
+201,Renče-Vogrsko,2021,4383,valid
+201,Renče-Vogrsko,2022,4377,valid
+201,Renče-Vogrsko,2023,4384,valid
+201,Renče-Vogrsko,2024,4417,valid
+202,Središče ob Dravi,2016,2042,valid
+202,Središče ob Dravi,2017,2019,valid
+202,Središče ob Dravi,2018,1977,valid
+202,Središče ob Dravi,2019,1957,valid
+202,Središče ob Dravi,2020,1902,valid
+202,Središče ob Dravi,2021,1919,valid
+202,Središče ob Dravi,2022,1904,valid
+202,Središče ob Dravi,2023,1911,valid
+202,Središče ob Dravi,2024,1867,valid
+203,Straža,2016,3821,valid
+203,Straža,2017,3837,valid
+203,Straža,2018,3873,valid
+203,Straža,2019,3912,valid
+203,Straža,2020,3936,valid
+203,Straža,2021,3881,valid
+203,Straža,2022,3881,valid
+203,Straža,2023,3878,valid
+203,Straža,2024,3905,valid
+204,Sveta Trojica v Slovenskih goricah,2016,2054,valid
+204,Sveta Trojica v Slovenskih goricah,2017,2071,valid
+204,Sveta Trojica v Slovenskih goricah,2018,2065,valid
+204,Sveta Trojica v Slovenskih goricah,2019,2078,valid
+204,Sveta Trojica v Slovenskih goricah,2020,2101,valid
+204,Sveta Trojica v Slovenskih goricah,2021,2193,valid
+204,Sveta Trojica v Slovenskih goricah,2022,2194,valid
+204,Sveta Trojica v Slovenskih goricah,2023,2168,valid
+204,Sveta Trojica v Slovenskih goricah,2024,2222,valid
+205,Sveti Tomaž,2016,2051,valid
+205,Sveti Tomaž,2017,2006,valid
+205,Sveti Tomaž,2018,2011,valid
+205,Sveti Tomaž,2019,2015,valid
+205,Sveti Tomaž,2020,1988,valid
+205,Sveti Tomaž,2021,2007,valid
+205,Sveti Tomaž,2022,2015,valid
+205,Sveti Tomaž,2023,1979,valid
+205,Sveti Tomaž,2024,1978,valid
+206,Šmarješke Toplice,2016,3293,valid
+206,Šmarješke Toplice,2017,3296,valid
+206,Šmarješke Toplice,2018,3310,valid
+206,Šmarješke Toplice,2019,3378,valid
+206,Šmarješke Toplice,2020,3462,valid
+206,Šmarješke Toplice,2021,3521,valid
+206,Šmarješke Toplice,2022,3522,valid
+206,Šmarješke Toplice,2023,3544,valid
+206,Šmarješke Toplice,2024,3583,valid
+207,Gorje,2016,2822,valid
+207,Gorje,2017,2816,valid
+207,Gorje,2018,2792,valid
+207,Gorje,2019,2762,valid
+207,Gorje,2020,2738,valid
+207,Gorje,2021,2769,valid
+207,Gorje,2022,2779,valid
+207,Gorje,2023,2793,valid
+207,Gorje,2024,2744,valid
+208,Log-Dragomer,2016,3606,valid
+208,Log-Dragomer,2017,3653,valid
+208,Log-Dragomer,2018,3631,valid
+208,Log-Dragomer,2019,3669,valid
+208,Log-Dragomer,2020,3656,valid
+208,Log-Dragomer,2021,3620,valid
+208,Log-Dragomer,2022,3681,valid
+208,Log-Dragomer,2023,3764,valid
+208,Log-Dragomer,2024,3812,valid
+209,Rečica ob Savinji,2016,2328,valid
+209,Rečica ob Savinji,2017,2308,valid
+209,Rečica ob Savinji,2018,2267,valid
+209,Rečica ob Savinji,2019,2314,valid
+209,Rečica ob Savinji,2020,2322,valid
+209,Rečica ob Savinji,2021,2355,valid
+209,Rečica ob Savinji,2022,2324,valid
+209,Rečica ob Savinji,2023,2318,valid
+209,Rečica ob Savinji,2024,2328,valid
+210,Sveti Jurij v Slovenskih goricah,2016,2076,valid
+210,Sveti Jurij v Slovenskih goricah,2017,2097,valid
+210,Sveti Jurij v Slovenskih goricah,2018,2055,valid
+210,Sveti Jurij v Slovenskih goricah,2019,2075,valid
+210,Sveti Jurij v Slovenskih goricah,2020,2098,valid
+210,Sveti Jurij v Slovenskih goricah,2021,2114,valid
+210,Sveti Jurij v Slovenskih goricah,2022,2118,valid
+210,Sveti Jurij v Slovenskih goricah,2023,2132,valid
+210,Sveti Jurij v Slovenskih goricah,2024,2186,valid
+211,Šentrupert,2016,2923,valid
+211,Šentrupert,2017,2853,valid
+211,Šentrupert,2018,2908,valid
+211,Šentrupert,2019,2947,valid
+211,Šentrupert,2020,2969,valid
+211,Šentrupert,2021,2898,valid
+211,Šentrupert,2022,2935,valid
+211,Šentrupert,2023,2939,valid
+211,Šentrupert,2024,2995,valid
+212,Mirna,2016,2515,valid
+212,Mirna,2017,2555,valid
+212,Mirna,2018,2575,valid
+212,Mirna,2019,2616,valid
+212,Mirna,2020,2649,valid
+212,Mirna,2021,2683,valid
+212,Mirna,2022,2694,valid
+212,Mirna,2023,2714,valid
+212,Mirna,2024,2753,valid
+213,Ankaran,2016,3235,valid
+213,Ankaran,2017,3229,valid
+213,Ankaran,2018,3209,valid
+213,Ankaran,2019,3206,valid
+213,Ankaran,2020,3224,valid
+213,Ankaran,2021,3261,valid
+213,Ankaran,2022,3282,valid
+213,Ankaran,2023,3388,valid
+213,Ankaran,2024,3325,valid

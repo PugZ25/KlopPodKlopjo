@@ -1,0 +1,124 @@
+{
+  "catboost_version": "1.2.10",
+  "code": {
+    "bytes": 37932,
+    "path": "model_v3/models/lyme_precaution_proxy.py",
+    "sha256": "689a02acc610890b1391dba9c30c3b24e8ad376b1092b958519fe2e817c646e9"
+  },
+  "configuration": {
+    "bytes": 4388,
+    "path": "model_v3/config/lyme_precaution_proxy.json",
+    "sha256": "b980753247af4bc971f8a8a8230e4e276d631f298ec5c6d28cec998e14b18207"
+  },
+  "feature_importance": [
+    {
+      "feature": "municipality_code",
+      "importance": 14.168379873149524
+    },
+    {
+      "feature": "seasonal_sin_annual",
+      "importance": 23.05947078570287
+    },
+    {
+      "feature": "seasonal_cos_annual",
+      "importance": 62.77214934114762
+    }
+  ],
+  "feature_names": [
+    "municipality_code",
+    "seasonal_sin_annual",
+    "seasonal_cos_annual"
+  ],
+  "input_sources": {
+    "development_weather": {
+      "bytes": 15885561,
+      "path": "model_v3/outputs/weather/era5_land_municipality_weekly.csv",
+      "sha256": "b1006aee6f07470309e3448a9afaa516bafe1108952dfd62026bcdcbcf0c768f"
+    },
+    "development_weather_quality": {
+      "bytes": 29190,
+      "path": "model_v3/outputs/weather/era5_land_weekly_quality_summary.json",
+      "sha256": "9d6fb543bed9ecb52bd0c15ff2867d9f68e3c3dee281bb96462ef4bfcc90bd75"
+    },
+    "kme_fold_predictions": {
+      "bytes": 8317974,
+      "path": "model_v3/outputs/kme_region_model/kme_fold_predictions.csv",
+      "sha256": "b801836af84273803100f1202ed0af273c869a179c1219e12480e5842cb0601a"
+    },
+    "municipality": {
+      "bytes": 3148,
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
+    },
+    "opened_2025_predictions": {
+      "bytes": 10861280,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
+      "sha256": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    },
+    "weather_extension": {
+      "bytes": 1822547,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+      "sha256": "66e825259402005c258488d2aac65ea6eed3fc8720f9934b2d2326f52d93adfe"
+    },
+    "weather_extension_quality": {
+      "bytes": 4684,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_lockbox_extension_quality.json",
+      "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
+    }
+  },
+  "model_sha256": "e01adad52df5a0588b1b581f85437b62e63fa6a9f0bb3c7124dd8a25ff249d13",
+  "model_structural_sha256_excluding_volatile_metadata": "bd0520b2c016cf108037f2c333aa193bfe3c2d351290d42f53f5b563fb6caf10",
+  "parameters": {
+    "allow_writing_files": false,
+    "depth": 6,
+    "has_time": true,
+    "iterations": 200,
+    "l2_leaf_reg": 3.0,
+    "learning_rate": 0.05,
+    "loss_function": "Poisson",
+    "one_hot_max_size": 255,
+    "prediction_type": "Exponent",
+    "random_seed": 0,
+    "random_strength": 1.0,
+    "task_type": "CPU",
+    "thread_count": 1,
+    "verbose": false
+  },
+  "population_baseline": "log(population/100000)",
+  "runtime_contract": {
+    "output_is_direct_tick_measurement": false,
+    "output_is_personal_risk": false,
+    "recent_cases_required": false,
+    "weather_displayed_as_separate_context": true,
+    "weather_used_by_ai_score": false
+  },
+  "schema_version": 1,
+  "selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
+  "status": "sealed_for_no_current_case_inference",
+  "training_period": {
+    "first_issue_week": "2016-01-04",
+    "includes_opened_2025_outcomes": true,
+    "last_issue_week": "2025-11-24",
+    "rows": 108756
+  }
+}

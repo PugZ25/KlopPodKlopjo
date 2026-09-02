@@ -1,0 +1,81 @@
+{
+  "completed_at_utc": "2026-08-14T12:59:03.767843+00:00",
+  "evaluation_config": {
+    "bytes": 7452,
+    "path": "model_v3/config/lyme_lockbox_evaluation_2025.json",
+    "sha256": "a61eeab9a223a1e416f9957a459e23b30209023a14b187e9cbfc4bc990b9c46d"
+  },
+  "lockbox_rows_parsed": 10812,
+  "lockbox_year": 2025,
+  "model_selection_sha256": "4b665ca2138be3e8eb061c135590868b67ce58dd4a070318de59cae632b6ea8f",
+  "opened_at_utc": "2026-08-14T12:59:01.728179+00:00",
+  "output_records": {
+    "calibration_groups": {
+      "bytes": 6377,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_calibration_groups.csv",
+      "sha256": "25312322e922795a8ad1f2876e95ceb77c9d14203db4d409d2c07e5b473fdc67"
+    },
+    "calibration_overall": {
+      "bytes": 865,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_calibration_overall.csv",
+      "sha256": "902ac4a3610c301dc54a7ab3dd643f0517c01043c387b09de5cf87adc885bc5b"
+    },
+    "fit_diagnostics": {
+      "bytes": 3466,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_fit_diagnostics.json",
+      "sha256": "b429131c419ab566042ccc05f1fd3ee854bfb65a7b2a583734f31f55b29dfe47"
+    },
+    "metrics": {
+      "bytes": 1013,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_metrics.csv",
+      "sha256": "0387b64220d5a62c38b9cdd7a34b26b07df6f5c32dab43e8a016f787f660c5e9"
+    },
+    "municipality_errors": {
+      "bytes": 143439,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_municipality_errors.csv",
+      "sha256": "7417b48c8a95b1590fbed89f0c70f97338559dc61b2862a0a50401f04d16489c"
+    },
+    "predictions": {
+      "bytes": 10861280,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
+      "sha256": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da"
+    },
+    "quality_summary": {
+      "bytes": 7960,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_quality_summary.json",
+      "sha256": "43aa4cb881f41484ee2379e2001c20a75dceb80e37e4a76a034a8a8d39e27044"
+    },
+    "report": {
+      "bytes": 6073,
+      "path": "model_v3/LOCKBOX_EVALUATION_REPORT.md",
+      "sha256": "c16986977bbbd0bd59ac117aa0ed8d2ccb2e18067a3d5ff0fe49727758c0b5eb"
+    },
+    "temporal_errors": {
+      "bytes": 33365,
+      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_temporal_errors.csv",
+      "sha256": "5b9befb6df8d1591da592e6cc786848269055b44831340fe10cff49b060db640"
+    },
+    "weather_extension": {
+      "bytes": 1822547,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_municipality_weekly_lockbox_extension.csv",
+      "sha256": "66e825259402005c258488d2aac65ea6eed3fc8720f9934b2d2326f52d93adfe"
+    },
+    "weather_quality": {
+      "bytes": 4684,
+      "path": "model_v3/outputs/lockbox_2025/era5_land_lockbox_extension_quality.json",
+      "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
+    }
+  },
+  "protected_input_actual_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+  "protected_input_expected_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+  "protected_parse_count": 1,
+  "reporting_correction": {
+    "description": "Corrected one temporal-section literal from 48 to the verified 47 eligible issue weeks.",
+    "metrics_or_predictions_changed": false,
+    "models_rerun": false,
+    "protected_outcomes_reparsed": false
+  },
+  "rerun_allowed": false,
+  "schema_version": 1,
+  "status": "completed"
+}

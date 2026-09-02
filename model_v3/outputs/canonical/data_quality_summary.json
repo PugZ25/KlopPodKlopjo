@@ -1,0 +1,770 @@
+{
+  "checks": {
+    "calendar_issue_week_unique": true,
+    "minimum_present_case_count": 0,
+    "municipality_code_unique": true,
+    "municipality_week_unique": true,
+    "negative_case_count": 0,
+    "negative_population_count": 0,
+    "population_key_unique": true,
+    "source_aggregate_total_mismatch_count": 7
+  },
+  "confirmed_semantics": [
+    {
+      "canonical_value": 0,
+      "item": "NIJZ workbook blank weekly case cells",
+      "source": "User-confirmed project rule"
+    }
+  ],
+  "datasets": {
+    "calendar": {
+      "bytes": 10832,
+      "columns": [
+        "issue_week",
+        "year",
+        "iso_week"
+      ],
+      "missing_values": {
+        "iso_week": 0,
+        "issue_week": 0,
+        "year": 0
+      },
+      "path": "model_v3/outputs/canonical/calendar.csv",
+      "primary_key": [
+        "issue_week"
+      ],
+      "row_count": 574,
+      "sha256": "da24adb964606d1d2e1f7008dbc3ee6f3dcd1478d0f0567ad1bf543c628e7427",
+      "unexpected_duplicate_rows": [],
+      "zero_values": {
+        "iso_week": 0,
+        "issue_week": 0,
+        "year": 0
+      }
+    },
+    "municipality": {
+      "bytes": 3148,
+      "columns": [
+        "municipality_code",
+        "municipality_name"
+      ],
+      "missing_values": {
+        "municipality_code": 0,
+        "municipality_name": 0
+      },
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "primary_key": [
+        "municipality_code"
+      ],
+      "row_count": 212,
+      "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a",
+      "unexpected_duplicate_rows": [],
+      "zero_values": {
+        "municipality_code": 0,
+        "municipality_name": 0
+      }
+    },
+    "population": {
+      "bytes": 54290,
+      "columns": [
+        "municipality_code",
+        "year",
+        "population"
+      ],
+      "missing_values": {
+        "municipality_code": 0,
+        "population": 11,
+        "year": 0
+      },
+      "path": "model_v3/outputs/canonical/population.csv",
+      "primary_key": [
+        "municipality_code",
+        "year"
+      ],
+      "row_count": 3816,
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+      "unexpected_duplicate_rows": [],
+      "zero_values": {
+        "municipality_code": 0,
+        "population": 0,
+        "year": 0
+      }
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "columns": [
+        "municipality_code",
+        "issue_week",
+        "lyme_cases",
+        "kme_cases"
+      ],
+      "missing_values": {
+        "issue_week": 0,
+        "kme_cases": 0,
+        "lyme_cases": 0,
+        "municipality_code": 0
+      },
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "primary_key": [
+        "municipality_code",
+        "issue_week"
+      ],
+      "row_count": 121688,
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+      "unexpected_duplicate_rows": [],
+      "zero_values": {
+        "issue_week": 0,
+        "kme_cases": 120642,
+        "lyme_cases": 95593,
+        "municipality_code": 0
+      }
+    }
+  },
+  "municipality_source_quality": {
+    "blank_codes": 0,
+    "blank_names": 0,
+    "duplicate_municipality_codes": [],
+    "duplicate_normalized_names": [],
+    "source_feature_count": 212
+  },
+  "output_format": {
+    "format": "csv",
+    "parquet_supported": false,
+    "reason": "Neither pyarrow nor fastparquet is installed in the project environment; CSV follows the documented population-null and NIJZ blank-case-to-zero rules."
+  },
+  "pipeline": "model_v3.data.canonical_epidemiology",
+  "population_source_quality": {
+    "duplicate_keys": [],
+    "explicit_zero_count": 0,
+    "measure_code": "45",
+    "measure_label": "Population - Total - 1 January",
+    "missing_population": [
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2008
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2009
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2010
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2011
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2012
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2013
+      },
+      {
+        "municipality_code": "213",
+        "source_status": "-",
+        "year": 2014
+      },
+      {
+        "municipality_code": "212",
+        "source_status": "-",
+        "year": 2008
+      },
+      {
+        "municipality_code": "212",
+        "source_status": "-",
+        "year": 2009
+      },
+      {
+        "municipality_code": "212",
+        "source_status": "-",
+        "year": 2010
+      },
+      {
+        "municipality_code": "212",
+        "source_status": "-",
+        "year": 2011
+      }
+    ],
+    "missing_population_count": 11,
+    "municipality_codes_not_in_population": [],
+    "negative_value_count": 0,
+    "population_codes_not_in_municipality": [],
+    "source_dimension_order": [
+      "MERITVE",
+      "OBČINE",
+      "LETO"
+    ],
+    "source_dimension_sizes": [
+      1,
+      212,
+      18
+    ],
+    "source_name_discrepancies": [
+      {
+        "gurs_name": "Ankaran",
+        "municipality_code": "213",
+        "surs_name": "Ankaran/Ancarano"
+      },
+      {
+        "gurs_name": "Dobrova-Polhov Gradec",
+        "municipality_code": "021",
+        "surs_name": "Dobrova - Polhov Gradec"
+      },
+      {
+        "gurs_name": "Dobrovnik",
+        "municipality_code": "156",
+        "surs_name": "Dobrovnik/Dobronak"
+      },
+      {
+        "gurs_name": "Gorenja vas-Poljane",
+        "municipality_code": "027",
+        "surs_name": "Gorenja vas - Poljane"
+      },
+      {
+        "gurs_name": "Hoče-Slivnica",
+        "municipality_code": "160",
+        "surs_name": "Hoče - Slivnica"
+      },
+      {
+        "gurs_name": "Hodoš",
+        "municipality_code": "161",
+        "surs_name": "Hodoš/Hodos"
+      },
+      {
+        "gurs_name": "Hrpelje-Kozina",
+        "municipality_code": "035",
+        "surs_name": "Hrpelje - Kozina"
+      },
+      {
+        "gurs_name": "Izola",
+        "municipality_code": "040",
+        "surs_name": "Izola/Isola"
+      },
+      {
+        "gurs_name": "Koper",
+        "municipality_code": "050",
+        "surs_name": "Koper/Capodistria"
+      },
+      {
+        "gurs_name": "Lendava",
+        "municipality_code": "059",
+        "surs_name": "Lendava/Lendva"
+      },
+      {
+        "gurs_name": "Log-Dragomer",
+        "municipality_code": "208",
+        "surs_name": "Log - Dragomer"
+      },
+      {
+        "gurs_name": "Miren-Kostanjevica",
+        "municipality_code": "075",
+        "surs_name": "Miren - Kostanjevica"
+      },
+      {
+        "gurs_name": "Mokronog-Trebelno",
+        "municipality_code": "199",
+        "surs_name": "Mokronog - Trebelno"
+      },
+      {
+        "gurs_name": "Piran",
+        "municipality_code": "090",
+        "surs_name": "Piran/Pirano"
+      },
+      {
+        "gurs_name": "Rače-Fram",
+        "municipality_code": "098",
+        "surs_name": "Rače - Fram"
+      },
+      {
+        "gurs_name": "Renče-Vogrsko",
+        "municipality_code": "201",
+        "surs_name": "Renče - Vogrsko"
+      },
+      {
+        "gurs_name": "Sveta Trojica v Slovenskih goricah",
+        "municipality_code": "204",
+        "surs_name": "Sveta Trojica v Slov. goricah"
+      },
+      {
+        "gurs_name": "Sveti Jurij v Slovenskih goricah",
+        "municipality_code": "210",
+        "surs_name": "Sveti Jurij v Slov. goricah"
+      },
+      {
+        "gurs_name": "Šempeter-Vrtojba",
+        "municipality_code": "183",
+        "surs_name": "Šempeter - Vrtojba"
+      }
+    ],
+    "source_status_markers": {
+      "-": 11
+    },
+    "source_value_count": 3816
+  },
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 47380,
+      "path": "model_v3/data/canonical_epidemiology.py",
+      "sha256": "6ad9e4458e50d6efc11b9c67879f49925af557684f7ea12311f036899b62bc4e"
+    },
+    "config": {
+      "bytes": 1573,
+      "path": "model_v3/config/canonical_epidemiology.json",
+      "sha256": "e626ea736a1b29d63fa73d87b79ebc37fa999aef9a594880e78fcb97e0c34d10"
+    },
+    "kme_cases": {
+      "bytes": 440698,
+      "path": "data/raw/nijz/KME_2015_2025_student.xlsx",
+      "sha256": "3d77e49af52710d81f07e94de49cff3e60e749a8cc2e68df53563f80b0338280"
+    },
+    "lyme_cases": {
+      "bytes": 508521,
+      "path": "data/raw/nijz/lyme_2015_2025_student.xlsx",
+      "sha256": "ee6cd9f6f14b5f7a8f525fb321c3db5624d7578d27e415e6fbb84d776222db62"
+    },
+    "municipality": {
+      "bytes": 20087123,
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "sha256": "4b9a508f938700c2b4b4aa9f0b49ae03d73cbdb177cfd1445a30251edf6c73c9"
+    },
+    "population": {
+      "bytes": 52296,
+      "path": "data/raw/surs/obcina_population_sistat.json",
+      "sha256": "fade5200fe7e6d11302f22c14d5be675576112e61f82a4bf85df04a8693c4b8d"
+    },
+    "requirements": {
+      "bytes": 16,
+      "path": "model_v3/requirements.txt",
+      "sha256": "06d28d69e958deafb09f0a44fcae9b548f15e4debc14ebc39aad5f0934856fbf"
+    }
+  },
+  "status": "pass_with_warnings",
+  "targets_created": false,
+  "unresolved_meanings": [
+    {
+      "handling": "Recorded source paths and SHA-256 hashes; no additional provenance claim made.",
+      "item": "NIJZ workbook external provenance and reporting-status definition",
+      "status": "UNKNOWN"
+    },
+    {
+      "handling": "Population nulls and raw marker counts are preserved in this summary without interpretation.",
+      "item": "SURS JSON-stat status marker '-'",
+      "status": "UNKNOWN"
+    },
+    {
+      "handling": "Canonical municipality cells are preserved; discrepancies are reported as source-quality warnings and are not redistributed or imputed.",
+      "item": "NIJZ SKUPAJ values that differ from the sum of municipality rows",
+      "status": "UNKNOWN"
+    }
+  ],
+  "weekly_join_quality": {
+    "missing_municipality_week_keys_count": 0,
+    "missing_municipality_week_keys_sample": [],
+    "municipality_codes_not_in_weekly_cases": [],
+    "source_key_differences": {
+      "kme_cases": {
+        "keys_missing_from_source_count": 0,
+        "keys_missing_from_source_sample": []
+      },
+      "lyme_cases": {
+        "keys_missing_from_source_count": 0,
+        "keys_missing_from_source_sample": []
+      }
+    },
+    "unexpected_duplicate_rows": [],
+    "weekly_codes_not_in_municipality": []
+  },
+  "weekly_source_quality": {
+    "kme_cases": {
+      "aggregate_total_mismatches": [],
+      "blank_case_cell_rule": {
+        "canonical_value": 0,
+        "source": "User-confirmed project rule"
+      },
+      "canonical_zero_count": 120642,
+      "missing_case_value_count": 0,
+      "municipality_codes_not_in_source": [],
+      "municipality_row_total_mismatches": [],
+      "name_aliases_used": [
+        {
+          "municipality_code": "204",
+          "municipality_name": "Sveta Trojica v Slovenskih goricah",
+          "source_name": "SV. TROJICA V SLOV. GORICAH"
+        },
+        {
+          "municipality_code": "210",
+          "municipality_name": "Sveti Jurij v Slovenskih goricah",
+          "source_name": "SVETI JURIJ V SLOV. GORICAH"
+        }
+      ],
+      "negative_value_count": 0,
+      "sheets": {
+        "2015": {
+          "expected_iso_week_count": 53,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 53,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2016": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2017": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2018": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2019": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2020": {
+          "expected_iso_week_count": 53,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 53,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2021": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2022": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2023": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2024": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2025": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        }
+      },
+      "source_blank_case_cell_count": 120642,
+      "source_explicit_zero_cell_count": 0,
+      "source_municipality_codes_not_in_dimension": [],
+      "source_sheets": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "unexpected_duplicate_rows": [],
+      "unmatched_municipality_names": []
+    },
+    "lyme_cases": {
+      "aggregate_total_mismatches": [
+        {
+          "municipality_numeric_sum": 108,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 109,
+          "week": "2025-20"
+        },
+        {
+          "municipality_numeric_sum": 178,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 179,
+          "week": "2025-23"
+        },
+        {
+          "municipality_numeric_sum": 186,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 187,
+          "week": "2025-26"
+        },
+        {
+          "municipality_numeric_sum": 219,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 220,
+          "week": "2025-30"
+        },
+        {
+          "municipality_numeric_sum": 181,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 183,
+          "week": "2025-34"
+        },
+        {
+          "municipality_numeric_sum": 85,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 87,
+          "week": "2025-40"
+        },
+        {
+          "municipality_numeric_sum": 61,
+          "row": 214,
+          "sheet": 2025,
+          "source_aggregate": 62,
+          "week": "2025-47"
+        }
+      ],
+      "blank_case_cell_rule": {
+        "canonical_value": 0,
+        "source": "User-confirmed project rule"
+      },
+      "canonical_zero_count": 95593,
+      "missing_case_value_count": 0,
+      "municipality_codes_not_in_source": [],
+      "municipality_row_total_mismatches": [],
+      "name_aliases_used": [
+        {
+          "municipality_code": "204",
+          "municipality_name": "Sveta Trojica v Slovenskih goricah",
+          "source_name": "SV. TROJICA V SLOV. GORICAH"
+        },
+        {
+          "municipality_code": "210",
+          "municipality_name": "Sveti Jurij v Slovenskih goricah",
+          "source_name": "SVETI JURIJ V SLOV. GORICAH"
+        }
+      ],
+      "negative_value_count": 0,
+      "sheets": {
+        "2015": {
+          "expected_iso_week_count": 53,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 53,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2016": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2017": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2018": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2019": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2020": {
+          "expected_iso_week_count": 53,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 53,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2021": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2022": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2023": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2024": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        },
+        "2025": {
+          "expected_iso_week_count": 52,
+          "extra_week_numbers": [],
+          "matched_municipality_code_count": 212,
+          "missing_week_numbers": [],
+          "municipality_codes_not_in_sheet": [],
+          "source_municipality_row_count": 212,
+          "source_week_count": 52,
+          "unexpected_duplicate_rows": [],
+          "unexpected_populated_columns": []
+        }
+      },
+      "source_blank_case_cell_count": 95593,
+      "source_explicit_zero_cell_count": 0,
+      "source_municipality_codes_not_in_dimension": [],
+      "source_sheets": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "unexpected_duplicate_rows": [],
+      "unmatched_municipality_names": []
+    }
+  }
+}

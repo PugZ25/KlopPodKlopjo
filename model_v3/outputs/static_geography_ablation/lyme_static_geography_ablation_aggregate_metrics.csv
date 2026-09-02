@@ -1,0 +1,3 @@
+candidate_id,candidate_name,n_folds,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+statistical_baseline_s1,Phase 9 S1 unchanged,8,81832,81832,0,complete,1.50911885173055,1.50887429410578,3.72150062401024,3.64223669437803,2.12920241474067,valid,81832,0
+statistical_baseline_s1_plus_static_geography,Phase 9 S1 plus municipality area,8,81832,81832,0,complete,1.50880351048158,1.50854894422783,3.68442549357911,3.59664946921737,2.12976327220199,valid,81832,0

@@ -1,0 +1,256 @@
+{
+  "development_policy": {
+    "end_year": 2024,
+    "excluded_lockbox_year": 2025,
+    "fold_strategy": "expanding_window_next_available_year",
+    "start_year": 2016
+  },
+  "experiment": {
+    "augmented": {
+      "candidate_id": "statistical_baseline_s1_plus_static_geography",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual",
+        "municipality_area_km2"
+      ],
+      "formula": "target_lyme_cases_next_4w ~ 1 + seasonal_sin_annual + seasonal_cos_annual + municipality_area_km2 + offset(log(population))",
+      "name": "Phase 9 S1 plus municipality area"
+    },
+    "baseline_change_rule": "only_append_declared_static_feature_columns",
+    "control": {
+      "candidate_id": "statistical_baseline_s1",
+      "design_columns": [
+        "intercept",
+        "seasonal_sin_annual",
+        "seasonal_cos_annual"
+      ],
+      "formula": "target_lyme_cases_next_4w ~ 1 + seasonal_sin_annual + seasonal_cos_annual + offset(log(population))",
+      "name": "Phase 9 S1 unchanged",
+      "phase_9_model_id": "model_s1_seasonality_offset"
+    },
+    "s2_s3_exclusion_reason": "municipality fixed effects make time-invariant municipality descriptors exactly non-identifiable",
+    "static_feature_columns": [
+      "municipality_area_km2"
+    ]
+  },
+  "folds": [
+    {
+      "fold_id": "fold_01_validate_2017",
+      "n_ineligible_excluded": 0,
+      "n_train": 10176,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2016-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2016-12-26",
+      "validation_end": "2017-12-25",
+      "validation_start": "2017-01-02"
+    },
+    {
+      "fold_id": "fold_02_validate_2018",
+      "n_ineligible_excluded": 0,
+      "n_train": 21200,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2017-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2017-12-25",
+      "validation_end": "2018-12-31",
+      "validation_start": "2018-01-01"
+    },
+    {
+      "fold_id": "fold_03_validate_2019",
+      "n_ineligible_excluded": 0,
+      "n_train": 32436,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2018-12-03",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2018-12-31",
+      "validation_end": "2019-12-30",
+      "validation_start": "2019-01-07"
+    },
+    {
+      "fold_id": "fold_04_validate_2020",
+      "n_ineligible_excluded": 0,
+      "n_train": 43460,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2019-12-02",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2019-12-30",
+      "validation_end": "2020-12-28",
+      "validation_start": "2020-01-06"
+    },
+    {
+      "fold_id": "fold_05_validate_2021",
+      "n_ineligible_excluded": 0,
+      "n_train": 54484,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2020-11-30",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2020-12-28",
+      "validation_end": "2021-12-27",
+      "validation_start": "2021-01-04"
+    },
+    {
+      "fold_id": "fold_06_validate_2022",
+      "n_ineligible_excluded": 0,
+      "n_train": 65508,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2021-11-29",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2021-12-27",
+      "validation_end": "2022-12-26",
+      "validation_start": "2022-01-03"
+    },
+    {
+      "fold_id": "fold_07_validate_2023",
+      "n_ineligible_excluded": 0,
+      "n_train": 76532,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10176,
+      "n_validation_boundary_purged": 848,
+      "number_of_purged_rows": 1696,
+      "train_issue_end": "2022-11-28",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2022-12-26",
+      "validation_end": "2023-12-25",
+      "validation_start": "2023-01-02"
+    },
+    {
+      "fold_id": "fold_08_validate_2024",
+      "n_ineligible_excluded": 848,
+      "n_train": 87556,
+      "n_train_boundary_purged": 848,
+      "n_validation": 10388,
+      "n_validation_boundary_purged": 0,
+      "number_of_purged_rows": 848,
+      "train_issue_end": "2023-11-27",
+      "train_issue_start": "2016-01-04",
+      "train_target_end_max": "2023-12-25",
+      "validation_end": "2024-12-30",
+      "validation_start": "2024-01-01"
+    }
+  ],
+  "library_versions": {
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "statsmodels": "0.14.6"
+  },
+  "metrics": {
+    "increment_definition": "augmented_minus_control",
+    "lower_is_better": true,
+    "mae": "mean_absolute_error",
+    "poisson_deviance": "mean_poisson_deviance_only_when_all_prediction_observation_pairs_are_mathematically_valid",
+    "rmse": "root_mean_squared_error"
+  },
+  "phase_9_fitting_reused_without_change": {
+    "cov_type": "nonrobust",
+    "implementation": "statsmodels.genmod.generalized_linear_model.GLM",
+    "maxiter": 100,
+    "method": "IRLS",
+    "tol": 1e-08
+  },
+  "phase_9_population_policy_reused_without_change": {
+    "exact_available_at_timestamps_required": false,
+    "interpretation": "conservative_leakage_prevention_proxy_not_verified_publication_timing",
+    "issue_or_future_year_allowed": false,
+    "missing_preferred_year_rule": "use_latest_present_earlier_year",
+    "preferred_year": "issue_year_minus_1"
+  },
+  "pipeline": "model_v3.models.static_geography_ablation",
+  "schema_version": 1,
+  "sources": {
+    "builder": {
+      "bytes": 40735,
+      "path": "model_v3/models/static_geography_ablation.py",
+      "sha256": "812c4c3b58fb575694f0eff322d56aaef5dd07486ca2f1e012bd155da4061fbb"
+    },
+    "phase_11_config": {
+      "bytes": 2819,
+      "path": "model_v3/config/lyme_static_geography_ablation.json",
+      "sha256": "49ef38bfd84b546b1ddfacf77ec2aabb6099e7f00d4c84131bc7441bf1bc74cb"
+    },
+    "phase_9_config": {
+      "bytes": 4422,
+      "path": "model_v3/config/lyme_seasonal_count_models.json",
+      "sha256": "11d7096635b12685f15886f9efdd5053b57cba2e907f6c4c6311fe263f6d0935"
+    },
+    "phase_9_fold_predictions": {
+      "bytes": 93403798,
+      "path": "model_v3/outputs/seasonal_count_models/lyme_seasonal_count_fold_predictions.csv",
+      "sha256": "8fe75d8a7c22856d2e0050c01d3962574f735e15106e4dc174f5427c6918e711"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "static_features": {
+      "bytes": 4474,
+      "path": "model_v3/outputs/static_geography/municipality_static_geography.csv",
+      "sha256": "09aa6fa476265c2b5842329cce3a677b7a26e45d9a912e13c63ec5be7b2c1083"
+    },
+    "static_quality_summary": {
+      "bytes": 3305,
+      "path": "model_v3/outputs/static_geography/static_geography_quality_summary.json",
+      "sha256": "06034b797b431a68f5a241be82f2dd242c52a11d0acbb1f84c111dba3228b93a"
+    },
+    "target": {
+      "bytes": 5894149,
+      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
+      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
+    },
+    "validation_config": {
+      "bytes": 972,
+      "path": "model_v3/config/lyme_rolling_origin_validation.json",
+      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
+    },
+    "validation_manifest": {
+      "bytes": 1044,
+      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
+      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+    }
+  },
+  "static_feature_dictionary": {
+    "municipality_area_km2": {
+      "column": "municipality_area_km2",
+      "ellipsoid": "WGS84",
+      "missing_data_rule": "fail_on_missing_invalid_or_nonpositive_geometry_area",
+      "multipolygon_rule": "sum_polygon_areas",
+      "polygon_hole_rule": "subtract_absolute_geodesic_hole_areas",
+      "source_geom_area_property_exclusion_reason": "unit_not_verified_in_active_source_documentation",
+      "source_geom_area_property_used": false,
+      "transformation": "absolute_wgs84_ellipsoidal_polygon_area_m2_divided_by_1000000",
+      "unit": "square_kilometres"
+    }
+  },
+  "static_feature_temporal_scope": {
+    "fixed_analytical_zones_all_years": true,
+    "historical_boundary_reconstruction": false,
+    "interpretation": "the_same_documented_212_municipality_zones_are_used_for_every_model_year",
+    "source_snapshot_interpretation": "static descriptor of the documented GURS snapshot",
+    "used_as_time_varying_feature": false,
+    "zone_snapshot": "GURS_2026-04-04"
+  },
+  "target": {
+    "column": "target_lyme_cases_next_4w",
+    "forecast_window": "t_plus_1_through_t_plus_4"
+  }
+}

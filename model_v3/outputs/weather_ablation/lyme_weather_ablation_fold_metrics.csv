@@ -1,0 +1,33 @@
+fold_id,candidate_id,candidate_name,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,mae,rmse,mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+fold_01_validate_2017,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.26606861601907,2.54132777828949,1.63494474014293,valid,10176,0
+fold_01_validate_2017,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.26487451176635,2.5245309281536,1.63364109483859,valid,10176,0
+fold_01_validate_2017,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,1.1725273928032,2.22158734313323,1.67367713900927,valid,10176,0
+fold_01_validate_2017,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,1.16957973862789,2.21356906451255,1.66558573162041,valid,10176,0
+fold_02_validate_2018,statistical_baseline_s1,S1 baseline on common weather support,10388,10388,0,complete,1.86647038167243,4.32470040005616,2.77519447675178,valid,10388,0
+fold_02_validate_2018,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10388,10388,0,complete,1.87277830983065,4.40009603123742,2.76850556316251,valid,10388,0
+fold_02_validate_2018,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10388,10388,0,complete,1.86454651564811,4.25103379659155,2.70675420230639,valid,10388,0
+fold_02_validate_2018,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10388,10388,0,complete,1.87286737002194,4.37439418513175,2.70733639146634,valid,10388,0
+fold_03_validate_2019,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.41799551322794,3.488919734287,1.76757418121284,valid,10176,0
+fold_03_validate_2019,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.41148081188338,3.30511078814807,1.76286875851056,valid,10176,0
+fold_03_validate_2019,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,1.45578103157766,3.78365305894912,1.81518940443256,valid,10176,0
+fold_03_validate_2019,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,1.45251660654229,3.59181295457548,1.81391455479573,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.89999888882157,4.81819671711684,2.71693672651036,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.90850795891612,4.9440397344598,2.71453241524422,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,2.02942127314912,5.73002465177579,3.2425877501208,valid,10176,0
+fold_04_validate_2020,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,2.03642295905471,5.84950328091955,3.25790849167856,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.57444317523317,4.23429020972465,2.21248543616468,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.56951501282712,4.05257429720814,2.21406417634729,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,1.49771664375027,3.99916980306608,2.10376518022923,valid,10176,0
+fold_05_validate_2021,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,1.49931465839964,3.88100683407101,2.11142755968855,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.57552076449324,3.76142122949177,2.23961381089313,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.57510937333392,3.6764016362069,2.24706355207741,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,1.4714310850739,3.37893197335883,2.13556167163041,valid,10176,0
+fold_06_validate_2022,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,1.47111897751682,3.34980268490203,2.13851888315458,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1,S1 baseline on common weather support,10176,10176,0,complete,1.38326287145176,3.39154374637391,1.95300333640251,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10176,10176,0,complete,1.38039920938538,3.30044053842264,1.95709181606852,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10176,10176,0,complete,1.56937286653519,4.02792097663291,2.2193123497217,valid,10176,0
+fold_07_validate_2023,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10176,10176,0,complete,1.5664374680975,3.94196434721765,2.22150092772024,valid,10176,0
+fold_08_validate_2024,statistical_baseline_s1,S1 baseline on common weather support,10388,10388,0,complete,1.26026636949842,2.80942374073761,1.75349793197769,valid,10388,0
+fold_08_validate_2024,statistical_baseline_s1_plus_static_geography,S1 plus fixed municipality area,10388,10388,0,complete,1.25826404530276,2.76046625511257,1.7590737116668,valid,10388,0
+fold_08_validate_2024,statistical_baseline_s1_plus_weather,S1 plus lagged ERA5-Land weather,10388,10388,0,complete,1.24165084435183,2.77465111670839,1.68630574526141,valid,10388,0
+fold_08_validate_2024,statistical_baseline_s1_plus_static_geography_weather,S1 plus fixed municipality area and lagged ERA5-Land weather,10388,10388,0,complete,1.23887473676601,2.72572419210928,1.68908828346653,valid,10388,0

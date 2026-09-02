@@ -1,0 +1,4 @@
+candidate_id,candidate_name,n,observed_total,predicted_total,observed_mean,predicted_mean,mean_signed_error_prediction_minus_observation,observed_to_predicted_total_ratio,log_observed_to_predicted_total_ratio,calibration_status,diagnostic_only_no_recalibration
+catboost_poisson_s3_weather_offset,Frozen CatBoost Poisson final model,9964,19467,16831.5364080889,1.95373344038539,1.68923488639993,-0.264498553985458,1.15657890806953,0.145466430426236,valid,true
+model_s3_weather_offset_matched,Matched S3 weather Poisson GLM,9964,19467,16144.0695135125,1.95373344038539,1.62023981468411,-0.333493625701276,1.20582979302129,0.187167954863205,valid,true
+baseline_d_municipality_seasonal_history,Municipality and seasonal historical expectation,9964,19467,17524.7777777778,1.95373344038539,1.75880949194879,-0.194923948436594,1.11082720972845,0.10510497176487,valid,true

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "product_contract": {
+    "purpose": "public_precaution_support_not_epidemiological_surveillance",
+    "runtime_case_inputs_allowed": false,
+    "personal_risk_output_allowed": false,
+    "direct_tick_measurement_claim_allowed": false,
+    "weather_displayed_as_separate_context": true,
+    "weather_used_by_ai_score": false,
+    "low_means_safe": false
+  },
+  "inputs": {
+    "lyme_model": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
+    "lyme_model_manifest": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
+    "display_calibration": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
+    "kme_coefficients": "model_v3/outputs/kme_prediction_seal/kme_frozen_final_glm_coefficients.csv",
+    "kme_seal_manifest": "model_v3/outputs/kme_prediction_seal/kme_2026_prediction_seal_manifest.json",
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_boundaries": "frontend/public/municipality-boundaries.json"
+  },
+  "weather": {
+    "required_complete_days": 7,
+    "source_model": "icon_seamless",
+    "source_label": "Open-Meteo / DWD ICON, zadnjih 7 zaključenih dni",
+    "data_status": "recent_operational_model_history_not_station_observations",
+    "spatial_method": "frozen_grid_samples_weighted_by_municipality_polygon_intersections",
+    "expected_refresh_cadence_hours": 24,
+    "maximum_display_age_hours": 36,
+    "interpretation": "local_recent_weather_context_for_possible_tick_activity_not_a_risk_multiplier_or_activity_threshold"
+  },
+  "display": {
+    "default_municipality_code": "061",
+    "featured_municipality_codes": ["061", "070", "052", "084"],
+    "levels": ["Nizko", "Srednje", "Visoko"]
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/precaution_snapshot/v1",
+    "snapshot": "precaution_snapshot.json",
+    "quality": "precaution_snapshot_quality.json",
+    "frontend_snapshot": "frontend/src/data/precautionSnapshot.json"
+  }
+}

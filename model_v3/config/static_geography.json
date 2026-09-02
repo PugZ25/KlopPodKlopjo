@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "municipality_geometry": {
+      "path": "data/raw/gurs/obcine-gurs-rpe.geojson",
+      "provider": "Geodetic Administration of the Republic of Slovenia (GURS)",
+      "layer": "TEMELJNE_VSEBINE/GH_Prostorske_enote/MapServer/1530",
+      "download_date": "2026-04-04",
+      "format": "GeoJSON",
+      "crs": "EPSG:4326",
+      "municipality_code_property": "SIFRA"
+    },
+    "canonical_municipality": {
+      "path": "model_v3/outputs/canonical/municipality.csv",
+      "municipality_code_column": "municipality_code"
+    }
+  },
+  "feature": {
+    "column": "municipality_area_km2",
+    "unit": "square_kilometres",
+    "transformation": "absolute_wgs84_ellipsoidal_polygon_area_m2_divided_by_1000000",
+    "ellipsoid": "WGS84",
+    "polygon_hole_rule": "subtract_absolute_geodesic_hole_areas",
+    "multipolygon_rule": "sum_polygon_areas",
+    "missing_data_rule": "fail_on_missing_invalid_or_nonpositive_geometry_area",
+    "source_geom_area_property_used": false,
+    "source_geom_area_property_exclusion_reason": "unit_not_verified_in_active_source_documentation"
+  },
+  "temporal_policy": {
+    "fixed_analytical_zones_all_years": true,
+    "zone_snapshot": "GURS_2026-04-04",
+    "historical_boundary_reconstruction": false,
+    "interpretation": "the_same_documented_212_municipality_zones_are_used_for_every_model_year"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/static_geography",
+    "features": "municipality_static_geography.csv",
+    "quality_summary": "static_geography_quality_summary.json"
+  }
+}

@@ -1,0 +1,2 @@
+candidate_id,candidate_name,n_folds,n_expected_predictions,n_available_predictions,n_missing_predictions,prediction_metric_status,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status,n_poisson_valid,n_poisson_invalid
+model_s3_weather_offset_matched,"S3 seasonality, municipality fixed effects, past incidence and lagged ERA5-Land weather with population exposure",8,81832,81832,0,complete,1.3201940738539,1.31977793787887,3.26493416398755,3.04847556395142,1.72160812138867,valid,81832,0

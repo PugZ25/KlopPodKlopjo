@@ -1,0 +1,4 @@
+candidate_id,n_folds,n_predictions,pooled_mae,mean_fold_mae,pooled_rmse,mean_fold_rmse,pooled_mean_poisson_deviance,poisson_deviance_status
+baseline_region_historical_rate,9,4764,1.516110280797077,1.5130755103487497,2.76524553766066,2.544929416227153,2.5875391931853926,valid
+baseline_persistence_8w,9,4764,1.7938706968933669,1.7901234567901234,3.5531232934615486,3.287676075688429,,invalid_pairs_present
+glm_seasonal_region_offset,9,4764,1.1742276355367331,1.1725455154618658,2.191802855509838,2.0583593268746774,1.6163934240641453,valid

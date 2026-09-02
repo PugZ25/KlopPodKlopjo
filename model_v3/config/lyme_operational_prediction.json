@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "frozen_model": {
+    "selected_model_id": "catboost_poisson_s3_weather_offset",
+    "lockbox_config": "model_v3/config/lyme_lockbox_evaluation_2025.json",
+    "lockbox_config_sha256": "a61eeab9a223a1e416f9957a459e23b30209023a14b187e9cbfc4bc990b9c46d",
+    "selected_model_config": "model_v3/config/lyme_catboost_challenger.json",
+    "selected_model_config_sha256": "b74bde5dd13d1f04f3d17e7c1b72acece7f2e1f3e69c2791f9b4b6e89f341305",
+    "training_period": "2016-2024_development_rows_only",
+    "fit_rule": "one_fixed_seed_refit_of_the_frozen_selected_configuration_no_operational_retraining_volatile_catboost_serialization_metadata_excluded_from_structural_identity",
+    "artifact_directory": "model_v3/outputs/operational_model/lyme_v1",
+    "model_file": "catboost_poisson_s3_weather_offset.cbm",
+    "weather_scaler_file": "weather_scaler.json",
+    "manifest_file": "model_manifest.json"
+  },
+  "inputs": {
+    "municipality": "model_v3/outputs/canonical/municipality.csv",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "operational_weekly_cases": "data/raw/nijz/operational_weekly_cases.csv",
+    "operational_weekly_cases_provenance": "data/raw/nijz/operational_weekly_cases.provenance.json"
+  },
+  "prediction_contract": {
+    "analysis_unit": "municipality_code_x_issue_week",
+    "target": "expected_reported_lyme_case_count_t_plus_1_through_t_plus_4",
+    "horizon_weeks": 4,
+    "expected_municipality_count": 212,
+    "issue_weekday": "Monday",
+    "recommended_run_weekday_utc": "Friday",
+    "past_case_weeks": [4, 3, 2, 1],
+    "weather_weeks": [4, 3, 2, 1],
+    "population_rule": "latest_present_year_strictly_before_issue_year",
+    "required_weather_status": "pass",
+    "allowed_weather_vintages": [
+      "final_era5_land",
+      "preliminary_era5_land_t"
+    ],
+    "missing_input_rule": "block_prediction_do_not_fill_or_zero",
+    "current_or_future_cases_allowed": false,
+    "current_or_future_weather_allowed": false,
+    "interval_status": "not_available_frozen_system_has_no_predictive_intervals",
+    "risk_category_status": "not_defined_no_validated_absolute_risk_thresholds"
+  },
+  "bridge": {
+    "compare_same_issue_and_municipality_support": true,
+    "metrics": [
+      "mean_signed_difference_final_minus_preliminary",
+      "mae_final_minus_preliminary",
+      "rmse_final_minus_preliminary",
+      "maximum_absolute_difference"
+    ],
+    "promotion_thresholds": null,
+    "automatic_promotion_allowed": false,
+    "status": "diagnostic_only_until_thresholds_are_prespecified_and_reviewed"
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/operational_predictions/lyme_v1",
+    "readiness": "prediction_readiness.json",
+    "predictions_csv": "prediction_snapshot.csv",
+    "predictions_json": "prediction_snapshot.json",
+    "quality_summary": "prediction_snapshot_quality.json",
+    "frontend_json": "frontend/public/data/lyme-operational-prediction.json"
+  }
+}
