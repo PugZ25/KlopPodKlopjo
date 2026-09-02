@@ -45,6 +45,12 @@ const signalLevelLabel = {
   Visoko: 'Visok',
 } as const
 
+const signalGradeLabel = {
+  Nizko: 'Nizka',
+  Srednje: 'Srednja',
+  Visoko: 'Visoka',
+} as const
+
 const levelAccentColor = {
   Nizko: '#4a9c70',
   Srednje: '#d49b42',
@@ -105,8 +111,20 @@ function formatDisplayDate(value: string) {
   return displayDateFormatter.format(new Date(`${value}T00:00:00`))
 }
 
+function shiftIsoDate(value: string, days: number) {
+  const date = new Date(`${value}T00:00:00Z`)
+  date.setUTCDate(date.getUTCDate() + days)
+  return date.toISOString().slice(0, 10)
+}
+
+function formatDateRange(start: string, end: string) {
+  return `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`
+}
+
 function buildTimeHorizonLabel(diseaseKey: DiseaseModelKey) {
-  return diseaseKey === 'borelioza' ? 'naslednje 4 tedne' : 'naslednjih 8 tednov'
+  return diseaseKey === 'borelioza'
+    ? 'štiri prihodnje tedne'
+    : 'osem prihodnjih tednov'
 }
 
 function buildDiseaseObjectLabel(diseaseKey: DiseaseModelKey) {
@@ -374,9 +392,22 @@ function App() {
     selectedLocation.score,
   )
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
-  const referenceRangeLabel = `${formatDisplayDate(
+  const issueWeekRangeLabel = formatDateRange(
+    activeModel.asOfDate,
+    shiftIsoDate(activeModel.asOfDate, 6),
+  )
+  const latestWeatherWeekRangeLabel = formatDateRange(
     activeModel.referenceWeekStart,
-  )} - ${formatDisplayDate(activeModel.referenceWeekEnd)}`
+    activeModel.referenceWeekEnd,
+  )
+  const weatherInputRangeLabel = formatDateRange(
+    shiftIsoDate(activeModel.referenceWeekStart, -21),
+    activeModel.referenceWeekEnd,
+  )
+  const predictionRangeLabel = formatDateRange(
+    activeModel.predictionWindowStart,
+    shiftIsoDate(activeModel.predictionWindowEnd, 6),
+  )
   const riskActionLinks =
     selectedDiseaseKey === 'kme'
       ? [
@@ -543,17 +574,44 @@ function App() {
                 </button>
 
                 <div className="live-meta">
-                  <span className="metric-label">Obdobje vremenskih podatkov</span>
-                  <strong>{referenceRangeLabel}</strong>
-                  <p>
+                  <div className="signal-period">
+                    <span className="metric-label">Teden izdaje signala</span>
+                    <strong>{issueWeekRangeLabel}</strong>
+                    <p>Ta teden ni del napovedanega obdobja.</p>
+                  </div>
+                  <div className="signal-period">
+                    <span className="metric-label">
+                      {activeModel.weatherUsedInScore
+                        ? '4 tedni vremena v izračunu'
+                        : 'Zadnji teden vremenskega konteksta'}
+                    </span>
+                    <strong>
+                      {activeModel.weatherUsedInScore
+                        ? weatherInputRangeLabel
+                        : latestWeatherWeekRangeLabel}
+                    </strong>
+                    <p>
+                      {activeModel.weatherUsedInScore
+                        ? 'To so štirje zaključeni tedni pred tednom izdaje.'
+                        : 'Vreme je pri KME prikazano ločeno in ne vpliva na regionalni signal.'}
+                    </p>
+                  </div>
+                  <div className="signal-period signal-period-output">
+                    <span className="metric-label">Obdobje, za katero velja signal</span>
+                    <strong>{predictionRangeLabel}</strong>
+                    <p>
+                      Skupni signal za {timeHorizon}
+                      {selectedDiseaseKey === 'borelioza'
+                        ? ', ne napoved samo za naslednji teden.'
+                        : '.'}
+                    </p>
+                  </div>
+                  <p className="weather-source">
                     Vremenski vir:{' '}
                     <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
                       Open-Meteo / DWD ICON
                     </a>
-                    .{' '}
-                    {activeModel.weatherUsedInScore
-                      ? 'Štirje zaključeni tedni vremena vplivajo na signal za boreliozo.'
-                      : 'Pri KME so prikazani kot ločen kontekst in ne vplivajo na regionalni signal.'}
+                    .
                   </p>
                   {weatherIsStale ? (
                     <p className="freshness-warning" role="status">
@@ -596,8 +654,8 @@ function App() {
                     </span>
                   </div>
                   <p>
-                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} za{' '}
-                    {timeHorizon}.
+                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} velja za{' '}
+                    {timeHorizon}: {predictionRangeLabel}.
                     {activeModel.spatialScope === 'statistical_region'
                       ? ' Pri KME je enak za vse občine v izbrani statistični regiji.'
                       : ''}{' '}
@@ -633,15 +691,19 @@ function App() {
               </div>
 
               <div className="score-row">
-                <div className="score-ring" style={riskBadgeStyle}>
-                  <span>{selectedLocation.score}. percentil</span>
+                <div
+                  className="score-ring"
+                  style={riskBadgeStyle}
+                  aria-label={`Stopnja signala: ${signalGradeLabel[selectedLocation.level]}`}
+                >
+                  <span>{signalGradeLabel[selectedLocation.level]}</span>
                 </div>
                 <div>
                   <span className="metric-label">Stopnja signala</span>
                   <span
                     className={`risk-pill ${levelClassName[selectedLocation.level]}`}
                   >
-                    {signalLevelLabel[selectedLocation.level]}
+                    {signalGradeLabel[selectedLocation.level]}
                   </span>
                   <div
                     className={`summary-panel ${summaryPanelClassName[selectedLocation.level]}`}

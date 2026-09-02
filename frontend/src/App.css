@@ -429,7 +429,7 @@
 
 .live-meta {
   display: grid;
-  gap: 4px;
+  gap: 0;
   padding: 14px 16px;
   border-radius: 18px;
   border: 1px solid rgba(55, 76, 60, 0.1);
@@ -441,9 +441,35 @@
   color: #12251a;
 }
 
+.signal-period {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(55, 76, 60, 0.1);
+}
+
+.signal-period-output {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
 .live-meta p,
 .live-status {
   color: #516055;
+}
+
+.live-meta .weather-source,
+.live-meta .freshness-warning {
+  grid-column: 1 / -1;
+}
+
+.live-meta .weather-source {
+  padding-top: 10px;
+  border-top: 1px solid rgba(55, 76, 60, 0.1);
 }
 
 .live-status {
