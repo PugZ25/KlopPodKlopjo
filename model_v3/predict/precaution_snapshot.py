@@ -56,6 +56,14 @@ class DisplayCalibration:
     medium_upper: float
 
 
+@dataclass(frozen=True)
+class OperationalWeatherScaler:
+    scaler: WeatherScaler
+    training_support_minimums: Mapping[str, float]
+    training_support_maximums: Mapping[str, float]
+    operational_support_tolerances: Mapping[str, float]
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -115,7 +123,7 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     return config
 
 
-def _load_weather_scaler(path: Path, expected_sha256: str) -> WeatherScaler:
+def _load_weather_scaler(path: Path, expected_sha256: str) -> OperationalWeatherScaler:
     if _sha256(path) != expected_sha256:
         raise PrecautionSnapshotError("Lyme weather scaler hash differs from model seal")
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -123,21 +131,43 @@ def _load_weather_scaler(path: Path, expected_sha256: str) -> WeatherScaler:
         raise PrecautionSnapshotError("Lyme compact weather scaler order changed")
     means = payload.get("means", {})
     standard_deviations = payload.get("standard_deviations", {})
-    if set(means) != set(COMPACT_WEATHER_FEATURES) or set(standard_deviations) != set(
-        COMPACT_WEATHER_FEATURES
+    minimums = payload.get("training_support_minimums", {})
+    maximums = payload.get("training_support_maximums", {})
+    tolerances = payload.get("operational_support_tolerances", {})
+    expected_features = set(COMPACT_WEATHER_FEATURES)
+    if any(
+        set(values) != expected_features
+        for values in (means, standard_deviations, minimums, maximums, tolerances)
     ):
         raise PrecautionSnapshotError("Lyme compact weather scaler schema changed")
     if not all(
         math.isfinite(float(means[name]))
         and math.isfinite(float(standard_deviations[name]))
         and float(standard_deviations[name]) > 0
+        and math.isfinite(float(minimums[name]))
+        and math.isfinite(float(maximums[name]))
+        and float(minimums[name]) < float(maximums[name])
+        and math.isfinite(float(tolerances[name]))
+        and float(tolerances[name]) > 0
         for name in COMPACT_WEATHER_FEATURES
     ):
         raise PrecautionSnapshotError("Lyme compact weather scaler values are invalid")
-    return WeatherScaler(
-        means={name: float(means[name]) for name in COMPACT_WEATHER_FEATURES},
-        standard_deviations={
-            name: float(standard_deviations[name]) for name in COMPACT_WEATHER_FEATURES
+    return OperationalWeatherScaler(
+        scaler=WeatherScaler(
+            means={name: float(means[name]) for name in COMPACT_WEATHER_FEATURES},
+            standard_deviations={
+                name: float(standard_deviations[name])
+                for name in COMPACT_WEATHER_FEATURES
+            },
+        ),
+        training_support_minimums={
+            name: float(minimums[name]) for name in COMPACT_WEATHER_FEATURES
+        },
+        training_support_maximums={
+            name: float(maximums[name]) for name in COMPACT_WEATHER_FEATURES
+        },
+        operational_support_tolerances={
+            name: float(tolerances[name]) for name in COMPACT_WEATHER_FEATURES
         },
     )
 
@@ -442,6 +472,22 @@ def build_precaution_snapshot(
                 raise PrecautionSnapshotError(
                     f"Open-Meteo weather features are unavailable for {code} at {prediction_issue}"
                 )
+            outside_support = {
+                name: weather.values[name]
+                for name in COMPACT_WEATHER_FEATURES
+                if not (
+                    lyme_weather_scaler.training_support_minimums[name]
+                    - lyme_weather_scaler.operational_support_tolerances[name]
+                    <= weather.values[name]
+                    <= lyme_weather_scaler.training_support_maximums[name]
+                    + lyme_weather_scaler.operational_support_tolerances[name]
+                )
+            }
+            if outside_support:
+                raise PrecautionSnapshotError(
+                    f"Open-Meteo weather is outside final ERA5-Land training support "
+                    f"for {code} at {prediction_issue}: {outside_support}"
+                )
             rows.append(
                 ProxyRow(
                     municipality_code=code,
@@ -460,7 +506,7 @@ def build_precaution_snapshot(
             lyme_model,
             rows,
             COMPACT_WEATHER_ID,
-            lyme_weather_scaler,
+            lyme_weather_scaler.scaler,
         )
         return {
             row.municipality_code: float(value) / row.population * 100000.0
@@ -565,7 +611,7 @@ def build_precaution_snapshot(
             "spatialScope": "municipality",
             "scopeLabel": "relativna primerjava občin",
             "dataStatus": "Deluje brez novejših prijav borelioze; zgodovinski podatki so uporabljeni samo pri učenju in preverjanju modela.",
-            "methodologyNote": "Signal združuje sezono, občinski zgodovinski vzorec in Open-Meteo vreme iz štirih zaključenih tednov pred izdajo; novejše prijave primerov niso vhod v oceno.",
+            "methodologyNote": "Signal združuje sezono, občinski zgodovinski vzorec ter temperaturo zraka in tal in padavine Open-Meteo iz štirih zaključenih tednov pred izdajo; novejše prijave primerov niso vhod v oceno.",
             "purpose": "Podpora odločitvi za previdnost pred odhodom v naravo.",
             "disclaimer": "To ni epidemiološki podatek, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
             "scoreExplanation": "Ocena 0–100 je relativni percentil modelskega signala glede na časovno ločene napovedi 2017–2024.",
@@ -573,7 +619,7 @@ def build_precaution_snapshot(
                 "letni sezonski vzorec",
                 "občinski zgodovinski vzorec",
                 "temperatura zraka in tal v prejšnjih štirih tednih",
-                "padavine in vlažnost tal v prejšnjih štirih tednih",
+                "padavine v prejšnjih štirih tednih",
                 "prebivalstvo kot epidemiološki imenovalec",
             ],
             "predictionWindowStart": (issue_week + timedelta(weeks=1)).isoformat(),
@@ -666,6 +712,7 @@ def build_precaution_snapshot(
             "lyme_recent_cases_not_required": True,
             "kme_recent_cases_not_required": True,
             "weather_use_is_disease_specific_and_explicit": True,
+            "lyme_weather_within_final_training_support": True,
             "weather_five_complete_pre_issue_weeks": True,
             "weather_source_is_operational_model_not_observation": True,
             "weather_uses_polygon_intersection_weights": True,

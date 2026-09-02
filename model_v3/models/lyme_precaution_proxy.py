@@ -64,7 +64,6 @@ COMPACT_WEATHER_FEATURES = (
     "t2m_mean_c_previous_4w_mean",
     "tp_sum_mm_previous_4w_sum",
     "stl1_mean_c_previous_4w_mean",
-    "swvl1_mean_m3_m3_previous_4w_mean",
 )
 
 PREDICTION_COLUMNS = (
@@ -186,6 +185,18 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         or deployment.get("claim_that_weather_improved_validation_allowed") is not False
     ):
         raise LymePrecautionProxyError("Reviewed weather deployment policy changed")
+    bridge = deployment.get("operational_source_bridge", {})
+    increments = bridge.get("open_meteo_reported_increment", {})
+    if (
+        bridge.get("model_inputs") != list(COMPACT_WEATHER_FEATURES)
+        or bridge.get("fail_closed_outside_final_training_support") is not True
+        or set(increments) != set(COMPACT_WEATHER_FEATURES)
+        or not all(float(increments[name]) > 0 for name in COMPACT_WEATHER_FEATURES)
+        or bridge.get("support_tolerance_rule")
+        != "half_reported_increment_for_means_and_half_hourly_increment_times_672_for_four_week_precipitation_sum"
+        or not bridge.get("soil_moisture_excluded_reason")
+    ):
+        raise LymePrecautionProxyError("Operational weather source bridge changed")
     if config.get("final_fit", {}).get("runtime_recent_cases_required") is not False:
         raise LymePrecautionProxyError("Final runtime must not require recent cases")
     if config["final_fit"].get("runtime_weather_used_by_ai_score") is not True:
@@ -823,6 +834,25 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             name: final_scaler.standard_deviations[name]
             for name in COMPACT_WEATHER_FEATURES
         },
+        "training_support_minimums": {
+            name: min(row.weather.values[name] for row in final_rows if row.weather is not None)
+            for name in COMPACT_WEATHER_FEATURES
+        },
+        "training_support_maximums": {
+            name: max(row.weather.values[name] for row in final_rows if row.weather is not None)
+            for name in COMPACT_WEATHER_FEATURES
+        },
+        "operational_support_tolerances": {
+            name: float(deployment["operational_source_bridge"][
+                "open_meteo_reported_increment"
+            ][name])
+            / 2.0
+            * (672 if name == "tp_sum_mm_previous_4w_sum" else 1)
+            for name in COMPACT_WEATHER_FEATURES
+        },
+        "operational_support_tolerance_rule": deployment[
+            "operational_source_bridge"
+        ]["support_tolerance_rule"],
     }
     _write_json(output_paths["weather_scaler"], compact_scaler)
     _write_json(output_paths["display_calibration"], display_calibration)
@@ -853,7 +883,9 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             "recent_cases_required": False,
             "weather_used_by_ai_score": True,
             "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
-            "source_bridge_validation_status": "mapped_variables_and_units_without_completed_cross_source_bias_calibration",
+            "source_bridge_validation_status": "mapped_variables_and_units_with_training_support_guard_without_completed_cross_source_bias_calibration",
+            "operational_weather_features": list(COMPACT_WEATHER_FEATURES),
+            "soil_moisture_excluded_from_score": "DWD_ICON_soil_moisture_was_outside_ERA5_Land_training_support_in_live_2026_08_31_audit",
             "weather_displayed_as_separate_context": True,
             "output_is_personal_risk": False,
             "output_is_direct_tick_measurement": False,
@@ -891,6 +923,15 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
                 and evidence_selected_candidate == NO_WEATHER_ID
                 and deployment["claim_that_weather_improved_validation_allowed"] is False
             ),
+            "runtime_weather_training_support_bounds_recorded": all(
+                compact_scaler["training_support_minimums"][name]
+                < compact_scaler["training_support_maximums"][name]
+                for name in COMPACT_WEATHER_FEATURES
+            ),
+            "runtime_weather_source_resolution_tolerances_recorded": all(
+                compact_scaler["operational_support_tolerances"][name] > 0
+                for name in COMPACT_WEATHER_FEATURES
+            ),
             "development_rolling_origin_used": True,
             "four_week_target_embargo_preserved": True,
             "opened_2025_labelled_retrospective_not_lockbox": True,
@@ -916,6 +957,9 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         f"Compact weather improved MAE in {improved_folds}/{len(development_fold_pairs)} development folds. "
         f"Weather passed the predictive evidence gate: **{str(weather_selected).lower()}**. "
         "The weather candidate remains deployed only because weather was explicitly made a product requirement; this is an override, not a claim of improved validation.\n\n"
+        "Operational inputs are four-week air temperature, precipitation, and shallow-soil temperature. "
+        "DWD ICON soil moisture is excluded from the score because the live audit placed it outside ERA5-Land training support. "
+        "Inference fails closed when a scored operational weather feature is outside its final training range; cross-source bias calibration remains incomplete.\n\n"
         "The display score is the selected model's predicted incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.\n",
         encoding="utf-8",
     )

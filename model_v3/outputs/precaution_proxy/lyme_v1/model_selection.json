@@ -3,7 +3,7 @@
   "deployed_candidate_id": "catboost_no_case_compact_weather_offset",
   "deployment_override_reason": "user_required_weather_in_the_live_municipality_signal_on_2026_09_02",
   "development_fold_count": 8,
-  "development_weather_improved_fold_count": 5,
+  "development_weather_improved_fold_count": 6,
   "evidence_reason": "compact_weather_failed_stability_and_or_opened_2025_gates",
   "evidence_selected_candidate_id": "catboost_no_case_seasonal_municipality_offset",
   "rule": {

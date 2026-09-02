@@ -45,8 +45,7 @@
         "seasonal_cos_annual",
         "z_t2m_mean_c_previous_4w_mean",
         "z_tp_sum_mm_previous_4w_sum",
-        "z_stl1_mean_c_previous_4w_mean",
-        "z_swvl1_mean_m3_m3_previous_4w_mean"
+        "z_stl1_mean_c_previous_4w_mean"
       ],
       "weather_window": "t_minus_4_through_t_minus_1_completed_weeks"
     },
@@ -78,7 +77,22 @@
     "evidence_selected_candidate": "catboost_no_case_seasonal_municipality_offset",
     "deployed_candidate": "catboost_no_case_compact_weather_offset",
     "override_reason": "user_required_weather_in_the_live_municipality_signal_on_2026_09_02",
-    "claim_that_weather_improved_validation_allowed": false
+    "claim_that_weather_improved_validation_allowed": false,
+    "operational_source_bridge": {
+      "model_inputs": [
+        "t2m_mean_c_previous_4w_mean",
+        "tp_sum_mm_previous_4w_sum",
+        "stl1_mean_c_previous_4w_mean"
+      ],
+      "fail_closed_outside_final_training_support": true,
+      "open_meteo_reported_increment": {
+        "t2m_mean_c_previous_4w_mean": 0.1,
+        "tp_sum_mm_previous_4w_sum": 0.1,
+        "stl1_mean_c_previous_4w_mean": 0.1
+      },
+      "support_tolerance_rule": "half_reported_increment_for_means_and_half_hourly_increment_times_672_for_four_week_precipitation_sum",
+      "soil_moisture_excluded_reason": "live_DWD_ICON_soil_moisture_outside_ERA5_Land_training_support_on_2026_08_31"
+    }
   },
   "display_calibration": {
     "reference": "selected_candidate_rolling_origin_predictions_2017_through_2024_only",

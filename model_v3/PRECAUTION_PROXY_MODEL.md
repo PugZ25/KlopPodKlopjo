@@ -6,6 +6,8 @@ Evidence-selected candidate: `catboost_no_case_seasonal_municipality_offset`.
 
 Deployed candidate under the reviewed weather-required product policy: `catboost_no_case_compact_weather_offset`.
 
-Compact weather improved MAE in 5/8 development folds. Weather passed the predictive evidence gate: **false**. The weather candidate remains deployed only because weather was explicitly made a product requirement; this is an override, not a claim of improved validation.
+Compact weather improved MAE in 6/8 development folds. Weather passed the predictive evidence gate: **false**. The weather candidate remains deployed only because weather was explicitly made a product requirement; this is an override, not a claim of improved validation.
+
+Operational inputs are four-week air temperature, precipitation, and shallow-soil temperature. DWD ICON soil moisture is excluded from the score because the live audit placed it outside ERA5-Land training support. Inference fails closed when a scored operational weather feature is outside its final training range; cross-source bias calibration remains incomplete.
 
 The display score is the selected model's predicted incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.

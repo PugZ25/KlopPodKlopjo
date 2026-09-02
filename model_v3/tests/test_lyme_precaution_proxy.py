@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from model_v3.models.lyme_precaution_proxy import (
+    COMPACT_WEATHER_FEATURES,
     COMPACT_WEATHER_ID,
     NO_WEATHER_ID,
     load_config,
@@ -33,10 +34,36 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
     assert selection["weather_candidate_passed_evidence_gate"] is False
     assert selection["weather_required_by_product"] is True
     assert selection["claim_that_weather_improved_validation_allowed"] is False
-    assert selection["development_weather_improved_fold_count"] == 5
+    assert selection["development_weather_improved_fold_count"] == 6
     assert manifest["runtime_contract"]["recent_cases_required"] is False
     assert manifest["runtime_contract"]["weather_used_by_ai_score"] is True
     assert manifest["runtime_contract"]["weather_displayed_as_separate_context"] is True
+    assert manifest["runtime_contract"]["operational_weather_features"] == list(
+        COMPACT_WEATHER_FEATURES
+    )
+    assert "swvl1_mean_m3_m3_previous_4w_mean" not in COMPACT_WEATHER_FEATURES
+
+    scaler = json.loads(
+        (REPO_ROOT / "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert scaler["feature_order"] == list(COMPACT_WEATHER_FEATURES)
+    assert set(scaler["training_support_minimums"]) == set(COMPACT_WEATHER_FEATURES)
+    assert set(scaler["training_support_maximums"]) == set(COMPACT_WEATHER_FEATURES)
+    assert set(scaler["operational_support_tolerances"]) == set(
+        COMPACT_WEATHER_FEATURES
+    )
+    assert all(
+        scaler["training_support_minimums"][feature]
+        < scaler["training_support_maximums"][feature]
+        for feature in COMPACT_WEATHER_FEATURES
+    )
+    assert scaler["operational_support_tolerances"] == {
+        "stl1_mean_c_previous_4w_mean": 0.05,
+        "t2m_mean_c_previous_4w_mean": 0.05,
+        "tp_sum_mm_previous_4w_sum": 33.6,
+    }
 
 
 def test_weather_candidate_failed_the_opened_2025_audit() -> None:

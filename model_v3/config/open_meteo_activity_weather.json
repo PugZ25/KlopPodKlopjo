@@ -26,6 +26,11 @@
     ],
     "model_feature_weeks": 4,
     "retrieval_history_weeks": 5,
+    "lyme_model_input_variables": [
+      "temperature_2m",
+      "precipitation",
+      "soil_temperature_6cm"
+    ],
     "batch_size": 50,
     "request_timeout_seconds": 60,
     "maximum_response_bytes_per_batch": 20000000,

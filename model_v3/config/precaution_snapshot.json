@@ -32,7 +32,7 @@
     "spatial_method": "frozen_grid_samples_weighted_by_municipality_polygon_intersections",
     "expected_refresh_cadence_hours": 24,
     "maximum_display_age_hours": 36,
-    "interpretation": "mapped_operational_weather_features_used_by_lyme_model_without_personal_risk_or_tick_activity_threshold_semantics"
+    "interpretation": "air_temperature_precipitation_and_shallow_soil_temperature_used_by_lyme_model_with_soil_moisture_display_only_and_without_personal_risk_or_tick_activity_threshold_semantics"
   },
   "display": {
     "default_municipality_code": "061",

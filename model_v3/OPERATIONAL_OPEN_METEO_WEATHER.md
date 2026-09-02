@@ -13,12 +13,15 @@ previous issue week's comparison score.
   `icon_seamless` model.
 - Values are recent operational-model history, not weather-station observations,
   direct tick measurements, infection risk, or an epidemiological case feed.
-- The four most recent completed weeks are inputs to the deployed Lyme score.
-  Weather is not an input to the regional KME score.
+- Air temperature, precipitation, and shallow-soil temperature from the four
+  most recent completed weeks are inputs to the deployed Lyme score. Weather is
+  not an input to the regional KME score.
 - No tick-activity formula or categorical activity threshold is created. Air
   temperature, dew point, precipitation, two soil-temperature layers, and two
-  soil-moisture layers are mapped to the established weekly ERA5-Land feature
-  schema. The latest completed week is also shown as descriptive context.
+  soil-moisture layers are mapped to the established weekly ERA5-Land schema.
+  Soil moisture is displayed but excluded from the score because its live ICON
+  values fell outside the ERA5-Land training support. The latest completed week
+  is shown as descriptive context.
 - The weekly model issue date is the current Monday. A daily weather refresh does
   not change the model signal between Mondays.
 - The model target remains reported Lyme burden in `t+1` through `t+4`.
@@ -45,7 +48,8 @@ explicit. ERA5-Land trained the retrospective weather candidate; DWD ICON
 supplies live inference values. The mapped variables and units match, but a
 completed overlapping-source bias calibration is still absent. Deployment is
 therefore recorded as an explicit product-policy override, not evidence that
-the weather candidate improved validation.
+the weather candidate improved validation. Scored live features must stay
+inside their observed final-training ranges or snapshot generation fails closed.
 
 ## Reproducible path
 

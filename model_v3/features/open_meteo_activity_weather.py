@@ -49,6 +49,12 @@ SOURCE_TO_OUTPUT = {
 
 SUM_OUTPUTS = frozenset({"tp_sum_mm"})
 
+LYME_MODEL_SOURCE_VARIABLES = (
+    "temperature_2m",
+    "precipitation",
+    "soil_temperature_6cm",
+)
+
 QUALITY_CHECK_NAMES = frozenset(
     {
         "five_complete_pre_issue_UTC_weeks",
@@ -166,6 +172,8 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         raise ActivityWeatherError(
             "Operational retrieval must include five weeks for current and previous scores"
         )
+    if source.get("lyme_model_input_variables") != list(LYME_MODEL_SOURCE_VARIABLES):
+        raise ActivityWeatherError("Operational Lyme weather input variables changed")
     freshness = config.get("freshness_contract", {})
     if freshness.get("partial_current_day_allowed") is not False:
         raise ActivityWeatherError("Partial current day is not allowed")

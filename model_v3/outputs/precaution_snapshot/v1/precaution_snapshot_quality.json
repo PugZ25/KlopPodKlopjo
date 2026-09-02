@@ -9,26 +9,26 @@
     "personal_risk_output_absent": true,
     "runtime_case_inputs_absent": true,
     "weather_activity_threshold_absent": true,
-    "weather_separate_from_ai_scores": true,
-    "weather_seven_completed_days_through_yesterday": true,
+    "weather_five_complete_pre_issue_weeks": true,
     "weather_source_is_operational_model_not_observation": true,
+    "weather_use_is_disease_specific_and_explicit": true,
     "weather_uses_polygon_intersection_weights": true
   },
   "inputs": {
     "configuration": {
-      "bytes": 2218,
+      "bytes": 2398,
       "path": "model_v3/config/precaution_snapshot.json",
-      "sha256": "9d6272ef2b543c1baaa73c2e7b9d87990abe57f1d876a9c033462eb33a9bcb4c"
+      "sha256": "a60b1efe6a3ff479016b97d8185af42002a3d47df8d9f060448160e62bb59c7f"
     },
     "display_calibration": {
       "bytes": 17807,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
-      "sha256": "444d73b6dc6920cbc5ea7c3c6f7e9e9a2d0b3c61e5ac6f5ed539196b79f18169"
+      "sha256": "f87b1df6fa10f1a03ceb64e610e2eb3b8962e8ee98ed8959fc567ec749524990"
     },
     "generator_code": {
-      "bytes": 27782,
+      "bytes": 30816,
       "path": "model_v3/predict/precaution_snapshot.py",
-      "sha256": "e04f28f2dd7c9170feb104224eb12ace6f17e5e497f6553ac6f4ca202a38ced4"
+      "sha256": "705c51dcb8f570de80dccb65003098458bed1ea48a6eb2449d101f7525860c4b"
     },
     "kme_coefficients": {
       "bytes": 777,
@@ -41,14 +41,19 @@
       "sha256": "148232b4dbf967522d59beed6f2576385ac33518b1211d34509b794640b2a4da"
     },
     "lyme_model": {
-      "bytes": 229984,
+      "bytes": 230688,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
-      "sha256": "e01adad52df5a0588b1b581f85437b62e63fa6a9f0bb3c7124dd8a25ff249d13"
+      "sha256": "cd4e0a3656874150307577cf0475974d2e0bc53648913ddfe491918313a49cf3"
     },
     "lyme_model_manifest": {
-      "bytes": 4404,
+      "bytes": 5324,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
-      "sha256": "ce742831ec16af3eb51dcf31aeb3682b6001083003e7228c1e204ee171028325"
+      "sha256": "4ec8c58b446f25cc11a59c33028bdb3bdd7c027d578cca1d2b9e8d046c87c0f5"
+    },
+    "lyme_weather_scaler": {
+      "bytes": 788,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json",
+      "sha256": "b7abba93f7c22e8b6584cf2422c509ad19b583f95f65f6d72ee8e2b235255c03"
     },
     "municipality": {
       "bytes": 3148,
@@ -71,14 +76,14 @@
       "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
     },
     "recent_activity_weather": {
-      "bytes": 29817,
-      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150000Z/derived/municipality_recent_weather.csv",
-      "sha256": "2039b41e025f9dc24106b55fb9329f225760ba5e358f59ef7a36b77a11f651ae"
+      "bytes": 182653,
+      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150100Z/derived/municipality_weekly_weather.csv",
+      "sha256": "49a91f5dc05ad25c8ce452a08002a91766add7bd1cfe29cf12f62855421be1cf"
     },
     "recent_activity_weather_quality": {
-      "bytes": 2827,
-      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150000Z/derived/quality_summary.json",
-      "sha256": "3159b19ae5b15e98d6ce61d961e80da75f016cd74a176ab52cbb3e7b86b48e5e"
+      "bytes": 3061,
+      "path": "data/raw/open_meteo_activity_weather/retrievals/retrieved_20260902T150100Z/derived/quality_summary.json",
+      "sha256": "f436f9ef887de61850f761dbbb95038cc8d00a0ea1c0c6ec220343ba6052adba"
     },
     "statistical_region": {
       "bytes": 855,
@@ -89,14 +94,14 @@
   "issue_week": "2026-08-31",
   "outputs": {
     "frontend_snapshot": {
-      "bytes": 470748,
+      "bytes": 488827,
       "path": "frontend/src/data/precautionSnapshot.json",
-      "sha256": "44f98e325efdb3a62f107e9abe807420af4d05ec3c3224cb0c875b014a2017ef"
+      "sha256": "cb2815ff0b8680144be7d3a1198c7f330c3eb4d0b87b97231c299bdaf7739de8"
     },
     "snapshot": {
-      "bytes": 470748,
+      "bytes": 488827,
       "path": "model_v3/outputs/precaution_snapshot/v1/precaution_snapshot.json",
-      "sha256": "44f98e325efdb3a62f107e9abe807420af4d05ec3c3224cb0c875b014a2017ef"
+      "sha256": "cb2815ff0b8680144be7d3a1198c7f330c3eb4d0b87b97231c299bdaf7739de8"
     }
   },
   "schema_version": 1,

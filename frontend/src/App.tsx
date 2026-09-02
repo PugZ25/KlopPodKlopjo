@@ -685,7 +685,7 @@ function App() {
                   Prikazane vrednosti so izračunane z vremenskim modelom za občino.
                   Niso meritve vremenske postaje ali aktivnosti klopov.
                   {activeModel.weatherUsedInScore
-                    ? ' Skupaj s prejšnjimi tremi zaključenimi tedni so vhod v signal za boreliozo.'
+                    ? ' Temperaturi zraka in tal ter padavine skupaj s prejšnjimi tremi zaključenimi tedni vplivajo na signal za boreliozo; vlažnost tal je samo prikazni kontekst.'
                     : ' Ne vplivajo na regionalni signal KME.'}
                 </p>
               </div>

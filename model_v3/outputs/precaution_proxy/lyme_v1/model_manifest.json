@@ -1,43 +1,39 @@
 {
   "catboost_version": "1.2.10",
   "code": {
-    "bytes": 40411,
+    "bytes": 43094,
     "path": "model_v3/models/lyme_precaution_proxy.py",
-    "sha256": "4e8ca92d0ce64b5d9510631ec73c2291e40bf1d96129a59950524c610cb30f16"
+    "sha256": "70a1c7f2767e67aaed672691db276ff2a2c7363dafd8d839913e0decac6d62e9"
   },
   "configuration": {
-    "bytes": 4890,
+    "bytes": 5526,
     "path": "model_v3/config/lyme_precaution_proxy.json",
-    "sha256": "c64ad3bc1ffbc4cccc5628f8025c8900caa966503b331ced7b0bfd141613d546"
+    "sha256": "e34a2106190ddcae40c9be4595b48279f09a726081105d3770705c8328f3e32e"
   },
   "feature_importance": [
     {
       "feature": "municipality_code",
-      "importance": 15.677297632644965
+      "importance": 17.930047229794468
     },
     {
       "feature": "seasonal_sin_annual",
-      "importance": 12.28054938940558
+      "importance": 11.847413881439962
     },
     {
       "feature": "seasonal_cos_annual",
-      "importance": 55.02361099483273
+      "importance": 52.90176389027003
     },
     {
       "feature": "z_t2m_mean_c_previous_4w_mean",
-      "importance": 7.163522688233318
+      "importance": 5.120518199226955
     },
     {
       "feature": "z_tp_sum_mm_previous_4w_sum",
-      "importance": 1.08706196172942
+      "importance": 1.9676143966255488
     },
     {
       "feature": "z_stl1_mean_c_previous_4w_mean",
-      "importance": 6.886156797144005
-    },
-    {
-      "feature": "z_swvl1_mean_m3_m3_previous_4w_mean",
-      "importance": 1.8818005360099697
+      "importance": 10.232642402643034
     }
   ],
   "feature_names": [
@@ -46,8 +42,7 @@
     "seasonal_cos_annual",
     "z_t2m_mean_c_previous_4w_mean",
     "z_tp_sum_mm_previous_4w_sum",
-    "z_stl1_mean_c_previous_4w_mean",
-    "z_swvl1_mean_m3_m3_previous_4w_mean"
+    "z_stl1_mean_c_previous_4w_mean"
   ],
   "input_sources": {
     "development_weather": {
@@ -106,8 +101,8 @@
       "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
     }
   },
-  "model_sha256": "cd4e0a3656874150307577cf0475974d2e0bc53648913ddfe491918313a49cf3",
-  "model_structural_sha256_excluding_volatile_metadata": "7af8defc05a2bab6ebce7727d6cbb83c9f80e3bc4d2a0b733ff2339eac251e56",
+  "model_sha256": "448beee7996c9e71ce338bb476f0e306dee4db78bde29edd500b9624e0e6c305",
+  "model_structural_sha256_excluding_volatile_metadata": "97e489fc75f7e0a20aa7f77433217be75ba81f1f4509c425db06968b95d977f1",
   "parameters": {
     "allow_writing_files": false,
     "depth": 6,
@@ -126,11 +121,17 @@
   },
   "population_baseline": "log(population/100000)",
   "runtime_contract": {
+    "operational_weather_features": [
+      "t2m_mean_c_previous_4w_mean",
+      "tp_sum_mm_previous_4w_sum",
+      "stl1_mean_c_previous_4w_mean"
+    ],
     "output_is_direct_tick_measurement": false,
     "output_is_personal_risk": false,
     "recent_cases_required": false,
     "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
-    "source_bridge_validation_status": "mapped_variables_and_units_without_completed_cross_source_bias_calibration",
+    "soil_moisture_excluded_from_score": "DWD_ICON_soil_moisture_was_outside_ERA5_Land_training_support_in_live_2026_08_31_audit",
+    "source_bridge_validation_status": "mapped_variables_and_units_with_training_support_guard_without_completed_cross_source_bias_calibration",
     "weather_displayed_as_separate_context": true,
     "weather_used_by_ai_score": true
   },
@@ -144,5 +145,5 @@
     "rows": 105152,
     "rows_excluded_incomplete_weather": 3604
   },
-  "weather_scaler_sha256": "b7abba93f7c22e8b6584cf2422c509ad19b583f95f65f6d72ee8e2b235255c03"
+  "weather_scaler_sha256": "8e0d0787601dfac05a22307330f9c178281677ef4cefe63baa6b13d05f8a6a32"
 }
