@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T15:22:00+00:00",
+  "generatedAt": "2026-09-02T17:15:34.070299+00:00",
   "issueWeek": "2026-08-31",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 58
         }
       ],
-      "generatedAt": "2026-09-02T15:22:00+00:00",
+      "generatedAt": "2026-09-02T17:15:34.070299+00:00",
       "key": "borelioza",
       "locations": [
         {
@@ -6462,7 +6462,7 @@
           "score": 47
         }
       ],
-      "generatedAt": "2026-09-02T15:22:00+00:00",
+      "generatedAt": "2026-09-02T17:15:34.070299+00:00",
       "key": "kme",
       "locations": [
         {
@@ -12861,7 +12861,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-08-30",
     "periodStart": "2026-08-24",
-    "retrievalId": "retrieved_20260902T152200Z",
+    "retrievalId": "retrieved_20260902T171534Z",
     "retrievalWindowEnd": "2026-08-30",
     "retrievalWindowStart": "2026-07-27",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
