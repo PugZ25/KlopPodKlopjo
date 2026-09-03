@@ -651,6 +651,8 @@
 }
 
 .insight-card {
+  position: static;
+  inset: auto;
   align-self: start;
   display: grid;
   align-content: start;

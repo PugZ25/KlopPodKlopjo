@@ -592,14 +592,6 @@ function App() {
                       {signalLevelLabel[selectedLocation.level]}
                     </span>
                   </div>
-                  <p>
-                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} velja za tekoči
-                    teden: {signalWeekRangeLabel}.
-                    {activeModel.spatialScope === 'statistical_region'
-                      ? ' Pri KME je enak za vse občine v izbrani statistični regiji.'
-                      : ''}{' '}
-                    Izberi občino na zemljevidu ali uporabi svojo lokacijo.
-                  </p>
                 </div>
 
                 <div className="map-legend-bar" aria-hidden="true">
