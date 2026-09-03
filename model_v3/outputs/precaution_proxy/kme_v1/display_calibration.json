@@ -1,0 +1,437 @@
+{
+  "interpretation": "relative_percentile_not_absolute_or_personal_risk",
+  "kme": {
+    "development_band_summary": [
+      {
+        "label": "Nizko",
+        "mean_actual_incidence_per_100000": 0.01113409983004222,
+        "mean_predicted_incidence_per_100000": 0.007827529649947694,
+        "n": 1464
+      },
+      {
+        "label": "Srednje",
+        "mean_actual_incidence_per_100000": 0.055651840910500565,
+        "mean_predicted_incidence_per_100000": 0.04222621541527081,
+        "n": 1464
+      },
+      {
+        "label": "Visoko",
+        "mean_actual_incidence_per_100000": 0.28011847047893207,
+        "mean_predicted_incidence_per_100000": 0.29519839537306,
+        "n": 1464
+      }
+    ],
+    "low_upper_percentile": 33.333333333333336,
+    "medium_upper_percentile": 66.66666666666667,
+    "quantiles": [
+      {
+        "percentile": 0.0,
+        "value": 2.140327112385561e-12
+      },
+      {
+        "percentile": 1.0,
+        "value": 4.7606228870184645e-11
+      },
+      {
+        "percentile": 2.0,
+        "value": 0.0013078358717528648
+      },
+      {
+        "percentile": 3.0,
+        "value": 0.0015750346594422106
+      },
+      {
+        "percentile": 4.0,
+        "value": 0.0019001486330424496
+      },
+      {
+        "percentile": 5.0,
+        "value": 0.0022287264485530414
+      },
+      {
+        "percentile": 6.0,
+        "value": 0.002675929763808992
+      },
+      {
+        "percentile": 7.000000000000001,
+        "value": 0.003147200576585679
+      },
+      {
+        "percentile": 8.0,
+        "value": 0.003641133626644978
+      },
+      {
+        "percentile": 9.0,
+        "value": 0.00428951127364691
+      },
+      {
+        "percentile": 10.0,
+        "value": 0.005059465535735505
+      },
+      {
+        "percentile": 11.0,
+        "value": 0.0055016930962410665
+      },
+      {
+        "percentile": 12.0,
+        "value": 0.0058648738064882655
+      },
+      {
+        "percentile": 13.0,
+        "value": 0.0063024828180475775
+      },
+      {
+        "percentile": 14.000000000000002,
+        "value": 0.006574515075206559
+      },
+      {
+        "percentile": 15.0,
+        "value": 0.006965489865405987
+      },
+      {
+        "percentile": 16.0,
+        "value": 0.00737194054452341
+      },
+      {
+        "percentile": 17.0,
+        "value": 0.007727711913566183
+      },
+      {
+        "percentile": 18.0,
+        "value": 0.008057637883194583
+      },
+      {
+        "percentile": 19.0,
+        "value": 0.008330167822947397
+      },
+      {
+        "percentile": 20.0,
+        "value": 0.008707530147353315
+      },
+      {
+        "percentile": 21.0,
+        "value": 0.00926944971610966
+      },
+      {
+        "percentile": 22.0,
+        "value": 0.009625658556022772
+      },
+      {
+        "percentile": 23.0,
+        "value": 0.009961701920212238
+      },
+      {
+        "percentile": 24.0,
+        "value": 0.010577752190086219
+      },
+      {
+        "percentile": 25.0,
+        "value": 0.01108790451576782
+      },
+      {
+        "percentile": 26.0,
+        "value": 0.011776246787692965
+      },
+      {
+        "percentile": 27.0,
+        "value": 0.012423176448287984
+      },
+      {
+        "percentile": 28.000000000000004,
+        "value": 0.013067794595135355
+      },
+      {
+        "percentile": 28.999999999999996,
+        "value": 0.013894944784835493
+      },
+      {
+        "percentile": 30.0,
+        "value": 0.014798959115736136
+      },
+      {
+        "percentile": 31.0,
+        "value": 0.015573998345329899
+      },
+      {
+        "percentile": 32.0,
+        "value": 0.016545861939570066
+      },
+      {
+        "percentile": 33.0,
+        "value": 0.017798487601650783
+      },
+      {
+        "percentile": 34.0,
+        "value": 0.018686846351310675
+      },
+      {
+        "percentile": 35.0,
+        "value": 0.01984468136444665
+      },
+      {
+        "percentile": 36.0,
+        "value": 0.020747169369155417
+      },
+      {
+        "percentile": 37.0,
+        "value": 0.02181414349833402
+      },
+      {
+        "percentile": 38.0,
+        "value": 0.02295142787524519
+      },
+      {
+        "percentile": 39.0,
+        "value": 0.024121047862903748
+      },
+      {
+        "percentile": 40.0,
+        "value": 0.025432015904449153
+      },
+      {
+        "percentile": 41.0,
+        "value": 0.026485839057596976
+      },
+      {
+        "percentile": 42.0,
+        "value": 0.027640846895646234
+      },
+      {
+        "percentile": 43.0,
+        "value": 0.028908807947794418
+      },
+      {
+        "percentile": 44.0,
+        "value": 0.03003787069002121
+      },
+      {
+        "percentile": 45.0,
+        "value": 0.03081004450113641
+      },
+      {
+        "percentile": 46.0,
+        "value": 0.03236447851029046
+      },
+      {
+        "percentile": 47.0,
+        "value": 0.03356448875336435
+      },
+      {
+        "percentile": 48.0,
+        "value": 0.034806756260835243
+      },
+      {
+        "percentile": 49.0,
+        "value": 0.036311693205986165
+      },
+      {
+        "percentile": 50.0,
+        "value": 0.03757981831490159
+      },
+      {
+        "percentile": 51.0,
+        "value": 0.03930454016726121
+      },
+      {
+        "percentile": 52.0,
+        "value": 0.04119364757479287
+      },
+      {
+        "percentile": 53.0,
+        "value": 0.04259590001567473
+      },
+      {
+        "percentile": 54.0,
+        "value": 0.04470430572832842
+      },
+      {
+        "percentile": 55.00000000000001,
+        "value": 0.04656156553477352
+      },
+      {
+        "percentile": 56.00000000000001,
+        "value": 0.048518475535232086
+      },
+      {
+        "percentile": 57.00000000000001,
+        "value": 0.05114323386390157
+      },
+      {
+        "percentile": 57.99999999999999,
+        "value": 0.053646464189139854
+      },
+      {
+        "percentile": 59.0,
+        "value": 0.056815741001219076
+      },
+      {
+        "percentile": 60.0,
+        "value": 0.059716508301079725
+      },
+      {
+        "percentile": 61.0,
+        "value": 0.06270868483582542
+      },
+      {
+        "percentile": 62.0,
+        "value": 0.06677624449862309
+      },
+      {
+        "percentile": 63.0,
+        "value": 0.0698915724756328
+      },
+      {
+        "percentile": 64.0,
+        "value": 0.07378925724474464
+      },
+      {
+        "percentile": 65.0,
+        "value": 0.07814831434268639
+      },
+      {
+        "percentile": 66.0,
+        "value": 0.0827609276159497
+      },
+      {
+        "percentile": 67.0,
+        "value": 0.08734442193448785
+      },
+      {
+        "percentile": 68.0,
+        "value": 0.09234554004252943
+      },
+      {
+        "percentile": 69.0,
+        "value": 0.09829000461267272
+      },
+      {
+        "percentile": 70.0,
+        "value": 0.10253423990814507
+      },
+      {
+        "percentile": 71.0,
+        "value": 0.1086251829718247
+      },
+      {
+        "percentile": 72.0,
+        "value": 0.11557240672114122
+      },
+      {
+        "percentile": 73.0,
+        "value": 0.12245181028018964
+      },
+      {
+        "percentile": 74.0,
+        "value": 0.12898215074438557
+      },
+      {
+        "percentile": 75.0,
+        "value": 0.13484006541617877
+      },
+      {
+        "percentile": 76.0,
+        "value": 0.14292427149668177
+      },
+      {
+        "percentile": 77.0,
+        "value": 0.15155924826194023
+      },
+      {
+        "percentile": 78.0,
+        "value": 0.1589993084893468
+      },
+      {
+        "percentile": 79.0,
+        "value": 0.16685316029064812
+      },
+      {
+        "percentile": 80.0,
+        "value": 0.17458454175050409
+      },
+      {
+        "percentile": 81.0,
+        "value": 0.18344096203033844
+      },
+      {
+        "percentile": 82.0,
+        "value": 0.18949681125519605
+      },
+      {
+        "percentile": 83.0,
+        "value": 0.1956842796941388
+      },
+      {
+        "percentile": 84.0,
+        "value": 0.2048709535204611
+      },
+      {
+        "percentile": 85.0,
+        "value": 0.2128958242715459
+      },
+      {
+        "percentile": 86.0,
+        "value": 0.224691830035621
+      },
+      {
+        "percentile": 87.0,
+        "value": 0.23839143415673125
+      },
+      {
+        "percentile": 88.0,
+        "value": 0.2529005124694627
+      },
+      {
+        "percentile": 89.0,
+        "value": 0.2708914608619553
+      },
+      {
+        "percentile": 90.0,
+        "value": 0.2961820418449031
+      },
+      {
+        "percentile": 91.0,
+        "value": 0.3226676312281464
+      },
+      {
+        "percentile": 92.0,
+        "value": 0.35657785410229953
+      },
+      {
+        "percentile": 93.0,
+        "value": 0.4169445766837283
+      },
+      {
+        "percentile": 94.0,
+        "value": 0.49602871790024133
+      },
+      {
+        "percentile": 95.0,
+        "value": 0.5710711729688502
+      },
+      {
+        "percentile": 96.0,
+        "value": 0.6341458367597875
+      },
+      {
+        "percentile": 97.0,
+        "value": 0.7044031581994659
+      },
+      {
+        "percentile": 98.0,
+        "value": 0.8094666956021658
+      },
+      {
+        "percentile": 99.0,
+        "value": 0.9430726239897135
+      },
+      {
+        "percentile": 100.0,
+        "value": 1.1857023539694012
+      }
+    ],
+    "reference_n": 4392,
+    "reference_scope": "selected_candidate_rolling_origin_predictions_2018_through_2024_only",
+    "spatial_scope": "statistical_region_not_municipality"
+  },
+  "schema_version": 1
+}

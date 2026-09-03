@@ -29,6 +29,10 @@ def test_snapshot_config_has_no_runtime_case_input() -> None:
     assert config["product_contract"]["lyme_training_target"] == (
         "reported_lyme_cases_in_current_signal_week"
     )
+    assert config["product_contract"]["kme_model_target_matches_public_signal_window"] is True
+    assert config["product_contract"]["kme_training_target"] == (
+        "reported_kme_cases_in_current_signal_week"
+    )
     assert config["weather"]["expected_refresh_cadence_hours"] == 24
     assert config["weather"]["maximum_display_age_hours"] == 36
     assert not [key for key in config["inputs"] if "case" in key.lower()]
@@ -104,5 +108,14 @@ def test_frontend_snapshot_preserves_scope_and_weather_separation() -> None:
     assert len(kme_by_region) == 12
     assert all(len(values) == 1 for values in kme_by_region.values())
     assert payload["models"]["kme"]["spatialScope"] == "statistical_region"
+    assert payload["models"]["kme"]["modelId"] == (
+        "glm_current_week_seasonal_region_offset"
+    )
+    assert payload["models"]["kme"]["modelTarget"] == (
+        "Prijavljeni primeri KME v statistični regiji v tekočem tednu."
+    )
+    assert "naslednjih osmih tednih" not in payload["models"]["kme"][
+        "scoreExplanation"
+    ]
     assert "ni potrjena" in payload["models"]["borelioza"]["validationSummary"]
     assert "vreme" in payload["models"]["borelioza"]["inputWindow"].lower()

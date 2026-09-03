@@ -1,8 +1,10 @@
 {
   "checks": {
     "frontend_matches_canonical_snapshot": true,
+    "kme_model_target_matches_current_signal_week": true,
     "kme_recent_cases_not_required": true,
     "kme_scope_is_statistical_region": true,
+    "kme_selected_model_beats_historical_baseline": true,
     "low_never_declared_safe": true,
     "lyme_model_target_matches_current_signal_week": true,
     "lyme_recent_cases_not_required": true,
@@ -20,9 +22,9 @@
   },
   "inputs": {
     "configuration": {
-      "bytes": 2846,
+      "bytes": 3237,
       "path": "model_v3/config/precaution_snapshot.json",
-      "sha256": "df2015437623e77528fba44d82c3447476d460bcbdf49068f2ac048fbc604625"
+      "sha256": "4ed56b4f73d83cca1aa7dbd71d82778310648fde328d19f76bd40fa74e8c1bdd"
     },
     "display_calibration": {
       "bytes": 17833,
@@ -30,19 +32,34 @@
       "sha256": "ee6685b0770e0a252057cb165d392c69b1961b63c514ed07558b7892fbb0f617"
     },
     "generator_code": {
-      "bytes": 40804,
+      "bytes": 44616,
       "path": "model_v3/predict/precaution_snapshot.py",
-      "sha256": "940c1da2bf5b8e0bd639ffd48dd21076d57a23101b55a74b710a4b9d52de6a08"
+      "sha256": "98a36dc3bce4674bbac6892b5872c46c6872b896dc84d51f0451cda70c020d15"
+    },
+    "kme_aggregate_metrics": {
+      "bytes": 606,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/aggregate_metrics.csv",
+      "sha256": "8a58ee3026cec27ad051f14e63ffe126efb4ad8fe944eda7104f3ee2c08e191f"
     },
     "kme_coefficients": {
-      "bytes": 777,
-      "path": "model_v3/outputs/kme_prediction_seal/kme_frozen_final_glm_coefficients.csv",
-      "sha256": "1263c02735ca074e9c0e087ea0f9b7c81eff390a3df5e4d0639669fa497d8f70"
+      "bytes": 713,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/glm_coefficients.csv",
+      "sha256": "0cbed2f3fd955c0c847330f1a946bf250a162abbece810a65e1dcc7a9d5d3617"
     },
-    "kme_seal_manifest": {
-      "bytes": 9575,
-      "path": "model_v3/outputs/kme_prediction_seal/kme_2026_prediction_seal_manifest.json",
-      "sha256": "148232b4dbf967522d59beed6f2576385ac33518b1211d34509b794640b2a4da"
+    "kme_display_calibration": {
+      "bytes": 9455,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/display_calibration.json",
+      "sha256": "7f9a6e5e7f103689c3a7f82620ecf8ad9a6107cfb32e7b16eafa24fb70971ca8"
+    },
+    "kme_model_manifest": {
+      "bytes": 2270,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/model_manifest.json",
+      "sha256": "ec0419a56d17b09581acf3400aab81ee5990d5b8a9e7dead0cb3db095ae5c29e"
+    },
+    "kme_model_selection": {
+      "bytes": 507,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/model_selection.json",
+      "sha256": "7c4d8b47d962c07d572e2cab984c3ab2734547f54bc007076857010279cc60db"
     },
     "lyme_aggregate_metrics": {
       "bytes": 661,
@@ -108,14 +125,14 @@
   "issue_week": "2026-08-31",
   "outputs": {
     "frontend_snapshot": {
-      "bytes": 490480,
+      "bytes": 490491,
       "path": "frontend/src/data/precautionSnapshot.json",
-      "sha256": "f58c2eae689bb93b0ed8f92727712637fe0a7f2701f79303ebbd7ba009db18f0"
+      "sha256": "519f6f29d0c06e160e18673fb4b57091f5bfa6098d9e794c0ceec76ac14c09e5"
     },
     "snapshot": {
-      "bytes": 490480,
+      "bytes": 490491,
       "path": "model_v3/outputs/precaution_snapshot/v1/precaution_snapshot.json",
-      "sha256": "f58c2eae689bb93b0ed8f92727712637fe0a7f2701f79303ebbd7ba009db18f0"
+      "sha256": "519f6f29d0c06e160e18673fb4b57091f5bfa6098d9e794c0ceec76ac14c09e5"
     }
   },
   "schema_version": 1,

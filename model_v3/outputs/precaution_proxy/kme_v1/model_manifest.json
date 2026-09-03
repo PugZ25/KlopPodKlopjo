@@ -1,0 +1,69 @@
+{
+  "code": {
+    "bytes": 23204,
+    "path": "model_v3/models/kme_precaution_proxy.py",
+    "sha256": "dd2cc2f594a6e36ba4e0461bc879ef3b43ee7da9f923be9507b8a2d4a967852c"
+  },
+  "coefficient_sha256": "0cbed2f3fd955c0c847330f1a946bf250a162abbece810a65e1dcc7a9d5d3617",
+  "configuration": {
+    "bytes": 3555,
+    "path": "model_v3/config/kme_precaution_proxy.json",
+    "sha256": "9744c625b171ac025cb2c8505c3d6576daca879ad4c1c0ca95e266b5fe53727c"
+  },
+  "feature_names": [
+    "intercept",
+    "seasonal_sin_annual",
+    "seasonal_cos_annual",
+    "region[02]",
+    "region[03]",
+    "region[04]",
+    "region[05]",
+    "region[06]",
+    "region[07]",
+    "region[08]",
+    "region[09]",
+    "region[10]",
+    "region[11]",
+    "region[12]"
+  ],
+  "input_sources": {
+    "municipality_statistical_region": {
+      "bytes": 1739,
+      "path": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+      "sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+    },
+    "population": {
+      "bytes": 54290,
+      "path": "model_v3/outputs/canonical/population.csv",
+      "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
+    },
+    "statistical_region": {
+      "bytes": 855,
+      "path": "model_v3/outputs/canonical/statistical_region.csv",
+      "sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4"
+    },
+    "weekly_cases": {
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
+    }
+  },
+  "population_offset": "log(statistical_region_population/100000)",
+  "runtime_contract": {
+    "output_is_personal_risk": false,
+    "output_target_timing": "current_signal_week",
+    "recent_cases_required": false,
+    "spatial_scope": "statistical_region",
+    "weather_used_by_ai_score": false
+  },
+  "schema_version": 1,
+  "selected_candidate_id": "glm_current_week_seasonal_region_offset",
+  "statsmodels_version": "0.14.6",
+  "status": "sealed_for_current_week_no_runtime_case_inference",
+  "training_period": {
+    "first_issue_week": "2016-01-04",
+    "last_issue_week": "2025-12-22",
+    "rows": 6252,
+    "target": "reported_kme_cases_in_current_signal_week"
+  }
+}

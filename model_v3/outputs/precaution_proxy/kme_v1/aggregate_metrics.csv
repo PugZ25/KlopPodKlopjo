@@ -1,0 +1,5 @@
+evaluation_scope,candidate_id,n_folds,n_predictions,pooled_mae,pooled_rmse,pooled_mean_poisson_deviance
+development_rolling_origin,baseline_global_historical_rate,7,4392,0.299984174990682,0.576591033756061,0.757195620982542
+development_rolling_origin,glm_current_week_seasonal_region_offset,7,4392,0.238906315508251,0.513318462139908,0.525789207908807
+opened_2025_retrospective_audit,baseline_global_historical_rate,1,612,0.253685511918618,0.421272530632384,0.5761888016593
+opened_2025_retrospective_audit,glm_current_week_seasonal_region_offset,1,612,0.196842205260625,0.370248899887372,0.408439481098177

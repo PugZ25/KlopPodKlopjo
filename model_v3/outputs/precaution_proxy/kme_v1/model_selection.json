@@ -1,0 +1,12 @@
+{
+  "baseline_candidate_id": "baseline_global_historical_rate",
+  "evidence_rule_passed": true,
+  "rule": {
+    "requires_lower_development_mae_rmse_and_poisson_deviance_than_baseline": true,
+    "requires_lower_opened_2025_mae_rmse_and_poisson_deviance_than_baseline": true,
+    "selected_candidate": "glm_current_week_seasonal_region_offset"
+  },
+  "runtime_recent_cases_required": false,
+  "runtime_weather_used_by_ai_score": false,
+  "selected_candidate_id": "glm_current_week_seasonal_region_offset"
+}

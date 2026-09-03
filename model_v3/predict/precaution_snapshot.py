@@ -116,6 +116,9 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         or contract.get("lyme_model_target_matches_public_signal_window") is not True
         or contract.get("lyme_training_target")
         != "reported_lyme_cases_in_current_signal_week"
+        or contract.get("kme_model_target_matches_public_signal_window") is not True
+        or contract.get("kme_training_target")
+        != "reported_kme_cases_in_current_signal_week"
     ):
         raise PrecautionSnapshotError("Public signal must cover only the issue week")
     weather = config.get("weather", {})
@@ -341,11 +344,11 @@ def _trend_label(delta: int) -> str:
     return "brez spremembe glede na prejšnji teden"
 
 
-def _read_coefficients(path: Path, seal_manifest_path: Path) -> dict[str, float]:
-    seal = json.loads(seal_manifest_path.read_text(encoding="utf-8"))
-    expected_hash = seal.get("model_artifact", {}).get("coefficient_sha256")
+def _read_coefficients(path: Path, model_manifest_path: Path) -> dict[str, float]:
+    manifest = json.loads(model_manifest_path.read_text(encoding="utf-8"))
+    expected_hash = manifest.get("coefficient_sha256")
     if expected_hash != _sha256(path):
-        raise PrecautionSnapshotError("KME coefficient hash differs from its seal")
+        raise PrecautionSnapshotError("KME coefficient hash differs from its manifest")
     coefficients: dict[str, float] = {}
     with path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -553,7 +556,7 @@ def build_precaution_snapshot(
     ):
         raise PrecautionSnapshotError("Lyme validation metrics are invalid")
     lyme_calibration = _load_display_calibration(inputs["display_calibration"], "lyme")
-    kme_calibration = _load_display_calibration(inputs["display_calibration"], "kme")
+    kme_calibration = _load_display_calibration(inputs["kme_display_calibration"], "kme")
     lyme_weather_scaler = _load_weather_scaler(
         inputs["lyme_weather_scaler"], lyme_manifest["weather_scaler_sha256"]
     )
@@ -636,8 +639,76 @@ def build_precaution_snapshot(
     lyme_current = lyme_predictions(issue_week)
     lyme_previous = lyme_predictions(issue_week - timedelta(weeks=1))
 
+    kme_manifest = json.loads(inputs["kme_model_manifest"].read_text(encoding="utf-8"))
+    if (
+        kme_manifest.get("status")
+        != "sealed_for_current_week_no_runtime_case_inference"
+        or kme_manifest.get("selected_candidate_id")
+        != "glm_current_week_seasonal_region_offset"
+        or kme_manifest.get("runtime_contract", {}).get("output_target_timing")
+        != "current_signal_week"
+        or kme_manifest.get("runtime_contract", {}).get("recent_cases_required") is not False
+        or kme_manifest.get("runtime_contract", {}).get("weather_used_by_ai_score") is not False
+        or kme_manifest.get("runtime_contract", {}).get("spatial_scope")
+        != "statistical_region"
+    ):
+        raise PrecautionSnapshotError("KME current-week model manifest is invalid")
+    kme_selection = json.loads(
+        inputs["kme_model_selection"].read_text(encoding="utf-8")
+    )
+    if (
+        kme_selection.get("selected_candidate_id")
+        != "glm_current_week_seasonal_region_offset"
+        or kme_selection.get("evidence_rule_passed") is not True
+        or kme_selection.get("runtime_recent_cases_required") is not False
+    ):
+        raise PrecautionSnapshotError("KME current-week model selection is invalid")
+    with inputs["kme_aggregate_metrics"].open(encoding="utf-8", newline="") as handle:
+        kme_metric_rows = list(csv.DictReader(handle))
+    kme_metric_index = {
+        (row["evaluation_scope"], row["candidate_id"]): row
+        for row in kme_metric_rows
+    }
+    required_kme_metric_keys = {
+        (scope, candidate)
+        for scope in (
+            "development_rolling_origin",
+            "opened_2025_retrospective_audit",
+        )
+        for candidate in (
+            "baseline_global_historical_rate",
+            "glm_current_week_seasonal_region_offset",
+        )
+    }
+    if set(kme_metric_index) != required_kme_metric_keys:
+        raise PrecautionSnapshotError("KME current-week metric support changed")
+    kme_development_model_mae = float(
+        kme_metric_index[
+            ("development_rolling_origin", "glm_current_week_seasonal_region_offset")
+        ]["pooled_mae"]
+    )
+    kme_development_baseline_mae = float(
+        kme_metric_index[
+            ("development_rolling_origin", "baseline_global_historical_rate")
+        ]["pooled_mae"]
+    )
+    kme_audit_model_mae = float(
+        kme_metric_index[
+            ("opened_2025_retrospective_audit", "glm_current_week_seasonal_region_offset")
+        ]["pooled_mae"]
+    )
+    kme_audit_baseline_mae = float(
+        kme_metric_index[
+            ("opened_2025_retrospective_audit", "baseline_global_historical_rate")
+        ]["pooled_mae"]
+    )
+    if not (
+        kme_development_model_mae < kme_development_baseline_mae
+        and kme_audit_model_mae < kme_audit_baseline_mae
+    ):
+        raise PrecautionSnapshotError("KME current-week model no longer beats its baseline")
     kme_coefficients = _read_coefficients(
-        inputs["kme_coefficients"], inputs["kme_seal_manifest"]
+        inputs["kme_coefficients"], inputs["kme_model_manifest"]
     )
     kme_population = read_kme_population(inputs["population"])
 
@@ -766,20 +837,25 @@ def build_precaution_snapshot(
         "kme": {
             "key": "kme",
             "diseaseLabel": "KME",
-            "modelId": "glm_seasonal_region_offset",
+            "modelId": "glm_current_week_seasonal_region_offset",
             "snapshotLabel": "regionalni preventivni signal za tekoči teden",
             "spatialScope": "statistical_region",
             "scopeLabel": "regionalni signal, prikazan na občinah iste regije",
             "dataStatus": "Deluje brez novejših prijav KME; vse občine v isti statistični regiji imajo isti modelni signal.",
-            "methodologyNote": "KME signal za tekoči teden temelji na sezoni in statistični regiji; sveže prijave primerov in vreme niso vhod v oceno.",
+            "methodologyNote": "KME signal za tekoči teden temelji na sezoni, statistični regiji in predhodno razpoložljivem prebivalstvu. Ocena je postavljena glede na časovno ločene modelne rezultate preteklih tednov; sveže prijave primerov in vreme niso vhod.",
             "purpose": "Podpora previdnosti in razmisleku o cepljenju proti KME.",
             "disclaimer": "To ni občinska epidemiološka stopnja, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
-            "scoreExplanation": "Ocena 0–100 je regionalni preventivni signal za tekoči teden. Temelji na modelsko pričakovanem regionalnem bremenu v naslednjih osmih tednih in ni ocena primerov v tekočem tednu ali osebnega tveganja.",
-            "modelTarget": "Prijavljeni primeri KME v statistični regiji v naslednjih osmih tednih; rezultat je uporabljen kot preventivni signal tekočega tedna.",
+            "scoreExplanation": "Ocena 0–100 je relativni percentil modelsko pričakovanega bremena prijavljenih primerov KME v tekočem tednu glede na časovno ločene napovedi 2018–2024. Ni dejansko število primerov ali osebno tveganje.",
+            "modelTarget": "Prijavljeni primeri KME v statistični regiji v tekočem tednu.",
             "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
-            "validationSummary": "Časovno ločena regionalna validacija 2018–2025. KME je zaradi redkosti modeliran ločeno od borelioze in samo na ravni statistične regije.",
+            "validationSummary": (
+                "Časovno ločena regionalna validacija 2018–2024: model MAE "
+                f"{kme_development_model_mae:.3f}, zgodovinski baseline "
+                f"{kme_development_baseline_mae:.3f}. Retrospektivni audit 2025: "
+                f"model {kme_audit_model_mae:.3f}, baseline {kme_audit_baseline_mae:.3f}."
+            ),
             "limitations": [
-                "Signal ni model trenutne tedenske pojavnosti KME.",
+                "Zaradi redkosti prijav je signal modeliran na ravni statistične regije, ne občine.",
                 "Vse občine iste statistične regije imajo enak signal.",
                 "Vreme ni vhod v model KME.",
             ],
@@ -853,6 +929,14 @@ def build_precaution_snapshot(
             "runtime_case_inputs_absent": True,
             "lyme_recent_cases_not_required": True,
             "kme_recent_cases_not_required": True,
+            "kme_model_target_matches_current_signal_week": (
+                kme_manifest["runtime_contract"]["output_target_timing"]
+                == "current_signal_week"
+            ),
+            "kme_selected_model_beats_historical_baseline": (
+                kme_development_model_mae < kme_development_baseline_mae
+                and kme_audit_model_mae < kme_audit_baseline_mae
+            ),
             "weather_use_is_disease_specific_and_explicit": True,
             "lyme_weather_cross_municipality_medians_within_season_matched_training_fences": True,
             "weather_five_complete_pre_issue_weeks": True,

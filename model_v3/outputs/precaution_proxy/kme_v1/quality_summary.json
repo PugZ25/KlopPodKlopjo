@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "current_week_target_used": true,
+    "display_bands_monotonic_in_development_evidence": true,
+    "fit_warning_count_is_zero": true,
+    "fixed_twelve_region_support": true,
+    "personal_risk_output_absent": true,
+    "rolling_origin_used": true,
+    "runtime_case_features_absent": true,
+    "runtime_weather_features_absent": true,
+    "selected_model_beats_baseline_on_all_declared_metrics": true,
+    "strictly_earlier_population_used": true
+  },
+  "outputs": {
+    "aggregate_metrics": {
+      "bytes": 606,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/aggregate_metrics.csv",
+      "sha256": "8a58ee3026cec27ad051f14e63ffe126efb4ad8fe944eda7104f3ee2c08e191f"
+    },
+    "coefficients": {
+      "bytes": 713,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/glm_coefficients.csv",
+      "sha256": "0cbed2f3fd955c0c847330f1a946bf250a162abbece810a65e1dcc7a9d5d3617"
+    },
+    "display_calibration": {
+      "bytes": 9455,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/display_calibration.json",
+      "sha256": "7f9a6e5e7f103689c3a7f82620ecf8ad9a6107cfb32e7b16eafa24fb70971ca8"
+    },
+    "fold_metrics": {
+      "bytes": 2450,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/fold_metrics.csv",
+      "sha256": "a4c23d6b3848e520d6c70c375374431be0c62c68ea7075b11e292c552af3cb4b"
+    },
+    "fold_predictions": {
+      "bytes": 1849562,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/fold_predictions.csv",
+      "sha256": "3c3654176b8dfb1de5932b102d5d23acb2bc956efcd006bd8a2c7a0331349134"
+    },
+    "model_manifest": {
+      "bytes": 2270,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/model_manifest.json",
+      "sha256": "ec0419a56d17b09581acf3400aab81ee5990d5b8a9e7dead0cb3db095ae5c29e"
+    },
+    "selection": {
+      "bytes": 507,
+      "path": "model_v3/outputs/precaution_proxy/kme_v1/model_selection.json",
+      "sha256": "7c4d8b47d962c07d572e2cab984c3ab2734547f54bc007076857010279cc60db"
+    }
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "purpose": {
+    "product": "public_precaution_proxy_not_personal_risk",
+    "training_target": "reported_kme_cases_in_current_signal_week_t",
+    "runtime_case_inputs_allowed": false,
+    "interpretation": "relative_expected_reported_kme_burden_in_current_week_used_only_as_a_precaution_signal"
+  },
+  "inputs": {
+    "weekly_cases": "model_v3/outputs/canonical/weekly_cases.csv",
+    "weekly_cases_sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d",
+    "population": "model_v3/outputs/canonical/population.csv",
+    "population_sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad",
+    "statistical_region": "model_v3/outputs/canonical/statistical_region.csv",
+    "statistical_region_sha256": "6944802708d34933eeb8b50d998647cbc29c3a16d451d65806d57eb582a80bd4",
+    "municipality_statistical_region": "model_v3/outputs/canonical/municipality_statistical_region.csv",
+    "municipality_statistical_region_sha256": "2b16e6126d87505f2480f5d2c13f7e055737b1118b84dfa16ff48d09af4f4cde"
+  },
+  "design": {
+    "analysis_unit": "statistical_region_x_issue_week",
+    "target_timing": "signal_week_t",
+    "target_embargo_weeks": 0,
+    "fixed_region_mapping_all_years": true,
+    "population_role": "exposure_offset_selected_strictly_before_issue_calendar_year",
+    "runtime_features": [
+      "statistical_region",
+      "annual_seasonal_harmonic",
+      "strictly_earlier_population"
+    ],
+    "runtime_recent_cases_required": false,
+    "runtime_weather_used_by_ai_score": false
+  },
+  "evaluation": {
+    "training_start_year": 2016,
+    "development_validation_years": [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    "opened_retrospective_audit_year": 2025,
+    "strategy": "expanding_rolling_origin_by_signal_week_calendar_year",
+    "untouched_lockbox_status": "none_remaining_after_2025_was_opened"
+  },
+  "candidates": [
+    {
+      "candidate_id": "baseline_global_historical_rate",
+      "description": "training-only national KME case rate applied to regional population exposure"
+    },
+    {
+      "candidate_id": "glm_current_week_seasonal_region_offset",
+      "description": "Poisson GLM with annual harmonic, statistical-region fixed effects and population offset"
+    }
+  ],
+  "glm": {
+    "family": "poisson",
+    "link": "log",
+    "implementation": "statsmodels.GLM",
+    "maxiter": 100,
+    "tol": 1e-08
+  },
+  "selection_rule": {
+    "selected_candidate": "glm_current_week_seasonal_region_offset",
+    "requires_lower_development_mae_rmse_and_poisson_deviance_than_baseline": true,
+    "requires_lower_opened_2025_mae_rmse_and_poisson_deviance_than_baseline": true
+  },
+  "display_calibration": {
+    "reference": "selected_candidate_rolling_origin_predictions_2018_through_2024_only",
+    "score": "empirical_percentile_of_predicted_current_week_incidence_per_100000",
+    "quantile_grid_points": 101,
+    "low_upper_percentile": 33.333333333333336,
+    "medium_upper_percentile": 66.66666666666667,
+    "labels": ["Nizko", "Srednje", "Visoko"]
+  },
+  "outputs": {
+    "directory": "model_v3/outputs/precaution_proxy/kme_v1",
+    "coefficients": "glm_coefficients.csv",
+    "model_manifest": "model_manifest.json",
+    "display_calibration": "display_calibration.json",
+    "fold_predictions": "fold_predictions.csv",
+    "fold_metrics": "fold_metrics.csv",
+    "aggregate_metrics": "aggregate_metrics.csv",
+    "selection": "model_selection.json",
+    "quality_summary": "quality_summary.json",
+    "report": "model_v3/KME_PRECAUTION_PROXY_MODEL.md"
+  }
+}
