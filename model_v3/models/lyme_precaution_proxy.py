@@ -7,6 +7,7 @@ import json
 import math
 import statistics
 import tempfile
+from collections import Counter
 from dataclasses import dataclass, replace
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -22,14 +23,11 @@ from model_v3.models.non_ml_baselines import (
     parse_code,
     parse_monday,
     resolve_repo_path,
-    validate_manifest_matches_folds,
     write_csv_rows,
 )
 from model_v3.models.seasonal_count_models import (
     build_population_history,
     read_development_population,
-    read_development_target_metadata,
-    read_selected_development_target_values,
     seasonal_terms,
     select_population_exposure,
 )
@@ -41,19 +39,14 @@ from model_v3.models.weather_ablation import (
     issue_weather_features,
     read_weekly_weather,
 )
-from model_v3.validation.rolling_origin import (
-    RollingOriginFold,
-    TargetWindowRow,
-    generate_rolling_origin_folds,
-    load_config as load_validation_config,
-)
+from model_v3.validation.rolling_origin import TargetWindowRow
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = REPO_ROOT / "model_v3" / "config" / "lyme_precaution_proxy.json"
 
-NO_WEATHER_ID = "catboost_no_case_seasonal_municipality_offset"
-COMPACT_WEATHER_ID = "catboost_no_case_compact_weather_offset"
+NO_WEATHER_ID = "catboost_current_week_seasonal_municipality_offset"
+COMPACT_WEATHER_ID = "catboost_current_week_compact_weather_offset"
 CANDIDATE_IDS = (NO_WEATHER_ID, COMPACT_WEATHER_ID)
 BASE_FEATURES = (
     "municipality_code",
@@ -73,10 +66,10 @@ PREDICTION_COLUMNS = (
     "candidate_id",
     "municipality_code",
     "issue_week",
-    "target_window_start",
-    "target_window_end",
-    "actual_target_lyme_cases_next_4w",
-    "predicted_target_lyme_cases_next_4w",
+    "signal_week_start",
+    "signal_week_end",
+    "actual_reported_lyme_cases_current_week",
+    "predicted_reported_lyme_cases_current_week",
     "population_exposure",
     "population_year",
     "actual_incidence_per_100000",
@@ -169,6 +162,13 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         raise LymePrecautionProxyError("Runtime case inputs must remain forbidden")
     if config.get("purpose", {}).get("direct_tick_observation_target_available") is not False:
         raise LymePrecautionProxyError("Direct tick target availability changed")
+    if (
+        config.get("purpose", {}).get("training_target")
+        != "reported_lyme_cases_in_current_signal_week_t"
+        or config.get("evaluation", {}).get("target_timing") != "signal_week_t"
+        or config.get("evaluation", {}).get("target_embargo_weeks") != 0
+    ):
+        raise LymePrecautionProxyError("Current-week target contract changed")
     candidates = config.get("candidates", {})
     if candidates.get("no_weather", {}).get("candidate_id") != NO_WEATHER_ID:
         raise LymePrecautionProxyError("No-weather candidate ID changed")
@@ -208,48 +208,54 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     return config
 
 
-def _read_opened_2025_rows(
+def _read_current_week_targets(
     path: Path,
+    *,
+    first_year: int,
+    last_year: int,
 ) -> tuple[list[TargetWindowRow], dict[tuple[str, date], int]]:
     rows: list[TargetWindowRow] = []
     values: dict[tuple[str, date], int] = {}
     with path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        required = {
-            "system_type",
+        if tuple(reader.fieldnames or ()) != (
             "municipality_code",
             "issue_week",
-            "target_window_start",
-            "target_window_end",
-            "actual_target_lyme_cases_next_4w",
-        }
-        if not required.issubset(reader.fieldnames or ()):
-            raise LymePrecautionProxyError("Opened 2025 prediction schema is incomplete")
+            "lyme_cases",
+            "kme_cases",
+        ):
+            raise LymePrecautionProxyError("Canonical weekly-case schema changed")
         for index, source in enumerate(reader, start=1):
-            if source["system_type"] != "final_selected_model":
+            issue = parse_monday(
+                source["issue_week"], context=f"weekly-case row {index}"
+            )
+            if not first_year <= issue.year <= last_year:
                 continue
-            code = parse_code(source["municipality_code"], context=f"opened row {index}")
-            issue = parse_monday(source["issue_week"], context=f"opened row {index}")
-            start = date.fromisoformat(source["target_window_start"])
-            end = date.fromisoformat(source["target_window_end"])
-            if issue.year != 2025 or start != issue + timedelta(weeks=1):
-                raise LymePrecautionProxyError("Opened 2025 target timing changed")
-            if end != issue + timedelta(weeks=4) or end.year != 2025:
-                raise LymePrecautionProxyError("Opened 2025 target horizon changed")
+            code = parse_code(
+                source["municipality_code"], context=f"weekly-case row {index}"
+            )
             try:
-                value = int(source["actual_target_lyme_cases_next_4w"])
+                value = int(source["lyme_cases"])
             except ValueError as exc:
-                raise LymePrecautionProxyError("Opened 2025 target is not an integer") from exc
+                raise LymePrecautionProxyError(
+                    "Current-week Lyme target is not an integer"
+                ) from exc
             if value < 0:
-                raise LymePrecautionProxyError("Opened 2025 target is negative")
+                raise LymePrecautionProxyError("Current-week Lyme target is negative")
             key = (code, issue)
             if key in values:
-                raise LymePrecautionProxyError(f"Duplicate opened 2025 target: {key}")
+                raise LymePrecautionProxyError(f"Duplicate current-week target: {key}")
             values[key] = value
-            rows.append(TargetWindowRow(code, issue, start, end, "complete", True))
+            rows.append(TargetWindowRow(code, issue, issue, issue, "complete", True))
     rows.sort(key=lambda row: (row.issue_week, row.municipality_code))
-    if len(rows) != 47 * 212 or len({row.issue_week for row in rows}) != 47:
-        raise LymePrecautionProxyError("Opened 2025 support is not 47 weeks x 212 municipalities")
+    weeks = {row.issue_week for row in rows}
+    if not rows or len(rows) != len(weeks) * 212:
+        raise LymePrecautionProxyError(
+            "Current-week target is not a complete week x 212 municipality panel"
+        )
+    counts_by_week = Counter(row.issue_week for row in rows)
+    if set(counts_by_week.values()) != {212}:
+        raise LymePrecautionProxyError("Current-week municipality support changed")
     return rows, values
 
 
@@ -476,10 +482,10 @@ def _prediction_records(
                 "candidate_id": candidate_id,
                 "municipality_code": row.municipality_code,
                 "issue_week": row.issue_week,
-                "target_window_start": row.target_window_start,
-                "target_window_end": row.target_window_end,
-                "actual_target_lyme_cases_next_4w": row.target_value,
-                "predicted_target_lyme_cases_next_4w": float(prediction),
+                "signal_week_start": row.target_window_start,
+                "signal_week_end": row.target_window_end + timedelta(days=6),
+                "actual_reported_lyme_cases_current_week": row.target_value,
+                "predicted_reported_lyme_cases_current_week": float(prediction),
                 "population_exposure": row.population,
                 "population_year": row.population_year,
                 "actual_incidence_per_100000": row.target_value / row.population * 100000.0,
@@ -540,44 +546,20 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     if missing:
         raise LymePrecautionProxyError(f"Required inputs are missing: {missing}")
 
-    validation_config = load_validation_config(paths["validation_config"])
-    policy = validation_config["policy"]
-    target_path = resolve_repo_path(validation_config["input"]["path"])
-    if target_path != paths["target"]:
-        raise LymePrecautionProxyError("Validation and proxy target paths differ")
-    development_metadata = read_development_target_metadata(
-        target_path,
-        development_start_year=policy["development_start_year"],
-        development_end_year=policy["development_end_year"],
+    evaluation = config["evaluation"]
+    development_start_year, development_end_year = evaluation["development_years"]
+    validation_years = tuple(evaluation["development_validation_years"])
+    audit_year = int(evaluation["opened_retrospective_audit_year"])
+    if (
+        validation_years != tuple(range(development_start_year + 1, development_end_year + 1))
+        or audit_year != development_end_year + 1
+    ):
+        raise LymePrecautionProxyError("Current-week rolling-origin years changed")
+    all_metadata, targets = _read_current_week_targets(
+        paths["target"],
+        first_year=development_start_year,
+        last_year=audit_year,
     )
-    folds = generate_rolling_origin_folds(
-        development_metadata,
-        development_start_year=policy["development_start_year"],
-        development_end_year=policy["development_end_year"],
-        lockbox_year=policy["lockbox_year"],
-    )
-    validate_manifest_matches_folds(paths["validation_manifest"], folds)
-
-    development_keys = {
-        (row.municipality_code, row.issue_week)
-        for fold in folds
-        for row in (*fold.train_rows, *fold.validation_rows)
-    }
-    final_development_metadata = [
-        row
-        for row in development_metadata
-        if row.target_training_eligible and row.target_window_end < date(2025, 1, 1)
-    ]
-    development_keys.update(
-        (row.municipality_code, row.issue_week) for row in final_development_metadata
-    )
-    targets = read_selected_development_target_values(
-        target_path, development_keys, lockbox_year=2025
-    )
-    opened_rows, opened_values = _read_opened_2025_rows(paths["opened_2025_predictions"])
-    if set(targets).intersection(opened_values):
-        raise LymePrecautionProxyError("Development and opened 2025 target keys overlap")
-    targets.update(opened_values)
     population = read_development_population(paths["population"], lockbox_year=2026)
 
     development_weather, _ = read_weekly_weather(
@@ -590,46 +572,54 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     )
     weekly_weather = _merge_weather(development_weather, extension)
     parameters = config["candidates"]["shared_parameters"]
+    all_base_rows = prepare_rows(all_metadata, targets, population)
+    all_rows, rows_excluded_incomplete_weather = attach_complete_weather(
+        all_base_rows, weekly_weather
+    )
+    if len({row.municipality_code for row in all_rows}) != 212:
+        raise LymePrecautionProxyError("Weather-complete support does not contain 212 municipalities")
 
     prediction_records: list[dict[str, Any]] = []
     fold_metrics: list[dict[str, Any]] = []
     development_fold_pairs: list[tuple[str, float, float]] = []
 
-    evaluation_folds: list[tuple[str, str, int, Sequence[TargetWindowRow], Sequence[TargetWindowRow]]] = [
+    evaluation_folds: list[
+        tuple[str, str, int, Sequence[ProxyRow], Sequence[ProxyRow]]
+    ] = [
         (
             "development_rolling_origin",
-            fold.fold_id,
-            fold.validation_start.year,
-            fold.train_rows,
-            fold.validation_rows,
+            f"fold_{index:02d}_validate_{year}",
+            year,
+            tuple(row for row in all_rows if row.issue_week.year < year),
+            tuple(row for row in all_rows if row.issue_week.year == year),
         )
-        for fold in folds
+        for index, year in enumerate(validation_years, start=1)
     ]
     evaluation_folds.append(
         (
             "opened_2025_retrospective_audit",
             "opened_2025",
-            2025,
-            tuple(final_development_metadata),
-            tuple(opened_rows),
+            audit_year,
+            tuple(row for row in all_rows if row.issue_week.year < audit_year),
+            tuple(row for row in all_rows if row.issue_week.year == audit_year),
         )
     )
 
-    for scope, fold_id, validation_year, train_metadata, validation_metadata in evaluation_folds:
-        base_train = prepare_rows(train_metadata, targets, population)
-        base_validation = prepare_rows(validation_metadata, targets, population)
-        train_rows, excluded_train = attach_complete_weather(base_train, weekly_weather)
-        validation_rows, excluded_validation = attach_complete_weather(
-            base_validation, weekly_weather
-        )
-        if excluded_validation or len(validation_rows) != len(base_validation):
-            raise LymePrecautionProxyError(f"{fold_id} validation weather support is incomplete")
+    for scope, fold_id, validation_year, train_rows, validation_rows in evaluation_folds:
+        if not train_rows or not validation_rows:
+            raise LymePrecautionProxyError(f"{fold_id} is empty")
+        if len({row.municipality_code for row in validation_rows}) != 212:
+            raise LymePrecautionProxyError(f"{fold_id} municipality support changed")
         if max(row.target_window_end for row in train_rows) >= min(
             row.issue_week for row in validation_rows
         ):
             raise LymePrecautionProxyError(f"{fold_id} training target reaches validation")
-        if excluded_train < 0:
-            raise LymePrecautionProxyError("Invalid excluded training count")
+        if any(
+            row.target_window_start != row.issue_week
+            or row.target_window_end != row.issue_week
+            for row in (*train_rows, *validation_rows)
+        ):
+            raise LymePrecautionProxyError(f"{fold_id} target is not the signal week")
         scaler = fit_weather_scaler(train_rows)
         fold_candidate_mae: dict[str, float] = {}
         for candidate_id in CANDIDATE_IDS:
@@ -677,10 +667,12 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
                 if row["evaluation_scope"] == scope and row["candidate_id"] == candidate_id
             ]
             actual = np.asarray(
-                [row["actual_target_lyme_cases_next_4w"] for row in selected], dtype=np.float64
+                [row["actual_reported_lyme_cases_current_week"] for row in selected],
+                dtype=np.float64,
             )
             predicted = np.asarray(
-                [row["predicted_target_lyme_cases_next_4w"] for row in selected], dtype=np.float64
+                [row["predicted_reported_lyme_cases_current_week"] for row in selected],
+                dtype=np.float64,
             )
             summary = summarize(actual, predicted)
             aggregate_metrics.append(
@@ -807,11 +799,8 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         },
     }
 
-    all_final_metadata = [*final_development_metadata, *opened_rows]
-    final_base_rows = prepare_rows(all_final_metadata, targets, population)
-    final_rows, final_rows_excluded_incomplete_weather = attach_complete_weather(
-        final_base_rows, weekly_weather
-    )
+    final_rows = all_rows
+    final_rows_excluded_incomplete_weather = rows_excluded_incomplete_weather
     if len({row.municipality_code for row in final_rows}) != 212:
         raise LymePrecautionProxyError("Final fit does not contain 212 municipalities")
     final_scaler = fit_weather_scaler(final_rows)
@@ -882,7 +871,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     compact_scaler = {
         "schema_version": 1,
         "feature_order": list(COMPACT_WEATHER_FEATURES),
-        "fit_scope": "all_eligible_2016_2025_rows_with_complete_ERA5_Land_t_minus_4_through_t_minus_1",
+        "fit_scope": "current_week_targets_2016_2025_with_complete_ERA5_Land_t_minus_4_through_t_minus_1",
         "means": {
             name: final_scaler.means[name] for name in COMPACT_WEATHER_FEATURES
         },
@@ -933,7 +922,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
 
     model_manifest = {
         "schema_version": 1,
-        "status": "sealed_for_no_current_case_inference",
+        "status": "sealed_for_current_week_no_runtime_case_inference",
         "selected_candidate_id": selected_candidate,
         "model_sha256": _sha256(output_paths["model"]),
         "weather_scaler_sha256": _sha256(output_paths["weather_scaler"]),
@@ -947,7 +936,8 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             "last_issue_week": max(row.issue_week for row in final_rows).isoformat(),
             "rows": len(final_rows),
             "rows_excluded_incomplete_weather": final_rows_excluded_incomplete_weather,
-            "includes_opened_2025_outcomes": True,
+            "includes_retrospectively_opened_2025_outcomes": True,
+            "target": "reported_lyme_cases_in_current_signal_week",
         },
         "runtime_contract": {
             "recent_cases_required": False,
@@ -959,6 +949,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
             "weather_displayed_as_separate_context": True,
             "output_is_personal_risk": False,
             "output_is_direct_tick_measurement": False,
+            "output_target_timing": "current_signal_week",
         },
         "catboost_version": catboost.__version__,
         "parameters": parameters,
@@ -1007,7 +998,16 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
                 for name in COMPACT_WEATHER_FEATURES
             ),
             "development_rolling_origin_used": True,
-            "four_week_target_embargo_preserved": True,
+            "current_week_target_is_temporally_aligned": all(
+                row.target_window_start == row.issue_week
+                and row.target_window_end == row.issue_week
+                for row in final_rows
+            ),
+            "current_or_future_weather_absent": all(
+                row.weather is not None
+                and row.weather.latest_week_start == row.issue_week - timedelta(weeks=1)
+                for row in final_rows
+            ),
             "opened_2025_labelled_retrospective_not_lockbox": True,
             "display_bands_monotonic_in_development_evidence": True,
             "personal_risk_output_absent": True,
@@ -1025,7 +1025,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
     report_path.write_text(
         "# No-current-cases precaution proxy\n\n"
         "This phase evaluates a public-facing precaution proxy whose weekly inference does not use recent case reports. "
-        "The training target remains reported Lyme cases in t+1..t+4, so the output is a relative disease-burden proxy, not a direct tick count, infection probability, diagnosis, or personal risk.\n\n"
+        "The training target is the reported Lyme case count in the current signal week t. Runtime inputs use only information available before t, including weather from completed weeks t-4 through t-1. The output is a relative current-week disease-burden proxy, not a direct tick count, infection probability, diagnosis, or personal risk.\n\n"
         f"Evidence-selected candidate: `{evidence_selected_candidate}`.\n\n"
         f"Deployed candidate under the reviewed weather-required product policy: `{selected_candidate}`.\n\n"
         f"Compact weather improved MAE in {improved_folds}/{len(development_fold_pairs)} development folds. "
@@ -1034,7 +1034,7 @@ def build_precaution_proxy(config_path: Path = DEFAULT_CONFIG_PATH) -> dict[str,
         "Operational inputs are four-week air temperature, precipitation, and shallow-soil temperature. "
         "DWD ICON soil moisture is excluded from the score because the live audit placed it outside ERA5-Land training support. "
         "Inference fails closed when the cross-municipality median of a scored operational feature is outside a season-matched training outer fence after source-resolution tolerance; cross-source bias calibration remains incomplete.\n\n"
-        "The display score is the selected model's predicted incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.\n",
+        "The display score is the deployed model's predicted current-week incidence percentile against rolling-origin development predictions from 2017-2024. Low/medium/high are relative communication bands and never mean safe/unsafe.\n",
         encoding="utf-8",
     )
     return quality_summary

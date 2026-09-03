@@ -25,6 +25,7 @@ from model_v3.models.kme_region_model import (
 from model_v3.models.lyme_precaution_proxy import (
     COMPACT_WEATHER_FEATURES,
     COMPACT_WEATHER_ID,
+    NO_WEATHER_ID,
     ProxyRow,
     predict_model,
 )
@@ -112,7 +113,9 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     if (
         contract.get("public_signal_window")
         != "issue_week_monday_through_sunday"
-        or contract.get("model_target_horizon_is_not_public_signal_window") is not True
+        or contract.get("lyme_model_target_matches_public_signal_window") is not True
+        or contract.get("lyme_training_target")
+        != "reported_lyme_cases_in_current_signal_week"
     ):
         raise PrecautionSnapshotError("Public signal must cover only the issue week")
     weather = config.get("weather", {})
@@ -488,13 +491,67 @@ def build_precaution_snapshot(
 
     lyme_manifest = json.loads(inputs["lyme_model_manifest"].read_text(encoding="utf-8"))
     if (
-        lyme_manifest.get("status") != "sealed_for_no_current_case_inference"
+        lyme_manifest.get("status")
+        != "sealed_for_current_week_no_runtime_case_inference"
         or lyme_manifest.get("selected_candidate_id") != COMPACT_WEATHER_ID
+        or lyme_manifest.get("runtime_contract", {}).get("output_target_timing")
+        != "current_signal_week"
         or lyme_manifest.get("runtime_contract", {}).get("recent_cases_required") is not False
         or lyme_manifest.get("runtime_contract", {}).get("weather_used_by_ai_score") is not True
         or lyme_manifest.get("model_sha256") != _sha256(inputs["lyme_model"])
     ):
         raise PrecautionSnapshotError("Lyme precaution model seal is invalid")
+    lyme_selection = json.loads(
+        inputs["lyme_model_selection"].read_text(encoding="utf-8")
+    )
+    if (
+        lyme_selection.get("selected_candidate_id") != COMPACT_WEATHER_ID
+        or lyme_selection.get("evidence_selected_candidate_id") == COMPACT_WEATHER_ID
+        or lyme_selection.get("weather_candidate_passed_evidence_gate") is not False
+        or lyme_selection.get("claim_that_weather_improved_validation_allowed") is not False
+    ):
+        raise PrecautionSnapshotError("Lyme weather evidence status changed")
+    with inputs["lyme_aggregate_metrics"].open(encoding="utf-8", newline="") as handle:
+        metric_rows = list(csv.DictReader(handle))
+    metric_index = {
+        (row["evaluation_scope"], row["candidate_id"]): row for row in metric_rows
+    }
+    required_metric_keys = {
+        (scope, candidate)
+        for scope in (
+            "development_rolling_origin",
+            "opened_2025_retrospective_audit",
+        )
+        for candidate in (NO_WEATHER_ID, COMPACT_WEATHER_ID)
+    }
+    if set(metric_index) != required_metric_keys:
+        raise PrecautionSnapshotError("Lyme aggregate metric support changed")
+    lyme_development_weather_mae = float(
+        metric_index[("development_rolling_origin", COMPACT_WEATHER_ID)]["pooled_mae"]
+    )
+    lyme_development_seasonal_mae = float(
+        metric_index[("development_rolling_origin", NO_WEATHER_ID)]["pooled_mae"]
+    )
+    lyme_audit_weather_mae = float(
+        metric_index[("opened_2025_retrospective_audit", COMPACT_WEATHER_ID)][
+            "pooled_mae"
+        ]
+    )
+    lyme_audit_seasonal_mae = float(
+        metric_index[("opened_2025_retrospective_audit", NO_WEATHER_ID)][
+            "pooled_mae"
+        ]
+    )
+    if not all(
+        math.isfinite(value) and value >= 0
+        for value in (
+            lyme_development_weather_mae,
+            lyme_development_seasonal_mae,
+            lyme_audit_weather_mae,
+            lyme_audit_seasonal_mae,
+        )
+    ):
+        raise PrecautionSnapshotError("Lyme validation metrics are invalid")
     lyme_calibration = _load_display_calibration(inputs["display_calibration"], "lyme")
     kme_calibration = _load_display_calibration(inputs["display_calibration"], "kme")
     lyme_weather_scaler = _load_weather_scaler(
@@ -528,8 +585,8 @@ def build_precaution_snapshot(
                 ProxyRow(
                     municipality_code=code,
                     issue_week=prediction_issue,
-                    target_window_start=prediction_issue + timedelta(weeks=1),
-                    target_window_end=prediction_issue + timedelta(weeks=4),
+                    target_window_start=prediction_issue,
+                    target_window_end=prediction_issue,
                     target_value=0,
                     population=exposure.population,
                     population_year=exposure.year,
@@ -675,7 +732,23 @@ def build_precaution_snapshot(
             "methodologyNote": "Signal za tekoči teden združuje sezono, občinski zgodovinski vzorec ter temperaturo zraka in tal in padavine Open-Meteo iz štirih predhodnih zaključenih tednov; novejše prijave primerov niso vhod v oceno.",
             "purpose": "Podpora odločitvi za previdnost pred odhodom v naravo.",
             "disclaimer": "To ni epidemiološki podatek, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
-            "scoreExplanation": "Ocena 0–100 je relativni preventivni signal za tekoči teden, umerjen s časovno ločenimi modelskimi napovedmi 2017–2024. Ni ocena števila primerov v tem tednu.",
+            "scoreExplanation": "Ocena 0–100 je relativni percentil modelsko pričakovanega bremena prijavljenih primerov borelioze v tekočem tednu glede na časovno ločene napovedi 2017–2024. Ni dejansko število primerov ali osebno tveganje.",
+            "modelTarget": "Prijavljeni primeri borelioze v občini v tekočem tednu.",
+            "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
+            "validationSummary": (
+                "Časovno ločena validacija 2017–2024: vremenski model MAE "
+                f"{lyme_development_weather_mae:.3f}, sezonski model "
+                f"{lyme_development_seasonal_mae:.3f}; vreme je izboljšalo MAE v "
+                f"{lyme_selection['development_weather_improved_fold_count']}/"
+                f"{lyme_selection['development_fold_count']} letih. Retrospektivni "
+                f"audit 2025: vremenski {lyme_audit_weather_mae:.3f}, sezonski "
+                f"{lyme_audit_seasonal_mae:.3f}; vremenska prednost zato ni potrjena."
+            ),
+            "limitations": [
+                "Vremenska različica ni prestala celotnega dokaznega praga in je uporabljena zaradi zahtevane vremenske občutljivosti.",
+                "Model je učen z ERA5-Land, v živo pa uporablja preslikane podatke DWD ICON brez zaključene medvirske kalibracije pristranskosti.",
+                "Ni neposredna meritev klopov, trenutne pojavnosti ali osebne verjetnosti okužbe.",
+            ],
             "topDrivers": [
                 "letni sezonski vzorec",
                 "občinski zgodovinski vzorec",
@@ -701,7 +774,15 @@ def build_precaution_snapshot(
             "methodologyNote": "KME signal za tekoči teden temelji na sezoni in statistični regiji; sveže prijave primerov in vreme niso vhod v oceno.",
             "purpose": "Podpora previdnosti in razmisleku o cepljenju proti KME.",
             "disclaimer": "To ni občinska epidemiološka stopnja, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
-            "scoreExplanation": "Ocena 0–100 je relativni preventivni signal za tekoči teden, umerjen s časovno ločenimi modelskimi napovedmi 2018–2025. Ni ocena števila primerov v tem tednu.",
+            "scoreExplanation": "Ocena 0–100 je regionalni preventivni signal za tekoči teden. Temelji na modelsko pričakovanem regionalnem bremenu v naslednjih osmih tednih in ni ocena primerov v tekočem tednu ali osebnega tveganja.",
+            "modelTarget": "Prijavljeni primeri KME v statistični regiji v naslednjih osmih tednih; rezultat je uporabljen kot preventivni signal tekočega tedna.",
+            "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
+            "validationSummary": "Časovno ločena regionalna validacija 2018–2025. KME je zaradi redkosti modeliran ločeno od borelioze in samo na ravni statistične regije.",
+            "limitations": [
+                "Signal ni model trenutne tedenske pojavnosti KME.",
+                "Vse občine iste statistične regije imajo enak signal.",
+                "Vreme ni vhod v model KME.",
+            ],
             "topDrivers": [
                 "letni sezonski vzorec",
                 "statistična regija",
@@ -722,7 +803,7 @@ def build_precaution_snapshot(
         },
     }
     snapshot = {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "generatedAt": generated_at,
         "issueWeek": issue_week.isoformat(),
         "runtimeCaseInputsUsed": False,
@@ -782,6 +863,14 @@ def build_precaution_snapshot(
                 row["weekStart"] == issue_week.isoformat()
                 and row["weekEnd"] == (issue_week + timedelta(days=6)).isoformat()
                 for row in (*lyme_locations, *kme_locations)
+            ),
+            "lyme_model_target_matches_current_signal_week": (
+                lyme_manifest["runtime_contract"]["output_target_timing"]
+                == "current_signal_week"
+            ),
+            "lyme_weather_evidence_limit_disclosed": (
+                "ni potrjena" in models["borelioza"]["validationSummary"]
+                and lyme_selection["weather_candidate_passed_evidence_gate"] is False
             ),
             "municipality_count_is_212": len(lyme_locations) == len(kme_locations) == 212,
             "kme_scope_is_statistical_region": True,

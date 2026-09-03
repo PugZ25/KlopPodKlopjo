@@ -9,13 +9,16 @@
     "weather_used_by_lyme_score": true,
     "weather_used_by_kme_score": false,
     "public_signal_window": "issue_week_monday_through_sunday",
-    "model_target_horizon_is_not_public_signal_window": true,
+    "lyme_model_target_matches_public_signal_window": true,
+    "lyme_training_target": "reported_lyme_cases_in_current_signal_week",
     "low_means_safe": false
   },
   "inputs": {
     "lyme_model": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
     "lyme_model_manifest": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
     "lyme_weather_scaler": "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json",
+    "lyme_model_selection": "model_v3/outputs/precaution_proxy/lyme_v1/model_selection.json",
+    "lyme_aggregate_metrics": "model_v3/outputs/precaution_proxy/lyme_v1/aggregate_metrics.csv",
     "display_calibration": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
     "kme_coefficients": "model_v3/outputs/kme_prediction_seal/kme_frozen_final_glm_coefficients.csv",
     "kme_seal_manifest": "model_v3/outputs/kme_prediction_seal/kme_2026_prediction_seal_manifest.json",

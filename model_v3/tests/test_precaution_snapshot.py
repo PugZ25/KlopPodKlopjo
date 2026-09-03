@@ -25,6 +25,10 @@ def test_snapshot_config_has_no_runtime_case_input() -> None:
     assert config["product_contract"]["public_signal_window"] == (
         "issue_week_monday_through_sunday"
     )
+    assert config["product_contract"]["lyme_model_target_matches_public_signal_window"] is True
+    assert config["product_contract"]["lyme_training_target"] == (
+        "reported_lyme_cases_in_current_signal_week"
+    )
     assert config["weather"]["expected_refresh_cadence_hours"] == 24
     assert config["weather"]["maximum_display_age_hours"] == 36
     assert not [key for key in config["inputs"] if "case" in key.lower()]
@@ -48,7 +52,7 @@ def test_frontend_snapshot_preserves_scope_and_weather_separation() -> None:
     path = REPO_ROOT / "frontend/src/data/precautionSnapshot.json"
     payload = json.loads(path.read_text(encoding="utf-8"))
 
-    assert payload["schemaVersion"] == 2
+    assert payload["schemaVersion"] == 3
     assert payload["runtimeCaseInputsUsed"] is False
     assert payload["weatherUsedInAiScores"] is True
     assert payload["weatherUsedByDisease"] == {"borelioza": True, "kme": False}
@@ -61,6 +65,10 @@ def test_frontend_snapshot_preserves_scope_and_weather_separation() -> None:
     for key, model in payload["models"].items():
         assert model["signalWeekStart"] == payload["issueWeek"]
         assert model["signalWeekEnd"] == expected_end
+        assert model["modelTarget"]
+        assert model["inputWindow"]
+        assert model["validationSummary"]
+        assert model["limitations"]
         assert "predictionWindowStart" not in model
         assert "predictionWindowEnd" not in model
         assert model["weatherUsedInScore"] is (key == "borelioza")
@@ -96,3 +104,5 @@ def test_frontend_snapshot_preserves_scope_and_weather_separation() -> None:
     assert len(kme_by_region) == 12
     assert all(len(values) == 1 for values in kme_by_region.values())
     assert payload["models"]["kme"]["spatialScope"] == "statistical_region"
+    assert "ni potrjena" in payload["models"]["borelioza"]["validationSummary"]
+    assert "vreme" in payload["models"]["borelioza"]["inputWindow"].lower()

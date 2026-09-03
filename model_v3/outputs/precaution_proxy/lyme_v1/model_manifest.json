@@ -1,39 +1,39 @@
 {
   "catboost_version": "1.2.10",
   "code": {
-    "bytes": 46475,
+    "bytes": 46537,
     "path": "model_v3/models/lyme_precaution_proxy.py",
-    "sha256": "039c4fa6826aa6ddb0b3f6ccde12023a9bf11a2d0feb3b044695d114c9cab969"
+    "sha256": "5de190f4ec36308875099dce142e61556ea5160202d908136d3139f78da5981b"
   },
   "configuration": {
-    "bytes": 5626,
+    "bytes": 5439,
     "path": "model_v3/config/lyme_precaution_proxy.json",
-    "sha256": "3628773005d63bfde59be76f4342954a2de8a69bce60d44a6689e6f5ae3acb0f"
+    "sha256": "8231b77e5e94f63b445a42293a0a281158478de48ec7554d5b7f87aa28d76d68"
   },
   "feature_importance": [
     {
       "feature": "municipality_code",
-      "importance": 17.930047229794468
+      "importance": 20.263075126589047
     },
     {
       "feature": "seasonal_sin_annual",
-      "importance": 11.847413881439962
+      "importance": 8.317315299009568
     },
     {
       "feature": "seasonal_cos_annual",
-      "importance": 52.90176389027003
+      "importance": 36.93508000930311
     },
     {
       "feature": "z_t2m_mean_c_previous_4w_mean",
-      "importance": 5.120518199226955
+      "importance": 9.809484315301185
     },
     {
       "feature": "z_tp_sum_mm_previous_4w_sum",
-      "importance": 1.9676143966255488
+      "importance": 3.4120398391566873
     },
     {
       "feature": "z_stl1_mean_c_previous_4w_mean",
-      "importance": 10.232642402643034
+      "importance": 21.263005410640407
     }
   ],
   "feature_names": [
@@ -65,30 +65,15 @@
       "path": "model_v3/outputs/canonical/municipality.csv",
       "sha256": "5bae7529a8f4f1d4799087333d6811d942a247948560c228cfd4fc6f3785438a"
     },
-    "opened_2025_predictions": {
-      "bytes": 10861280,
-      "path": "model_v3/outputs/lockbox_2025/lyme_lockbox_predictions.csv",
-      "sha256": "d0645652b9910e472aff05e1beb434a09aa9c0f1ee948f4a02b796cc83e159da"
-    },
     "population": {
       "bytes": 54290,
       "path": "model_v3/outputs/canonical/population.csv",
       "sha256": "8834ce82435e7b6a45a1504538e489bec8877568d43bf07a806e23cb499a38ad"
     },
     "target": {
-      "bytes": 5894149,
-      "path": "model_v3/outputs/targets/lyme_four_week_target.csv",
-      "sha256": "2ed87bdd4f60e7d1279883edf7c17612875ee8f0af59f30656fd287220158459"
-    },
-    "validation_config": {
-      "bytes": 972,
-      "path": "model_v3/config/lyme_rolling_origin_validation.json",
-      "sha256": "1da0ff79a681f87e81c5fd0a157a8459984af31f127fbfb2b9e8b707f4b80f08"
-    },
-    "validation_manifest": {
-      "bytes": 1044,
-      "path": "model_v3/outputs/validation/lyme_rolling_origin_fold_manifest.csv",
-      "sha256": "57cce888d8cc653d92be5dc332ced4f462e7930e6668004259d132d6fe1d6f30"
+      "bytes": 2312486,
+      "path": "model_v3/outputs/canonical/weekly_cases.csv",
+      "sha256": "e85085beb9314b7866781d0a8b77e5afe58812280de2e8503680576bd65daf1d"
     },
     "weather_extension": {
       "bytes": 1822547,
@@ -101,8 +86,8 @@
       "sha256": "749e6592dd480be4f5e614fd36f3bd20366af30442c3645ceb8a1d01cca87648"
     }
   },
-  "model_sha256": "bab438042292edbff893df1f6cf8cbb349995a7ad2031d99a623b61ba365b284",
-  "model_structural_sha256_excluding_volatile_metadata": "97e489fc75f7e0a20aa7f77433217be75ba81f1f4509c425db06968b95d977f1",
+  "model_sha256": "73cbd65594db89bdd08fb02bee8db1b3b51cca46d04f9f931caadafdf1797da4",
+  "model_structural_sha256_excluding_volatile_metadata": "8b504c0d14aa83e2e9480e113a731a34d6785c3c8063b5014de8f7d2a244613d",
   "parameters": {
     "allow_writing_files": false,
     "depth": 6,
@@ -128,6 +113,7 @@
     ],
     "output_is_direct_tick_measurement": false,
     "output_is_personal_risk": false,
+    "output_target_timing": "current_signal_week",
     "recent_cases_required": false,
     "runtime_weather_source": "Open-Meteo DWD ICON mapped to the frozen ERA5-Land compact feature schema",
     "soil_moisture_excluded_from_score": "DWD_ICON_soil_moisture_was_outside_ERA5_Land_training_support_in_live_2026_08_31_audit",
@@ -136,14 +122,15 @@
     "weather_used_by_ai_score": true
   },
   "schema_version": 1,
-  "selected_candidate_id": "catboost_no_case_compact_weather_offset",
-  "status": "sealed_for_no_current_case_inference",
+  "selected_candidate_id": "catboost_current_week_compact_weather_offset",
+  "status": "sealed_for_current_week_no_runtime_case_inference",
   "training_period": {
     "first_issue_week": "2016-05-02",
-    "includes_opened_2025_outcomes": true,
-    "last_issue_week": "2025-11-24",
-    "rows": 105152,
-    "rows_excluded_incomplete_weather": 3604
+    "includes_retrospectively_opened_2025_outcomes": true,
+    "last_issue_week": "2025-12-01",
+    "rows": 106212,
+    "rows_excluded_incomplete_weather": 4240,
+    "target": "reported_lyme_cases_in_current_signal_week"
   },
-  "weather_scaler_sha256": "eced2ed03d2f41e7369a9a4e782adf6a68468ebd3df715dc461075c57b24be5f"
+  "weather_scaler_sha256": "3b54489c3c869da8c636ad46e0361d9478d53d8d09090ca50210e97c18bb899a"
 }

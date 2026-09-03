@@ -4,8 +4,10 @@
     "kme_recent_cases_not_required": true,
     "kme_scope_is_statistical_region": true,
     "low_never_declared_safe": true,
+    "lyme_model_target_matches_current_signal_week": true,
     "lyme_recent_cases_not_required": true,
     "lyme_weather_cross_municipality_medians_within_season_matched_training_fences": true,
+    "lyme_weather_evidence_limit_disclosed": true,
     "municipality_count_is_212": true,
     "personal_risk_output_absent": true,
     "public_signal_is_current_issue_week_only": true,
@@ -18,19 +20,19 @@
   },
   "inputs": {
     "configuration": {
-      "bytes": 2583,
+      "bytes": 2846,
       "path": "model_v3/config/precaution_snapshot.json",
-      "sha256": "6dfef93d0e104505948888e75ec5bb04d3c303a95c773c543eec2e8dfb8aa80c"
+      "sha256": "df2015437623e77528fba44d82c3447476d460bcbdf49068f2ac048fbc604625"
     },
     "display_calibration": {
-      "bytes": 17810,
+      "bytes": 17833,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/display_calibration.json",
-      "sha256": "76a0fcc3b8da5ace91803667ba8cd297f8629a5cae9537d215bb91796cdb20f6"
+      "sha256": "ee6685b0770e0a252057cb165d392c69b1961b63c514ed07558b7892fbb0f617"
     },
     "generator_code": {
-      "bytes": 35941,
+      "bytes": 40804,
       "path": "model_v3/predict/precaution_snapshot.py",
-      "sha256": "05967c12644fea9c7a0bf65e90704d26a77cfb79fbd372288ef87196c3b89958"
+      "sha256": "940c1da2bf5b8e0bd639ffd48dd21076d57a23101b55a74b710a4b9d52de6a08"
     },
     "kme_coefficients": {
       "bytes": 777,
@@ -42,20 +44,30 @@
       "path": "model_v3/outputs/kme_prediction_seal/kme_2026_prediction_seal_manifest.json",
       "sha256": "148232b4dbf967522d59beed6f2576385ac33518b1211d34509b794640b2a4da"
     },
+    "lyme_aggregate_metrics": {
+      "bytes": 661,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/aggregate_metrics.csv",
+      "sha256": "7bccad98f248792f2559ff7f543d2384abe7ecd583043d686334f5c1fcc08032"
+    },
     "lyme_model": {
-      "bytes": 230560,
+      "bytes": 230576,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model.cbm",
-      "sha256": "bab438042292edbff893df1f6cf8cbb349995a7ad2031d99a623b61ba365b284"
+      "sha256": "73cbd65594db89bdd08fb02bee8db1b3b51cca46d04f9f931caadafdf1797da4"
     },
     "lyme_model_manifest": {
-      "bytes": 5501,
+      "bytes": 4985,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json",
-      "sha256": "a2783106fefaf5356a1ac03b1a368854f7acd4e693d4fce6b6596920b1a9e84c"
+      "sha256": "27784a82dbc66cd1d1d2deb840d6cf6829b3d0cf7e3971edc622aabbc6c23f08"
+    },
+    "lyme_model_selection": {
+      "bytes": 1165,
+      "path": "model_v3/outputs/precaution_proxy/lyme_v1/model_selection.json",
+      "sha256": "a3d00bed2f62d83e02031d07eb45b4faa33b57325147a91ae7da7eee8c61a6a5"
     },
     "lyme_weather_scaler": {
-      "bytes": 27592,
+      "bytes": 27599,
       "path": "model_v3/outputs/precaution_proxy/lyme_v1/weather_scaler.json",
-      "sha256": "eced2ed03d2f41e7369a9a4e782adf6a68468ebd3df715dc461075c57b24be5f"
+      "sha256": "3b54489c3c869da8c636ad46e0361d9478d53d8d09090ca50210e97c18bb899a"
     },
     "municipality": {
       "bytes": 3148,
@@ -96,14 +108,14 @@
   "issue_week": "2026-08-31",
   "outputs": {
     "frontend_snapshot": {
-      "bytes": 488942,
+      "bytes": 490480,
       "path": "frontend/src/data/precautionSnapshot.json",
-      "sha256": "498673397969033133f7aad27e7375597b37d11b05d44cba69ea915b13e69458"
+      "sha256": "f58c2eae689bb93b0ed8f92727712637fe0a7f2701f79303ebbd7ba009db18f0"
     },
     "snapshot": {
-      "bytes": 488942,
+      "bytes": 490480,
       "path": "model_v3/outputs/precaution_snapshot/v1/precaution_snapshot.json",
-      "sha256": "498673397969033133f7aad27e7375597b37d11b05d44cba69ea915b13e69458"
+      "sha256": "f58c2eae689bb93b0ed8f92727712637fe0a7f2701f79303ebbd7ba009db18f0"
     }
   },
   "schema_version": 1,

@@ -702,6 +702,36 @@ function App() {
                 </div>
               </div>
             </article>
+
+            <article className="model-details-card">
+              <span className="section-kicker">Kako je signal izračunan</span>
+              <p>{activeModel.scoreExplanation}</p>
+              <dl className="model-details-grid">
+                <div>
+                  <dt>Cilj modela</dt>
+                  <dd>{activeModel.modelTarget}</dd>
+                </div>
+                <div>
+                  <dt>Razpoložljivi vhodi</dt>
+                  <dd>{activeModel.inputWindow}</dd>
+                </div>
+              </dl>
+              <span className="model-details-subtitle">Glavni dejavniki</span>
+              <ul className="model-details-list">
+                {activeModel.topDrivers.map((driver) => (
+                  <li key={driver}>{driver}</li>
+                ))}
+              </ul>
+              <p className="model-validation-note">
+                <strong>Preverjanje modela:</strong> {activeModel.validationSummary}
+              </p>
+              <span className="model-details-subtitle">Pomembne omejitve</span>
+              <ul className="model-details-list">
+                {activeModel.limitations.map((limitation) => (
+                  <li key={limitation}>{limitation}</li>
+                ))}
+              </ul>
+            </article>
           </div>
         </section>
 

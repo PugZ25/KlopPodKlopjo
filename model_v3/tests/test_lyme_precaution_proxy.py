@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+from datetime import date, timedelta
 from pathlib import Path
 
 from model_v3.models.lyme_precaution_proxy import (
@@ -15,7 +16,7 @@ from model_v3.models.lyme_precaution_proxy import (
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_proxy_contract_uses_explicit_weather_deployment_override_without_current_cases() -> None:
+def test_proxy_contract_targets_current_week_without_runtime_cases() -> None:
     config = load_config(REPO_ROOT / "model_v3/config/lyme_precaution_proxy.json")
     manifest = json.loads(
         (REPO_ROOT / "model_v3/outputs/precaution_proxy/lyme_v1/model_manifest.json").read_text(
@@ -29,6 +30,11 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
     )
 
     assert config["purpose"]["runtime_case_inputs_allowed"] is False
+    assert config["purpose"]["training_target"] == (
+        "reported_lyme_cases_in_current_signal_week_t"
+    )
+    assert config["evaluation"]["target_timing"] == "signal_week_t"
+    assert config["evaluation"]["target_embargo_weeks"] == 0
     assert selection["selected_candidate_id"] == COMPACT_WEATHER_ID
     assert selection["evidence_selected_candidate_id"] == NO_WEATHER_ID
     assert selection["weather_candidate_passed_evidence_gate"] is False
@@ -36,6 +42,12 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
     assert selection["claim_that_weather_improved_validation_allowed"] is False
     assert selection["development_weather_improved_fold_count"] == 6
     assert manifest["runtime_contract"]["recent_cases_required"] is False
+    assert manifest["runtime_contract"]["output_target_timing"] == (
+        "current_signal_week"
+    )
+    assert manifest["status"] == (
+        "sealed_for_current_week_no_runtime_case_inference"
+    )
     assert manifest["runtime_contract"]["weather_used_by_ai_score"] is True
     assert manifest["runtime_contract"]["weather_displayed_as_separate_context"] is True
     assert manifest["runtime_contract"]["operational_weather_features"] == list(
@@ -85,7 +97,7 @@ def test_proxy_contract_uses_explicit_weather_deployment_override_without_curren
     )
 
 
-def test_weather_candidate_failed_the_opened_2025_audit() -> None:
+def test_weather_candidate_failed_the_retrospective_2025_audit() -> None:
     path = REPO_ROOT / "model_v3/outputs/precaution_proxy/lyme_v1/aggregate_metrics.csv"
     with path.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
@@ -94,12 +106,37 @@ def test_weather_candidate_failed_the_opened_2025_audit() -> None:
     weather = by_key[
         (
             "opened_2025_retrospective_audit",
-            "catboost_no_case_compact_weather_offset",
+            COMPACT_WEATHER_ID,
         )
     ]
 
     for metric in ("pooled_mae", "pooled_rmse", "pooled_mean_poisson_deviance"):
         assert float(weather[metric]) > float(no_weather[metric])
+
+
+def test_fold_predictions_are_for_the_current_signal_week() -> None:
+    path = REPO_ROOT / "model_v3/outputs/precaution_proxy/lyme_v1/fold_predictions.csv"
+    with path.open(encoding="utf-8", newline="") as handle:
+        rows = csv.DictReader(handle)
+        assert tuple(rows.fieldnames or ())[:10] == (
+            "evaluation_scope",
+            "fold_id",
+            "validation_year",
+            "candidate_id",
+            "municipality_code",
+            "issue_week",
+            "signal_week_start",
+            "signal_week_end",
+            "actual_reported_lyme_cases_current_week",
+            "predicted_reported_lyme_cases_current_week",
+        )
+        for index, row in enumerate(rows):
+            assert row["signal_week_start"] == row["issue_week"]
+            assert date.fromisoformat(row["signal_week_end"]) == (
+                date.fromisoformat(row["issue_week"]) + timedelta(days=6)
+            )
+            if index == 999:
+                break
 
 
 def test_relative_display_bands_are_monotonic_in_development_evidence() -> None:

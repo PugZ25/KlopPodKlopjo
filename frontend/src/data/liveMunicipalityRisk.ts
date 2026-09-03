@@ -55,6 +55,10 @@ export type LiveMunicipalityRiskModel = {
   purpose: string
   disclaimer: string
   scoreExplanation: string
+  modelTarget: string
+  inputWindow: string
+  validationSummary: string
+  limitations: string[]
   topDrivers: string[]
   thresholds: {
     lowUpper: number
@@ -71,7 +75,7 @@ export type LiveMunicipalityRiskModel = {
 }
 
 type PrecautionSnapshot = {
-  schemaVersion: 2
+  schemaVersion: 3
   generatedAt: string
   runtimeCaseInputsUsed: false
   weatherUsedInAiScores: true
@@ -91,7 +95,7 @@ type PrecautionSnapshot = {
 const snapshot = precautionSnapshot as unknown as PrecautionSnapshot
 
 if (
-  snapshot.schemaVersion !== 2 ||
+  snapshot.schemaVersion !== 3 ||
   snapshot.runtimeCaseInputsUsed ||
   !snapshot.weatherUsedInAiScores ||
   !snapshot.weatherUsedByDisease?.borelioza ||
