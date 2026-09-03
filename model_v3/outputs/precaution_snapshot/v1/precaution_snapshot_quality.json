@@ -8,6 +8,7 @@
     "lyme_weather_cross_municipality_medians_within_season_matched_training_fences": true,
     "municipality_count_is_212": true,
     "personal_risk_output_absent": true,
+    "public_signal_is_current_issue_week_only": true,
     "runtime_case_inputs_absent": true,
     "weather_activity_threshold_absent": true,
     "weather_five_complete_pre_issue_weeks": true,
@@ -17,9 +18,9 @@
   },
   "inputs": {
     "configuration": {
-      "bytes": 2457,
+      "bytes": 2583,
       "path": "model_v3/config/precaution_snapshot.json",
-      "sha256": "137f613afc809e8bbe57235e93b7400bb7a57872dfc32181ee93f892c2702d1d"
+      "sha256": "6dfef93d0e104505948888e75ec5bb04d3c303a95c773c543eec2e8dfb8aa80c"
     },
     "display_calibration": {
       "bytes": 17810,
@@ -27,9 +28,9 @@
       "sha256": "76a0fcc3b8da5ace91803667ba8cd297f8629a5cae9537d215bb91796cdb20f6"
     },
     "generator_code": {
-      "bytes": 35471,
+      "bytes": 35941,
       "path": "model_v3/predict/precaution_snapshot.py",
-      "sha256": "8ea3e29c13184c112f5d6af3c6520987a00a0dbd191dd96ca2b1745f664a27ee"
+      "sha256": "05967c12644fea9c7a0bf65e90704d26a77cfb79fbd372288ef87196c3b89958"
     },
     "kme_coefficients": {
       "bytes": 777,
@@ -95,14 +96,14 @@
   "issue_week": "2026-08-31",
   "outputs": {
     "frontend_snapshot": {
-      "bytes": 488858,
+      "bytes": 488942,
       "path": "frontend/src/data/precautionSnapshot.json",
-      "sha256": "1bedff96bf4d8491a2d9a21828ae6a00c389c8d1207ec6028bbdbc1a33e4df21"
+      "sha256": "498673397969033133f7aad27e7375597b37d11b05d44cba69ea915b13e69458"
     },
     "snapshot": {
-      "bytes": 488858,
+      "bytes": 488942,
       "path": "model_v3/outputs/precaution_snapshot/v1/precaution_snapshot.json",
-      "sha256": "1bedff96bf4d8491a2d9a21828ae6a00c389c8d1207ec6028bbdbc1a33e4df21"
+      "sha256": "498673397969033133f7aad27e7375597b37d11b05d44cba69ea915b13e69458"
     }
   },
   "schema_version": 1,

@@ -24,9 +24,11 @@ previous issue week's comparison score.
   is shown as descriptive context.
 - The weekly model issue date is the current Monday. A daily weather refresh does
   not change the model signal between Mondays.
-- The model target remains reported Lyme burden in `t+1` through `t+4`.
-  Therefore this is a signal issued in the current week for that declared
-  horizon, not a measurement of current-week tick activity.
+- The public output is a precaution signal for the current Monday-to-Sunday
+  week. The underlying proxy remains trained against reported Lyme burden in
+  `t+1` through `t+4`; that training horizon is not displayed as the signal
+  window and the signal is not a measurement of current-week tick activity or
+  current-week cases.
 
 Open-Meteo documents multi-coordinate queries and the hourly soil variables in
 its [forecast API documentation](https://open-meteo.com/en/docs). Model selection

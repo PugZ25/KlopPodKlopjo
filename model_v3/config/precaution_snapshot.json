@@ -8,6 +8,8 @@
     "weather_displayed_as_separate_context": true,
     "weather_used_by_lyme_score": true,
     "weather_used_by_kme_score": false,
+    "public_signal_window": "issue_week_monday_through_sunday",
+    "model_target_horizon_is_not_public_signal_window": true,
     "low_means_safe": false
   },
   "inputs": {

@@ -109,6 +109,12 @@ def load_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         or contract.get("weather_used_by_kme_score") is not False
     ):
         raise PrecautionSnapshotError("Declared disease-specific weather use changed")
+    if (
+        contract.get("public_signal_window")
+        != "issue_week_monday_through_sunday"
+        or contract.get("model_target_horizon_is_not_public_signal_window") is not True
+    ):
+        raise PrecautionSnapshotError("Public signal must cover only the issue week")
     weather = config.get("weather", {})
     if weather.get("required_complete_weeks") != 5 or weather.get("lyme_feature_weeks") != 4:
         raise PrecautionSnapshotError(
@@ -369,7 +375,6 @@ def _model_location(
     code: str,
     name: str,
     issue_week: date,
-    horizon_weeks: int,
     score: int,
     previous_score: int,
     calibration: DisplayCalibration,
@@ -389,8 +394,8 @@ def _model_location(
         "level": _display_level(score, calibration),
         "trendDeltaScore": delta,
         "trendLabel": _trend_label(delta),
-        "weekStart": (issue_week + timedelta(weeks=1)).isoformat(),
-        "weekEnd": (issue_week + timedelta(weeks=horizon_weeks)).isoformat(),
+        "weekStart": issue_week.isoformat(),
+        "weekEnd": (issue_week + timedelta(days=6)).isoformat(),
         "coordinates": [round(coordinates[0], 6), round(coordinates[1], 6)],
         "weatherContext": dict(weather),
     }
@@ -625,7 +630,6 @@ def build_precaution_snapshot(
         lyme_locations.append(
             _model_location(
                 disease_key="borelioza",
-                horizon_weeks=4,
                 score=lyme_score,
                 previous_score=previous_lyme_score,
                 calibration=lyme_calibration,
@@ -635,7 +639,6 @@ def build_precaution_snapshot(
         kme_locations.append(
             _model_location(
                 disease_key="kme",
-                horizon_weeks=8,
                 score=kme_score,
                 previous_score=previous_kme_score,
                 calibration=kme_calibration,
@@ -665,14 +668,14 @@ def build_precaution_snapshot(
             "key": "borelioza",
             "diseaseLabel": "Borelioza",
             "modelId": COMPACT_WEATHER_ID,
-            "snapshotLabel": "vremensko posodobljen tedenski preventivni signal brez novih prijav primerov",
+            "snapshotLabel": "vremensko posodobljen preventivni signal za tekoči teden",
             "spatialScope": "municipality",
             "scopeLabel": "relativna primerjava občin",
             "dataStatus": "Deluje brez novejših prijav borelioze; zgodovinski podatki so uporabljeni samo pri učenju in preverjanju modela.",
-            "methodologyNote": "Signal združuje sezono, občinski zgodovinski vzorec ter temperaturo zraka in tal in padavine Open-Meteo iz štirih zaključenih tednov pred izdajo; novejše prijave primerov niso vhod v oceno.",
+            "methodologyNote": "Signal za tekoči teden združuje sezono, občinski zgodovinski vzorec ter temperaturo zraka in tal in padavine Open-Meteo iz štirih predhodnih zaključenih tednov; novejše prijave primerov niso vhod v oceno.",
             "purpose": "Podpora odločitvi za previdnost pred odhodom v naravo.",
             "disclaimer": "To ni epidemiološki podatek, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
-            "scoreExplanation": "Ocena 0–100 je relativni percentil modelskega signala glede na časovno ločene napovedi 2017–2024.",
+            "scoreExplanation": "Ocena 0–100 je relativni preventivni signal za tekoči teden, umerjen s časovno ločenimi modelskimi napovedmi 2017–2024. Ni ocena števila primerov v tem tednu.",
             "topDrivers": [
                 "letni sezonski vzorec",
                 "občinski zgodovinski vzorec",
@@ -680,8 +683,8 @@ def build_precaution_snapshot(
                 "padavine v prejšnjih štirih tednih",
                 "prebivalstvo kot epidemiološki imenovalec",
             ],
-            "predictionWindowStart": (issue_week + timedelta(weeks=1)).isoformat(),
-            "predictionWindowEnd": (issue_week + timedelta(weeks=4)).isoformat(),
+            "signalWeekStart": issue_week.isoformat(),
+            "signalWeekEnd": (issue_week + timedelta(days=6)).isoformat(),
             "locations": lyme_locations,
             "featuredLocations": _featured_locations(lyme_locations, featured_codes),
             "weatherUsedInScore": True,
@@ -691,21 +694,21 @@ def build_precaution_snapshot(
             "key": "kme",
             "diseaseLabel": "KME",
             "modelId": "glm_seasonal_region_offset",
-            "snapshotLabel": "regionalni preventivni signal brez novih prijav primerov",
+            "snapshotLabel": "regionalni preventivni signal za tekoči teden",
             "spatialScope": "statistical_region",
             "scopeLabel": "regionalni signal, prikazan na občinah iste regije",
             "dataStatus": "Deluje brez novejših prijav KME; vse občine v isti statistični regiji imajo isti modelni signal.",
-            "methodologyNote": "KME signal temelji na sezoni in statistični regiji; sveže prijave primerov in trenutno vreme niso vhod v oceno.",
+            "methodologyNote": "KME signal za tekoči teden temelji na sezoni in statistični regiji; sveže prijave primerov in vreme niso vhod v oceno.",
             "purpose": "Podpora previdnosti in razmisleku o cepljenju proti KME.",
             "disclaimer": "To ni občinska epidemiološka stopnja, meritev klopov, diagnoza ali osebna verjetnost okužbe. Nizko ne pomeni varno.",
-            "scoreExplanation": "Ocena 0–100 je relativni percentil regionalnega modelskega signala glede na časovno ločene napovedi 2018–2025.",
+            "scoreExplanation": "Ocena 0–100 je relativni preventivni signal za tekoči teden, umerjen s časovno ločenimi modelskimi napovedmi 2018–2025. Ni ocena števila primerov v tem tednu.",
             "topDrivers": [
                 "letni sezonski vzorec",
                 "statistična regija",
                 "prebivalstvo kot epidemiološki imenovalec",
             ],
-            "predictionWindowStart": (issue_week + timedelta(weeks=1)).isoformat(),
-            "predictionWindowEnd": (issue_week + timedelta(weeks=8)).isoformat(),
+            "signalWeekStart": issue_week.isoformat(),
+            "signalWeekEnd": (issue_week + timedelta(days=6)).isoformat(),
             "locations": kme_locations,
             "featuredLocations": _featured_locations(kme_locations, featured_codes),
             **{
@@ -719,7 +722,7 @@ def build_precaution_snapshot(
         },
     }
     snapshot = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "generatedAt": generated_at,
         "issueWeek": issue_week.isoformat(),
         "runtimeCaseInputsUsed": False,
@@ -775,6 +778,11 @@ def build_precaution_snapshot(
             "weather_source_is_operational_model_not_observation": True,
             "weather_uses_polygon_intersection_weights": True,
             "weather_activity_threshold_absent": True,
+            "public_signal_is_current_issue_week_only": all(
+                row["weekStart"] == issue_week.isoformat()
+                and row["weekEnd"] == (issue_week + timedelta(days=6)).isoformat()
+                for row in (*lyme_locations, *kme_locations)
+            ),
             "municipality_count_is_212": len(lyme_locations) == len(kme_locations) == 212,
             "kme_scope_is_statistical_region": True,
             "personal_risk_output_absent": True,

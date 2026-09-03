@@ -42,8 +42,8 @@ export type LiveMunicipalityRiskModel = {
   generatedAt: string
   referenceWeekStart: string
   referenceWeekEnd: string
-  predictionWindowStart: string
-  predictionWindowEnd: string
+  signalWeekStart: string
+  signalWeekEnd: string
   snapshotLabel: string
   weatherSource: string
   weatherModel: 'icon_seamless'
@@ -71,7 +71,7 @@ export type LiveMunicipalityRiskModel = {
 }
 
 type PrecautionSnapshot = {
-  schemaVersion: 1
+  schemaVersion: 2
   generatedAt: string
   runtimeCaseInputsUsed: false
   weatherUsedInAiScores: true
@@ -91,6 +91,7 @@ type PrecautionSnapshot = {
 const snapshot = precautionSnapshot as unknown as PrecautionSnapshot
 
 if (
+  snapshot.schemaVersion !== 2 ||
   snapshot.runtimeCaseInputsUsed ||
   !snapshot.weatherUsedInAiScores ||
   !snapshot.weatherUsedByDisease?.borelioza ||

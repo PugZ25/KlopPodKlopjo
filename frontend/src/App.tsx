@@ -111,20 +111,8 @@ function formatDisplayDate(value: string) {
   return displayDateFormatter.format(new Date(`${value}T00:00:00`))
 }
 
-function shiftIsoDate(value: string, days: number) {
-  const date = new Date(`${value}T00:00:00Z`)
-  date.setUTCDate(date.getUTCDate() + days)
-  return date.toISOString().slice(0, 10)
-}
-
 function formatDateRange(start: string, end: string) {
   return `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`
-}
-
-function buildTimeHorizonLabel(diseaseKey: DiseaseModelKey) {
-  return diseaseKey === 'borelioza'
-    ? 'štiri prihodnje tedne'
-    : 'osem prihodnjih tednov'
 }
 
 function buildDiseaseObjectLabel(diseaseKey: DiseaseModelKey) {
@@ -391,10 +379,9 @@ function App() {
     selectedLocation.level,
     selectedLocation.score,
   )
-  const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
-  const predictionRangeLabel = formatDateRange(
-    activeModel.predictionWindowStart,
-    shiftIsoDate(activeModel.predictionWindowEnd, 6),
+  const signalWeekRangeLabel = formatDateRange(
+    activeModel.signalWeekStart,
+    activeModel.signalWeekEnd,
   )
   const riskActionLinks =
     selectedDiseaseKey === 'kme'
@@ -562,14 +549,9 @@ function App() {
                 </button>
 
                 <div className="live-meta">
-                  <span className="metric-label">Signal velja za obdobje</span>
-                  <strong>{predictionRangeLabel}</strong>
-                  <p>
-                    Skupni signal za {timeHorizon}
-                    {selectedDiseaseKey === 'borelioza'
-                      ? ', ne napoved samo za naslednji teden.'
-                      : '.'}
-                  </p>
+                  <span className="metric-label">Signal za tekoči teden</span>
+                  <strong>{signalWeekRangeLabel}</strong>
+                  <p>Temelji samo na podatkih, zaključenih pred tem tednom.</p>
                   {weatherIsStale ? (
                     <p className="freshness-warning" role="status">
                       Vremenski podatki niso bili pravočasno osveženi. Upoštevaj
@@ -611,8 +593,8 @@ function App() {
                     </span>
                   </div>
                   <p>
-                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} velja za{' '}
-                    {timeHorizon}: {predictionRangeLabel}.
+                    Signal za {buildDiseaseObjectLabel(selectedDiseaseKey)} velja za tekoči
+                    teden: {signalWeekRangeLabel}.
                     {activeModel.spatialScope === 'statistical_region'
                       ? ' Pri KME je enak za vse občine v izbrani statistični regiji.'
                       : ''}{' '}
