@@ -392,18 +392,6 @@ function App() {
     selectedLocation.score,
   )
   const timeHorizon = buildTimeHorizonLabel(selectedDiseaseKey)
-  const issueWeekRangeLabel = formatDateRange(
-    activeModel.asOfDate,
-    shiftIsoDate(activeModel.asOfDate, 6),
-  )
-  const latestWeatherWeekRangeLabel = formatDateRange(
-    activeModel.referenceWeekStart,
-    activeModel.referenceWeekEnd,
-  )
-  const weatherInputRangeLabel = formatDateRange(
-    shiftIsoDate(activeModel.referenceWeekStart, -21),
-    activeModel.referenceWeekEnd,
-  )
   const predictionRangeLabel = formatDateRange(
     activeModel.predictionWindowStart,
     shiftIsoDate(activeModel.predictionWindowEnd, 6),
@@ -574,44 +562,13 @@ function App() {
                 </button>
 
                 <div className="live-meta">
-                  <div className="signal-period">
-                    <span className="metric-label">Teden izdaje signala</span>
-                    <strong>{issueWeekRangeLabel}</strong>
-                    <p>Ta teden ni del napovedanega obdobja.</p>
-                  </div>
-                  <div className="signal-period">
-                    <span className="metric-label">
-                      {activeModel.weatherUsedInScore
-                        ? '4 tedni vremena v izračunu'
-                        : 'Zadnji teden vremenskega konteksta'}
-                    </span>
-                    <strong>
-                      {activeModel.weatherUsedInScore
-                        ? weatherInputRangeLabel
-                        : latestWeatherWeekRangeLabel}
-                    </strong>
-                    <p>
-                      {activeModel.weatherUsedInScore
-                        ? 'To so štirje zaključeni tedni pred tednom izdaje.'
-                        : 'Vreme je pri KME prikazano ločeno in ne vpliva na regionalni signal.'}
-                    </p>
-                  </div>
-                  <div className="signal-period signal-period-output">
-                    <span className="metric-label">Obdobje, za katero velja signal</span>
-                    <strong>{predictionRangeLabel}</strong>
-                    <p>
-                      Skupni signal za {timeHorizon}
-                      {selectedDiseaseKey === 'borelioza'
-                        ? ', ne napoved samo za naslednji teden.'
-                        : '.'}
-                    </p>
-                  </div>
-                  <p className="weather-source">
-                    Vremenski vir:{' '}
-                    <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
-                      Open-Meteo / DWD ICON
-                    </a>
-                    .
+                  <span className="metric-label">Signal velja za obdobje</span>
+                  <strong>{predictionRangeLabel}</strong>
+                  <p>
+                    Skupni signal za {timeHorizon}
+                    {selectedDiseaseKey === 'borelioza'
+                      ? ', ne napoved samo za naslednji teden.'
+                      : '.'}
                   </p>
                   {weatherIsStale ? (
                     <p className="freshness-warning" role="status">
