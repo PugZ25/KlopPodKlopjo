@@ -276,7 +276,6 @@
 .map-legend-bar,
 .trend-card,
 .weather-context-card,
-.model-details-card,
 .story-card,
 .image-card,
 .highlight-card,
@@ -848,63 +847,6 @@
   margin-top: 12px;
 }
 
-.model-details-card {
-  display: grid;
-  grid-column: 1 / -1;
-  gap: 14px;
-  margin-top: 0;
-  padding: 22px;
-  background: rgba(247, 251, 247, 0.9);
-}
-
-.model-details-card > p {
-  color: #43574b;
-}
-
-.model-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0;
-}
-
-.model-details-grid > div {
-  padding: 14px;
-  border-radius: 16px;
-  background: #edf5ef;
-}
-
-.model-details-grid dt,
-.model-details-subtitle {
-  color: #617468;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.model-details-grid dd {
-  margin: 6px 0 0;
-  color: #1d3327;
-  line-height: 1.55;
-}
-
-.model-details-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
-  margin: -4px 0 0;
-  padding-left: 1.2rem;
-  color: #43574b;
-}
-
-.model-validation-note {
-  padding: 14px 16px;
-  border-left: 4px solid #d49b42;
-  border-radius: 12px;
-  background: rgba(226, 176, 54, 0.12);
-}
-
 .action-links-panel {
   margin-top: 18px;
   padding-top: 18px;
@@ -1342,14 +1284,6 @@
     width: 100%;
     min-height: 50px;
     white-space: normal;
-  }
-
-  .model-details-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .model-details-list {
-    grid-template-columns: 1fr;
   }
 
   .hero-brand-lockup {
