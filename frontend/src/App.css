@@ -651,8 +651,6 @@
 }
 
 .insight-card {
-  position: sticky;
-  top: 112px;
   align-self: start;
   display: grid;
   align-content: start;
@@ -1255,9 +1253,6 @@
     grid-template-columns: 1fr;
   }
 
-  .insight-card {
-    position: static;
-  }
 }
 
 @media (max-width: 760px) {
