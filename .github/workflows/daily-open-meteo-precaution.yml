@@ -2,6 +2,10 @@ name: Daily fresh-weather precaution snapshot
 
 on:
   schedule:
+    # Twice daily, deliberately off the hour: GitHub delays scheduled runs
+    # under load and drops some entirely, so one missed slot must not leave
+    # the published snapshot a full day behind.
+    - cron: "30 1 * * *"
     - cron: "30 13 * * *"
   workflow_dispatch:
     inputs:
@@ -104,16 +108,57 @@ jobs:
         env:
           ISSUE_WEEK: ${{ steps.plan.outputs.issue_week }}
           WEATHER_PERIOD_END: ${{ steps.plan.outputs.period_end }}
+          BRANCH: ${{ github.ref_name }}
+          SNAPSHOT: frontend/src/data/precautionSnapshot.json
         run: |
-          if git diff --quiet -- frontend/src/data/precautionSnapshot.json; then
+          set -euo pipefail
+
+          if git diff --quiet -- "$SNAPSHOT"; then
             echo "Frontend snapshot is unchanged."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add frontend/src/data/precautionSnapshot.json
-          git commit -m "data: refresh weather through $WEATHER_PERIOD_END for $ISSUE_WEEK"
-          git push
+
+          # The checkout can be minutes old by the time the pipeline finishes, so
+          # a push that lands meanwhile would reject this one and lose the
+          # refresh for the day. Commit from a throwaway worktree pinned to the
+          # current tip instead, and retry against a newer tip if that races too.
+          #
+          # A worktree rather than a reset: the main working tree still holds the
+          # model outputs that the artifact upload step collects after this.
+          cp "$SNAPSHOT" "$RUNNER_TEMP/precautionSnapshot.json"
+          publish_tree="$RUNNER_TEMP/publish"
+
+          for attempt in 1 2 3; do
+            rm -rf "$publish_tree"
+            git worktree prune
+            git fetch --quiet origin "$BRANCH"
+            git worktree add --quiet --detach "$publish_tree" FETCH_HEAD
+
+            cp "$RUNNER_TEMP/precautionSnapshot.json" "$publish_tree/$SNAPSHOT"
+
+            if git -C "$publish_tree" diff --quiet -- "$SNAPSHOT"; then
+              echo "origin/$BRANCH already carries this snapshot."
+              exit 0
+            fi
+
+            git -C "$publish_tree" add "$SNAPSHOT"
+            git -C "$publish_tree" commit --quiet \
+              -m "data: refresh weather through $WEATHER_PERIOD_END for $ISSUE_WEEK"
+
+            if git -C "$publish_tree" push --quiet origin "HEAD:$BRANCH"; then
+              echo "Published on attempt $attempt."
+              exit 0
+            fi
+
+            echo "Push rejected on attempt $attempt; retrying against the newer tip."
+            sleep $((attempt * 5))
+          done
+
+          echo "::error::Could not publish the refreshed snapshot after 3 attempts."
+          exit 1
 
       - name: Upload immutable source and verified outputs
         if: always()
