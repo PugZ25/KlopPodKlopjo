@@ -2,6 +2,7 @@ import {
   lazy,
   Suspense,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -14,7 +15,6 @@ import vaccinationScheduleImage from '../navodila/images/image2.png'
 import type { MapViewProps } from './components/MapView'
 import {
   liveMunicipalityRiskModels,
-  precautionSnapshotMetadata,
   type DiseaseModelKey,
   type RiskLevel,
 } from './data/liveMunicipalityRisk'
@@ -99,14 +99,6 @@ const displayDateFormatter = new Intl.DateTimeFormat('sl-SI', {
   month: 'long',
   year: 'numeric',
 })
-const snapshotGeneratedAtMilliseconds = Date.parse(
-  precautionSnapshotMetadata.generatedAt,
-)
-const weatherIsStale =
-  !Number.isFinite(snapshotGeneratedAtMilliseconds) ||
-  Date.now() - snapshotGeneratedAtMilliseconds >
-    precautionSnapshotMetadata.maximumDisplayAgeHours * 60 * 60 * 1000
-
 function formatDisplayDate(value: string) {
   return displayDateFormatter.format(new Date(`${value}T00:00:00`))
 }
@@ -209,21 +201,85 @@ function SectionAccordion({
   defaultOpen = false,
   children,
 }: SectionAccordionProps) {
-  return (
-    <details id={id} className="accordion-card" open={defaultOpen}>
-      <summary className="accordion-summary">
-        <span className="accordion-summary-copy">
-          <span className="section-kicker">{kicker}</span>
-          <span className="accordion-title">{title}</span>
-          <span className="accordion-description">{description}</span>
-        </span>
-        <span className="accordion-indicator" aria-hidden="true">
-          +
-        </span>
-      </summary>
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const bodyRef = useRef<HTMLDivElement>(null)
+  const bodyId = `${id}-vsebina`
 
-      <div className="accordion-body">{children}</div>
-    </details>
+  // React coerces `hidden` to a boolean attribute, so the "until-found" value
+  // has to be set on the node itself. A layout effect keeps it applied before
+  // the first paint, so collapsed sections never flash open.
+  useLayoutEffect(() => {
+    const body = bodyRef.current
+    if (!body) {
+      return
+    }
+
+    if (isOpen) {
+      body.removeAttribute('hidden')
+      return
+    }
+
+    body.setAttribute('hidden', 'until-found')
+  }, [isOpen])
+
+  // Find-in-page and fragment navigation fire `beforematch` on a
+  // hidden-until-found element just before the browser reveals it.
+  useEffect(() => {
+    const body = bodyRef.current
+    if (!body) {
+      return
+    }
+
+    function handleBeforeMatch() {
+      setIsOpen(true)
+    }
+
+    body.addEventListener('beforematch', handleBeforeMatch)
+    return () => body.removeEventListener('beforematch', handleBeforeMatch)
+  }, [])
+
+  // The jump links point at the card, not at the hidden body, so opening on
+  // the hash has to be handled explicitly.
+  useEffect(() => {
+    function openOnHash() {
+      if (window.location.hash === `#${id}`) {
+        setIsOpen(true)
+      }
+    }
+
+    openOnHash()
+    window.addEventListener('hashchange', openOnHash)
+    return () => window.removeEventListener('hashchange', openOnHash)
+  }, [id])
+
+  return (
+    <section
+      id={id}
+      className={`accordion-card${isOpen ? ' accordion-card-open' : ''}`}
+    >
+      <h3 className="accordion-heading">
+        <button
+          type="button"
+          className="accordion-summary"
+          aria-expanded={isOpen}
+          aria-controls={bodyId}
+          onClick={() => setIsOpen((previous) => !previous)}
+        >
+          <span className="accordion-summary-copy">
+            <span className="section-kicker">{kicker}</span>
+            <span className="accordion-title">{title}</span>
+            <span className="accordion-description">{description}</span>
+          </span>
+          <span className="accordion-indicator" aria-hidden="true">
+            +
+          </span>
+        </button>
+      </h3>
+
+      <div ref={bodyRef} id={bodyId} className="accordion-body">
+        {children}
+      </div>
+    </section>
   )
 }
 
@@ -266,8 +322,12 @@ function MapPlaceholder({
   placeholderRef?: React.RefObject<HTMLDivElement | null>
 }) {
   return (
-    <div ref={placeholderRef} className="map-shell map-shell-loading" aria-hidden="true">
-      <div className="map-canvas" />
+    <div ref={placeholderRef} className="map-shell map-shell-loading">
+      <div className="map-canvas">
+        <p className="map-loading-note" role="status">
+          Nalagam zemljevid občin ...
+        </p>
+      </div>
     </div>
   )
 }
@@ -552,12 +612,6 @@ function App() {
                   <span className="metric-label">Signal za tekoči teden</span>
                   <strong>{signalWeekRangeLabel}</strong>
                   <p>Temelji samo na podatkih, zaključenih pred tem tednom.</p>
-                  {weatherIsStale ? (
-                    <p className="freshness-warning" role="status">
-                      Vremenski podatki niso bili pravočasno osveženi. Upoštevaj
-                      prikazano obdobje.
-                    </p>
-                  ) : null}
                 </div>
               </div>
 
@@ -594,17 +648,30 @@ function App() {
                   </div>
                 </div>
 
-                <div className="map-legend-bar" aria-hidden="true">
+                <div
+                  className="map-legend-bar"
+                  role="group"
+                  aria-label="Legenda barv na zemljevidu"
+                >
                   <span className="map-legend-chip">
-                    <span className="map-legend-dot map-legend-dot-low" />
+                    <span
+                      className="map-legend-dot map-legend-dot-low"
+                      aria-hidden="true"
+                    />
                     Nizek
                   </span>
                   <span className="map-legend-chip">
-                    <span className="map-legend-dot map-legend-dot-medium" />
+                    <span
+                      className="map-legend-dot map-legend-dot-medium"
+                      aria-hidden="true"
+                    />
                     Srednji
                   </span>
                   <span className="map-legend-chip">
-                    <span className="map-legend-dot map-legend-dot-high" />
+                    <span
+                      className="map-legend-dot map-legend-dot-high"
+                      aria-hidden="true"
+                    />
                     Visok
                   </span>
                 </div>

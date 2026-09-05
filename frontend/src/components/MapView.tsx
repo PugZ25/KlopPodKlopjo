@@ -35,9 +35,17 @@ type ChoroplethBoundary = PreparedBoundary & {
 }
 
 const levelColors: Record<MapRiskLocation['level'], string> = {
-  Nizko: '#3b9f76',
+  Nizko: '#4a9c70',
   Srednje: '#d49b42',
   Visoko: '#c1543f',
+}
+
+// The selected outline is a darkened version of its own level colour, so the
+// selection still reads as low/medium/high instead of turning into a black blob.
+const selectedStrokeColors: Record<MapRiskLocation['level'], string> = {
+  Nizko: '#1d5c3e',
+  Srednje: '#8a5a12',
+  Visoko: '#7d2c1c',
 }
 
 const signalLevelLabel: Record<MapRiskLocation['level'], string> = {
@@ -235,6 +243,59 @@ export function MapView({
       .filter((boundary): boundary is ChoroplethBoundary => Boolean(boundary))
   }, [locations, preparedBoundaries])
 
+  // Leaflet paints in insertion order and strokes are centred on the path, so a
+  // selected polygon drawn mid-list gets its outline half-covered by whichever
+  // neighbours come after it. Split it out and draw it last instead.
+  const selectedBoundary = boundaries.find(
+    (boundary) => boundary.locationId === selectedLocationId,
+  )
+  const otherBoundaries = useMemo(
+    () =>
+      boundaries.filter(
+        (boundary) => boundary.locationId !== selectedLocationId,
+      ),
+    [boundaries, selectedLocationId],
+  )
+
+  function renderBoundary(boundary: ChoroplethBoundary, isSelected: boolean) {
+    return (
+      <Polygon
+        key={boundary.code}
+        positions={boundary.positions}
+        smoothFactor={isSelected ? 0.4 : isTouchMap ? 1.5 : 1}
+        pathOptions={{
+          className: isSelected ? 'boundary-selected' : undefined,
+          color: isSelected
+            ? selectedStrokeColors[boundary.level]
+            : levelColors[boundary.level],
+          fillColor: levelColors[boundary.level],
+          fillOpacity: isSelected ? 0.88 : isTouchMap ? 0.54 : 0.42,
+          weight: isSelected ? (isTouchMap ? 2.2 : 2.4) : isTouchMap ? 1.1 : 1.05,
+          lineJoin: 'round',
+          lineCap: 'round',
+        }}
+        eventHandlers={{
+          click: () => onSelectLocation(boundary.locationId),
+        }}
+      >
+        {!isTouchMap ? (
+          <Tooltip sticky>
+            <strong>{boundary.name}</strong>
+            <br />
+            {signalLevelLabel[boundary.level]} signal za{' '}
+            {buildDiseaseObjectLabel(diseaseLabel)}
+            {spatialScope === 'statistical_region' ? (
+              <>
+                <br />
+                Statistična regija: {boundary.regionName}
+              </>
+            ) : null}
+          </Tooltip>
+        ) : null}
+      </Polygon>
+    )
+  }
+
   const focusedLocation =
     locations.find((location) => location.id === selectedLocationId) ?? selectedLocation
   const mapCenter = isTouchMap ? SLOVENIA_CENTER : focusedLocation.coordinates
@@ -263,48 +324,28 @@ export function MapView({
         <MapFocus coordinates={focusedLocation.coordinates} isTouchMap={isTouchMap} />
         <ZoomControl position={isTouchMap ? 'bottomright' : 'topright'} />
 
-        {boundaries.map((boundary) => {
-          const isSelected = boundary.locationId === selectedLocationId
+        {otherBoundaries.map((boundary) => renderBoundary(boundary, false))}
 
-          return (
-            <Polygon
-              key={boundary.code}
-              positions={boundary.positions}
-              smoothFactor={isTouchMap ? 1.5 : 1}
-              pathOptions={{
-                color: isSelected
-                  ? isTouchMap
-                    ? '#244b38'
-                    : '#14231a'
-                  : levelColors[boundary.level],
-                fillColor: levelColors[boundary.level],
-                fillOpacity: isSelected ? 0.86 : isTouchMap ? 0.54 : 0.42,
-                weight: isSelected ? (isTouchMap ? 2 : 3.1) : isTouchMap ? 1.1 : 1.05,
-              }}
-              eventHandlers={{
-                click: (event) => {
-                  event.target.bringToFront()
-                  onSelectLocation(boundary.locationId)
-                },
-              }}
-            >
-              {!isTouchMap ? (
-                <Tooltip sticky>
-                  <strong>{boundary.name}</strong>
-                  <br />
-                  {signalLevelLabel[boundary.level]} signal za{' '}
-                  {buildDiseaseObjectLabel(diseaseLabel)}
-                  {spatialScope === 'statistical_region' ? (
-                    <>
-                      <br />
-                      Statistična regija: {boundary.regionName}
-                    </>
-                  ) : null}
-                </Tooltip>
-              ) : null}
-            </Polygon>
-          )
-        })}
+        {selectedBoundary ? (
+          <Polygon
+            key={`casing-${selectedBoundary.code}`}
+            positions={selectedBoundary.positions}
+            smoothFactor={0.4}
+            interactive={false}
+            pathOptions={{
+              className: 'boundary-casing',
+              color: '#fdfefc',
+              weight: isTouchMap ? 5.5 : 6,
+              opacity: 0.95,
+              fill: false,
+              lineJoin: 'round',
+              lineCap: 'round',
+            }}
+          />
+        ) : null}
+
+        {selectedBoundary ? renderBoundary(selectedBoundary, true) : null}
+
       </MapContainer>
     </div>
   )
