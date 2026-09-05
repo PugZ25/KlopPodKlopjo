@@ -21,7 +21,7 @@ import {
 import {
   diseaseSources,
   ixodesSections,
-  noticeText,
+  vaccinationNotice,
   preventionGroups,
   regionInsight,
   removalSources,
@@ -517,12 +517,6 @@ function App() {
 
   return (
     <div className="site-page">
-      <div className="notice-bar" role="status" aria-live="polite">
-        <div className="notice-track">
-          <span>{noticeText}</span>
-        </div>
-      </div>
-
       <main className="app-shell">
         <section className="hero-panel">
           <div className="hero-layout">
@@ -544,6 +538,20 @@ function App() {
                   <h1>Klop pod klopjo</h1>
                 </div>
               </div>
+
+              <p className="hero-notice">
+                {vaccinationNotice.access}{' '}
+                <span className="hero-notice-entitlement">
+                  {vaccinationNotice.entitlement.before}
+                  <a
+                    className="inline-link"
+                    href={vaccinationNotice.entitlement.href}
+                  >
+                    {vaccinationNotice.entitlement.highlight}
+                  </a>
+                  {vaccinationNotice.entitlement.after}
+                </span>
+              </p>
             </div>
           </div>
         </section>
@@ -678,7 +686,10 @@ function App() {
               </div>
             </article>
 
-            <article className="insight-card">
+            <article
+              className="insight-card"
+              key={`${selectedDiseaseKey}-${selectedLocation.municipalityCode}`}
+            >
               <div className="section-header">
                 <span className="section-kicker">Ocena</span>
                 <h2>
@@ -791,8 +802,8 @@ function App() {
               description="Kdo se lahko cepi, kako poteka shema in kam se naročiš."
               defaultOpen
             >
-              <div className="vaccination-grid">
-                <div className="story-card">
+              <div className="vaccination-layout">
+                <article className="story-card">
                   <div className="copy-flow">
                     <p>
                       Obolevnost za klopnim meningoencefalitisom je v Sloveniji
@@ -822,6 +833,9 @@ function App() {
                     </p>
                   </div>
 
+                </article>
+
+                <div className="vaccination-aside">
                   <div className="highlight-grid">
                     {vaccinationHighlights.map((item) => (
                       <article key={item.title} className="highlight-card">

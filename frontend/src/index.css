@@ -1,6 +1,6 @@
 :root {
-  font-family: 'Avenir Next', 'Trebuchet MS', sans-serif;
-  line-height: 1.5;
+  font-family: 'Mulish', 'Avenir Next', 'Trebuchet MS', system-ui, sans-serif;
+  line-height: 1.58;
   font-weight: 400;
   color: #152118;
   background:
@@ -36,10 +36,10 @@ a {
 h1,
 h2,
 h3 {
-  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia,
-    serif;
+  font-family: 'Literata', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  font-optical-sizing: auto;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 body::before {

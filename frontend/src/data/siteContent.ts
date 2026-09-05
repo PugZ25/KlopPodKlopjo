@@ -13,8 +13,16 @@ export const topicNavItems = [
   { label: 'Posebnosti Slovenije', href: '#posebnosti-slovenije' },
 ] as const
 
-export const noticeText =
-  'Cepljenje proti KME je mogoče pri osebnem zdravniku, na območnih enotah NIJZ ali v ambulanti za cepljenje. V letu 2026 je cepljenje za določene starostne skupine brezplačno.'
+export const vaccinationNotice = {
+  access:
+    'Cepljenje proti KME je mogoče pri osebnem zdravniku, na območnih enotah NIJZ ali v ambulanti za cepljenje.',
+  entitlement: {
+    before: 'V letu 2026 je cepljenje za določene starostne skupine ',
+    highlight: 'brezplačno',
+    after: '.',
+    href: '#cepljenje',
+  },
+} as const
 
 export const heroStats = [
   {

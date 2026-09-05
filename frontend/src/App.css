@@ -3,7 +3,6 @@
   overflow-x: clip;
 }
 
-.notice-bar,
 .app-shell {
   width: min(1180px, calc(100% - clamp(20px, 6vw, 40px)));
   margin: 0 auto;
@@ -29,30 +28,6 @@
   transform: translateY(-1px);
 }
 
-.notice-bar {
-  overflow: hidden;
-  border-radius: 999px;
-  border: 1px solid rgba(168, 125, 46, 0.22);
-  background: linear-gradient(90deg, rgba(244, 225, 190, 0.95), rgba(249, 240, 221, 0.95));
-  box-shadow: 0 14px 30px rgba(122, 91, 37, 0.08);
-}
-
-.notice-track {
-  display: block;
-  width: 100%;
-  padding: 0.86rem 1.5rem;
-}
-
-.notice-track span {
-  display: block;
-  white-space: normal;
-  text-wrap: balance;
-  text-align: center;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #694513;
-}
-
 .app-shell {
   display: grid;
   gap: 24px;
@@ -64,9 +39,14 @@
 .selection-card,
 .content-section,
 .jump-rail {
-  border-radius: 30px;
+  border-radius: 26px;
   border: 1px solid rgba(24, 53, 41, 0.1);
-  box-shadow: 0 20px 46px rgba(17, 37, 28, 0.08);
+  box-shadow: 0 18px 40px rgba(17, 37, 28, 0.07);
+}
+
+/* Navigation is not a document surface; let it sit flat on the page. */
+.jump-rail {
+  box-shadow: none;
 }
 
 .hero-panel {
@@ -155,14 +135,43 @@
   min-width: 0;
 }
 
+.hero-notice {
+  max-width: 62ch;
+  font-size: clamp(1.02rem, 1.3vw, 1.14rem);
+  line-height: 1.55;
+  color: #3f4f45;
+  text-wrap: pretty;
+}
+
+/* A short amber fade carries the old notice colour into the hero and marks the
+   step down from wordmark to supporting text, without another bordered card. */
+.hero-notice::before {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(168, 125, 46, 0.7),
+    rgba(168, 125, 46, 0)
+  );
+}
+
+.hero-notice-entitlement {
+  color: #12251a;
+  font-weight: 600;
+}
+
 .eyebrow,
 .section-kicker,
 .metric-label {
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.72rem;
-  font-weight: 800;
+  letter-spacing: 0.075em;
+  font-size: 0.76rem;
+  font-weight: 700;
 }
 
 .eyebrow,
@@ -173,9 +182,9 @@
 .hero-panel h1 {
   max-width: none;
   margin: 0;
-  font-size: clamp(3.4rem, 9vw, 7rem);
-  line-height: 0.88;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.9rem, 7.6vw, 5.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
   color: #102419;
   text-wrap: balance;
   text-shadow: 0 2px 0 rgba(255, 255, 255, 0.35);
@@ -281,10 +290,9 @@
 .highlight-card,
 .disease-card,
 .callout-card {
-  border-radius: 24px;
-  border: 1px solid rgba(31, 70, 53, 0.09);
+  border-radius: 20px;
+  border: 1px solid rgba(31, 70, 53, 0.13);
   background: rgba(255, 255, 255, 0.74);
-  box-shadow: 0 12px 28px rgba(22, 42, 32, 0.06);
 }
 
 .metric-label {
@@ -569,7 +577,7 @@
 }
 
 .map-canvas {
-  height: 430px;
+  height: min(430px, 62dvh);
   width: 100%;
   border-radius: 24px;
   overflow: hidden;
@@ -685,6 +693,19 @@
   color: #edf6ee;
   box-shadow: 0 28px 44px rgba(14, 36, 27, 0.18);
   min-width: 0;
+  animation: answer-swap 0.34s ease both;
+}
+
+@keyframes answer-swap {
+  from {
+    opacity: 0.4;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .insight-card .section-header h2,
@@ -918,10 +939,10 @@
 
 .accordion-card {
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 22px;
   border: 1px solid rgba(31, 70, 53, 0.11);
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 36px rgba(21, 41, 31, 0.06);
+  box-shadow: 0 10px 24px rgba(21, 41, 31, 0.05);
   scroll-margin-top: 24px;
   min-width: 0;
 }
@@ -956,8 +977,8 @@
 
 .accordion-title {
   color: #102419;
-  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia,
-    serif;
+  font-family: 'Literata', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  font-optical-sizing: auto;
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1002,7 +1023,7 @@
 .prevention-grid,
 .highlight-grid,
 .disease-grid,
-.vaccination-grid,
+.vaccination-layout,
 .removal-layout {
   display: grid;
   gap: 16px;
@@ -1010,7 +1031,7 @@
 }
 
 .story-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .story-card,
@@ -1041,7 +1062,14 @@
 }
 
 .disease-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(260px, 0.86fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+@media (max-width: 780px) {
+  .disease-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .disease-card {
@@ -1052,6 +1080,7 @@
   display: grid;
   gap: 14px;
   align-content: start;
+  align-self: start;
   min-width: 0;
 }
 
@@ -1175,12 +1204,33 @@
   font-size: 0.98rem;
 }
 
-.vaccination-grid {
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+.vaccination-layout {
+  grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+  align-items: start;
+}
+
+.vaccination-aside {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* Both diagrams are ~2.4:1. In a half column they render too small to read,
+   so they take the full row instead of being boxed beside the prose. */
+.vaccination-layout .image-card,
+.disease-grid .image-card {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 860px) {
+  .vaccination-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .highlight-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .highlight-card {
@@ -1189,7 +1239,7 @@
 }
 
 .prevention-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .prevention-card {
@@ -1213,7 +1263,7 @@
 }
 
 .removal-layout {
-  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
 .step-list {
@@ -1272,13 +1322,7 @@
 
 @media (max-width: 1100px) {
   .hero-layout,
-  .prediction-grid,
-  .vaccination-grid,
-  .removal-layout,
-  .disease-grid,
-  .prevention-grid,
-  .story-grid,
-  .highlight-grid {
+  .prediction-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1338,18 +1382,6 @@
     width: 100%;
   }
 
-  .notice-bar {
-    border-radius: 22px;
-  }
-
-  .notice-track span {
-    font-size: 0.9rem;
-  }
-
-  .notice-track {
-    padding: 0.8rem 1.1rem;
-  }
-
   .score-row {
     grid-template-columns: 1fr;
   }
@@ -1363,7 +1395,7 @@
   }
 
   .map-canvas {
-    height: 380px;
+    height: min(380px, 58dvh);
   }
 
   .disease-toggle {
@@ -1419,7 +1451,7 @@
   }
 
   .map-canvas {
-    height: 360px;
+    height: min(360px, 58dvh);
   }
 }
 
@@ -1438,10 +1470,6 @@
     grid-template-columns: 1fr;
   }
 
-  .notice-track {
-    padding-inline: 0.95rem;
-  }
-
   .hero-logo-badge {
     width: 64px;
     border-radius: 18px;
@@ -1456,7 +1484,7 @@
   }
 
   .map-canvas {
-    height: 320px;
+    height: min(320px, 58dvh);
   }
 }
 
@@ -1467,7 +1495,8 @@
 
   .hero-panel,
   .jump-rail,
-  .risk-stage {
+  .risk-stage,
+  .insight-card {
     animation: none;
   }
 
