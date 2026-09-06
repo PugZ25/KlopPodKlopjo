@@ -12,6 +12,7 @@ import {
 import brandLogo from '../logo.png'
 import tbeMapImage from '../navodila/images/image1.png'
 import vaccinationScheduleImage from '../navodila/images/image2.png'
+import CrawlingTick from './components/CrawlingTick'
 import type { MapViewProps } from './components/MapView'
 import {
   liveMunicipalityRiskModels,
@@ -517,6 +518,8 @@ function App() {
 
   return (
     <div className="site-page">
+      <CrawlingTick />
+
       <main className="app-shell">
         <section className="hero-panel">
           <div className="hero-layout">

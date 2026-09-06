@@ -3,6 +3,37 @@
   overflow-x: clip;
 }
 
+/*
+ * Decorative ticks that crawl across the backdrop. The layer is portalled to
+ * <body> and painted in the negative z-layer, so every panel, heading and
+ * control in the normal flow is drawn on top of it.
+ */
+.tick-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tick-layer-sprite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.tick-layer-sprite[data-visible='true'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick-layer {
+    display: none;
+  }
+}
+
 .app-shell {
   width: min(1180px, calc(100% - clamp(20px, 6vw, 40px)));
   margin: 0 auto;
