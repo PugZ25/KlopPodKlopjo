@@ -139,18 +139,6 @@ function buildRiskBadgeStyle(level: RiskLevel, score: number): CSSProperties {
   } as CSSProperties
 }
 
-function buildMovementLabel(deltaScore: number) {
-  if (deltaScore >= 8) {
-    return 'Signal se povečuje.'
-  }
-
-  if (deltaScore <= -8) {
-    return 'Signal se zmanjšuje.'
-  }
-
-  return 'Signal ostaja podoben.'
-}
-
 function formatGeolocationError(error: GeolocationPositionError) {
   if (error.code === error.PERMISSION_DENIED) {
     return 'Dostop do lokacije je bil zavrnjen.'
@@ -726,11 +714,6 @@ function App() {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="trend-card">
-                <span className="metric-label">Tedenski premik</span>
-                <strong>{buildMovementLabel(selectedLocation.trendDeltaScore)}</strong>
               </div>
 
               <div className="weather-context-card">

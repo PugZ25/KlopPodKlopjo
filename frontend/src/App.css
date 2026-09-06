@@ -314,7 +314,6 @@
 
 .map-summary-card,
 .map-legend-bar,
-.trend-card,
 .weather-context-card,
 .story-card,
 .image-card,
@@ -330,8 +329,7 @@
   color: #617468;
 }
 
-.highlight-card strong,
-.trend-card strong {
+.highlight-card strong {
   display: block;
   margin-top: 8px;
   font-size: 1.14rem;
@@ -867,17 +865,6 @@
 .summary-panel-high .summary-kicker {
   background: rgba(255, 219, 210, 0.94);
   color: #8f271b;
-}
-
-.trend-card {
-  margin-top: 18px;
-  padding: 16px 18px;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(212, 231, 219, 0.1);
-}
-
-.trend-card strong {
-  color: #f6fbf7;
 }
 
 .weather-context-card {
