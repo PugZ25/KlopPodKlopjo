@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T17:42:23.370743+00:00",
+  "generatedAt": "2026-09-23T06:23:42.498444+00:00",
   "issueWeek": "2026-09-21",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 65
         }
       ],
-      "generatedAt": "2026-09-22T17:42:23.370743+00:00",
+      "generatedAt": "2026-09-23T06:23:42.498444+00:00",
       "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
       "key": "borelioza",
       "limitations": [
@@ -178,8 +178,8 @@
           "regionCode": "08",
           "regionName": "Osrednjeslovenska",
           "score": 59,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 15.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -478,8 +478,8 @@
           "regionCode": "01",
           "regionName": "Pomurska",
           "score": 53,
-          "trendDeltaScore": 2,
-          "trendLabel": "+2 točk glede na prejšnji teden",
+          "trendDeltaScore": 3,
+          "trendLabel": "+3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -538,8 +538,8 @@
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
           "score": 55,
-          "trendDeltaScore": -1,
-          "trendLabel": "-1 točk glede na prejšnji teden",
+          "trendDeltaScore": 0,
+          "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -1048,8 +1048,8 @@
           "regionCode": "05",
           "regionName": "Zasavska",
           "score": 55,
-          "trendDeltaScore": -6,
-          "trendLabel": "-6 točk glede na prejšnji teden",
+          "trendDeltaScore": -4,
+          "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -1198,8 +1198,8 @@
           "regionCode": "08",
           "regionName": "Osrednjeslovenska",
           "score": 58,
-          "trendDeltaScore": -4,
-          "trendLabel": "-4 točk glede na prejšnji teden",
+          "trendDeltaScore": -3,
+          "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -1558,8 +1558,8 @@
           "regionCode": "04",
           "regionName": "Savinjska",
           "score": 55,
-          "trendDeltaScore": 1,
-          "trendLabel": "+1 točk glede na prejšnji teden",
+          "trendDeltaScore": 0,
+          "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -2458,8 +2458,8 @@
           "regionCode": "03",
           "regionName": "Koroška",
           "score": 57,
-          "trendDeltaScore": -5,
-          "trendLabel": "-5 točk glede na prejšnji teden",
+          "trendDeltaScore": -6,
+          "trendLabel": "-6 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -2488,8 +2488,8 @@
           "regionCode": "09",
           "regionName": "Gorenjska",
           "score": 61,
-          "trendDeltaScore": 0,
-          "trendLabel": "brez spremembe glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 15.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -2608,8 +2608,8 @@
           "regionCode": "01",
           "regionName": "Pomurska",
           "score": 54,
-          "trendDeltaScore": 3,
-          "trendLabel": "+3 točk glede na prejšnji teden",
+          "trendDeltaScore": 4,
+          "trendLabel": "+4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -2908,8 +2908,8 @@
           "regionCode": "02",
           "regionName": "Podravska",
           "score": 52,
-          "trendDeltaScore": 4,
-          "trendLabel": "+4 točk glede na prejšnji teden",
+          "trendDeltaScore": 3,
+          "trendLabel": "+3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3088,8 +3088,8 @@
           "regionCode": "09",
           "regionName": "Gorenjska",
           "score": 86,
-          "trendDeltaScore": -1,
-          "trendLabel": "-1 točk glede na prejšnji teden",
+          "trendDeltaScore": -2,
+          "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 14.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3418,8 +3418,8 @@
           "regionCode": "02",
           "regionName": "Podravska",
           "score": 48,
-          "trendDeltaScore": -4,
-          "trendLabel": "-4 točk glede na prejšnji teden",
+          "trendDeltaScore": -5,
+          "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3808,8 +3808,8 @@
           "regionCode": "04",
           "regionName": "Savinjska",
           "score": 57,
-          "trendDeltaScore": -5,
-          "trendLabel": "-5 točk glede na prejšnji teden",
+          "trendDeltaScore": -4,
+          "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 15.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3868,8 +3868,8 @@
           "regionCode": "11",
           "regionName": "Goriška",
           "score": 80,
-          "trendDeltaScore": 0,
-          "trendLabel": "brez spremembe glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3958,8 +3958,8 @@
           "regionCode": "09",
           "regionName": "Gorenjska",
           "score": 61,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "trendDeltaScore": -3,
+          "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 13.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3988,8 +3988,8 @@
           "regionCode": "01",
           "regionName": "Pomurska",
           "score": 54,
-          "trendDeltaScore": 3,
-          "trendLabel": "+3 točk glede na prejšnji teden",
+          "trendDeltaScore": 4,
+          "trendLabel": "+4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -4078,8 +4078,8 @@
           "regionCode": "02",
           "regionName": "Podravska",
           "score": 56,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -4468,8 +4468,8 @@
           "regionCode": "06",
           "regionName": "Posavska",
           "score": 53,
-          "trendDeltaScore": 1,
-          "trendLabel": "+1 točk glede na prejšnji teden",
+          "trendDeltaScore": 0,
+          "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -4618,8 +4618,8 @@
           "regionCode": "04",
           "regionName": "Savinjska",
           "score": 58,
-          "trendDeltaScore": -3,
-          "trendLabel": "-3 točk glede na prejšnji teden",
+          "trendDeltaScore": -4,
+          "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 16.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -4678,8 +4678,8 @@
           "regionCode": "01",
           "regionName": "Pomurska",
           "score": 54,
-          "trendDeltaScore": 1,
-          "trendLabel": "+1 točk glede na prejšnji teden",
+          "trendDeltaScore": 2,
+          "trendLabel": "+2 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -5008,8 +5008,8 @@
           "regionCode": "02",
           "regionName": "Podravska",
           "score": 58,
-          "trendDeltaScore": -7,
-          "trendLabel": "-7 točk glede na prejšnji teden",
+          "trendDeltaScore": -6,
+          "trendLabel": "-6 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 13.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -5638,8 +5638,8 @@
           "regionCode": "01",
           "regionName": "Pomurska",
           "score": 53,
-          "trendDeltaScore": 2,
-          "trendLabel": "+2 točk glede na prejšnji teden",
+          "trendDeltaScore": 3,
+          "trendLabel": "+3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -5968,8 +5968,8 @@
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
           "score": 57,
-          "trendDeltaScore": -1,
-          "trendLabel": "-1 točk glede na prejšnji teden",
+          "trendDeltaScore": -2,
+          "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6088,8 +6088,8 @@
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
           "score": 55,
-          "trendDeltaScore": 1,
-          "trendLabel": "+1 točk glede na prejšnji teden",
+          "trendDeltaScore": 0,
+          "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6148,8 +6148,8 @@
           "regionCode": "02",
           "regionName": "Podravska",
           "score": 55,
-          "trendDeltaScore": 0,
-          "trendLabel": "brez spremembe glede na prejšnji teden",
+          "trendDeltaScore": 1,
+          "trendLabel": "+1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6328,8 +6328,8 @@
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
           "score": 57,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 17.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6470,7 +6470,7 @@
           "score": 64
         }
       ],
-      "generatedAt": "2026-09-22T17:42:23.370743+00:00",
+      "generatedAt": "2026-09-23T06:23:42.498444+00:00",
       "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
       "key": "kme",
       "limitations": [
@@ -12877,7 +12877,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-09-20",
     "periodStart": "2026-09-14",
-    "retrievalId": "retrieved_20260922T174223Z",
+    "retrievalId": "retrieved_20260923T062342Z",
     "retrievalWindowEnd": "2026-09-20",
     "retrievalWindowStart": "2026-08-17",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
