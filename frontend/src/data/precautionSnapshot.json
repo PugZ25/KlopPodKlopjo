@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T17:56:22.466904+00:00",
+  "generatedAt": "2026-10-24T06:15:21.079437+00:00",
   "issueWeek": "2026-10-19",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 65
         }
       ],
-      "generatedAt": "2026-10-23T17:56:22.466904+00:00",
+      "generatedAt": "2026-10-24T06:15:21.079437+00:00",
       "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
       "key": "borelioza",
       "limitations": [
@@ -61,7 +61,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 12.6,
+            "airTemperatureC7dMean": 12.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -91,7 +91,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -181,7 +181,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -481,7 +481,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.6,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -627,9 +627,9 @@
           "municipalityName": "Dobrepolje",
           "regionCode": "08",
           "regionName": "Osrednjeslovenska",
-          "score": 43,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "score": 41,
+          "trendDeltaScore": -4,
+          "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -811,7 +811,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 11.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -867,9 +867,9 @@
           "municipalityName": "Gorišnica",
           "regionCode": "02",
           "regionName": "Podravska",
-          "score": 42,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "score": 43,
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 9.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -1051,7 +1051,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.0,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1141,7 +1141,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1197,9 +1197,9 @@
           "municipalityName": "Ivančna Gorica",
           "regionCode": "08",
           "regionName": "Osrednjeslovenska",
-          "score": 41,
-          "trendDeltaScore": -3,
-          "trendLabel": "-3 točk glede na prejšnji teden",
+          "score": 43,
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -1321,7 +1321,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1441,7 +1441,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1591,7 +1591,7 @@
           "trendDeltaScore": -6,
           "trendLabel": "-6 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.6,
+            "airTemperatureC7dMean": 10.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1651,7 +1651,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1801,7 +1801,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -1891,7 +1891,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.9,
+            "airTemperatureC7dMean": 8.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2075,7 +2075,7 @@
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
-            "precipitationMm7dTotal": 6.8,
+            "precipitationMm7dTotal": 6.9,
             "soilMoistureM3M3_7dMean": 0.227,
             "soilTemperatureC7dMean": 9.6,
             "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
@@ -2131,7 +2131,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2251,7 +2251,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.2,
+            "airTemperatureC7dMean": 8.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2311,7 +2311,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.8,
+            "airTemperatureC7dMean": 8.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2341,7 +2341,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2401,7 +2401,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.6,
+            "airTemperatureC7dMean": 9.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2491,7 +2491,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2701,7 +2701,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2881,7 +2881,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -2971,7 +2971,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3061,7 +3061,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3181,7 +3181,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.1,
+            "airTemperatureC7dMean": 11.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3211,7 +3211,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3301,7 +3301,7 @@
           "trendDeltaScore": -6,
           "trendLabel": "-6 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3511,7 +3511,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3631,7 +3631,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.0,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3811,7 +3811,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3841,7 +3841,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.4,
+            "airTemperatureC7dMean": 11.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -3961,7 +3961,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.8,
+            "airTemperatureC7dMean": 8.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4021,7 +4021,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4261,7 +4261,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4321,7 +4321,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4531,7 +4531,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4651,7 +4651,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4681,7 +4681,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4891,7 +4891,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.5,
+            "airTemperatureC7dMean": 8.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -4921,7 +4921,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5041,7 +5041,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5071,7 +5071,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.8,
+            "airTemperatureC7dMean": 9.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5221,7 +5221,7 @@
           "trendDeltaScore": -2,
           "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5251,7 +5251,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.2,
+            "airTemperatureC7dMean": 9.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5521,7 +5521,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.8,
+            "airTemperatureC7dMean": 9.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5611,7 +5611,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5641,7 +5641,7 @@
           "trendDeltaScore": 0,
           "trendLabel": "brez spremembe glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -5731,7 +5731,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.2,
+            "airTemperatureC7dMean": 11.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -6301,7 +6301,7 @@
           "trendDeltaScore": -1,
           "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -6470,7 +6470,7 @@
           "score": 47
         }
       ],
-      "generatedAt": "2026-10-23T17:56:22.466904+00:00",
+      "generatedAt": "2026-10-24T06:15:21.079437+00:00",
       "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
       "key": "kme",
       "limitations": [
@@ -6494,7 +6494,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 12.6,
+            "airTemperatureC7dMean": 12.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -6524,7 +6524,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -6614,7 +6614,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -6914,7 +6914,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.6,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -7244,7 +7244,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 11.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -7484,7 +7484,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.0,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -7574,7 +7574,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -7754,7 +7754,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -7874,7 +7874,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8024,7 +8024,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.6,
+            "airTemperatureC7dMean": 10.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8084,7 +8084,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8234,7 +8234,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8324,7 +8324,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.9,
+            "airTemperatureC7dMean": 8.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8508,7 +8508,7 @@
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
-            "precipitationMm7dTotal": 6.8,
+            "precipitationMm7dTotal": 6.9,
             "soilMoistureM3M3_7dMean": 0.227,
             "soilTemperatureC7dMean": 9.6,
             "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
@@ -8564,7 +8564,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8684,7 +8684,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.2,
+            "airTemperatureC7dMean": 8.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8744,7 +8744,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.8,
+            "airTemperatureC7dMean": 8.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8774,7 +8774,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8834,7 +8834,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.6,
+            "airTemperatureC7dMean": 9.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -8924,7 +8924,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9134,7 +9134,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9314,7 +9314,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9404,7 +9404,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9494,7 +9494,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9614,7 +9614,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.1,
+            "airTemperatureC7dMean": 11.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9644,7 +9644,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9734,7 +9734,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -9944,7 +9944,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10064,7 +10064,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.0,
+            "airTemperatureC7dMean": 10.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10244,7 +10244,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.7,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10274,7 +10274,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.4,
+            "airTemperatureC7dMean": 11.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10394,7 +10394,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.8,
+            "airTemperatureC7dMean": 8.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10454,7 +10454,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.9,
+            "airTemperatureC7dMean": 10.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10694,7 +10694,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10754,7 +10754,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -10964,7 +10964,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.2,
+            "airTemperatureC7dMean": 10.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11084,7 +11084,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11114,7 +11114,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.5,
+            "airTemperatureC7dMean": 10.6,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11324,7 +11324,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 8.5,
+            "airTemperatureC7dMean": 8.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11354,7 +11354,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11474,7 +11474,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.3,
+            "airTemperatureC7dMean": 10.4,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11504,7 +11504,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.8,
+            "airTemperatureC7dMean": 9.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11654,7 +11654,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.8,
+            "airTemperatureC7dMean": 10.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11684,7 +11684,7 @@
           "trendDeltaScore": -3,
           "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.2,
+            "airTemperatureC7dMean": 9.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -11954,7 +11954,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 9.8,
+            "airTemperatureC7dMean": 9.7,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -12044,7 +12044,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.1,
+            "airTemperatureC7dMean": 10.2,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -12074,7 +12074,7 @@
           "trendDeltaScore": -5,
           "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.5,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -12164,7 +12164,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 11.2,
+            "airTemperatureC7dMean": 11.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -12734,7 +12734,7 @@
           "trendDeltaScore": -4,
           "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
-            "airTemperatureC7dMean": 10.4,
+            "airTemperatureC7dMean": 10.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
             "periodEnd": "2026-10-18",
             "periodStart": "2026-10-12",
@@ -12877,7 +12877,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-10-18",
     "periodStart": "2026-10-12",
-    "retrievalId": "retrieved_20261023T175622Z",
+    "retrievalId": "retrieved_20261024T061521Z",
     "retrievalWindowEnd": "2026-10-18",
     "retrievalWindowStart": "2026-09-14",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
