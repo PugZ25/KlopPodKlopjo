@@ -1,0 +1,25 @@
+Use case: infographic-diagram.
+Create a polished, very simple Slovenian explanatory diagram for a general-public article about KlopPodKlopjo. PNG with genuinely transparent background (alpha, not a drawn checkerboard), landscape 2400x1600 or similarly high resolution, readable when printed 16 cm wide occupying half an article page. Flat editorial diagram, crisp large dark charcoal sans-serif letters, teal accents, light pale teal card fills, restrained amber accent. No shadows, gradients, decorative tiny details, branding logo, equations, jargon or invented statistics. Generous spacing but compact readable text. All Slovenian diacritics must be exact.
+Title at top: "Kako nastane tedenski signal?"
+Main flow: three large numbered rounded cards left to right connected by clear arrows. Each card has one simple line icon and large heading and short body, exactly as follows:
+Card 1 heading: "1  Pretekli podatki"
+Body lines: "Prijave bolezni" / "Podatki o prebivalstvu"
+Bottom small but readable line within card: "Osnova za učenje"
+Icon: document and simple bar chart.
+Card 2 heading: "2  Model"
+Body lines: "Prepozna sezonske" / "in krajevne vzorce"
+Icon: simple connected nodes, not a robot or brain.
+Card 3 heading: "3  Zemljevid"
+Body lines: "Relativni signal" / "za tekoči teden"
+Below body a simple three-dot scale in muted teal, amber, rust with exact labels "Nizko" "Srednje" "Visoko". No percentages. Icon: generic folded map with a location pin, not an invented geographic outline.
+Below the central model card, a wide supporting panel connected UP to model by an arrow. Heading "Kaj model upošteva ob izračunu?"
+Two clearly separated stacked lines with bold disease names:
+"Borelioza: občina, letni čas in preteklo vreme"
+"KME: regija in letni čas"
+Below these a smaller but still easily readable line: "Vreme: zadnji 4 zaključeni tedni."
+Keep supporting panel sufficiently wide to make all text large and readable, approximately spans first and second main cards. Avoid other arrows to prevent implying weather feeds KME.
+Bottom single clear footer, dark text, not tiny: "Signal podpira previdnost; ne pomeni osebne verjetnosti okužbe."
+Composition should be calm, professional, article-ready, very easy to understand with no technical knowledge. Preserve actual transparent canvas around cards and between elements. Only render exact specified text; do not add explanations.
+
+Generation: built-in image_gen tool, 2026-09-10.
+Verified against model_v3/config/precaution_snapshot.json, both precaution_proxy model manifests, model_v3/predict/precaution_snapshot.py and frontend/src/data/liveMunicipalityRisk.ts. Root and frontend README weather descriptions are outdated relative to these active contracts.
