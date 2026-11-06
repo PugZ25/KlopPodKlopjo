@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T20:46:48.583862+00:00",
+  "generatedAt": "2026-11-06T08:19:30.789552+00:00",
   "issueWeek": "2026-11-02",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 65
         }
       ],
-      "generatedAt": "2026-11-05T20:46:48.583862+00:00",
+      "generatedAt": "2026-11-06T08:19:30.789552+00:00",
       "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
       "key": "borelioza",
       "limitations": [
@@ -1858,8 +1858,8 @@
           "regionCode": "08",
           "regionName": "Osrednjeslovenska",
           "score": 38,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "trendDeltaScore": -1,
+          "trendLabel": "-1 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 7.3,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -3147,9 +3147,9 @@
           "municipalityName": "Ribnica",
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
-          "score": 41,
-          "trendDeltaScore": -1,
-          "trendLabel": "-1 točk glede na prejšnji teden",
+          "score": 40,
+          "trendDeltaScore": -2,
+          "trendLabel": "-2 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 5.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6470,7 +6470,7 @@
           "score": 38
         }
       ],
-      "generatedAt": "2026-11-05T20:46:48.583862+00:00",
+      "generatedAt": "2026-11-06T08:19:30.789552+00:00",
       "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
       "key": "kme",
       "limitations": [
@@ -12877,7 +12877,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-11-01",
     "periodStart": "2026-10-26",
-    "retrievalId": "retrieved_20261105T204648Z",
+    "retrievalId": "retrieved_20261106T081930Z",
     "retrievalWindowEnd": "2026-11-01",
     "retrievalWindowStart": "2026-09-28",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
