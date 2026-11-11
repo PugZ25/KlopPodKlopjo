@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T08:04:21.608521+00:00",
+  "generatedAt": "2026-11-11T20:18:14.402049+00:00",
   "issueWeek": "2026-11-09",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 60
         }
       ],
-      "generatedAt": "2026-11-11T08:04:21.608521+00:00",
+      "generatedAt": "2026-11-11T20:18:14.402049+00:00",
       "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
       "key": "borelioza",
       "limitations": [
@@ -3148,8 +3148,8 @@
           "regionCode": "07",
           "regionName": "Jugovzhodna Slovenija",
           "score": 35,
-          "trendDeltaScore": -6,
-          "trendLabel": "-6 točk glede na prejšnji teden",
+          "trendDeltaScore": -5,
+          "trendLabel": "-5 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 3.1,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -5277,9 +5277,9 @@
           "municipalityName": "Razkrižje",
           "regionCode": "01",
           "regionName": "Pomurska",
-          "score": 39,
-          "trendDeltaScore": -2,
-          "trendLabel": "-2 točk glede na prejšnji teden",
+          "score": 38,
+          "trendDeltaScore": -3,
+          "trendLabel": "-3 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 5.9,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -5907,9 +5907,9 @@
           "municipalityName": "Kostanjevica na Krki",
           "regionCode": "06",
           "regionName": "Posavska",
-          "score": 36,
-          "trendDeltaScore": -7,
-          "trendLabel": "-7 točk glede na prejšnji teden",
+          "score": 35,
+          "trendDeltaScore": -8,
+          "trendLabel": "-8 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 3.8,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6027,9 +6027,9 @@
           "municipalityName": "Renče-Vogrsko",
           "regionCode": "11",
           "regionName": "Goriška",
-          "score": 42,
-          "trendDeltaScore": -3,
-          "trendLabel": "-3 točk glede na prejšnji teden",
+          "score": 41,
+          "trendDeltaScore": -4,
+          "trendLabel": "-4 točk glede na prejšnji teden",
           "weatherContext": {
             "airTemperatureC7dMean": 10.0,
             "dataStatus": "recent_operational_model_history_not_station_observations",
@@ -6470,7 +6470,7 @@
           "score": 34
         }
       ],
-      "generatedAt": "2026-11-11T08:04:21.608521+00:00",
+      "generatedAt": "2026-11-11T20:18:14.402049+00:00",
       "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
       "key": "kme",
       "limitations": [
@@ -12877,7 +12877,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-11-08",
     "periodStart": "2026-11-02",
-    "retrievalId": "retrieved_20261111T080421Z",
+    "retrievalId": "retrieved_20261111T201814Z",
     "retrievalWindowEnd": "2026-11-08",
     "retrievalWindowStart": "2026-10-05",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
