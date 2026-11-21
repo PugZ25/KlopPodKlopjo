@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T21:26:11.473378+00:00",
+  "generatedAt": "2026-11-21T08:37:24.785324+00:00",
   "issueWeek": "2026-11-16",
   "models": {
     "borelioza": {
@@ -37,7 +37,7 @@
           "score": 63
         }
       ],
-      "generatedAt": "2026-11-20T21:26:11.473378+00:00",
+      "generatedAt": "2026-11-21T08:37:24.785324+00:00",
       "inputWindow": "Sezona, občina, predhodno razpoložljivo prebivalstvo ter vreme — temperatura zraka in plitvih tal in padavine — v štirih zaključenih tednih t−4 do t−1.",
       "key": "borelioza",
       "limitations": [
@@ -6470,7 +6470,7 @@
           "score": 31
         }
       ],
-      "generatedAt": "2026-11-20T21:26:11.473378+00:00",
+      "generatedAt": "2026-11-21T08:37:24.785324+00:00",
       "inputWindow": "Letna sezona, statistična regija in predhodno razpoložljivo prebivalstvo; vreme in novejše prijave primerov niso vhod.",
       "key": "kme",
       "limitations": [
@@ -12877,7 +12877,7 @@
     "nativePolygonIntegration": false,
     "periodEnd": "2026-11-15",
     "periodStart": "2026-11-09",
-    "retrievalId": "retrieved_20261120T212611Z",
+    "retrievalId": "retrieved_20261121T083724Z",
     "retrievalWindowEnd": "2026-11-15",
     "retrievalWindowStart": "2026-10-12",
     "source": "Open-Meteo / DWD ICON, zaključeni tedni pred izdajo",
